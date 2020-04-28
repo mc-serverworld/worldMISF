@@ -1,0 +1,46 @@
+main: com.serverworld.phoenix.paper.worldMISFpaperspigot
+name: ${project.name}
+version: ${project.version}
+authors:
+  - paul0665
+  - mc-serverworld
+website: mc-serverworld.com
+softdepend: [PlaceholderAPI]
+
+commands:
+  misfpaperspigot:
+    description: Basic misf command.
+    permission: misfpaperspigot.command.*
+    aliases: [misf]
+permissions:
+  misfpaperspigot.*:
+    children:
+      misfpaperspigot.command.help: true
+      misfpaperspigot.command.set.time: true
+      misfpaperspigot.command.set.weather: true
+      misfpaperspigot.command.login: true
+      misfpaperspigot.command.tpserver: true
+      misfpaperspigot.command.warpsv: true
+      misfpaperspigot.notify: true
+    misfpaperspigot.command.*:
+      children:
+        midfpaperspigot.command.help: true
+        misfpaperspigot.command.set.time: true
+        misfpaperspigot.command.set.weather: true
+        misfpaperspigot.command.login: true
+        misfpaperspigot.command.tpserver: true
+        misfpaperspigot.command.warpsv: true
+    misfpaperspigot.command.help:
+      default: false
+    misfpaperspigot.command.set.time:
+      default: false
+    misfpaperspigot.command.set.weather:
+      default: false
+    misfpaperspigot.command.login:
+      default: false
+    misfpaperspigot.command.tpserver:
+      default: false
+    misfpaperspigot.command.warpsv:
+      default: false
+    misfpaperspigot.notify:
+      default: false

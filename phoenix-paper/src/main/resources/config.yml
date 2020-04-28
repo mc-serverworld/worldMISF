@@ -1,0 +1,21 @@
+# worldMISFpaperspigot
+# Version: ${project.version}
+# Gitgub: https://github.com/mc-serverworld/worldMISFpaperspigot
+configinfo:
+  api-version: 4
+serverinfo:
+  servername: server00
+  servertype: phoenix
+worldinfo:
+  worldtype: overworld
+  chunksize: 5000
+  worldsize: 35000
+  position:
+    x: 0
+    y: 0
+
+#sec
+sync-time:
+  weather: 60
+  time: 300
+
