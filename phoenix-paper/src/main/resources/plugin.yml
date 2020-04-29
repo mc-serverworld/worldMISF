@@ -1,4 +1,4 @@
-main: com.serverworld.phoenix.paper.worldMISFpaperspigot
+main: com.serverworld.phoenix.paper.BukkitPhoenix
 name: ${project.name}
 version: ${project.version}
 authors:
@@ -8,39 +8,39 @@ website: mc-serverworld.com
 softdepend: [PlaceholderAPI]
 
 commands:
-  misfpaperspigot:
+  misf:
     description: Basic misf command.
-    permission: misfpaperspigot.command.*
+    permission: misf.command.*
     aliases: [misf]
 permissions:
-  misfpaperspigot.*:
+  misf.*:
     children:
-      misfpaperspigot.command.help: true
-      misfpaperspigot.command.set.time: true
-      misfpaperspigot.command.set.weather: true
-      misfpaperspigot.command.login: true
-      misfpaperspigot.command.tpserver: true
-      misfpaperspigot.command.warpsv: true
-      misfpaperspigot.notify: true
-    misfpaperspigot.command.*:
+      misf.command.help: true
+      misf.command.set.time: true
+      misf.command.set.weather: true
+      misf.command.login: true
+      misf.command.tpserver: true
+      misf.command.warpsv: true
+      misf.notify: true
+    misf.command.*:
       children:
-        midfpaperspigot.command.help: true
-        misfpaperspigot.command.set.time: true
-        misfpaperspigot.command.set.weather: true
-        misfpaperspigot.command.login: true
-        misfpaperspigot.command.tpserver: true
-        misfpaperspigot.command.warpsv: true
-    misfpaperspigot.command.help:
+        midf.command.help: true
+        misf.command.set.time: true
+        misf.command.set.weather: true
+        misf.command.login: true
+        misf.command.tpserver: true
+        misfp.command.warpsv: true
+    misf.command.help:
       default: false
-    misfpaperspigot.command.set.time:
+    misf.command.set.time:
       default: false
-    misfpaperspigot.command.set.weather:
+    misf.command.set.weather:
       default: false
-    misfpaperspigot.command.login:
+    misf.command.login:
       default: false
-    misfpaperspigot.command.tpserver:
+    misf.command.tpserver:
       default: false
-    misfpaperspigot.command.warpsv:
+    misf.command.warpsv:
       default: false
-    misfpaperspigot.notify:
+    misf.notify:
       default: false

@@ -1,6 +1,6 @@
-# worldMISFpaperspigot
+# ${project.name}
 # Version: ${project.version}
-# Gitgub: https://github.com/mc-serverworld/worldMISFpaperspigot
+# Gitgub: https://github.com/mc-serverworld/worldMISF
 configinfo:
   api-version: 4
 serverinfo:
