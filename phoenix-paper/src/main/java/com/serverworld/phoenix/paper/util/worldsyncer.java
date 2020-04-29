@@ -1,7 +1,7 @@
 package com.serverworld.phoenix.paper.util;
 
-import com.serverworld.phoenix.paper.worldMISFpaperspigot;
-import com.serverworld.phoenix.paper.worldMISFpaperspigotconfig;
+import com.serverworld.phoenix.paper.BukkitPhoenix;
+import com.serverworld.phoenix.paper.BukkitPhoenixConfig;
 import com.serverworld.worldSocket.paperspigot.util.messagecoder;
 import com.serverworld.worldSocket.paperspigot.util.messager;
 import net.md_5.bungee.api.ChatColor;
@@ -9,28 +9,28 @@ import org.apache.commons.lang.math.NumberUtils;
 import org.bukkit.World;
 
 public class worldsyncer {
-    public worldMISFpaperspigot worldmisfpaperspigot;
-    public worldMISFpaperspigotconfig config;
+    public BukkitPhoenix bukkitphoenix;
+    public BukkitPhoenixConfig config;
 
-    public worldsyncer(worldMISFpaperspigot worldMISFpaperspigot){
-        this.worldmisfpaperspigot = worldMISFpaperspigot;
-        config=worldMISFpaperspigot.config;
+    public worldsyncer(BukkitPhoenix BukkitPhoenix){
+        this.bukkitphoenix = BukkitPhoenix;
+        config= BukkitPhoenix.config;
         weathersyncer();
         timesyncer();
     }
 
     public void timesyncer() {
-        worldmisfpaperspigot.getServer().getScheduler().scheduleSyncRepeatingTask(worldmisfpaperspigot, new Runnable() {
+        bukkitphoenix.getServer().getScheduler().scheduleSyncRepeatingTask(bukkitphoenix, new Runnable() {
             @Override
             public void run() {
-                World world = worldmisfpaperspigot.getServer().getWorld("world");
+                World world = bukkitphoenix.getServer().getWorld("world");
                 messagecoder messagecode = new messagecoder();
-                messagecode.setSender(worldmisfpaperspigot.config.servername());
+                messagecode.setSender(bukkitphoenix.config.servername());
                 messagecode.setReceiver("ALL");
                 messagecode.setChannel("MISF");
                 messagecode.setType("SYNC");
                 if(!NumberUtils.isNumber(String.valueOf(world.getTime()))){
-                    worldmisfpaperspigot.getLogger().warning(ChatColor.RED + "Cant get world time!");
+                    bukkitphoenix.getLogger().warning(ChatColor.RED + "Cant get world time!");
                     return;
                 }
                 messagecode.setMessage("TIME," + world.getTime());
@@ -40,12 +40,12 @@ public class worldsyncer {
     }
 
     public void weathersyncer() {
-        worldmisfpaperspigot.getServer().getScheduler().scheduleSyncRepeatingTask(worldmisfpaperspigot, new Runnable() {
+        bukkitphoenix.getServer().getScheduler().scheduleSyncRepeatingTask(bukkitphoenix, new Runnable() {
             @Override
             public void run() {
-                World world = worldmisfpaperspigot.getServer().getWorld("world");
+                World world = bukkitphoenix.getServer().getWorld("world");
                 messagecoder messagecode = new messagecoder();
-                messagecode.setSender(worldmisfpaperspigot.config.servername());
+                messagecode.setSender(bukkitphoenix.config.servername());
                 messagecode.setReceiver("ALL");
                 messagecode.setChannel("MISF");
                 messagecode.setType("SYNC");

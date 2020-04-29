@@ -1,9 +1,7 @@
 package com.serverworld.phoenix.paper.commands;
 
-import com.serverworld.phoenix.paper.worldMISFpaperspigot;
-import com.serverworld.worldSocket.paperspigot.socket.socketclient;
+import com.serverworld.phoenix.paper.BukkitPhoenix;
 import com.serverworld.worldSocket.paperspigot.util.*;
-import net.luckperms.api.util.Tristate;
 import net.md_5.bungee.api.ChatColor;
 import org.apache.commons.lang.math.NumberUtils;
 import org.bukkit.command.Command;
@@ -18,13 +16,13 @@ import java.util.Collections;
 import java.util.List;
 
 public class worldMISFpaperspigotCommands implements CommandExecutor , TabCompleter {
-    private worldMISFpaperspigot worldmisfpaperspigot;
+    private BukkitPhoenix bukkitPhoenix;
     static private final List<String> sub_commands = Arrays.asList("set");
     static private final List<String> sub_commands_set = Arrays.asList("weather", " time");
 
 
-    public worldMISFpaperspigotCommands(worldMISFpaperspigot i){
-        this.worldmisfpaperspigot = i;
+    public worldMISFpaperspigotCommands(BukkitPhoenix i){
+        this.bukkitPhoenix = i;
     }
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
         try {
@@ -35,7 +33,7 @@ public class worldMISFpaperspigotCommands implements CommandExecutor , TabComple
                 }
                 case "set": {
                     messagecoder messagecode = new messagecoder();
-                    messagecode.setSender(worldmisfpaperspigot.config.servername());
+                    messagecode.setSender(bukkitPhoenix.config.servername());
                     messagecode.setReceiver("ALL");
                     messagecode.setChannel("MISF");
                     messagecode.setType("SET");
