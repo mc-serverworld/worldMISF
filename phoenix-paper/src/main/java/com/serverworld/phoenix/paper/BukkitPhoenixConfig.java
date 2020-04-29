@@ -1,6 +1,6 @@
 /*
- * DiscordSRV - A Minecraft to Discord and back link plugin
- * Copyright (C) 2016-2019 Austin "Scarsz" Shapiro
+ * WorldMISF - cms of mc-serverworld
+ * Copyright (C) 2019-2020 mc-serverworld
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
