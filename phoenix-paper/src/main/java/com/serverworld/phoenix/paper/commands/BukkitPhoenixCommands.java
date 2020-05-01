@@ -19,6 +19,7 @@
 package com.serverworld.phoenix.paper.commands;
 
 import com.serverworld.phoenix.paper.BukkitPhoenix;
+import com.serverworld.phoenix.paper.BukkitPhoenixConfig;
 import com.serverworld.worldSocket.paperspigot.util.messagecoder;
 import com.serverworld.worldSocket.paperspigot.util.messager;
 import net.md_5.bungee.api.ChatColor;
@@ -50,6 +51,15 @@ public class BukkitPhoenixCommands implements CommandExecutor , TabCompleter {
                     commandSender.sendMessage(ChatColor.RED + "Invalid input");
                     return true;
                 }
+                case "info": {
+                    if(!commandSender.hasPermission("misf.command.info")){
+                        commandSender.sendMessage( ChatColor.RED + "no permission");
+                        return false;
+                    }
+                    BukkitPhoenixConfig config = bukkitPhoenix.config;
+                    commandSender.sendMessage(ChatColor.BLUE + "======info======");
+                    commandSender.sendMessage(ChatColor.AQUA + "Servername: " + ChatColor.GREEN + config.servername());
+                }
                 case "set": {
                     messagecoder messagecode = new messagecoder();
                     messagecode.setSender(bukkitPhoenix.config.servername());
@@ -58,6 +68,10 @@ public class BukkitPhoenixCommands implements CommandExecutor , TabCompleter {
                     messagecode.setType("SET");
                     switch (strings[1]){
                         case "weather":{
+                            if(!commandSender.hasPermission("misf.command.set. weather")){
+                                commandSender.sendMessage( ChatColor.RED + "no permission");
+                                return false;
+                            }
                             if(!NumberUtils.isNumber(strings[3])){
                                 commandSender.sendMessage(ChatColor.RED + "Invalid input");
                                 return true;
@@ -80,6 +94,10 @@ public class BukkitPhoenixCommands implements CommandExecutor , TabCompleter {
                         }
 
                         case "time":{
+                            if(!commandSender.hasPermission("misf.command.set.time")){
+                                commandSender.sendMessage( ChatColor.RED + "no permission");
+                                return false;
+                            }
                             if(NumberUtils.isNumber(strings[2])){
                                 messagecode.setMessage("TIME," + strings[2]);
                                 commandSender.sendMessage(ChatColor.GREEN + "Set time to " + strings[2]);
@@ -151,6 +169,8 @@ public class BukkitPhoenixCommands implements CommandExecutor , TabCompleter {
         if (args.length == 1) {
             if (sender.hasPermission("misfpaperspigot.command.help"))
                 commands.add("help");
+            if (sender.hasPermission("misfpaperspigot.command.info"))
+                commands.add("info");
             if (sender.hasPermission("misfpaperspigot.command.tpserver"))
                 commands.add("tpserver");
             if (sender.hasPermission("misfpaperspigot.command.login"))

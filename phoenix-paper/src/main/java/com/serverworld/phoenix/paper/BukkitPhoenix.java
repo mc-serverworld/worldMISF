@@ -21,6 +21,8 @@ package com.serverworld.phoenix.paper;
 import com.google.common.io.ByteArrayDataInput;
 import com.google.common.io.ByteStreams;
 import com.serverworld.phoenix.paper.Listeners.Messagecoming;
+import com.serverworld.phoenix.paper.Listeners.PlayerDeath;
+import com.serverworld.phoenix.paper.Listeners.PlayerRespawn;
 import com.serverworld.phoenix.paper.commands.BukkitPhoenixCommands;
 import com.serverworld.phoenix.paper.util.worldsyncer;
 import org.bukkit.entity.Player;
@@ -43,15 +45,25 @@ public class BukkitPhoenix extends JavaPlugin{
     @Override
     public void onEnable() {
         config.loadDefConfig();
-        getLogger().info( "Plugin enabled!" );
-        getServer().getPluginManager().registerEvents(new Messagecoming(this), this);
-        if(config.chunk_position_x()==0&&config.chunk_position_y()==0&&config.worldtype().equals("overworld")){
-            worldsyncer worldsyncer = new worldsyncer(this);
-        }
+
+        //setup
+        setupevent();
+        setuputil();
 
         //commands
+
         BukkitPhoenixCommands BukkitPhoenixCommands = new BukkitPhoenixCommands(this);
         this.getCommand("misf").setExecutor(BukkitPhoenixCommands);
         this.getCommand("misf").setTabCompleter(BukkitPhoenixCommands);
+    }
+
+    public void setupevent(){
+        getServer().getPluginManager().registerEvents(new Messagecoming(this), this);
+        getServer().getPluginManager().registerEvents(new PlayerDeath(this), this);
+        getServer().getPluginManager().registerEvents(new PlayerRespawn(this), this);
+    }
+
+    public void setuputil(){
+        worldsyncer worldsyncer = new worldsyncer(this);
     }
 }

@@ -33,6 +33,7 @@ public class worldsyncer {
     public worldsyncer(BukkitPhoenix BukkitPhoenix){
         this.bukkitphoenix = BukkitPhoenix;
         config= BukkitPhoenix.config;
+        if(config.chunk_position_x()==0&&config.chunk_position_y()==0&&config.worldtype().equals("overworld")){ }else return;
         weathersyncer();
         timesyncer();
     }

@@ -16,6 +16,7 @@ permissions:
   misf.*:
     children:
       misf.command.help: true
+      misf.command.info: true
       misf.command.set.time: true
       misf.command.set.weather: true
       misf.command.login: true
@@ -25,12 +26,15 @@ permissions:
     misf.command.*:
       children:
         midf.command.help: true
+        misf.command.info: true
         misf.command.set.time: true
         misf.command.set.weather: true
         misf.command.login: true
         misf.command.tpserver: true
         misfp.command.warpsv: true
     misf.command.help:
+      default: false
+    misf.command.info:
       default: false
     misf.command.set.time:
       default: false
