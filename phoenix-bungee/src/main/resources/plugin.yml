@@ -5,6 +5,17 @@ authors:
   - paul0665
   - mc-serverworld
 website: www.mc-serverworld.com
+
 commands:
-  buntest:
-    description: test message
+  midfbungeecord:
+    description: Basic misf command.
+    aliases: [misfbungee]
+permissions:
+      misfbungeecord.command.help:
+        default: false
+      misfbungeecord.command.info:
+        default: false
+      misfbungeecord.command.sudo.setup:
+        default: false
+      misfbungeecord.notify:
+        default: false
