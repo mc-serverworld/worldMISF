@@ -7,9 +7,10 @@ major integration server framework ~~(i dont even know how it work)~~
 
 
 # License info
-One of the project module (utils) used the gson.
-Other moodule or file use the GNU license.
-The license can found under this line.
+One of the project module (utils) used other libraries.
+The licenses can found under this line.
+
+GSON 
 ```
 START OF GSON LICENSE
 
@@ -29,3 +30,5 @@ limitations under the License.
 
 END OF GSON LICENSE
 ```
+
+
