@@ -1,33 +1,7 @@
-# worldSocket
+# ${project.name}
 # Version: ${project.version}
-# Gitgub: https://github.com/mc-serverworld/worldsocket
+# Gitgub: https://github.com/mc-serverworld/worldMISF
 
 configinfo:
-  api-version: 4
+  api-version: 1
   debug: false
-#dont touch this plz
-
-general:
-  port: 59898
-  password: "aba9cfde1fd706a0c83f373cd1c10e5f11faaa765e2229f9723f6f9b33e3506037820a9a0f1ed111d220e022b7a70c8ff88cb15e9db4905a0fbc5128335302fa"
-
-socketserver:
-  threads: 20
-
-client:
-  name: "server"
-  host: "127.0.0.1"
-
-SSL:
-  useSSL: false
-  forceSSL: false
-  server:
-    keyStore_file: "D:\\server\\kserver.keystore"
-    trustStore_file: "D:\\server\\tserver.keystore"
-    keyStorePassword: "password"
-    trustStorePassword: "password"
-  client:
-    keyStore_file: "D:\\server\\kclient.keystore"
-    trustStore_file: "D:\\server\\tclient.keystore"
-    keyStorePassword: "password"
-    trustStorePassword: "password"

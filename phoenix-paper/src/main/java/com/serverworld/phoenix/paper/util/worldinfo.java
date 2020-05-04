@@ -18,8 +18,8 @@
 
 package com.serverworld.phoenix.paper.util;
 
-import org.bukkit.Location;
 import com.serverworld.phoenix.paper.BukkitPhoenix;
+import org.bukkit.Location;
 import org.bukkit.World;
 
 public class worldinfo {

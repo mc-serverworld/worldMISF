@@ -143,21 +143,6 @@ public class BukkitPhoenixCommands implements CommandExecutor , TabCompleter {
         }catch (ArrayIndexOutOfBoundsException e){
             commandSender.sendMessage(ChatColor.RED + "Invalid input");
         }
-
-
-        /*ByteArrayDataOutput out = ByteStreams.newDataOutput();
-        out.writeUTF("Forward"); // So BungeeCord knows to forward it
-        out.writeUTF("ALL");
-        out.writeUTF("MISF"); // The channel name to check if this your data
-
-        ByteArrayOutputStream msgbytes = new ByteArrayOutputStream();
-        DataOutputStream msgout = new DataOutputStream(msgbytes);
-        try {
-            msgout.writeUTF(strings[0]); // You can do anything you want with msgout
-        } catch (IOException exception){
-            exception.printStackTrace();
-        }
-        out.write(msgbytes.toByteArray());*/
         return true;
     }
 
@@ -179,16 +164,21 @@ public class BukkitPhoenixCommands implements CommandExecutor , TabCompleter {
                 commands.add("set");
             if (sender.hasPermission("misfpaperspigot.command.warpsv"))
                 commands.add("warpsv");
+
             StringUtil.copyPartialMatches(args[0], commands, completions);
         } else if (args.length == 2) {
+
             if (args[0].equals("set")) {
                 if (sender.hasPermission("misfpaperspigot.command.set.time"))
                     commands.add("time");
                 if (sender.hasPermission("misfpaperspigot.command.set.weather"))
                     commands.add("weather");
             }
+
+
             StringUtil.copyPartialMatches(args[1], commands, completions);
         } else if (args.length == 3) {
+
             if (args[0].equals("set")&&args[1].equals("weather")) {
                 commands.add("clear");
                 commands.add("rain");
@@ -199,6 +189,8 @@ public class BukkitPhoenixCommands implements CommandExecutor , TabCompleter {
                 commands.add("night");
                 commands.add("midnight");
             }
+
+
             StringUtil.copyPartialMatches(args[2], commands, completions);
         }
         Collections.sort(completions);

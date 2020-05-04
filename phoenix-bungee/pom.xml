@@ -10,8 +10,24 @@
     <version>1.0.0-alpha-1</version>
     <packaging>jar</packaging>
 
+
+    <organization>
+        <name>mc-serverworld</name>
+        <url>https://www.mc-serverworld.com</url>
+    </organization>
+
+
+    <licenses>
+        <license>
+            <name>GNU General Public License, Version 3.0</name>
+            <url>https://www.gnu.org/licenses/gpl-3.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+
     <build>
-        <finalName>${project.artifactId}-${project.version}</finalName>
+        <finalName>${project.artifactId}-version-${project.version}</finalName>
         <sourceDirectory>src/main/java</sourceDirectory>
         <resources>
             <resource>
@@ -26,7 +42,7 @@
         <plugins>
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.7.0</version>
+                <version>3.8.1</version>
                 <configuration>
                     <source>1.8</source>
                     <target>1.8</target>

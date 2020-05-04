@@ -7,8 +7,7 @@
     <groupId>com.mc-serverworld</groupId>
     <artifactId>utils</artifactId>
     <name>worldMISF-utils</name>
-    <version>1.0.0-alpha-1</version>
+    <version>indev-1</version>
     <packaging>jar</packaging>
-
     
 </project>
