@@ -2,7 +2,8 @@
 # Version: ${project.version}
 # Gitgub: https://github.com/mc-serverworld/worldMISF
 configinfo:
-  api-version: 4
+  api-version: 5
+
 serverinfo:
   servername: server00
   servertype: phoenix

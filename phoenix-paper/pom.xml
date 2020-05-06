@@ -94,12 +94,6 @@
         </dependency>
 
         <dependency>
-            <groupId>org.xerial</groupId>
-            <artifactId>sqlite-jdbc</artifactId>
-            <version>3.8.11.2</version>
-        </dependency>
-
-        <dependency>
             <groupId>net.md-5</groupId>
             <artifactId>bungeecord-api</artifactId>
             <version>1.15-SNAPSHOT</version>
@@ -113,12 +107,6 @@
             <version>1.15-SNAPSHOT</version>
             <type>javadoc</type>
             <scope>provided</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>org.xerial</groupId>
-            <artifactId>sqlite-jdbc</artifactId>
-            <version>3.8.11.2</version>
         </dependency>
 
         <dependency>

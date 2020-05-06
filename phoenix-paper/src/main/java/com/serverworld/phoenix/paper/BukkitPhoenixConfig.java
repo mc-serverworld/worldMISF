@@ -27,6 +27,26 @@ public class BukkitPhoenixConfig {
         plugin.reloadConfig();
     }
     public int apiversion() { return plugin.getConfig().getInt("configinfo.api-version"); }
+
+    public String type() {
+        return plugin.getConfig().getString("database.type");
+    }
+    public String host() {
+        return plugin.getConfig().getString("database.host");
+    }
+    public int port() {
+        return plugin.getConfig().getInt("database.port");
+    }
+    public String database() {
+        return plugin.getConfig().getString("database.database");
+    }
+    public String username() {
+        return plugin.getConfig().getString("database.username");
+    }
+    public String password() {
+        return plugin.getConfig().getString("database.password");
+    }
+
     public String servername() {
         return plugin.getConfig().getString("serverinfo.servername");
     }

@@ -67,4 +67,6 @@ public class BungeePhoenix extends Plugin {
         }
         config = new BungeePhoenixConfig(this);
     }
+
+
 }
