@@ -1,0 +1,16 @@
+main: com.serverworld.SpigotworldUserProfile.bungeecord.SpigotworldUserProfile
+name: ${project.name}
+version: ${project.version}
+authors:
+  - paul0665
+  - mc-serverworld
+website: mc-serverworld.com
+
+commands:
+  worlduserprofile:
+    permission: worlduserprofile.admin
+    permission-message: You do not have permission!
+    aliases: [wofile]
+permissions:
+  worlduserprofile.admin:
+    default: op
