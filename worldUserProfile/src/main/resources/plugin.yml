@@ -1,0 +1,50 @@
+main: com.serverworld.SpigotworldUserProfile.spigot.SpigotworldUserProfile
+name: ${project.name}
+version: ${project.version}
+authors:
+  - paul0665
+  - mc-serverworld
+website: mc-serverworld.com
+softdepend: [PlaceholderAPI]
+
+commands:
+  worldUserProfile:
+    description: Basic misf command.
+    permission: misf.command.*
+    aliases: [wofile]
+permissions:
+  misf.*:
+    children:
+      misf.command.help: true
+      misf.command.info: true
+      misf.command.set.time: true
+      misf.command.set.weather: true
+      misf.command.login: true
+      misf.command.tpserver: true
+      misf.command.warpsv: true
+      misf.notify: true
+    misf.command.*:
+      children:
+        midf.command.help: true
+        misf.command.info: true
+        misf.command.set.time: true
+        misf.command.set.weather: true
+        misf.command.login: true
+        misf.command.tpserver: true
+        misfp.command.warpsv: true
+    misf.command.help:
+      default: false
+    misf.command.info:
+      default: false
+    misf.command.set.time:
+      default: false
+    misf.command.set.weather:
+      default: false
+    misf.command.login:
+      default: false
+    misf.command.tpserver:
+      default: false
+    misf.command.warpsv:
+      default: false
+    misf.notify:
+      default: false

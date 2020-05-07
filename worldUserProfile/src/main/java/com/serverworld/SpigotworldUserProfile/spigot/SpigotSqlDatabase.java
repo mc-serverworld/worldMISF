@@ -43,16 +43,12 @@ public class SpigotSqlDatabase {
             MYSQLopenConnection();
             Statement statement = connection.createStatement();
             //create database
-            //usersign
-            statement.executeUpdate("CREATE TABLE IF NOT EXISTS `worldprofile_usersign` (`PlayerUUID` char(36), `Signdate` char(14), PRIMARY KEY(PlayerUUID))");
             //useraccountdata
-            statement.executeUpdate("CREATE TABLE IF NOT EXISTS `worldprofile_userdata` (`PlayerUUID` char(36), `PlayerName` varchar(8), PRIMARY KEY(PlayerUUID),INDEX (Lang))");
+            statement.executeUpdate("CREATE TABLE IF NOT EXISTS `worldprofile_useraccountdata` (`PlayerUUID` char(36), `accountdata` TEXT, PRIMARY KEY(PlayerUUID))");
+            //userphoenixdata
+            statement.executeUpdate("CREATE TABLE IF NOT EXISTS `worldprofile_userphoenixdata` (`PlayerUUID` char(36), `PlayerName` varchar(8), PRIMARY KEY(PlayerUUID),INDEX (Lang))");
             //userlocation
             statement.executeUpdate("CREATE TABLE IF NOT EXISTS `worldprofile_userlastlocation` (`PlayerUUID` char(36), `Server` varchar(8), PRIMARY KEY(PlayerUUID),INDEX (Lang))");
-            //userlastlocation
-            statement.executeUpdate("CREATE TABLE IF NOT EXISTS `worldprofile_userlastlogoutlocation` (`PlayerUUID` char(36), `Server` varchar(8), PRIMARY KEY(PlayerUUID),INDEX (Lang))");
-            //userhomes
-            statement.executeUpdate("CREATE TABLE IF NOT EXISTS `worldprofile_userlastlogoutlocation` (`PlayerUUID` char(36), `Server` varchar(8), PRIMARY KEY(PlayerUUID),INDEX (Lang))");
 
 
         }catch (Exception e){
