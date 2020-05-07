@@ -1,7 +1,5 @@
 package com.serverworld.phoenix.paper.Listeners;
 
-import com.serverworld.worldProfile.util.lang;
-import com.serverworld.worldProfile.worldProfile;
 import net.md_5.bungee.api.ChatColor;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
@@ -14,7 +12,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class PlayerJoin implements Listener {
-
+/*
     private final worldProfile plugin;
     public Playerjoin(worldProfile plg) {
         plugin=plg;
@@ -39,5 +37,5 @@ public class PlayerJoin implements Listener {
         } catch (SQLException ee) {
             ee.printStackTrace();
         }
-    }
+    }*/
 }

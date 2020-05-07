@@ -7,7 +7,7 @@
     <groupId>com.mc-serverworld</groupId>
     <artifactId>worldMISF</artifactId>
     <name>worldMISF</name>
-    <version>indev-1</version>
+    <version>indev-2</version>
     <packaging>pom</packaging>
     <url>https://www.mc-serverworld.com</url>
     <inceptionYear>2019</inceptionYear>
@@ -33,7 +33,7 @@
 
         <module>phoenix-paper</module>
         <module>phoenix-bungee</module>
-        <module>utils</module>
+        <module>worldUserProfile</module>
 
     </modules>
 

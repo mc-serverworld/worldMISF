@@ -22,7 +22,6 @@ import com.serverworld.phoenix.paper.Listeners.Messagecoming;
 import com.serverworld.phoenix.paper.Listeners.PlayerDeath;
 import com.serverworld.phoenix.paper.Listeners.PlayerRespawn;
 import com.serverworld.phoenix.paper.commands.BukkitPhoenixCommands;
-import com.serverworld.phoenix.paper.util.SQLdatabase;
 import com.serverworld.phoenix.paper.util.worldsyncer;
 import org.bukkit.plugin.java.JavaPlugin;
 
