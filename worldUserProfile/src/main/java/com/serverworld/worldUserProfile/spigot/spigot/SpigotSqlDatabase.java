@@ -18,10 +18,8 @@
  *
  */
 
-package com.serverworld.SpigotworldUserProfile.spigot;
+package com.serverworld.worldUserProfile.spigot.spigot;
 
-import com.serverworld.SpigotworldUserProfile.spigot.SpigotworldUserProfile;
-import com.serverworld.SpigotworldUserProfile.spigot.SpigotworldUserProfileConfig;
 import net.md_5.bungee.api.ChatColor;
 
 import java.sql.Connection;

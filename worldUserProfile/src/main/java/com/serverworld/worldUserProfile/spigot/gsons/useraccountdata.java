@@ -18,13 +18,13 @@
  *
  */
 
-package com.serverworld.SpigotworldUserProfile.gsons;
+package com.serverworld.worldUserProfile.spigot.gsons;
 
 public class useraccountdata {
     private String playername;
-    private double signeddata;
-    private double lastlogin;
-    private double playedtime;
+    private long signeddata;
+    private long lastlogin;
+    private long playedtime;
     private int worldcoin;
     private String ip;
     private String continent;
@@ -40,27 +40,27 @@ public class useraccountdata {
         return playername;
     }
 
-    public void setSignData(double signData){
+    public void setSignData(long signData){
         this.signeddata =  signData;
     }
 
-    public double getSignData(){
+    public long getSignData(){
         return signeddata;
     }
 
-    public void setLastLogin(double lastLogin){
+    public void setLastLogin(long lastLogin){
         this.lastlogin = lastLogin;
     }
 
-    public double getLastLogin(){
+    public long getLastLogin(){
         return lastlogin;
     }
 
-    public void setPlayedTime(double playedtime){
+    public void setPlayedTime(long playedtime){
         this.playedtime = playedtime;
     }
 
-    public double getPlayedTime(){
+    public long getPlayedTime(){
         return playedtime;
     }
 

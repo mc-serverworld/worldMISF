@@ -18,7 +18,7 @@
  *
  */
 
-package com.serverworld.SpigotworldUserProfile.gsons;
+package com.serverworld.worldUserProfile.spigot.gsons;
 
 public class userphoenixdata{
     

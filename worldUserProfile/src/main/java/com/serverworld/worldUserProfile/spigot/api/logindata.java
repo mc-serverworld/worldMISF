@@ -18,7 +18,7 @@
  *
  */
 
-package com.serverworld.SpigotworldUserProfile.api;
+package com.serverworld.worldUserProfile.spigot.api;
 
 public class logindata {
 }
