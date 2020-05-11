@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: net.minecrell:ServerListPlus:Universal:3.5.0-SNAPSHOT">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/net/minecrell/ServerListPlus/3.5.0-SNAPSHOT/ServerListPlus-3.5.0-20190601.204403-16-Universal.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/net/minecrell/ServerListPlus/3.5.0-SNAPSHOT/ServerListPlus-3.5.0-20190601.204403-16-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/net/minecrell/ServerListPlus/3.5.0-SNAPSHOT/ServerListPlus-3.5.0-20190601.204403-16-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
