@@ -1,10 +1,11 @@
-main: com.serverworld.SpigotworldUserProfile.bungeecord.SpigotworldUserProfile
+main: com.serverworld.worldUserProfile.bungeecord.BungeeworldUserProfile
 name: ${project.name}
 version: ${project.version}
 authors:
   - paul0665
   - mc-serverworld
 website: mc-serverworld.com
+depend: [worldIdiot,ServerListPlus]
 
 commands:
   worlduserprofile:
