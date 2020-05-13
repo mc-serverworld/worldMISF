@@ -1,6 +1,5 @@
 package com.serverworld.worldUserProfile.bungeecord.Listeners;
 
-import com.serverworld.worldIdiot.api.BanQuery;
 import com.serverworld.worldUserProfile.bungeecord.BungeeworldUserProfile;
 import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.event.PostLoginEvent;
