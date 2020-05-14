@@ -1,4 +1,4 @@
-main: com.serverworld.SpigotworldUserProfile.spigot.SpigotworldUserProfile
+main: com.serverworld.worldUserProfile.spigot.SpigotworldUserProfile
 name: ${project.name}
 version: ${project.version}
 authors:

@@ -18,7 +18,7 @@
  *
  */
 
-package com.serverworld.worldUserProfile.spigot.spigot;
+package com.serverworld.worldUserProfile.spigot;
 
 public class SpigotworldUserProfileConfig {
     private SpigotworldUserProfile plugin;

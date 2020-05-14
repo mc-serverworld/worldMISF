@@ -18,7 +18,7 @@
  *
  */
 
-package com.serverworld.worldUserProfile.spigot.spigot;
+package com.serverworld.worldUserProfile.spigot;
 
 import org.bukkit.plugin.java.JavaPlugin;
 

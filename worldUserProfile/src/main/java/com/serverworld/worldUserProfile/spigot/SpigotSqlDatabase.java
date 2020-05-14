@@ -18,7 +18,7 @@
  *
  */
 
-package com.serverworld.worldUserProfile.spigot.spigot;
+package com.serverworld.worldUserProfile.spigot;
 
 import net.md_5.bungee.api.ChatColor;
 
