@@ -106,6 +106,14 @@
                             <outputFile>${project.parent.basedir}/output/${project.name}-${project.version}.jar</outputFile>
                             <filters>
                                 <filter>
+                                    <artifact>com.mc-serverworld:worldSocket:*</artifact>
+                                    <excludes>
+                                        <exclude>config.yml</exclude>
+                                        <exclude>plugin.yml</exclude>
+                                        <exclude>bungee.yml</exclude>
+                                    </excludes>
+                                </filter>
+                                <filter>
                                     <artifact>*</artifact>
                                     <excludes>
                                         <exclude>bungee.yml</exclude>
