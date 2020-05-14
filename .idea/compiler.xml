@@ -15,6 +15,7 @@
     <bytecodeTargetLevel>
       <module name="phoenix-bungee" target="1.8" />
       <module name="phoenix-paper" target="1.8" />
+      <module name="untitled" target="1.8" />
       <module name="utils" target="1.5" />
       <module name="worldMISF" target="1.8" />
       <module name="worldProfile" target="1.8" />

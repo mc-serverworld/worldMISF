@@ -21,14 +21,11 @@
 package com.serverworld.worldUserProfile.bungeecord.uitls;
 
 import com.serverworld.worldUserProfile.bungeecord.BungeeworldUserProfile;
-import net.md_5.bungee.api.ChatColor;
-import net.md_5.bungee.api.chat.TextComponent;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class mysql {
@@ -51,7 +48,9 @@ public class mysql {
                     return true;
         } catch (SQLException e) {
             e.printStackTrace();
+            return false;
         }
+        return false;
     }
 
 

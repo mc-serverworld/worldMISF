@@ -27,7 +27,7 @@
     <groupId>com.mc-serverworld</groupId>
     <artifactId>worldMISF</artifactId>
     <name>worldMISF</name>
-    <version>indev-2</version>
+    <version>indev-3</version>
     <packaging>pom</packaging>
     <url>https://www.mc-serverworld.com</url>
     <inceptionYear>2019</inceptionYear>
@@ -55,10 +55,45 @@
 
     </modules>
 
-
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
 
     <build>
         <plugins>
+
+            <plugin>
+                <artifactId>maven-clean-plugin</artifactId>
+                <version>3.1.0</version>
+                <configuration>
+                    <excludeDefaultDirectories>true</excludeDefaultDirectories>
+                    <filesets>
+                        <fileset>
+                            <directory>${basedir}/output</directory>
+                            <followSymlinks>false</followSymlinks>
+                            <useDefaultExcludes>false</useDefaultExcludes>
+                            <includes>
+                                <include>*.*</include>
+                            </includes>
+                        </fileset>
+                    </filesets>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>auto-clean</id>
+                        <phase>initialize</phase>
+                        <goals>
+                            <goal>clean</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.1.0</version>
+            </plugin>
 
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -66,6 +101,7 @@
                 <configuration>
                     <source>1.8</source>
                     <target>1.8</target>
+                    <encoding>UTF-8</encoding>
                 </configuration>
             </plugin>
 

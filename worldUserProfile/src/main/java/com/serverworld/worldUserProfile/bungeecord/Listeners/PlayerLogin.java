@@ -17,9 +17,6 @@ public class PlayerLogin implements Listener {
 
     @EventHandler
     public void onPostLogin(PostLoginEvent event) {
-        if (BanQuery.isBanned("awdda")){
-            worldUserProfile.getLogger().info("Hello world!!!!!!!");
-        }
 
     }
 
