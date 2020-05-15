@@ -1,6 +1,8 @@
 package com.serverworld.worldUserProfile.bungeecord.Listeners;
 
+import com.serverworld.worldIdiot.api.BanQueryAPI;
 import com.serverworld.worldUserProfile.bungeecord.BungeeworldUserProfile;
+import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.event.PostLoginEvent;
 import net.md_5.bungee.api.plugin.Listener;
@@ -17,7 +19,8 @@ public class PlayerLogin implements Listener {
 
     @EventHandler
     public void onPostLogin(PostLoginEvent event) {
-
+        worldUserProfile.getLogger().info(String.valueOf(BanQueryAPI.isBanned(event.getPlayer().getUniqueId().toString())));
+        worldUserProfile.getLogger().info(ChatColor.GREEN + "Hello world");
     }
 
 }

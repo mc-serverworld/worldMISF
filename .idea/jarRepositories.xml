@@ -27,6 +27,11 @@
       <option name="url" value="https://jitpack.io" />
     </remote-repository>
     <remote-repository>
+      <option name="id" value="CodeMC" />
+      <option name="name" value="CodeMC" />
+      <option name="url" value="https://repo.codemc.org/repository/maven-public" />
+    </remote-repository>
+    <remote-repository>
       <option name="id" value="destroystokyo-repo" />
       <option name="name" value="destroystokyo-repo" />
       <option name="url" value="https://repo.destroystokyo.com/repository/maven-public//" />

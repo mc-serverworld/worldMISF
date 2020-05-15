@@ -70,7 +70,6 @@
                 <artifactId>maven-assembly-plugin</artifactId>
                 <configuration>
                     <appendAssemblyId>false</appendAssemblyId>
-                    <outputDirectory>${project.parent.basedir}/output</outputDirectory>
                     <finalName>${project.name}-${project.version}</finalName>
                     <archive>
                         <manifest>
@@ -110,6 +109,33 @@
                 </configuration>
             </plugin>
 
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>3.1.0</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                        <configuration>
+                            <outputFile>${project.parent.basedir}/output/${project.name}-${project.version}.jar</outputFile>
+                            <filters>
+                                <filter>
+                                    <artifact>com.mc-serverworld:worldIdiot:*</artifact>
+                                    <excludes>
+                                        <exclude>config.yml</exclude>
+                                        <exclude>plugin.yml</exclude>
+                                        <exclude>bungee.yml</exclude>
+                                    </excludes>
+                                </filter>
+                            </filters>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
         </plugins>
     </build>
 
@@ -132,6 +158,16 @@
         <repository>
             <id>jitpack.io</id>
             <url>https://jitpack.io</url>
+        </repository>
+
+        <repository>
+            <id>serverlistplus-repo</id>
+            <url>https://repo.codemc.org/repository/maven-snapshots</url>
+        </repository>
+
+        <repository>
+            <id>CodeMC</id>
+            <url>https://repo.codemc.org/repository/maven-public</url>
         </repository>
     </repositories>
 
@@ -183,6 +219,13 @@
             <groupId>com.google.code.gson</groupId>
             <artifactId>gson</artifactId>
             <version>2.8.6</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.mc-serverworld</groupId>
+            <artifactId>worldIdiot</artifactId>
+            <version>3.1.11-alpha-1</version>
+            <scope>provided</scope>
         </dependency>
 
     </dependencies>

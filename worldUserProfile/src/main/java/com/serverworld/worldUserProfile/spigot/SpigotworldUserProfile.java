@@ -34,8 +34,9 @@ public class SpigotworldUserProfile extends JavaPlugin {
     public void onEnable() {
         config.loadDefConfig();
 
+
         //setup
-        setSQL();
+        //setSQL();
 
     }
 
