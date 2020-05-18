@@ -24,6 +24,8 @@ public class BungeeworldUserProfileCommand extends Command implements TabExecuto
             ProxiedPlayer p = (ProxiedPlayer)commandSender;
             if(mysql.getSigned(p.getUniqueId().toString())){
                 commandSender.sendMessage(ChatColor.YELLOW + "You already signed agreement");
+            }else {
+
             }
         }catch (Exception e){
             commandSender.sendMessage(ChatColor.RED + "Invalid input");
