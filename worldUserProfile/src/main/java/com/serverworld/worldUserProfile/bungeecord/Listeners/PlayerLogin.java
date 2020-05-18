@@ -67,9 +67,8 @@ public class PlayerLogin implements Listener {
                                 .stay(40)
                                 .fadeOut(20)
                                 .send(event.getPlayer());
-                        DebugMessage.sendInfo("running");
                     }
-                }, 6, 120,TimeUnit.SECONDS);
+                }, 5, 5,TimeUnit.SECONDS);
 
             }else {
                 //unsupport
@@ -85,7 +84,7 @@ public class PlayerLogin implements Listener {
                                 .fadeOut(20)
                                 .send(event.getPlayer());
                     }
-                }, 6, 120,TimeUnit.SECONDS);
+                }, 5, 5,TimeUnit.SECONDS);
 
             }
         }
