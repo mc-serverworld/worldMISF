@@ -38,18 +38,12 @@ public class PlayerLogin implements Listener {
         DebugMessage.sendInfo("Player " + event.getPlayer().getName() + " from " + jsonObject.getString("country"));
 
         if(!mysql.Joinbefore(event.getPlayer().getUniqueId().toString())){
-
-
-
-
-
             List<String> support_country_list = new ArrayList();
             //support_country_list.add("taiwan");
             support_country_list.add("china");
             support_country_list.add("hong kong");
             support_country_list.add("macao");
             support_country_list.add("singapore");
-
             ProxyServer.getInstance().createTitle()
                     .reset()
                     .send(event.getPlayer());
@@ -69,7 +63,6 @@ public class PlayerLogin implements Listener {
                                 .send(event.getPlayer());
                     }
                 }, 5, 5,TimeUnit.SECONDS);
-
             }else {
                 //unsupport
                 worldUserProfile.getProxy().getScheduler().schedule(worldUserProfile, new Runnable() {

@@ -21,6 +21,7 @@
 package com.serverworld.worldUserProfile.bungeecord;
 
 import com.serverworld.worldUserProfile.bungeecord.Listeners.PlayerLogin;
+import com.serverworld.worldUserProfile.bungeecord.commands.SignCommand;
 import net.md_5.bungee.api.plugin.Plugin;
 import net.md_5.bungee.config.Configuration;
 import net.md_5.bungee.config.ConfigurationProvider;
@@ -50,7 +51,7 @@ public class BungeeworldUserProfile extends Plugin {
         getLogger().info("Yay! It loads!");
         getLogger().info("Helloworld");
 
-        //getProxy().getPluginManager().registerCommand(this,new BungeePhoenixCommands(this));
+        getProxy().getPluginManager().registerCommand(this,new SignCommand(this));
     }
 
     public void setupconfig(){
