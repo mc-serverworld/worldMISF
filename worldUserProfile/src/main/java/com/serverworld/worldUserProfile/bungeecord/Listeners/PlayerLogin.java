@@ -44,14 +44,14 @@ public class PlayerLogin implements Listener {
 
 
             List<String> support_country_list = new ArrayList();
-            support_country_list.add("tawian");
+            support_country_list.add("taiwan");
             support_country_list.add("china");
             support_country_list.add("hong kong");
             support_country_list.add("macao");
             support_country_list.add("singapore");
 
             ProxyServer.getInstance().createTitle()
-                    .clear()
+                    .reset()
                     .send(event.getPlayer());
 
             if(support_country_list.contains(jsonObject.getString("country").toLowerCase())){
@@ -68,7 +68,7 @@ public class PlayerLogin implements Listener {
                                 .fadeOut(20)
                                 .send(event.getPlayer());
                     }
-                }, 5, 180000,TimeUnit.SECONDS);
+                }, 6, 120,TimeUnit.SECONDS);
 
             }else {
                 //unsupport
@@ -84,7 +84,7 @@ public class PlayerLogin implements Listener {
                                 .fadeOut(20)
                                 .send(event.getPlayer());
                     }
-                }, 5, 180000,TimeUnit.SECONDS);
+                }, 6, 120,TimeUnit.SECONDS);
 
             }
         }
