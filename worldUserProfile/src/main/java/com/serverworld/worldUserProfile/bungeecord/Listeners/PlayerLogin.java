@@ -15,6 +15,7 @@ import net.md_5.bungee.event.EventHandler;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class PlayerLogin implements Listener {
@@ -37,7 +38,11 @@ public class PlayerLogin implements Listener {
 
         if(!mysql.Joinbefore(event.getPlayer().getUniqueId().toString())){
 
-            ArrayList support_country_list = new ArrayList();
+
+
+
+
+            List<String> support_country_list = new ArrayList();
             support_country_list.add("Tawian");
             support_country_list.add("China");
             support_country_list.add("Hong Kong");
