@@ -34,7 +34,7 @@ public class mysql {
     public static boolean Joinbefore(String UUID){
         try {
             Statement statement = BungeeworldUserProfile.connection.createStatement();
-            ResultSet rs = statement.executeQuery("SELECT * FROM worlduserporfile_useraccountdata WHERE PlayerUUID = '" + UUID + "';");
+            ResultSet rs = statement.executeQuery("SELECT * FROM worlduserporfile_useraccountdata WHERE worlduserporfile_useraccountdata.PlayerUUID = '" + UUID + "';");
             Boolean banbefore = false;
             banbefore = rs.next();
             return banbefore;
