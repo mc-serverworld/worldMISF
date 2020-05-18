@@ -7,7 +7,6 @@ import com.serverworld.worldUserProfile.bungeecord.uitls.IPAPI;
 import com.serverworld.worldUserProfile.bungeecord.uitls.mysql;
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.ProxyServer;
-import net.md_5.bungee.api.Title;
 import net.md_5.bungee.api.chat.ComponentBuilder;
 import net.md_5.bungee.api.event.PostLoginEvent;
 import net.md_5.bungee.api.plugin.Listener;
@@ -37,8 +36,6 @@ public class PlayerLogin implements Listener {
         DebugMessage.sendInfo("Player " + event.getPlayer().getName() + " from " + jsonObject.getString("country"));
 
         if(!mysql.Joinbefore(event.getPlayer().getUniqueId().toString())){
-            Title reseter = null;
-            reseter.clear();
 
             ArrayList support_country_list = new ArrayList();
             support_country_list.add("Tawian");
