@@ -33,7 +33,7 @@ public class mysql {
     public static boolean SetUp(String UUID){
         try {
             Statement statement = BungeeworldUserProfile.connection.createStatement();
-            statement.execute("INSERT INTO worlduserporfile_useraccountdata (PlayerUUID, version, accountdata, signed) VALUES ('" + UUID + "', '1', 'notsign', '0'");
+            statement.execute("INSERT INTO worlduserporfile_useraccountdata (PlayerUUID, version, accountdata, signed) VALUES ('" + UUID + "', '1', 'notsign', '0')");
             return true;
         } catch (SQLException e) {
             DebugMessage.sendWarring(e.toString());
