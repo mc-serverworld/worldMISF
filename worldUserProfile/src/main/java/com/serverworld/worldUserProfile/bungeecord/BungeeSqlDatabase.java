@@ -62,9 +62,9 @@ public class BungeeSqlDatabase {
             Statement statement = connection.createStatement();
             //create database
             //useraccountdata
-            statement.executeUpdate("CREATE TABLE IF NOT EXISTS `worldprofile_useraccountdata` (`PlayerUUID` char(36), `accountdata` TEXT, PRIMARY KEY(PlayerUUID))");
+            statement.executeUpdate("CREATE TABLE IF NOT EXISTS `worldprofile_useraccountdata` (`PlayerUUID` char(36), `version` INT, `accountdata` TEXT, PRIMARY KEY(PlayerUUID))");
             //userphoenixdata
-            statement.executeUpdate("CREATE TABLE IF NOT EXISTS `worldprofile_userphoenixdata` (`PlayerUUID` char(36), `lastlocation` TEXT, `logoutlocation` TEXT, `homes` TEXT, PRIMARY KEY(PlayerUUID))");
+            statement.executeUpdate("CREATE TABLE IF NOT EXISTS `worldprofile_userphoenixdata` (`PlayerUUID` char(36), `version` INT, `lastlocation` TEXT, `logoutlocation` TEXT, `homes` TEXT, PRIMARY KEY(PlayerUUID))");
             //notuse
             //statement.executeUpdate("CREATE TABLE IF NOT EXISTS `worldprofile_userlastlocation` (`PlayerUUID` char(36), `Server` varchar(8), PRIMARY KEY(PlayerUUID),INDEX (Lang))");
 

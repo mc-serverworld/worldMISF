@@ -35,10 +35,11 @@ import java.sql.Connection;
 public class BungeeworldUserProfile extends Plugin {
 
     private File file;
-    BungeeworldUserProfileConfig config;
+    public static BungeeworldUserProfileConfig config;
     BungeeSqlDatabase database;
     public static Configuration configuration;
     public static Connection connection;
+    static BungeeworldUserProfile bungeeworldUserProfile;
     @Override
     public void onEnable() {
         setupconfig();
@@ -72,5 +73,7 @@ public class BungeeworldUserProfile extends Plugin {
         config = new BungeeworldUserProfileConfig(this);
     }
 
-
+    public static BungeeworldUserProfile getInstance(){
+        return bungeeworldUserProfile;
+    }
 }
