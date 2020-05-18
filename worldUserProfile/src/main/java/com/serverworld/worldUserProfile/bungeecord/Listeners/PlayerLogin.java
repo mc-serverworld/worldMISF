@@ -16,6 +16,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 
 public class PlayerLogin implements Listener {
@@ -49,28 +50,42 @@ public class PlayerLogin implements Listener {
             support_country_list.add("macao");
             support_country_list.add("singapore");
 
+            ProxyServer.getInstance().createTitle()
+                    .clear()
+                    .send(event.getPlayer());
+
             if(support_country_list.contains(jsonObject.getString("country").toLowerCase())){
                 //support
-                ProxyServer.getInstance().createTitle()
-                        .title(new ComponentBuilder("歡迎來到mc-serverworld")
-                                .color(ChatColor.BLUE).create())
-                        .subTitle(new ComponentBuilder("請輸入/sign來簽署協議")
-                                .color(ChatColor.GREEN).create())
-                        .fadeIn(40)
-                        .stay(18000000)
-                        .fadeOut(40)
-                        .send(event.getPlayer());
+                worldUserProfile.getProxy().getScheduler().schedule(worldUserProfile, new Runnable() {
+                    public void run() {
+                        ProxyServer.getInstance().createTitle()
+                                .title(new ComponentBuilder("歡迎來到mc-serverworld")
+                                        .color(ChatColor.BLUE).create())
+                                .subTitle(new ComponentBuilder("請輸入/sign來簽署協議")
+                                        .color(ChatColor.GREEN).create())
+                                .fadeIn(20)
+                                .stay(40)
+                                .fadeOut(20)
+                                .send(event.getPlayer());
+                    }
+                }, 5, 180000,TimeUnit.SECONDS);
+
             }else {
                 //unsupport
-                ProxyServer.getInstance().createTitle()
-                        .title(new ComponentBuilder("Wellcome to mc-serverworld")
-                                .color(ChatColor.BLUE).create())
-                        .subTitle(new ComponentBuilder("Please enter /sign to sign the agreement")
-                                .color(ChatColor.GREEN).create())
-                        .fadeIn(40)
-                        .stay(18000000)
-                        .fadeOut(40)
-                        .send(event.getPlayer());
+                worldUserProfile.getProxy().getScheduler().schedule(worldUserProfile, new Runnable() {
+                    public void run() {
+                        ProxyServer.getInstance().createTitle()
+                                .title(new ComponentBuilder("Wellcome to mc-serverworld")
+                                        .color(ChatColor.BLUE).create())
+                                .subTitle(new ComponentBuilder("Please enter /sign to sign the agreement")
+                                        .color(ChatColor.GREEN).create())
+                                .fadeIn(20)
+                                .stay(40)
+                                .fadeOut(20)
+                                .send(event.getPlayer());
+                    }
+                }, 5, 180000,TimeUnit.SECONDS);
+
             }
         }
 
