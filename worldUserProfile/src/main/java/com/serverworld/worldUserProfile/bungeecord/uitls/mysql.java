@@ -23,25 +23,14 @@ package com.serverworld.worldUserProfile.bungeecord.uitls;
 import com.google.gson.Gson;
 import com.serverworld.worldUserProfile.bungeecord.BungeeworldUserProfile;
 import com.serverworld.worldUserProfile.bungeecord.gsons.UserAccountData;
-import net.md_5.bungee.api.ChatColor;
 
-import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
 public class mysql {
-    BungeeworldUserProfile bungeeworldUserProfile;
-    static Connection connection;
-    public mysql(BungeeworldUserProfile bungeeworldUserProfile){
-        this.bungeeworldUserProfile = bungeeworldUserProfile;
-        connection = BungeeworldUserProfile.connection;
-    }
 
-    static private void bugreport(String msg){
-        if(BungeeworldUserProfile.config.debug())
-        BungeeworldUserProfile.getInstance().getLogger().warning(ChatColor.RED + "Error while executequery: " + msg);
-    }
+
     public static boolean Joinbefore(String UUID){
         try {
             Statement statement = BungeeworldUserProfile.connection.createStatement();
@@ -50,20 +39,29 @@ public class mysql {
             banbefore = rs.next();
             return banbefore;
         } catch (SQLException e) {
-            bugreport(e.toString());
+            DebugMessage.sendWarring(e.toString());
             return false;
         }
     }
 
-    public static boolean Signed(String UUID){
+    public static boolean getSigned(String UUID){
         try {
             Statement statement = BungeeworldUserProfile.connection.createStatement();
             ResultSet rs = statement.executeQuery("SELECT * FROM worlduserporfile_useraccountdata WHERE PlayerUUID = '" + UUID + "';");
-            Boolean banbefore = false;
-            banbefore = rs.next();
-            return banbefore;
+            return rs.getBoolean("signed");
         } catch (SQLException e) {
-            bugreport(e.toString());
+            DebugMessage.sendWarring(e.toString());
+            return false;
+        }
+    }
+
+    public static boolean setSigned(String UUID ,Boolean status){
+        try {
+            Statement statement = BungeeworldUserProfile.connection.createStatement();
+            statement.execute("UPDATE worlduserporfile_useraccountdata SET sign = '" + status + "' WHERE worlduserporfile_useraccountdata.PlayerUUID = " + UUID);
+            return true;
+        } catch (SQLException e) {
+            DebugMessage.sendWarring(e.toString());
             return false;
         }
     }
@@ -75,7 +73,7 @@ public class mysql {
             Gson gson= new Gson();
             return gson.fromJson(rs.getString("playerdata"), UserAccountData.class);
         } catch (SQLException e) {
-            bugreport(e.toString());
+            DebugMessage.sendWarring(e.toString());
             return null;
         }
     }
@@ -85,10 +83,10 @@ public class mysql {
             Statement statement = BungeeworldUserProfile.connection.createStatement();
             Gson gson = new Gson();
             String stg = gson.toJson(userAccountData,UserAccountData.class);
-            statement.execute("UPDATE worlduserporfile_useraccountdata SET accountdata = '" + stg + "' WHERE worldidiot_bandata.PlayerUUID = " +UUID);
+            statement.execute("UPDATE worlduserporfile_useraccountdata SET accountdata = '" + stg + "' WHERE worlduserporfile_useraccountdata.PlayerUUID = " +UUID);
             return true;
         } catch (SQLException e) {
-            bugreport(e.toString());
+            DebugMessage.sendWarring(e.toString());
             return false;
         }
     }
@@ -97,9 +95,9 @@ public class mysql {
         try {
             Statement statement = BungeeworldUserProfile.connection.createStatement();
             ResultSet rs = statement.executeQuery("SELECT * FROM worlduserporfile_useraccountdata WHERE PlayerUUID = '" + UUID + "';");
-            return rs.getInt("dataversion");
+            return rs.getInt("version");
         } catch (SQLException e) {
-            bugreport(e.toString());
+            DebugMessage.sendWarring(e.toString());
             return 0;
         }
     }
@@ -107,10 +105,10 @@ public class mysql {
     public static Boolean setDataClassVersion(String UUID, int version){
         try {
             Statement statement = BungeeworldUserProfile.connection.createStatement();
-            statement.execute("UPDATE worlduserporfile_useraccountdata SET version = '" + version + "' WHERE worldidiot_bandata.PlayerUUID = " +UUID);
+            statement.execute("UPDATE worlduserporfile_useraccountdata SET version = '" + version + "' WHERE worlduserporfile_useraccountdata.PlayerUUID = " +UUID);
             return true;
         } catch (SQLException e) {
-            bugreport(e.toString());
+            DebugMessage.sendWarring(e.toString());
             return false;
         }
     }

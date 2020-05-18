@@ -29,15 +29,17 @@ public class PlayerLogin implements Listener {
     public void onPostLogin(PostLoginEvent event) {
         if(BanQueryAPI.isBanned(event.getPlayer().getUniqueId().toString()))
             return;
+        JSONObject jsonObject = IPAPI.getJSON(event.getPlayer().getAddress().getAddress().toString());
+        if (jsonObject.getString("status").equals("fail")){
+            DebugMessage.sendWarring(ChatColor.RED + "Fail to get country!");
+            return;
+        }
+        DebugMessage.sendInfo("Player " + event.getPlayer().getName() + " from " + jsonObject.getString("country"));
+
         if(!mysql.Joinbefore(event.getPlayer().getUniqueId().toString())){
             Title reseter = null;
             reseter.clear();
-            JSONObject jsonObject = IPAPI.getJSON(event.getPlayer().getAddress().getAddress().toString());
-            if (jsonObject.getString("status").equals("fail")){
-                DebugMessage.sendWarring(ChatColor.RED + "Fail to get country!");
-                return;
-            }
-            DebugMessage.sendInfo("Player " + event.getPlayer().getName() + " from " + jsonObject.getString("country"));
+
             ArrayList support_country_list = new ArrayList();
             support_country_list.add("Tawian");
             support_country_list.add("China");
@@ -68,8 +70,6 @@ public class PlayerLogin implements Listener {
                         .fadeOut(40)
                         .send(event.getPlayer());
             }
-
-
         }
 
     }
