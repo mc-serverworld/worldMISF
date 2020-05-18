@@ -43,6 +43,7 @@ public class BungeeworldUserProfile extends Plugin {
     @Override
     public void onEnable() {
         setupconfig();
+        bungeeworldUserProfile=this;
         database = new BungeeSqlDatabase(this);
         connection = database.connection;
         new PlayerLogin(this,this);
