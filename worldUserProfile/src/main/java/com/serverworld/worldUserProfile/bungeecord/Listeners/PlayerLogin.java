@@ -43,11 +43,11 @@ public class PlayerLogin implements Listener {
 
 
             List<String> support_country_list = new ArrayList();
-            support_country_list.add("Tawian");
-            support_country_list.add("China");
-            support_country_list.add("Hong Kong");
-            support_country_list.add("Macao");
-            support_country_list.add("Singapore");
+            support_country_list.add("tawian");
+            support_country_list.add("china");
+            support_country_list.add("hong kong");
+            support_country_list.add("macao");
+            support_country_list.add("singapore");
 
             if(support_country_list.contains(jsonObject.getString("country").toLowerCase())){
                 //support

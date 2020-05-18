@@ -58,7 +58,7 @@ public class mysql {
     public static boolean setSigned(String UUID ,Boolean status){
         try {
             Statement statement = BungeeworldUserProfile.connection.createStatement();
-            statement.execute("UPDATE worlduserporfile_useraccountdata SET sign = '" + status + "' WHERE worlduserporfile_useraccountdata.PlayerUUID = " + UUID);
+            statement.execute("UPDATE worlduserporfile_useraccountdata SET sign = '" + status + "' WHERE PlayerUUID = " + UUID);
             return true;
         } catch (SQLException e) {
             DebugMessage.sendWarring(e.toString());
@@ -83,7 +83,7 @@ public class mysql {
             Statement statement = BungeeworldUserProfile.connection.createStatement();
             Gson gson = new Gson();
             String stg = gson.toJson(userAccountData,UserAccountData.class);
-            statement.execute("UPDATE worlduserporfile_useraccountdata SET accountdata = '" + stg + "' WHERE worlduserporfile_useraccountdata.PlayerUUID = " +UUID);
+            statement.execute("UPDATE worlduserporfile_useraccountdata SET accountdata = '" + stg + "' WHERE PlayerUUID = " + UUID);
             return true;
         } catch (SQLException e) {
             DebugMessage.sendWarring(e.toString());
@@ -105,7 +105,7 @@ public class mysql {
     public static Boolean setDataClassVersion(String UUID, int version){
         try {
             Statement statement = BungeeworldUserProfile.connection.createStatement();
-            statement.execute("UPDATE worlduserporfile_useraccountdata SET version = '" + version + "' WHERE worlduserporfile_useraccountdata.PlayerUUID = " +UUID);
+            statement.execute("UPDATE worlduserporfile_useraccountdata SET version = '" + version + "' WHERE PlayerUUID = " + UUID);
             return true;
         } catch (SQLException e) {
             DebugMessage.sendWarring(e.toString());
