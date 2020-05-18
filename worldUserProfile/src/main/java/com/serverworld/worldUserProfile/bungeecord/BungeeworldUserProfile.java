@@ -39,11 +39,11 @@ public class BungeeworldUserProfile extends Plugin {
     BungeeSqlDatabase database;
     public static Configuration configuration;
     public static Connection connection;
-    static BungeeworldUserProfile bungeeworldUserProfile;
+    public static BungeeworldUserProfile bungeeworldUserProfile;
     @Override
     public void onEnable() {
         setupconfig();
-        bungeeworldUserProfile=this;
+        bungeeworldUserProfile = this;
         database = new BungeeSqlDatabase(this);
         connection = database.connection;
         new PlayerLogin(this,this);
@@ -74,7 +74,7 @@ public class BungeeworldUserProfile extends Plugin {
         config = new BungeeworldUserProfileConfig(this);
     }
 
-    public static BungeeworldUserProfile getInstance(){
+    public static BungeeworldUserProfile getInstance(){ ;
         return bungeeworldUserProfile;
     }
 }
