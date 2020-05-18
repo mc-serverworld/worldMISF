@@ -44,7 +44,7 @@ public class PlayerLogin implements Listener {
 
 
             List<String> support_country_list = new ArrayList();
-            support_country_list.add("taiwan");
+            //support_country_list.add("taiwan");
             support_country_list.add("china");
             support_country_list.add("hong kong");
             support_country_list.add("macao");
@@ -60,7 +60,7 @@ public class PlayerLogin implements Listener {
                     public void run() {
                         ProxyServer.getInstance().createTitle()
                                 .title(new ComponentBuilder("歡迎來到mc-serverworld")
-                                        .color(ChatColor.BLUE).create())
+                                        .color(ChatColor.AQUA).create())
                                 .subTitle(new ComponentBuilder("請輸入/sign來簽署協議")
                                         .color(ChatColor.GREEN).create())
                                 .fadeIn(20)
@@ -76,7 +76,7 @@ public class PlayerLogin implements Listener {
                     public void run() {
                         ProxyServer.getInstance().createTitle()
                                 .title(new ComponentBuilder("Wellcome to mc-serverworld")
-                                        .color(ChatColor.BLUE).create())
+                                        .color(ChatColor.AQUA).create())
                                 .subTitle(new ComponentBuilder("Please enter /sign to sign the agreement")
                                         .color(ChatColor.GREEN).create())
                                 .fadeIn(20)
