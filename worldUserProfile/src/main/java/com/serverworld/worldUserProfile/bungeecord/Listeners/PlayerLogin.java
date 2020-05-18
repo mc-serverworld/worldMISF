@@ -38,8 +38,9 @@ public class PlayerLogin implements Listener {
         DebugMessage.sendInfo("Player " + event.getPlayer().getName() + " from " + jsonObject.getString("country"));
 
         if(!mysql.Joinbefore(event.getPlayer().getUniqueId().toString())){
+            mysql.SetUp(event.getPlayer().getUniqueId().toString());
             List<String> support_country_list = new ArrayList();
-            //support_country_list.add("taiwan");
+            support_country_list.add("taiwan");
             support_country_list.add("china");
             support_country_list.add("hong kong");
             support_country_list.add("macao");
