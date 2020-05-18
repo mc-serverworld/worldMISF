@@ -67,6 +67,7 @@ public class PlayerLogin implements Listener {
                                 .stay(40)
                                 .fadeOut(20)
                                 .send(event.getPlayer());
+                        DebugMessage.sendInfo("running");
                     }
                 }, 6, 120,TimeUnit.SECONDS);
 
