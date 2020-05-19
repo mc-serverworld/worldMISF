@@ -36,9 +36,10 @@ public class PlayerLogin implements Listener {
             return;
         }
         DebugMessage.sendInfo("Player " + event.getPlayer().getName() + " from " + jsonObject.getString("country"));
-
-        if(!mysql.Joinbefore(event.getPlayer().getUniqueId().toString())){
+        if(!mysql.Joinbefore(event.getPlayer().getUniqueId().toString()))
             mysql.SetUp(event.getPlayer().getUniqueId().toString());
+
+        if(!mysql.getSigned(event.getPlayer().getUniqueId().toString())){
             List<String> support_country_list = new ArrayList();
             support_country_list.add("taiwan");
             support_country_list.add("china");
@@ -63,7 +64,7 @@ public class PlayerLogin implements Listener {
                                 .fadeOut(20)
                                 .send(event.getPlayer());
                     }
-                }, 5, 5,TimeUnit.SECONDS);
+                }, 5, 5, TimeUnit.SECONDS);
             }else {
                 //unsupport
                 worldUserProfile.getProxy().getScheduler().schedule(worldUserProfile, new Runnable() {
