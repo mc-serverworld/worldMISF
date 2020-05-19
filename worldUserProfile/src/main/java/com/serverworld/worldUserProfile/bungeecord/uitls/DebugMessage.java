@@ -32,10 +32,12 @@ public class DebugMessage {
     }
     public static void sendInfoIfDebug(String msg){
         if(BungeeworldUserProfile.config.debug())
-        BungeeworldUserProfile.getInstance().getLogger().info(msg);
+            BungeeworldUserProfile.bungeeworldUserProfile.getLogger().info(msg);
+
     }
     public static void sendWarringIfDebug(String msg){
         if(BungeeworldUserProfile.config.debug())
-        BungeeworldUserProfile.getInstance().getLogger().warning(msg);
+            BungeeworldUserProfile.bungeeworldUserProfile.getLogger().warning(msg);
+
     }
 }
