@@ -73,7 +73,7 @@ public class mysql {
     public static boolean setSigned(String UUID ,Boolean status){
         try {
             Statement statement = BungeeworldUserProfile.connection.createStatement();
-            statement.execute("UPDATE worlduserporfile_useraccountdata SET signed = '" + status.compareTo(true) + "' WHERE PlayerUUID = '" + UUID + "';");
+            statement.execute("UPDATE worlduserporfile_useraccountdata SET signed = '" + status.compareTo(false) + "' WHERE PlayerUUID = '" + UUID + "';");
             return true;
         } catch (SQLException e) {
             DebugMessage.sendWarring(e.toString());
