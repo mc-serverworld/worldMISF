@@ -57,7 +57,7 @@ public class mysql {
     public static boolean getSigned(String UUID){
         try {
             Statement statement = BungeeworldUserProfile.connection.createStatement();
-            ResultSet rs = statement.executeQuery("SELECT * FROM worlduserporfile_useraccountdata WHERE PlayerUUID = '" + UUID + "';");
+            ResultSet rs = statement.executeQuery("SELECT * FROM worlduserporfile_useraccountdata WHERE PlayerUUID = '" + UUID + "' LIMIT 1;;");
             if(rs.getString("signed").equals("1")){
                 return true;
             }else return false;
