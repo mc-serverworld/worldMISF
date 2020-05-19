@@ -39,7 +39,6 @@ public class BukkitPhoenix extends JavaPlugin{
     @Override
     public void onEnable() {
         config.loadDefConfig();
-
         //setup
         setupevent();
         setuputil();
