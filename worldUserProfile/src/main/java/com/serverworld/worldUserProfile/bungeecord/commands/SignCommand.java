@@ -78,7 +78,7 @@ public class SignCommand extends Command {
             }
         }catch (Exception e){
             commandSender.sendMessage(ChatColor.RED + "Invalid input");
-            DebugMessage.sendWarringIfDebug(e.getMessage());
+            DebugMessage.sendWarringIfDebug(e.toString());
         }
     }
 }
