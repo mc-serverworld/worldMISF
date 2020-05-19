@@ -21,10 +21,10 @@
 package com.serverworld.worldUserProfile.bungeecord.commands;
 
 import com.serverworld.worldUserProfile.bungeecord.BungeeworldUserProfile;
-import com.serverworld.worldUserProfile.playerdata.UserAccountData;
+import com.serverworld.worldUserProfile.jsondata.UserAccountData;
 import com.serverworld.worldUserProfile.bungeecord.uitls.DebugMessage;
 import com.serverworld.worldUserProfile.utils.IPAPI;
-import com.serverworld.worldUserProfile.bungeecord.uitls.mysql;
+import com.serverworld.worldUserProfile.bungeecord.uitls.UserAccountDataMySQL;
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.CommandSender;
 import net.md_5.bungee.api.chat.ClickEvent;
@@ -54,7 +54,7 @@ public class SignCommand extends Command {
             if(commandSender.getName().toLowerCase().equals("console"))
                 return;
             ProxiedPlayer player = (ProxiedPlayer)commandSender;
-            if(mysql.getSigned(player.getUniqueId().toString())){
+            if(UserAccountDataMySQL.getSigned(player.getUniqueId().toString())){
                 commandSender.sendMessage(ChatColor.YELLOW + "You already signed agreement");
             }else if(players.contains(commandSender)){
                 if(strings[0].equals("confirm")) {
@@ -69,7 +69,7 @@ public class SignCommand extends Command {
                                 ((ProxiedPlayer) commandSender).disconnect(ChatColor.RED + "\nFain while saving data, please concat server admin.");
                                 return;
                             }
-                            mysql.setSigned(player.getUniqueId().toString(),true);
+                            UserAccountDataMySQL.setSigned(player.getUniqueId().toString(),true);
                             userAccountData.setCity(json.getString("city"));
                             userAccountData.setContinent("continent");
                             userAccountData.setCountry("country");
@@ -80,7 +80,7 @@ public class SignCommand extends Command {
                             userAccountData.setPlayername(player.getName());
                             userAccountData.setSignData(date.getTime());
                             userAccountData.setworldCoin(0);
-                            mysql.setDataClass(player.getUniqueId().toString(), userAccountData);
+                            UserAccountDataMySQL.setDataClass(player.getUniqueId().toString(), userAccountData);
                             ((ProxiedPlayer) commandSender).disconnect(ChatColor.GREEN + "\nYou has signed the agreeement\n\n" + ChatColor.AQUA + "Please Rejoin the server");
                         }
                     }

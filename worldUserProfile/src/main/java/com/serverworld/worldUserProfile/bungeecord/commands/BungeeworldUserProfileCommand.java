@@ -1,6 +1,6 @@
 package com.serverworld.worldUserProfile.bungeecord.commands;
 
-import com.serverworld.worldUserProfile.bungeecord.uitls.mysql;
+import com.serverworld.worldUserProfile.bungeecord.uitls.UserAccountDataMySQL;
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.CommandSender;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
@@ -22,7 +22,7 @@ public class BungeeworldUserProfileCommand extends Command implements TabExecuto
             if(commandSender.getName().toLowerCase().equals("console"))
                 return;
             ProxiedPlayer p = (ProxiedPlayer)commandSender;
-            if(mysql.getSigned(p.getUniqueId().toString())){
+            if(UserAccountDataMySQL.getSigned(p.getUniqueId().toString())){
                 commandSender.sendMessage(ChatColor.YELLOW + "You already signed agreement");
             }else {
 

@@ -32,20 +32,19 @@ public class PaperworldUserProfile extends JavaPlugin {
     @Override
     public void onLoad() {
         config = new PaperworldUserProfileConfig(this);
+        config.loadDefConfig();
         paperworldUserProfile = this;
+        setSQL();
     }
 
     @Override
     public void onEnable() {
-        config.loadDefConfig();
-
-
         //setup
         //setSQL();
 
     }
 
     public void setSQL(){
-        PaperSQLDatabase spigotSqlDatabase = new PaperSQLDatabase(this);
+        PaperSQLDatabase paperSQLDatabase = new PaperSQLDatabase(this);
     }
 }

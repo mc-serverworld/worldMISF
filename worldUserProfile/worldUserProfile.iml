@@ -49,5 +49,6 @@
     <orderEntry type="library" name="Maven: org.json:json:20190722" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: com.mc-serverworld:worldIdiot:3.1.11-beta-1" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: org.bstats:bstats-bungeecord:1.7" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: org.projectlombok:lombok:1.18.12" level="project" />
   </component>
 </module>

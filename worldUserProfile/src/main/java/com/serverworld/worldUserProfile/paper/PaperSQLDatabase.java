@@ -65,7 +65,9 @@ public class PaperSQLDatabase {
             //useraccountdata
             statement.executeUpdate("CREATE TABLE IF NOT EXISTS `worlduserporfile_useraccountdata` (`PlayerUUID` char(36), `version` INT, `accountdata` TEXT, `signed` BOOLEAN, PRIMARY KEY(PlayerUUID))");
             //userphoenixdata
-            statement.executeUpdate("CREATE TABLE IF NOT EXISTS `worlduserporfile_userphoenixdata` (`PlayerUUID` char(36), `version` INT, `lastlocation` TEXT, `logoutlocation` TEXT, `homes` TEXT, PRIMARY KEY(PlayerUUID))");
+            statement.executeUpdate("CREATE TABLE IF NOT EXISTS `worlduserporfile_userphoenixplayerdata` (`PlayerUUID` char(36), `version` INT, `playerdata` TEXT, PRIMARY KEY(PlayerUUID))");
+
+            //statement.executeUpdate("CREATE TABLE IF NOT EXISTS `worlduserporfile_userphoenixplayerdata` (`PlayerUUID` char(36), `version` INT, `lastlocation` TEXT, `logoutlocation` TEXT, `homes` TEXT, PRIMARY KEY(PlayerUUID))");
 
             //statement.executeUpdate("CREATE TABLE IF NOT EXISTS `worldprofile_userlastlocation` (`PlayerUUID` char(36), `Server` varchar(8), PRIMARY KEY(PlayerUUID),INDEX (Lang))");
 

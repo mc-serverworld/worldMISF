@@ -43,7 +43,6 @@ public class BukkitPhoenix extends JavaPlugin{
         //setup
         setupevent();
         setuputil();
-
         //commands
 
         BukkitPhoenixCommands BukkitPhoenixCommands = new BukkitPhoenixCommands(this);

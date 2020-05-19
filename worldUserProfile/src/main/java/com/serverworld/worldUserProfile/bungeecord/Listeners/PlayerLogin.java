@@ -2,10 +2,10 @@ package com.serverworld.worldUserProfile.bungeecord.Listeners;
 
 import com.serverworld.worldIdiot.api.BanQueryAPI;
 import com.serverworld.worldUserProfile.bungeecord.BungeeworldUserProfile;
-import com.serverworld.worldUserProfile.playerdata.UserAccountData;
+import com.serverworld.worldUserProfile.jsondata.UserAccountData;
 import com.serverworld.worldUserProfile.bungeecord.uitls.DebugMessage;
 import com.serverworld.worldUserProfile.utils.IPAPI;
-import com.serverworld.worldUserProfile.bungeecord.uitls.mysql;
+import com.serverworld.worldUserProfile.bungeecord.uitls.UserAccountDataMySQL;
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.chat.ComponentBuilder;
@@ -38,11 +38,11 @@ public class PlayerLogin implements Listener {
             return;
         }
         DebugMessage.sendInfo("Player " + event.getPlayer().getName() + " from " + jsonObject.getString("country"));
-        if(!mysql.Joinbefore(event.getPlayer().getUniqueId().toString()))
-            mysql.SetUp(event.getPlayer().getUniqueId().toString());
+        if(!UserAccountDataMySQL.Joinbefore(event.getPlayer().getUniqueId().toString()))
+            UserAccountDataMySQL.SetUp(event.getPlayer().getUniqueId().toString());
 
-        if(mysql.getSigned(event.getPlayer().getUniqueId().toString())){
-            UserAccountData userAccountData = mysql.getDataClass(event.getPlayer().getUniqueId().toString());
+        if(UserAccountDataMySQL.getSigned(event.getPlayer().getUniqueId().toString())){
+            UserAccountData userAccountData = UserAccountDataMySQL.getDataClass(event.getPlayer().getUniqueId().toString());
             Date date = new Date();
             userAccountData.setCity(jsonObject.getString("city"));
             userAccountData.setContinent("continent");
@@ -51,7 +51,7 @@ public class PlayerLogin implements Listener {
             userAccountData.setISP("org");
             userAccountData.setLastLogin(date.getTime());
             userAccountData.setPlayername(event.getPlayer().getName());
-            mysql.setDataClass(event.getPlayer().getUniqueId().toString(), userAccountData);
+            UserAccountDataMySQL.setDataClass(event.getPlayer().getUniqueId().toString(), userAccountData);
         }else {
             List<String> support_country_list = new ArrayList();
             support_country_list.add("taiwan");
