@@ -41,7 +41,7 @@ public class SignCommand extends Command {
         super("sign");
     }
 
-    private static Set<ProxiedPlayer> players = new HashSet<>();
+    private static Set<CommandSender> players = new HashSet<>();
 
 
     public void execute(CommandSender commandSender, String[] strings) {
@@ -51,11 +51,11 @@ public class SignCommand extends Command {
             ProxiedPlayer player = (ProxiedPlayer)commandSender;
             if(mysql.getSigned(player.getUniqueId().toString())){
                 commandSender.sendMessage(ChatColor.YELLOW + "You already signed agreement");
-            }else if(players.contains(player)){
+            }else if(players.contains(commandSender)){
                 if(strings[0].equals("confirm")) {
                     synchronized (players) {
-                        if (players.contains(player)) {
-                            player.disconnect(ChatColor.GREEN + "You has signed the agreeement\n\n" + ChatColor.AQUA + "Please Rejoin the server");
+                        if (players.contains(commandSender)) {
+                            ((ProxiedPlayer) commandSender).disconnect(ChatColor.GREEN + "You has signed the agreeement\n\n" + ChatColor.AQUA + "Please Rejoin the server");
                         }
                     }
                 }
@@ -67,11 +67,11 @@ public class SignCommand extends Command {
                 EulaURLComponent.setHoverEvent( new HoverEvent( HoverEvent.Action.SHOW_TEXT, new ComponentBuilder( "Open in browser" ).create() ) );
                 EulaURLComponent.setClickEvent( new ClickEvent( ClickEvent.Action.OPEN_URL, "https://www.mc-serverworld.com/rules" ) );
                 agreement.addExtra(EulaURLComponent);
-                player.sendMessage(agreement);
-                players.add(player);
+                commandSender.sendMessage(agreement);
+                players.add(commandSender);
                 BungeeworldUserProfile.bungeeworldUserProfile.getProxy().getScheduler().schedule(BungeeworldUserProfile.bungeeworldUserProfile, new Runnable() {
                     public void run() {
-                        players.remove(player);
+                        players.remove(commandSender);
                     }
                 }, 10, TimeUnit.SECONDS);
             }
