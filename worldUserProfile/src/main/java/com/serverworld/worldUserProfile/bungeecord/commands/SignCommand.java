@@ -21,7 +21,6 @@
 package com.serverworld.worldUserProfile.bungeecord.commands;
 
 import com.serverworld.worldUserProfile.bungeecord.BungeeworldUserProfile;
-import com.serverworld.worldUserProfile.bungeecord.uitls.DebugMessage;
 import com.serverworld.worldUserProfile.bungeecord.uitls.mysql;
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.CommandSender;
@@ -38,10 +37,8 @@ import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 public class SignCommand extends Command {
-    BungeeworldUserProfile worldUserProfile;
     public SignCommand(Plugin plugin){
         super("sign");
-        this.worldUserProfile = (BungeeworldUserProfile)plugin;
     }
 
     private static Set<ProxiedPlayer> players = new HashSet<>();
@@ -68,9 +65,9 @@ public class SignCommand extends Command {
                 EulaURLComponent.setHoverEvent( new HoverEvent( HoverEvent.Action.SHOW_TEXT, new ComponentBuilder( "Open in browser" ).create() ) );
                 EulaURLComponent.setClickEvent( new ClickEvent( ClickEvent.Action.OPEN_URL, "https://www.mc-serverworld.com/rules" ) );
                 agreement.addExtra(EulaURLComponent);
-                commandSender.sendMessage(agreement);
+                player.sendMessage(agreement);
                 players.add(player);
-                worldUserProfile.getProxy().getScheduler().schedule(worldUserProfile, new Runnable() {
+                BungeeworldUserProfile.bungeeworldUserProfile.getProxy().getScheduler().schedule(BungeeworldUserProfile.bungeeworldUserProfile, new Runnable() {
                     public void run() {
                         players.remove(player);
                     }
@@ -78,7 +75,6 @@ public class SignCommand extends Command {
             }
         }catch (Exception e){
             commandSender.sendMessage(ChatColor.RED + "Invalid input");
-            DebugMessage.sendWarringIfDebug(e.toString());
         }
     }
 }
