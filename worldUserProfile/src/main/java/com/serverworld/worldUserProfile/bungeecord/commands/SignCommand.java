@@ -67,7 +67,7 @@ public class SignCommand extends Command {
                 TextComponent agreement = new TextComponent("BY CLICKING ON YES, YOU ACKNOWLEDGE THAT YOU, HAVE READ, UNDERSTAND, AND AGREE TO THE ");
                 agreement.setColor(ChatColor.RED);
                 agreement.setBold(true);
-                TextComponent agreement2 = new TextComponent(" OF THIS SERVER\n\n");
+                TextComponent agreement2 = new TextComponent(" OF THIS SERVER\n\n       ");
                 agreement2.setColor(ChatColor.RED);
                 agreement2.setBold(true);
                 TextComponent EulaURLComponent = new TextComponent( "EULA" );
@@ -87,7 +87,6 @@ public class SignCommand extends Command {
 
                 agreement.addExtra(EulaURLComponent);
                 agreement.addExtra(agreement2);
-                agreement.addExtra("       ");
                 agreement.addExtra(ButtonYESComponent);
                 agreement.addExtra("              ");
                 agreement.addExtra(ButtonNOComponent);
