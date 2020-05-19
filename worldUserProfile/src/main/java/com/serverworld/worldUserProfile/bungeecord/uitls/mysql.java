@@ -58,9 +58,8 @@ public class mysql {
         try {
             Statement statement = BungeeworldUserProfile.connection.createStatement();
             ResultSet rs = statement.executeQuery("SELECT * FROM worlduserporfile_useraccountdata WHERE PlayerUUID = '" + UUID + "' LIMIT 1;;");
-            if(rs.getString("signed").equals("1")){
-                return true;
-            }else return false;
+            rs.next();
+            return rs.getBoolean("signed");
         } catch (SQLException e) {
             DebugMessage.sendWarring(e.toString());
             return false;
