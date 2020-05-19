@@ -75,19 +75,21 @@ public class SignCommand extends Command {
                 EulaURLComponent.setHoverEvent( new HoverEvent( HoverEvent.Action.SHOW_TEXT, new ComponentBuilder( "Open in browser" ).create() ) );
                 EulaURLComponent.setClickEvent( new ClickEvent( ClickEvent.Action.OPEN_URL, "https://www.mc-serverworld.com/rules" ) );
 
-                TextComponent ButtonYESComponent = new TextComponent( "yes【✔】              " );
+                TextComponent ButtonYESComponent = new TextComponent( "yes【✔】" );
                 ButtonYESComponent.setColor( ChatColor.GREEN );
                 ButtonYESComponent.setHoverEvent( new HoverEvent( HoverEvent.Action.SHOW_TEXT, new ComponentBuilder( "I agree the agreement" ).create() ) );
-                ButtonYESComponent.setClickEvent( new ClickEvent( ClickEvent.Action.RUN_COMMAND, "sign confirm" ) );
+                ButtonYESComponent.setClickEvent( new ClickEvent( ClickEvent.Action.RUN_COMMAND, "/sign confirm" ) );
 
                 TextComponent ButtonNOComponent = new TextComponent( "no【✖】" );
                 ButtonNOComponent.setColor( ChatColor.RED );
                 ButtonNOComponent.setHoverEvent( new HoverEvent( HoverEvent.Action.SHOW_TEXT, new ComponentBuilder( "I dont agree the agreement" ).create() ) );
-                ButtonNOComponent.setClickEvent( new ClickEvent( ClickEvent.Action.RUN_COMMAND, "sign no" ) );
+                ButtonNOComponent.setClickEvent( new ClickEvent( ClickEvent.Action.RUN_COMMAND, "/sign no" ) );
 
                 agreement.addExtra(EulaURLComponent);
                 agreement.addExtra(agreement2);
+                agreement.addExtra("       ");
                 agreement.addExtra(ButtonYESComponent);
+                agreement.addExtra("              ");
                 agreement.addExtra(ButtonNOComponent);
                 commandSender.sendMessage(agreement);
                 players.add(commandSender);
