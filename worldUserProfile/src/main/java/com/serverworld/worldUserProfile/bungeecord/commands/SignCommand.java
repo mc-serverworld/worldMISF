@@ -20,26 +20,60 @@
 
 package com.serverworld.worldUserProfile.bungeecord.commands;
 
+import com.serverworld.worldUserProfile.bungeecord.BungeeworldUserProfile;
 import com.serverworld.worldUserProfile.bungeecord.uitls.mysql;
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.CommandSender;
+import net.md_5.bungee.api.chat.ClickEvent;
+import net.md_5.bungee.api.chat.ComponentBuilder;
+import net.md_5.bungee.api.chat.HoverEvent;
+import net.md_5.bungee.api.chat.TextComponent;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 import net.md_5.bungee.api.plugin.Command;
 import net.md_5.bungee.api.plugin.Plugin;
 
+import java.util.HashSet;
+import java.util.Set;
+import java.util.concurrent.TimeUnit;
+
 public class SignCommand extends Command {
+    BungeeworldUserProfile worldUserProfile;
     public SignCommand(Plugin plugin){
         super("sign");
+        this.worldUserProfile = (BungeeworldUserProfile)plugin;
     }
+
+    private static Set<ProxiedPlayer> players = new HashSet<>();
 
 
     public void execute(CommandSender commandSender, String[] strings) {
         try {
             if(commandSender.getName().toLowerCase().equals("console"))
                 return;
-            ProxiedPlayer p = (ProxiedPlayer)commandSender;
-            if(mysql.getSigned(p.getUniqueId().toString())){
+            ProxiedPlayer player = (ProxiedPlayer)commandSender;
+            if(mysql.getSigned(player.getUniqueId().toString())){
                 commandSender.sendMessage(ChatColor.YELLOW + "You already signed agreement");
+            }else if(strings[0].equals("confirm")){
+                synchronized (players){
+                    if(players.contains(player)){
+                        player.disconnect(ChatColor.GREEN + "You has signed the agreeement\n\n" + ChatColor.AQUA + "Please Rejoin the server");
+                    }
+                }
+            }else {
+                TextComponent agreement = new TextComponent("BY CLICKING ON YES, YOU ACKNOWLEDGE THAT YOU, HAVE READ, UNDERSTAND, AND AGREE TO THE ");
+                agreement.setColor( ChatColor.RED );
+                TextComponent EulaURLComponent = new TextComponent( "EULA" );
+                EulaURLComponent.setColor( ChatColor.AQUA );
+                EulaURLComponent.setHoverEvent( new HoverEvent( HoverEvent.Action.SHOW_TEXT, new ComponentBuilder( "Open in browser" ).create() ) );
+                EulaURLComponent.setClickEvent( new ClickEvent( ClickEvent.Action.OPEN_URL, "https://www.mc-serverworld.com/rules" ) );
+                agreement.addExtra(EulaURLComponent);
+                commandSender.sendMessage(agreement);
+                players.add(player);
+                worldUserProfile.getProxy().getScheduler().schedule(worldUserProfile, new Runnable() {
+                    public void run() {
+                        players.remove(player);
+                    }
+                }, 10, TimeUnit.SECONDS);
             }
         }catch (Exception e){
             commandSender.sendMessage(ChatColor.RED + "Invalid input");

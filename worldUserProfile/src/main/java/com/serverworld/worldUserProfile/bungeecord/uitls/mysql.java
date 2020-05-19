@@ -81,6 +81,7 @@ public class mysql {
         try {
             Statement statement = BungeeworldUserProfile.connection.createStatement();
             ResultSet rs = statement.executeQuery("SELECT * FROM worlduserporfile_useraccountdata WHERE PlayerUUID = '" + UUID + "';");
+            rs.next();
             Gson gson= new Gson();
             return gson.fromJson(rs.getString("playerdata"), UserAccountData.class);
         } catch (SQLException e) {
@@ -106,6 +107,7 @@ public class mysql {
         try {
             Statement statement = BungeeworldUserProfile.connection.createStatement();
             ResultSet rs = statement.executeQuery("SELECT * FROM worlduserporfile_useraccountdata WHERE PlayerUUID = '" + UUID + "';");
+            rs.next();
             return rs.getInt("version");
         } catch (SQLException e) {
             DebugMessage.sendWarring(e.toString());
