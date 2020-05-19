@@ -21,7 +21,9 @@
 package com.serverworld.worldUserProfile.bungeecord.commands;
 
 import com.serverworld.worldUserProfile.bungeecord.BungeeworldUserProfile;
+import com.serverworld.worldUserProfile.bungeecord.gsons.UserAccountData;
 import com.serverworld.worldUserProfile.bungeecord.uitls.DebugMessage;
+import com.serverworld.worldUserProfile.bungeecord.uitls.IPAPI;
 import com.serverworld.worldUserProfile.bungeecord.uitls.mysql;
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.CommandSender;
@@ -32,7 +34,9 @@ import net.md_5.bungee.api.chat.TextComponent;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 import net.md_5.bungee.api.plugin.Command;
 import net.md_5.bungee.api.plugin.Plugin;
+import org.json.JSONObject;
 
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
@@ -56,6 +60,27 @@ public class SignCommand extends Command {
                 if(strings[0].equals("confirm")) {
                     synchronized (players) {
                         if (players.contains(commandSender)) {
+
+                            Date date = new Date();
+                            UserAccountData userAccountData= new UserAccountData();
+                            JSONObject json = IPAPI.getJSON(player.getAddress().getAddress().toString());//status,continent,country,regionName,city,org,mobile,proxy
+                            if(json.getString("status").equals("fail")){
+                                DebugMessage.sendWarringIfDebug(ChatColor.YELLOW + "Fail to get json!" + json.toString());
+                                ((ProxiedPlayer) commandSender).disconnect(ChatColor.RED + "Fain while saving data, please concat server admin.");
+                                return;
+                            }
+                            mysql.setSigned(player.getUniqueId().toString(),true);
+                            userAccountData.setCity(json.getString("city"));
+                            userAccountData.setContinent("continent");
+                            userAccountData.setCountry("country");
+                            userAccountData.setIP(player.getAddress().toString());
+                            userAccountData.setISP("org");
+                            userAccountData.setLastLogin(date.getTime());
+                            userAccountData.setPlayedTime(0l);
+                            userAccountData.setPlayername(player.getName());
+                            userAccountData.setSignData(date.getTime());
+                            userAccountData.setworldCoin(0);
+                            mysql.setDataClass(player.getUniqueId().toString(), userAccountData);
                             ((ProxiedPlayer) commandSender).disconnect(ChatColor.GREEN + "You has signed the agreeement\n\n" + ChatColor.AQUA + "Please Rejoin the server");
                         }
                     }
