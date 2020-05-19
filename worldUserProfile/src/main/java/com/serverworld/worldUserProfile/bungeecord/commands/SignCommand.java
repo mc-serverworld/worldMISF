@@ -51,10 +51,12 @@ public class SignCommand extends Command {
             ProxiedPlayer player = (ProxiedPlayer)commandSender;
             if(mysql.getSigned(player.getUniqueId().toString())){
                 commandSender.sendMessage(ChatColor.YELLOW + "You already signed agreement");
-            }else if(strings[0].equals("confirm")){
-                synchronized (players){
-                    if(players.contains(player)){
-                        player.disconnect(ChatColor.GREEN + "You has signed the agreeement\n\n" + ChatColor.AQUA + "Please Rejoin the server");
+            }else if(players.contains(player)){
+                if(strings[0].equals("confirm")) {
+                    synchronized (players) {
+                        if (players.contains(player)) {
+                            player.disconnect(ChatColor.GREEN + "You has signed the agreeement\n\n" + ChatColor.AQUA + "Please Rejoin the server");
+                        }
                     }
                 }
             }else {
@@ -75,6 +77,7 @@ public class SignCommand extends Command {
             }
         }catch (Exception e){
             commandSender.sendMessage(ChatColor.RED + "Invalid input");
+            e.printStackTrace();
         }
     }
 }
