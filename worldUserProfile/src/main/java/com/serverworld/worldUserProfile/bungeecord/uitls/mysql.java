@@ -30,6 +30,10 @@ import java.sql.Statement;
 
 public class mysql {
 
+    public static String Adder(Object object){
+        return "'" + object + "'";
+    }
+
     public static boolean SetUp(String UUID){
         try {
             Statement statement = BungeeworldUserProfile.connection.createStatement();
@@ -57,7 +61,7 @@ public class mysql {
     public static boolean getSigned(String UUID){
         try {
             Statement statement = BungeeworldUserProfile.connection.createStatement();
-            ResultSet rs = statement.executeQuery("SELECT * FROM worlduserporfile_useraccountdata WHERE PlayerUUID = '" + UUID + "' LIMIT 1;;");
+            ResultSet rs = statement.executeQuery("SELECT * FROM worlduserporfile_useraccountdata WHERE PlayerUUID = " + Adder(UUID) + " LIMIT 1;;");
             rs.next();
             return rs.getBoolean("signed");
         } catch (SQLException e) {
@@ -69,7 +73,7 @@ public class mysql {
     public static boolean setSigned(String UUID ,Boolean status){
         try {
             Statement statement = BungeeworldUserProfile.connection.createStatement();
-            statement.execute("UPDATE worlduserporfile_useraccountdata SET sign = '" + status + "' WHERE PlayerUUID = '" + UUID + "'");
+            statement.execute("UPDATE worlduserporfile_useraccountdata SET signed = '" + status + "' WHERE PlayerUUID = '" + UUID + "'");
             return true;
         } catch (SQLException e) {
             DebugMessage.sendWarring(e.toString());
