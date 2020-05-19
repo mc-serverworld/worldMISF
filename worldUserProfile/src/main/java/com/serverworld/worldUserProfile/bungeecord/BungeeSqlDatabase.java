@@ -20,6 +20,7 @@
 
 package com.serverworld.worldUserProfile.bungeecord;
 
+import com.serverworld.worldUserProfile.bungeecord.uitls.DebugMessage;
 import net.md_5.bungee.api.ChatColor;
 
 import java.sql.Connection;
@@ -39,13 +40,13 @@ public class BungeeSqlDatabase {
         this.bungeeworldUserProfile = bungeeworldUserProfile;
         config = bungeeworldUserProfile.config;
         if(config.type().toLowerCase().equals("mysql")){
-            bungeeworldUserProfile.getLogger().info("Using mysql");
+            DebugMessage.sendInfo("Using mysql");
             MYSQLlogin();
         }else if(config.type().toLowerCase().equals("mariadb")){
-            bungeeworldUserProfile.getLogger().info("Using mariadb");
+            DebugMessage.sendInfo("Using mariadb");
             MYSQLlogin();
         }else {
-            bungeeworldUserProfile.getLogger().warning(ChatColor.RED + "Not supported this database type");
+            DebugMessage.sendWarring(ChatColor.RED + "Not supported this database type");
         }
 
     }
@@ -71,7 +72,7 @@ public class BungeeSqlDatabase {
 
         }catch (Exception e){
             e.printStackTrace();
-            bungeeworldUserProfile.getLogger().warning(ChatColor.RED + "Error while connection to database");
+            DebugMessage.sendWarring(ChatColor.RED + "Error while connection to database");
         }
         try {
             MYSQLopenConnection();
@@ -84,7 +85,7 @@ public class BungeeSqlDatabase {
 
     public void MYSQLopenConnection() throws SQLException, ClassNotFoundException {
         if (connection != null && !connection.isClosed()) {
-            bungeeworldUserProfile.getLogger().info(ChatColor.GREEN + "Connected to database!");
+            DebugMessage.sendInfo(ChatColor.GREEN + "Connected to database!");
             return;
         }
 

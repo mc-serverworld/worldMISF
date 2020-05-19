@@ -18,11 +18,11 @@
  *
  */
 
-package com.serverworld.worldUserProfile.bungeecord.uitls;
+package com.serverworld.worldUserProfile.paper.utils;
 
 import com.google.gson.Gson;
-import com.serverworld.worldUserProfile.bungeecord.BungeeworldUserProfile;
 import com.serverworld.worldUserProfile.playerdata.UserAccountData;
+import com.serverworld.worldUserProfile.paper.PaperworldUserProfile;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -36,7 +36,7 @@ public class mysql {
 
     public static boolean SetUp(String UUID){
         try {
-            Statement statement = BungeeworldUserProfile.connection.createStatement();
+            Statement statement = PaperworldUserProfile.connection.createStatement();
             statement.execute("INSERT INTO worlduserporfile_useraccountdata (PlayerUUID, version, accountdata, signed) VALUES ('" + UUID + "', '1', 'notsign', '0');");
             return true;
         } catch (SQLException e) {
@@ -47,7 +47,7 @@ public class mysql {
 
     public static boolean Joinbefore(String UUID){
         try {
-            Statement statement = BungeeworldUserProfile.connection.createStatement();
+            Statement statement = PaperworldUserProfile.connection.createStatement();
             ResultSet rs = statement.executeQuery("SELECT * FROM worlduserporfile_useraccountdata WHERE PlayerUUID = '" + UUID + "';");
             Boolean banbefore = false;
             banbefore = rs.next();
@@ -60,7 +60,7 @@ public class mysql {
 
     public static boolean getSigned(String UUID){
         try {
-            Statement statement = BungeeworldUserProfile.connection.createStatement();
+            Statement statement = PaperworldUserProfile.connection.createStatement();
             ResultSet rs = statement.executeQuery("SELECT * FROM worlduserporfile_useraccountdata WHERE PlayerUUID = '" + UUID +  "' LIMIT 1;");
             rs.next();
             return rs.getBoolean("signed");
@@ -72,7 +72,7 @@ public class mysql {
 
     public static boolean setSigned(String UUID ,Boolean status){
         try {
-            Statement statement = BungeeworldUserProfile.connection.createStatement();
+            Statement statement = PaperworldUserProfile.connection.createStatement();
             statement.execute("UPDATE worlduserporfile_useraccountdata SET signed = '" + status.compareTo(false) + "' WHERE PlayerUUID = '" + UUID + "';");
             return true;
         } catch (SQLException e) {
@@ -83,7 +83,7 @@ public class mysql {
 
     public static UserAccountData getDataClass(String UUID){
         try {
-            Statement statement = BungeeworldUserProfile.connection.createStatement();
+            Statement statement = PaperworldUserProfile.connection.createStatement();
             ResultSet rs = statement.executeQuery("SELECT * FROM worlduserporfile_useraccountdata WHERE PlayerUUID = '" + UUID + "';");
             rs.next();
             Gson gson= new Gson();
@@ -96,7 +96,7 @@ public class mysql {
 
     public static Boolean setDataClass(String UUID, UserAccountData userAccountData){
         try {
-            Statement statement = BungeeworldUserProfile.connection.createStatement();
+            Statement statement = PaperworldUserProfile.connection.createStatement();
             Gson gson = new Gson();
             String stg = gson.toJson(userAccountData,UserAccountData.class);
             statement.execute("UPDATE worlduserporfile_useraccountdata SET accountdata = '" + stg + "' WHERE PlayerUUID = '" + UUID + "'");
@@ -109,7 +109,7 @@ public class mysql {
 
     public static int getDataClassVersion(String UUID){
         try {
-            Statement statement = BungeeworldUserProfile.connection.createStatement();
+            Statement statement = PaperworldUserProfile.connection.createStatement();
             ResultSet rs = statement.executeQuery("SELECT * FROM worlduserporfile_useraccountdata WHERE PlayerUUID = '" + UUID + "';");
             rs.next();
             return rs.getInt("version");
@@ -121,7 +121,7 @@ public class mysql {
 
     public static Boolean setDataClassVersion(String UUID, int version){
         try {
-            Statement statement = BungeeworldUserProfile.connection.createStatement();
+            Statement statement = PaperworldUserProfile.connection.createStatement();
             statement.execute("UPDATE worlduserporfile_useraccountdata SET version = '" + version + "' WHERE PlayerUUID = " + UUID);
             return true;
         } catch (SQLException e) {

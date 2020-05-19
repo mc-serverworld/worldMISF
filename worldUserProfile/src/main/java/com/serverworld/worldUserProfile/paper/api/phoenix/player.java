@@ -18,7 +18,8 @@
  *
  */
 
-package com.serverworld.worldUserProfile.spigot.api;
+package com.serverworld.worldUserProfile.paper.api.phoenix;
 
-public class logindata {
+public class player {
+
 }

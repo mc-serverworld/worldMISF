@@ -18,7 +18,7 @@
  *
  */
 
-package com.serverworld.worldUserProfile.spigot.gsons;
+package com.serverworld.worldUserProfile.paper.api;
 
-public class gsonRWer {
+public class logindata {
 }

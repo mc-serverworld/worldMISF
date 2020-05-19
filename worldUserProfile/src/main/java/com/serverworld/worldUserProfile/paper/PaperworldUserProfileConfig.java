@@ -18,11 +18,11 @@
  *
  */
 
-package com.serverworld.worldUserProfile.spigot;
+package com.serverworld.worldUserProfile.paper;
 
-public class SpigotworldUserProfileConfig {
-    private SpigotworldUserProfile plugin;
-    public SpigotworldUserProfileConfig(SpigotworldUserProfile i){
+public class PaperworldUserProfileConfig {
+    private PaperworldUserProfile plugin;
+    public PaperworldUserProfileConfig(PaperworldUserProfile i){
         plugin = i;
     }
     public void loadDefConfig() {

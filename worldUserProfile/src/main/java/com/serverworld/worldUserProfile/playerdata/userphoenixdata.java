@@ -18,17 +18,8 @@
  *
  */
 
-package com.serverworld.worldUserProfile.bungeecord.uitls;
+package com.serverworld.worldUserProfile.playerdata;
 
-public class WebUtil {
-
-    /*public static String readUrl(String urlString) throws Exception {
-        try {
-            URL url = new URL(urlString);
-            InputStreamReader reader = new InputStreamReader(url.openStream());
-            return reader.toString();
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-    }*/
+public class userphoenixdata{
+    
 }

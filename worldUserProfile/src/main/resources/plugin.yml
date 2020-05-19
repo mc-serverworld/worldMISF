@@ -1,8 +1,6 @@
-main: com.serverworld.worldUserProfile.spigot.SpigotworldUserProfile
+main: com.serverworld.worldUserProfile.paper.Paper.worldUserProfile
 name: ${project.name}
 version: ${project.version}
-authors:
-  - paul0665
-  - mc-serverworld
+author: mc-serverworld
 website: mc-serverworld.com
 softdepend: [PlaceholderAPI]

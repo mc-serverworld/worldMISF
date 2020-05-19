@@ -18,8 +18,9 @@
  *
  */
 
-package com.serverworld.worldUserProfile.spigot;
+package com.serverworld.worldUserProfile.paper;
 
+import com.serverworld.worldUserProfile.paper.utils.DebugMessage;
 import net.md_5.bungee.api.ChatColor;
 
 import java.sql.Connection;
@@ -27,25 +28,25 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class SpigotSqlDatabase {
-    SpigotworldUserProfile spigotworldProfile;
-    SpigotworldUserProfileConfig config;
+public class PaperSQLDatabase {
+    PaperworldUserProfile paperworldUserProfile;
+    PaperworldUserProfileConfig config;
 
     public static Connection connection;
     private String host, database, username, password;
     private int port;
 
-    public SpigotSqlDatabase(SpigotworldUserProfile spigotworldProfile){
-        this.spigotworldProfile = spigotworldProfile;
-        config = spigotworldProfile.config;
+    public PaperSQLDatabase(PaperworldUserProfile paperworldUserProfile){
+        this.paperworldUserProfile = paperworldUserProfile;
+        config = paperworldUserProfile.config;
         if(config.type().toLowerCase().equals("mysql")){
-            spigotworldProfile.getLogger().info("Using mysql");
+            DebugMessage.sendInfo("Using mysql");
             MYSQLlogin();
         }else if(config.type().toLowerCase().equals("mariadb")){
-            spigotworldProfile.getLogger().info("Using mariadb");
+            DebugMessage.sendInfo("Using mariadb");
             MYSQLlogin();
         }else {
-            spigotworldProfile.getLogger().warning(ChatColor.RED + "Not supported this database type");
+            DebugMessage.sendWarring(ChatColor.RED + "Not supported this database type");
         }
 
     }
@@ -62,16 +63,16 @@ public class SpigotSqlDatabase {
             Statement statement = connection.createStatement();
             //create database
             //useraccountdata
-            statement.executeUpdate("CREATE TABLE IF NOT EXISTS `worldprofile_useraccountdata` (`PlayerUUID` char(36), `accountdata` TEXT, PRIMARY KEY(PlayerUUID))");
+            statement.executeUpdate("CREATE TABLE IF NOT EXISTS `worlduserporfile_useraccountdata` (`PlayerUUID` char(36), `version` INT, `accountdata` TEXT, `signed` BOOLEAN, PRIMARY KEY(PlayerUUID))");
             //userphoenixdata
-            statement.executeUpdate("CREATE TABLE IF NOT EXISTS `worldprofile_userphoenixdata` (`PlayerUUID` char(36), `lastlocation` TEXT, `logoutlocation` TEXT, `homes` TEXT, PRIMARY KEY(PlayerUUID))");
-            //notuse
+            statement.executeUpdate("CREATE TABLE IF NOT EXISTS `worlduserporfile_userphoenixdata` (`PlayerUUID` char(36), `version` INT, `lastlocation` TEXT, `logoutlocation` TEXT, `homes` TEXT, PRIMARY KEY(PlayerUUID))");
+
             //statement.executeUpdate("CREATE TABLE IF NOT EXISTS `worldprofile_userlastlocation` (`PlayerUUID` char(36), `Server` varchar(8), PRIMARY KEY(PlayerUUID),INDEX (Lang))");
 
 
         }catch (Exception e){
             e.printStackTrace();
-            spigotworldProfile.getLogger().warning(ChatColor.RED + "Error while connection to database");
+            DebugMessage.sendWarring(ChatColor.RED + "Error while connection to database");
         }
         try {
             MYSQLopenConnection();
@@ -84,7 +85,7 @@ public class SpigotSqlDatabase {
 
     public void MYSQLopenConnection() throws SQLException, ClassNotFoundException {
         if (connection != null && !connection.isClosed()) {
-            spigotworldProfile.getLogger().info(ChatColor.GREEN + "Connected to database!");
+            DebugMessage.sendInfo(ChatColor.GREEN + "Connected to database!");
             return;
         }
 

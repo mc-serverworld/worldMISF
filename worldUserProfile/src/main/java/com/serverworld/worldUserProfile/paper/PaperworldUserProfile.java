@@ -18,16 +18,21 @@
  *
  */
 
-package com.serverworld.worldUserProfile.spigot;
+package com.serverworld.worldUserProfile.paper;
 
 import org.bukkit.plugin.java.JavaPlugin;
 
-public class SpigotworldUserProfile extends JavaPlugin {
-    public SpigotworldUserProfileConfig config;
+import java.sql.Connection;
+
+public class PaperworldUserProfile extends JavaPlugin {
+    public static PaperworldUserProfile paperworldUserProfile;
+    public static Connection connection;
+    public static PaperworldUserProfileConfig config;
 
     @Override
     public void onLoad() {
-        config = new SpigotworldUserProfileConfig(this);
+        config = new PaperworldUserProfileConfig(this);
+        paperworldUserProfile = this;
     }
 
     @Override
@@ -41,6 +46,6 @@ public class SpigotworldUserProfile extends JavaPlugin {
     }
 
     public void setSQL(){
-        SpigotSqlDatabase spigotSqlDatabase = new SpigotSqlDatabase(this);
+        PaperSQLDatabase spigotSqlDatabase = new PaperSQLDatabase(this);
     }
 }

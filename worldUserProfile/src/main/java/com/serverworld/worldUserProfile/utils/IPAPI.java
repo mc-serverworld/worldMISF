@@ -18,7 +18,7 @@
  *
  */
 
-package com.serverworld.worldUserProfile.bungeecord.uitls;
+package com.serverworld.worldUserProfile.utils;
 
 import org.json.JSONException;
 import org.json.JSONObject;

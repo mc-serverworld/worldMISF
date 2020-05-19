@@ -21,9 +21,9 @@
 package com.serverworld.worldUserProfile.bungeecord.commands;
 
 import com.serverworld.worldUserProfile.bungeecord.BungeeworldUserProfile;
-import com.serverworld.worldUserProfile.bungeecord.gsons.UserAccountData;
+import com.serverworld.worldUserProfile.playerdata.UserAccountData;
 import com.serverworld.worldUserProfile.bungeecord.uitls.DebugMessage;
-import com.serverworld.worldUserProfile.bungeecord.uitls.IPAPI;
+import com.serverworld.worldUserProfile.utils.IPAPI;
 import com.serverworld.worldUserProfile.bungeecord.uitls.mysql;
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.CommandSender;
@@ -66,7 +66,7 @@ public class SignCommand extends Command {
                             JSONObject json = IPAPI.getJSON(player.getAddress().getAddress().toString());//status,continent,country,regionName,city,org,mobile,proxy
                             if(json.getString("status").equals("fail")){
                                 DebugMessage.sendWarringIfDebug(ChatColor.YELLOW + "Fail to get json!" + json.toString());
-                                ((ProxiedPlayer) commandSender).disconnect(ChatColor.RED + "Fain while saving data, please concat server admin.");
+                                ((ProxiedPlayer) commandSender).disconnect(ChatColor.RED + "\nFain while saving data, please concat server admin.");
                                 return;
                             }
                             mysql.setSigned(player.getUniqueId().toString(),true);
@@ -81,12 +81,12 @@ public class SignCommand extends Command {
                             userAccountData.setSignData(date.getTime());
                             userAccountData.setworldCoin(0);
                             mysql.setDataClass(player.getUniqueId().toString(), userAccountData);
-                            ((ProxiedPlayer) commandSender).disconnect(ChatColor.GREEN + "You has signed the agreeement\n\n" + ChatColor.AQUA + "Please Rejoin the server");
+                            ((ProxiedPlayer) commandSender).disconnect(ChatColor.GREEN + "\nYou has signed the agreeement\n\n" + ChatColor.AQUA + "Please Rejoin the server");
                         }
                     }
                 }
                 else if(strings[0].equals("no")){
-                    ((ProxiedPlayer) commandSender).disconnect(ChatColor.RED + "You must signed the agreeement if you want to playing this server\n\n" + ChatColor.AQUA + "Please rejoin the server and sign");
+                    ((ProxiedPlayer) commandSender).disconnect(ChatColor.RED + "\nYou must signed the agreeement if you want to playing this server\n\n" + ChatColor.AQUA + "Please rejoin the server and sign");
                 }
             }else {
                 TextComponent agreement = new TextComponent("BY CLICKING ON YES, YOU ACKNOWLEDGE THAT YOU, HAVE READ, UNDERSTAND, AND AGREE TO THE ");

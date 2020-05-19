@@ -18,7 +18,7 @@
  *
  */
 
-package com.serverworld.worldUserProfile.bungeecord.gsons;
+package com.serverworld.worldUserProfile.playerdata;
 
 public class gsonRWer {
 }
