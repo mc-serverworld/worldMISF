@@ -1,4 +1,4 @@
-main: com.serverworld.worldUserProfile.paper.Paper.worldUserProfile
+main: com.serverworld.worldUserProfile.paper.PaperworldUserProfile
 name: ${project.name}
 version: ${project.version}
 author: mc-serverworld
