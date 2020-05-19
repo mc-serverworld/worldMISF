@@ -21,6 +21,7 @@
 package com.serverworld.worldUserProfile.bungeecord.commands;
 
 import com.serverworld.worldUserProfile.bungeecord.BungeeworldUserProfile;
+import com.serverworld.worldUserProfile.bungeecord.uitls.DebugMessage;
 import com.serverworld.worldUserProfile.bungeecord.uitls.mysql;
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.CommandSender;
@@ -77,6 +78,7 @@ public class SignCommand extends Command {
             }
         }catch (Exception e){
             commandSender.sendMessage(ChatColor.RED + "Invalid input");
+            DebugMessage.sendWarringIfDebug(e.getMessage());
         }
     }
 }
