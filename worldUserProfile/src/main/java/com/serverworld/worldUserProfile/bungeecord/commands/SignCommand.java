@@ -21,6 +21,7 @@
 package com.serverworld.worldUserProfile.bungeecord.commands;
 
 import com.serverworld.worldUserProfile.bungeecord.BungeeworldUserProfile;
+import com.serverworld.worldUserProfile.bungeecord.uitls.DebugMessage;
 import com.serverworld.worldUserProfile.bungeecord.uitls.mysql;
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.CommandSender;
@@ -59,25 +60,46 @@ public class SignCommand extends Command {
                         }
                     }
                 }
+                else if(strings[0].equals("no")){
+                    ((ProxiedPlayer) commandSender).disconnect(ChatColor.RED + "You must signed the agreeement if you want to playing this server\n\n" + ChatColor.AQUA + "Please rejoin the server and sign");
+                }
             }else {
                 TextComponent agreement = new TextComponent("BY CLICKING ON YES, YOU ACKNOWLEDGE THAT YOU, HAVE READ, UNDERSTAND, AND AGREE TO THE ");
-                agreement.setColor( ChatColor.RED );
+                agreement.setColor(ChatColor.RED);
+                agreement.setBold(true);
+                TextComponent agreement2 = new TextComponent(" OF THIS SERVER\n\n");
+                agreement2.setColor(ChatColor.RED);
+                agreement2.setBold(true);
                 TextComponent EulaURLComponent = new TextComponent( "EULA" );
                 EulaURLComponent.setColor( ChatColor.AQUA );
                 EulaURLComponent.setHoverEvent( new HoverEvent( HoverEvent.Action.SHOW_TEXT, new ComponentBuilder( "Open in browser" ).create() ) );
                 EulaURLComponent.setClickEvent( new ClickEvent( ClickEvent.Action.OPEN_URL, "https://www.mc-serverworld.com/rules" ) );
+
+                TextComponent ButtonYESComponent = new TextComponent( "yes【✔】              " );
+                ButtonYESComponent.setColor( ChatColor.GREEN );
+                ButtonYESComponent.setHoverEvent( new HoverEvent( HoverEvent.Action.SHOW_TEXT, new ComponentBuilder( "I agree the agreement" ).create() ) );
+                ButtonYESComponent.setClickEvent( new ClickEvent( ClickEvent.Action.RUN_COMMAND, "sign confirm" ) );
+
+                TextComponent ButtonNOComponent = new TextComponent( "no【✖】" );
+                ButtonNOComponent.setColor( ChatColor.RED );
+                ButtonNOComponent.setHoverEvent( new HoverEvent( HoverEvent.Action.SHOW_TEXT, new ComponentBuilder( "I dont agree the agreement" ).create() ) );
+                ButtonNOComponent.setClickEvent( new ClickEvent( ClickEvent.Action.RUN_COMMAND, "sign no" ) );
+
                 agreement.addExtra(EulaURLComponent);
+                agreement.addExtra(agreement2);
+                agreement.addExtra(ButtonYESComponent);
+                agreement.addExtra(ButtonNOComponent);
                 commandSender.sendMessage(agreement);
                 players.add(commandSender);
                 BungeeworldUserProfile.bungeeworldUserProfile.getProxy().getScheduler().schedule(BungeeworldUserProfile.bungeeworldUserProfile, new Runnable() {
                     public void run() {
                         players.remove(commandSender);
                     }
-                }, 10, TimeUnit.SECONDS);
+                }, 30, TimeUnit.SECONDS);
             }
         }catch (Exception e){
             commandSender.sendMessage(ChatColor.RED + "Invalid input");
-            e.printStackTrace();
+            DebugMessage.sendWarringIfDebug(e.toString());
         }
     }
 }
