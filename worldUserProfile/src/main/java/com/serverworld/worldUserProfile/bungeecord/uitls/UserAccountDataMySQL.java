@@ -30,8 +30,15 @@ import java.sql.Statement;
 
 public class UserAccountDataMySQL {
 
+    private static String table = " 'worlduserporfile_userphoenixplayerdata' ";
+    private static String search = "";
+
+
     public static String Adder(Object object){
         return "'" + object + "'";
+    }
+    public static String SearchByUUID(Object object){
+        return " WHERE PlayerUUID = '"+ object.toString() + "';";
     }
 
     public static boolean SetUp(String UUID){
@@ -48,7 +55,7 @@ public class UserAccountDataMySQL {
     public static boolean Joinbefore(String UUID){
         try {
             Statement statement = BungeeworldUserProfile.connection.createStatement();
-            ResultSet rs = statement.executeQuery("SELECT * FROM worlduserporfile_useraccountdata WHERE PlayerUUID = '" + UUID + "';");
+            ResultSet rs = statement.executeQuery("SELECT * FROM" + SearchByUUID(UUID));
             Boolean joinbefore = false;
             joinbefore = rs.next();
             return joinbefore;

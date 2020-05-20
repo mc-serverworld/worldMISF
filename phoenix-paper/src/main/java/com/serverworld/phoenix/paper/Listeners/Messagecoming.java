@@ -29,7 +29,7 @@ import org.bukkit.event.Listener;
 
 public class Messagecoming implements Listener {
 
-    PaperPhoenix paperPhoenix;
+    private PaperPhoenix paperPhoenix;
 
     public Messagecoming(PaperPhoenix paperPhoenix){
         this.paperPhoenix = paperPhoenix;

@@ -25,19 +25,19 @@ import com.serverworld.phoenix.paper.PaperPhoenix;
 public class DebugMessage {
 
     public static void sendInfo(String msg){
-        PaperPhoenix.paperPhoenix.getLogger().info(msg);
+        PaperPhoenix.getInstance().getLogger().info(msg);
     }
     public static void sendWarring(String msg){
-        PaperPhoenix.paperPhoenix.getLogger().warning(msg);
+        PaperPhoenix.getInstance().getLogger().warning(msg);
     }
     public static void sendInfoIfDebug(String msg){
-        if(PaperPhoenix.paperPhoenix.config.debug())
-            PaperPhoenix.paperPhoenix.getLogger().info(msg);
+        if(PaperPhoenix.config.debug())
+            PaperPhoenix.getInstance().getLogger().info(msg);
 
     }
     public static void sendWarringIfDebug(String msg){
-        if(PaperPhoenix.paperPhoenix.config.debug())
-            PaperPhoenix.paperPhoenix.getLogger().warning(msg);
+        if(PaperPhoenix.config.debug())
+            PaperPhoenix.getInstance().getLogger().warning(msg);
 
     }
 }

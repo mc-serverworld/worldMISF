@@ -29,7 +29,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public class PaperPhoenix extends JavaPlugin{
 
-    public static PaperPhoenix paperPhoenix;
+    private static PaperPhoenix paperPhoenix;
     public static PaperPhoenixConfig config;
 
     @Override
@@ -60,5 +60,9 @@ public class PaperPhoenix extends JavaPlugin{
 
     public void setuputil(){
         worldsyncer worldsyncer = new worldsyncer(this);
+    }
+
+    public static PaperPhoenix getInstance(){
+        return paperPhoenix;
     }
 }

@@ -28,7 +28,7 @@ import org.bukkit.event.player.PlayerRespawnEvent;
 
 public class PlayerRespawn implements Listener {
 
-    PaperPhoenix paperPhoenix;
+    private PaperPhoenix paperPhoenix;
 
     public PlayerRespawn(PaperPhoenix paperPhoenix){
         this.paperPhoenix = paperPhoenix;

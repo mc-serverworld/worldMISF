@@ -30,19 +30,26 @@ import java.sql.Statement;
 
 public class UserPhoenixPlayerDataMySQL {
 
+    private static String table = " 'worlduserporfile_userphoenixplayerdata' ";
+    private static String search = "";
+
+
     public static String Adder(Object object){
         return "'" + object + "'";
+    }
+    public static String SearchByUUID(Object object){
+        return "WHERE PlayerUUID = '"+ object.toString() + "';";
     }
 
     public static boolean SetUp(String UUID){
         try {
             Statement statement = PaperworldUserProfile.connection.createStatement();
-            ResultSet rs = statement.executeQuery("SELECT * FROM worlduserporfile_userphoenixplayerdata WHERE PlayerUUID = '" + UUID + "';");
+            ResultSet rs = statement.executeQuery("SELECT * FROM " + table + " WHERE PlayerUUID = '" + UUID + "';");
             Boolean joinbefore = false;
             joinbefore = rs.next();
             if (joinbefore){return true;}
             else {
-                statement.execute("INSERT INTO worlduserporfile_userphoenixplayerdata (PlayerUUID, version, playerdata) VALUES ('" + UUID + "', '1', 'none');");
+                statement.execute("INSERT INTO " + table + " (PlayerUUID, version, playerdata) VALUES ('" + UUID + "', '1', 'none');");
             }
             return true;
         } catch (SQLException e) {

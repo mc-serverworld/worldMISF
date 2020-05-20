@@ -29,8 +29,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class BungeeSqlDatabase {
-    BungeeworldUserProfile bungeeworldUserProfile;
-    BungeeworldUserProfileConfig config;
+    private BungeeworldUserProfile bungeeworldUserProfile;
+    private BungeeworldUserProfileConfig config;
 
     public static Connection connection;
     private String host, database, username, password;

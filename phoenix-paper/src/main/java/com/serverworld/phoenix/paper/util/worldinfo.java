@@ -25,26 +25,26 @@ import org.bukkit.Location;
 import org.bukkit.World;
 
 public class worldinfo {
-    static PaperPhoenix bukkitphoenix;
+    private static PaperPhoenix paperPhoenix;
 
     public worldinfo(PaperPhoenix paperPhoenix){
-        this.bukkitphoenix = paperPhoenix;
+        this.paperPhoenix = paperPhoenix;
     }
 
     public static Location getcenterlocation(World world){
         double x,y;
-        x = bukkitphoenix.config.chunk_position_x() * bukkitphoenix.config.chunksize();
+        x = paperPhoenix.config.chunk_position_x() * paperPhoenix.config.chunksize();
         if(x<0){
-            x = x - bukkitphoenix.config.chunksize();
+            x = x - paperPhoenix.config.chunksize();
         }else {
-            x = x + bukkitphoenix.config.chunksize();
+            x = x + paperPhoenix.config.chunksize();
         }
 
-        y = bukkitphoenix.config.chunk_position_y() * bukkitphoenix.config.chunksize();
+        y = paperPhoenix.config.chunk_position_y() * paperPhoenix.config.chunksize();
         if(y<0){
-            y = y - bukkitphoenix.config.chunksize();
+            y = y - paperPhoenix.config.chunksize();
         }else {
-            y = y + bukkitphoenix.config.chunksize();
+            y = y + paperPhoenix.config.chunksize();
         }
         Location center = null;
         center.set(x,y,255d);
@@ -54,22 +54,22 @@ public class worldinfo {
 
     public static double getcenterx(){
         double x;
-        x = bukkitphoenix.config.chunk_position_x() * bukkitphoenix.config.chunksize();
+        x = paperPhoenix.config.chunk_position_x() * paperPhoenix.config.chunksize();
         if(x<0){
-            x = x - bukkitphoenix.config.chunksize();
+            x = x - paperPhoenix.config.chunksize();
         }else {
-            x = x + bukkitphoenix.config.chunksize();
+            x = x + paperPhoenix.config.chunksize();
         }
         return x;
     }
 
     public static double getcentery(){
         double y;
-        y = bukkitphoenix.config.chunk_position_y() * bukkitphoenix.config.chunksize();
+        y = paperPhoenix.config.chunk_position_y() * paperPhoenix.config.chunksize();
         if(y<0){
-            y = y - bukkitphoenix.config.chunksize();
+            y = y - paperPhoenix.config.chunksize();
         }else {
-            y = y + bukkitphoenix.config.chunksize();
+            y = y + paperPhoenix.config.chunksize();
         }
         return y;
     }

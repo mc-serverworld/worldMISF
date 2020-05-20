@@ -29,8 +29,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class PaperSQLDatabase {
-    PaperworldUserProfile paperworldUserProfile;
-    PaperworldUserProfileConfig config;
+    private PaperworldUserProfile paperworldUserProfile;
+    private PaperworldUserProfileConfig config;
 
     public static Connection connection;
     private String host, database, username, password;

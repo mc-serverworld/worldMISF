@@ -29,29 +29,29 @@ import org.apache.commons.lang.math.NumberUtils;
 import org.bukkit.World;
 
 public class worldsyncer {
-    public PaperPhoenix bukkitphoenix;
-    public PaperPhoenixConfig config;
+    private PaperPhoenix paperPhoenix;
+    private PaperPhoenixConfig config;
 
     public worldsyncer(PaperPhoenix PaperPhoenix){
-        this.bukkitphoenix = PaperPhoenix;
-        config= PaperPhoenix.config;
+        this.paperPhoenix = PaperPhoenix;
+        config = PaperPhoenix.config;
         if(config.chunk_position_x()==0&&config.chunk_position_y()==0&&config.worldtype().equals("overworld")){ }else return;
         weathersyncer();
         timesyncer();
     }
 
     public void timesyncer() {
-        bukkitphoenix.getServer().getScheduler().scheduleSyncRepeatingTask(bukkitphoenix, new Runnable() {
+        paperPhoenix.getServer().getScheduler().scheduleSyncRepeatingTask(paperPhoenix, new Runnable() {
             @Override
             public void run() {
-                World world = bukkitphoenix.getServer().getWorld("world");
+                World world = paperPhoenix.getServer().getWorld("world");
                 messagecoder messagecode = new messagecoder();
-                messagecode.setSender(bukkitphoenix.config.servername());
+                messagecode.setSender(paperPhoenix.config.servername());
                 messagecode.setReceiver("ALL");
                 messagecode.setChannel("MISF");
                 messagecode.setType("SYNC");
                 if(!NumberUtils.isNumber(String.valueOf(world.getTime()))){
-                    bukkitphoenix.getLogger().warning(ChatColor.RED + "Cant get world time!");
+                    paperPhoenix.getLogger().warning(ChatColor.RED + "Cant get world time!");
                     return;
                 }
                 messagecode.setMessage("TIME," + world.getTime());
@@ -61,12 +61,12 @@ public class worldsyncer {
     }
 
     public void weathersyncer() {
-        bukkitphoenix.getServer().getScheduler().scheduleSyncRepeatingTask(bukkitphoenix, new Runnable() {
+        paperPhoenix.getServer().getScheduler().scheduleSyncRepeatingTask(paperPhoenix, new Runnable() {
             @Override
             public void run() {
-                World world = bukkitphoenix.getServer().getWorld("world");
+                World world = paperPhoenix.getServer().getWorld("world");
                 messagecoder messagecode = new messagecoder();
-                messagecode.setSender(bukkitphoenix.config.servername());
+                messagecode.setSender(paperPhoenix.config.servername());
                 messagecode.setReceiver("ALL");
                 messagecode.setChannel("MISF");
                 messagecode.setType("SYNC");

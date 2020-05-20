@@ -37,8 +37,8 @@ import java.util.List;
 
 public class PaperPhoenixCommands implements CommandExecutor , TabCompleter {
     private PaperPhoenix paperPhoenix;
-    static private final List<String> sub_commands = Arrays.asList("set");
-    static private final List<String> sub_commands_set = Arrays.asList("weather", " time");
+    private static final List<String> sub_commands = Arrays.asList("set");
+    private static final List<String> sub_commands_set = Arrays.asList("weather", " time");
 
 
     public PaperPhoenixCommands(PaperPhoenix i){

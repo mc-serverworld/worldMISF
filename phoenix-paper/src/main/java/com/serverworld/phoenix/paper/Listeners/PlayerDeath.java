@@ -28,7 +28,7 @@ import org.bukkit.event.entity.PlayerDeathEvent;
 
 public class PlayerDeath implements Listener {
 
-    PaperPhoenix paperPhoenix;
+    private PaperPhoenix paperPhoenix;
 
     public PlayerDeath(PaperPhoenix paperPhoenix){
         this.paperPhoenix = paperPhoenix;
