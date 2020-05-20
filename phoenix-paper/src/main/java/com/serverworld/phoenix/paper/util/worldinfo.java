@@ -20,15 +20,15 @@
 
 package com.serverworld.phoenix.paper.util;
 
-import com.serverworld.phoenix.paper.BukkitPhoenix;
+import com.serverworld.phoenix.paper.PaperPhoenix;
 import org.bukkit.Location;
 import org.bukkit.World;
 
 public class worldinfo {
-    static BukkitPhoenix bukkitphoenix;
+    static PaperPhoenix bukkitphoenix;
 
-    public worldinfo(BukkitPhoenix bukkitPhoenix){
-        this.bukkitphoenix = bukkitPhoenix;
+    public worldinfo(PaperPhoenix paperPhoenix){
+        this.bukkitphoenix = paperPhoenix;
     }
 
     public static Location getcenterlocation(World world){

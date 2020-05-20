@@ -20,8 +20,8 @@
 
 package com.serverworld.phoenix.paper.util;
 
-import com.serverworld.phoenix.paper.BukkitPhoenix;
-import com.serverworld.phoenix.paper.BukkitPhoenixConfig;
+import com.serverworld.phoenix.paper.PaperPhoenix;
+import com.serverworld.phoenix.paper.PaperPhoenixConfig;
 import com.serverworld.worldSocket.paperspigot.util.messagecoder;
 import com.serverworld.worldSocket.paperspigot.util.messager;
 import net.md_5.bungee.api.ChatColor;
@@ -29,12 +29,12 @@ import org.apache.commons.lang.math.NumberUtils;
 import org.bukkit.World;
 
 public class worldsyncer {
-    public BukkitPhoenix bukkitphoenix;
-    public BukkitPhoenixConfig config;
+    public PaperPhoenix bukkitphoenix;
+    public PaperPhoenixConfig config;
 
-    public worldsyncer(BukkitPhoenix BukkitPhoenix){
-        this.bukkitphoenix = BukkitPhoenix;
-        config= BukkitPhoenix.config;
+    public worldsyncer(PaperPhoenix PaperPhoenix){
+        this.bukkitphoenix = PaperPhoenix;
+        config= PaperPhoenix.config;
         if(config.chunk_position_x()==0&&config.chunk_position_y()==0&&config.worldtype().equals("overworld")){ }else return;
         weathersyncer();
         timesyncer();

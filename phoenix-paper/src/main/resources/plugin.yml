@@ -1,4 +1,4 @@
-main: com.serverworld.phoenix.paper.BukkitPhoenix
+main: com.serverworld.phoenix.paper.PaperPhoenix
 name: ${project.name}
 version: ${project.version}
 authors:

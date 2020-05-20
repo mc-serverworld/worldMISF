@@ -20,7 +20,7 @@
 
 package com.serverworld.phoenix.paper.Listeners;
 
-import com.serverworld.phoenix.paper.BukkitPhoenix;
+import com.serverworld.phoenix.paper.PaperPhoenix;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -28,13 +28,13 @@ import org.bukkit.event.entity.PlayerDeathEvent;
 
 public class PlayerDeath implements Listener {
 
-    BukkitPhoenix bukkitphoenix;
+    PaperPhoenix paperPhoenix;
 
-    public PlayerDeath(BukkitPhoenix bukkitphoenix){
-        this.bukkitphoenix = bukkitphoenix;
+    public PlayerDeath(PaperPhoenix paperPhoenix){
+        this.paperPhoenix = paperPhoenix;
     }
 
-    @EventHandler(ignoreCancelled = true)
+    @EventHandler
     public void onPlayerDearh(PlayerDeathEvent event){
         if(event.getEntity() instanceof Player) {
             event.getEntity().spigot().respawn();

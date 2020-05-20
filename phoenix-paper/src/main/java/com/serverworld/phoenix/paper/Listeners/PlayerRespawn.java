@@ -20,7 +20,7 @@
 
 package com.serverworld.phoenix.paper.Listeners;
 
-import com.serverworld.phoenix.paper.BukkitPhoenix;
+import com.serverworld.phoenix.paper.PaperPhoenix;
 import com.serverworld.phoenix.paper.util.worldinfo;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -28,15 +28,15 @@ import org.bukkit.event.player.PlayerRespawnEvent;
 
 public class PlayerRespawn implements Listener {
 
-    BukkitPhoenix bukkitphoenix;
+    PaperPhoenix paperPhoenix;
 
-    public PlayerRespawn(BukkitPhoenix bukkitphoenix){
-        this.bukkitphoenix = bukkitphoenix;
+    public PlayerRespawn(PaperPhoenix paperPhoenix){
+        this.paperPhoenix = paperPhoenix;
     }
 
     @EventHandler(ignoreCancelled = true)
     public void onPlayerRespawn(PlayerRespawnEvent event){
-        if(bukkitphoenix.config.chunk_position_x()==0&&bukkitphoenix.config.chunk_position_y()==0)
+        if(paperPhoenix.config.chunk_position_x()==0&& paperPhoenix.config.chunk_position_y()==0)
             return;
         event.setRespawnLocation(worldinfo.getcenterlocation(event.getPlayer().getWorld()));
     }

@@ -114,6 +114,14 @@
                                     </excludes>
                                 </filter>
                                 <filter>
+                                    <artifact>com.mc-serverworld:worldMISF:worldUserProfile:*</artifact>
+                                    <excludes>
+                                        <exclude>config.yml</exclude>
+                                        <exclude>plugin.yml</exclude>
+                                        <exclude>bungee.yml</exclude>
+                                    </excludes>
+                                </filter>
+                                <filter>
                                     <artifact>*</artifact>
                                     <excludes>
                                         <exclude>bungee.yml</exclude>
@@ -213,10 +221,9 @@
         </dependency>
 
         <dependency>
-            <groupId>com.mc-serverworld</groupId>
+            <groupId>com.mc-serverworld.worldMISF</groupId>
             <artifactId>worldUserProfile</artifactId>
-            <version>indev-3</version>
-            <scope>provided</scope>
+            <version>b03a65c1b9</version>
         </dependency>
 
     </dependencies>
