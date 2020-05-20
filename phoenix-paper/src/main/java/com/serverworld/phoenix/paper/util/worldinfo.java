@@ -47,7 +47,7 @@ public class worldinfo {
         }else {
             z = z + paperPhoenix.config.chunksize();
         }
-        Location center = null;
+        Location center = new Location(world,x,255d,z);
         center.set(x,255d, z);
         center.setWorld(world);
         while (true){
