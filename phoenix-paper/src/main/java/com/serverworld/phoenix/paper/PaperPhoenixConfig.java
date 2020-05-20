@@ -65,7 +65,7 @@ public class PaperPhoenixConfig {
     public int chunk_position_x() {
         return plugin.getConfig().getInt("worldinfo.position.x");
     }
-    public int chunk_position_y() { return plugin.getConfig().getInt("worldinfo.position.y"); }
+    public int chunk_position_z() { return plugin.getConfig().getInt("worldinfo.position.z"); }
 
     public long sync_weather_time () { return plugin.getConfig().getLong("sync-time.weather"); }
     public long sync_time () { return plugin.getConfig().getLong("sync-time.time"); }

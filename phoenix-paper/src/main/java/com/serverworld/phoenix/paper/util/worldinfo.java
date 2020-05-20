@@ -22,6 +22,7 @@ package com.serverworld.phoenix.paper.util;
 
 import com.serverworld.phoenix.paper.PaperPhoenix;
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.World;
 
 public class worldinfo {
@@ -32,7 +33,7 @@ public class worldinfo {
     }
 
     public static Location getcenterlocation(World world){
-        double x,y;
+        double x,z;
         x = paperPhoenix.config.chunk_position_x() * paperPhoenix.config.chunksize();
         if(x<0){
             x = x - paperPhoenix.config.chunksize();
@@ -40,15 +41,28 @@ public class worldinfo {
             x = x + paperPhoenix.config.chunksize();
         }
 
-        y = paperPhoenix.config.chunk_position_y() * paperPhoenix.config.chunksize();
-        if(y<0){
-            y = y - paperPhoenix.config.chunksize();
+        z = paperPhoenix.config.chunk_position_z() * paperPhoenix.config.chunksize();
+        if(z<0){
+            z = z - paperPhoenix.config.chunksize();
         }else {
-            y = y + paperPhoenix.config.chunksize();
+            z = z + paperPhoenix.config.chunksize();
         }
         Location center = null;
-        center.set(x,y,255d);
+        center.set(x,255d, z);
         center.setWorld(world);
+        while (true){
+            if(center.getBlock().isEmpty()){
+                center.setY(center.getBlockY()-1);
+            }else if(center.getBlock().isLiquid()){
+                center.getBlock().setType(Material.COBBLESTONE);
+                center.setY(center.getY()+4);
+                break;
+            }else {
+                center.setY(center.getY()+4);
+                break;
+            }
+        }
+
         return center;
     }
 
@@ -63,15 +77,15 @@ public class worldinfo {
         return x;
     }
 
-    public static double getcentery(){
-        double y;
-        y = paperPhoenix.config.chunk_position_y() * paperPhoenix.config.chunksize();
-        if(y<0){
-            y = y - paperPhoenix.config.chunksize();
+    public static double getcenterz(){
+        double z;
+        z = paperPhoenix.config.chunk_position_z() * paperPhoenix.config.chunksize();
+        if(z<0){
+            z = z - paperPhoenix.config.chunksize();
         }else {
-            y = y + paperPhoenix.config.chunksize();
+            z = z + paperPhoenix.config.chunksize();
         }
-        return y;
+        return z;
     }
 
 }

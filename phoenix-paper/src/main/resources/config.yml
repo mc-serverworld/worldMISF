@@ -14,7 +14,7 @@ worldinfo:
   worldsize: 35000
   position:
     x: 0
-    y: 0
+    z: 0
 
 #sec
 sync-time:

@@ -35,7 +35,7 @@ public class worldsyncer {
     public worldsyncer(PaperPhoenix PaperPhoenix){
         this.paperPhoenix = PaperPhoenix;
         config = PaperPhoenix.config;
-        if(config.chunk_position_x()==0&&config.chunk_position_y()==0&&config.worldtype().equals("overworld")){ }else return;
+        if(config.chunk_position_x()==0&&config.chunk_position_z()==0&&config.worldtype().equals("overworld")){ }else return;
         weathersyncer();
         timesyncer();
     }

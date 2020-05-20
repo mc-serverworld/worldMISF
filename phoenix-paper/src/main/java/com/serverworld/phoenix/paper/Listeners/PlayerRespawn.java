@@ -36,7 +36,7 @@ public class PlayerRespawn implements Listener {
 
     @EventHandler(ignoreCancelled = true)
     public void onPlayerRespawn(PlayerRespawnEvent event){
-        if(paperPhoenix.config.chunk_position_x()==0&& paperPhoenix.config.chunk_position_y()==0)
+        if(paperPhoenix.config.chunk_position_x()==0&& paperPhoenix.config.chunk_position_z()==0)
             return;
         event.setRespawnLocation(worldinfo.getcenterlocation(event.getPlayer().getWorld()));
     }

@@ -21,6 +21,7 @@
 package com.serverworld.phoenix.paper.Listeners;
 
 import com.serverworld.phoenix.paper.PaperPhoenix;
+import com.serverworld.phoenix.paper.util.DebugMessage;
 import com.serverworld.worldSocket.paperspigot.events.MessagecomingEvent;
 import net.md_5.bungee.api.ChatColor;
 import org.bukkit.World;
@@ -52,9 +53,9 @@ public class Messagecoming implements Listener {
                         case "TIME": {
                             long time =Long.valueOf(msg[1]) - world.getTime();
                             if(time<200&&time>-200) {
-                                paperPhoenix.getLogger().info("time checked, no need to set time.");
+                                DebugMessage.sendInfoIfDebug("time checked, no need to set time.");
                             }else{
-                                paperPhoenix.getLogger().info("time checked, setting time to " + msg[1]);
+                                DebugMessage.sendInfoIfDebug("time checked, setting time to " + msg[1]);
                                 world.setTime(Long.valueOf(msg[1]));
                             }
                             return;
@@ -79,7 +80,7 @@ public class Messagecoming implements Listener {
                                 String errormsg = "";
                                 for (String stuff : msg) {
                                     errormsg += stuff;
-                                    paperPhoenix.getLogger().warning(ChatColor.RED + "weather check failed! " + errormsg);
+                                    DebugMessage.sendWarring(ChatColor.RED + "weather check failed! " + errormsg);
                                 }
                             }
                             return;
@@ -91,7 +92,7 @@ public class Messagecoming implements Listener {
                     String[] msg = event.getMessage().toUpperCase().split(",");
                     switch (msg[0].toUpperCase()){
                         case "TIME": {
-                            paperPhoenix.getLogger().info("Setting time to " + Long.valueOf(msg[1]));
+                            DebugMessage.sendInfo("Setting time to " + Long.valueOf(msg[1]));
                             world.setTime(Long.valueOf(msg[1]));
                             return;
                         }
@@ -102,19 +103,19 @@ public class Messagecoming implements Listener {
                                 world.setThundering(false);
                                 world.setWeatherDuration(Integer.valueOf(msg[2]));
                                 world.setThunderDuration(Integer.valueOf(msg[2]));
-                                paperPhoenix.getLogger().info(ChatColor.GREEN + "Setting weather to clear");
+                                DebugMessage.sendInfo(ChatColor.GREEN + "Setting weather to clear");
                             }else if (msg[1].toUpperCase().equals("RAIN")){
                                 world.setStorm(true);
                                 world.setThundering(false);
                                 world.setWeatherDuration(Integer.valueOf(msg[2]));
                                 world.setThunderDuration(Integer.valueOf(msg[2]));
-                                paperPhoenix.getLogger().info(ChatColor.GREEN + "Setting weather to storm");
+                                DebugMessage.sendInfo(ChatColor.GREEN + "Setting weather to storm");
                             }else {
                                 world.setStorm(true);
                                 world.setThundering(true);
                                 world.setWeatherDuration(Integer.valueOf(msg[2]));
                                 world.setThunderDuration(Integer.valueOf(msg[2]));
-                                paperPhoenix.getLogger().info(ChatColor.GREEN + "Setting weather to thunderstorms");
+                                DebugMessage.sendInfo(ChatColor.GREEN + "Setting weather to thunderstorms");
                             }
                             return;
                         }

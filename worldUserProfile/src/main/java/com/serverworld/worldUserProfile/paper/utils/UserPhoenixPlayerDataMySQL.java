@@ -42,7 +42,14 @@ public class UserPhoenixPlayerDataMySQL {
             joinbefore = rs.next();
             if (joinbefore){return true;}
             else {
-                statement.execute("INSERT INTO worlduserporfile_userphoenixplayerdata (PlayerUUID, version, playerdata) VALUES ('" + UUID + "', '1', 'none');");
+                UserPhoenixPlayerData userPhoenixPlayerData = new UserPhoenixPlayerData();
+                userPhoenixPlayerData.setPlaytinme(0L);
+                userPhoenixPlayerData.setHome_server("none");
+                userPhoenixPlayerData.setLastlocation_server("none");
+                userPhoenixPlayerData.setLogoutlocation_server("none");
+                Gson gson = new Gson();
+                String stg = gson.toJson(userPhoenixPlayerData,UserPhoenixPlayerData.class);
+                statement.execute("INSERT INTO worlduserporfile_userphoenixplayerdata (PlayerUUID, version, playerdata) VALUES ('" + UUID + "', '1', '" + stg + "');");
             }
             return true;
         } catch (SQLException e) {
