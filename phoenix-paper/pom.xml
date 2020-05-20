@@ -224,6 +224,7 @@
             <groupId>com.mc-serverworld.worldMISF</groupId>
             <artifactId>worldUserProfile</artifactId>
             <version>b03a65c1b9</version>
+            <scope>compile</scope>
         </dependency>
 
     </dependencies>
