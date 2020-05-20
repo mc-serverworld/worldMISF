@@ -37,10 +37,10 @@ public class BungeeworldUserProfile extends Plugin {
 
     private File file;
     public static BungeeworldUserProfileConfig config;
-    BungeeSqlDatabase database;
+    private BungeeSqlDatabase database;
     public static Configuration configuration;
     public static Connection connection;
-    public static BungeeworldUserProfile bungeeworldUserProfile;
+    private static BungeeworldUserProfile bungeeworldUserProfile;
     @Override
     public void onEnable() {
         setupconfig();

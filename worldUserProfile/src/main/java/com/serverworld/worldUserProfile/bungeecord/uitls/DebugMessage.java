@@ -25,19 +25,19 @@ import com.serverworld.worldUserProfile.bungeecord.BungeeworldUserProfile;
 public class DebugMessage {
 
     public static void sendInfo(String msg){
-        BungeeworldUserProfile.bungeeworldUserProfile.getLogger().info(msg);
+        BungeeworldUserProfile.getInstance().getLogger().info(msg);
     }
     public static void sendWarring(String msg){
-        BungeeworldUserProfile.bungeeworldUserProfile.getLogger().warning(msg);
+        BungeeworldUserProfile.getInstance().getLogger().warning(msg);
     }
     public static void sendInfoIfDebug(String msg){
         if(BungeeworldUserProfile.config.debug())
-            BungeeworldUserProfile.bungeeworldUserProfile.getLogger().info(msg);
+            BungeeworldUserProfile.getInstance().getLogger().info(msg);
 
     }
     public static void sendWarringIfDebug(String msg){
         if(BungeeworldUserProfile.config.debug())
-            BungeeworldUserProfile.bungeeworldUserProfile.getLogger().warning(msg);
+            BungeeworldUserProfile.getInstance().getLogger().warning(msg);
 
     }
 }

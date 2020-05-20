@@ -117,7 +117,7 @@ public class SignCommand extends Command {
                 agreement.addExtra(ButtonNOComponent);
                 commandSender.sendMessage(agreement);
                 players.add(commandSender);
-                BungeeworldUserProfile.bungeeworldUserProfile.getProxy().getScheduler().schedule(BungeeworldUserProfile.bungeeworldUserProfile, new Runnable() {
+                BungeeworldUserProfile.getInstance().getProxy().getScheduler().schedule(BungeeworldUserProfile.getInstance(), new Runnable() {
                     public void run() {
                         players.remove(commandSender);
                     }
