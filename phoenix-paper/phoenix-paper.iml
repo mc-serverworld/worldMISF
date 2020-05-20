@@ -44,7 +44,7 @@
     <orderEntry type="library" scope="PROVIDED" name="Maven: io.netty:netty-buffer:4.1.49.Final" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: io.netty:netty-transport:4.1.49.Final" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: io.netty:netty-resolver:4.1.49.Final" level="project" />
-    <orderEntry type="library" scope="PROVIDED" name="Maven: net.luckperms:api:5.0" level="project" />
+    <orderEntry type="library" name="Maven: net.luckperms:api:5.0" level="project" />
     <orderEntry type="library" name="Maven: com.mc-serverworld:worldSocket:1.1.1-release" level="project" />
     <orderEntry type="library" name="Maven: org.xerial:sqlite-jdbc:3.8.11.2" level="project" />
     <orderEntry type="library" name="Maven: com.mc-serverworld.worldMISF:worldUserProfile:b03a65c1b9" level="project" />
