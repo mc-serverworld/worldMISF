@@ -2,10 +2,11 @@ package com.serverworld.worldUserProfile.bungeecord.Listeners;
 
 import com.serverworld.worldIdiot.api.BanQueryAPI;
 import com.serverworld.worldUserProfile.bungeecord.BungeeworldUserProfile;
-import com.serverworld.worldUserProfile.jsondata.UserAccountData;
 import com.serverworld.worldUserProfile.bungeecord.uitls.DebugMessage;
-import com.serverworld.worldUserProfile.utils.IPAPI;
 import com.serverworld.worldUserProfile.bungeecord.uitls.UserAccountDataMySQL;
+import com.serverworld.worldUserProfile.bungeecord.uitls.UserPhoenixPlayerDataMySQL;
+import com.serverworld.worldUserProfile.jsondata.UserAccountData;
+import com.serverworld.worldUserProfile.utils.IPAPI;
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.chat.ComponentBuilder;
@@ -22,7 +23,7 @@ import java.util.concurrent.TimeUnit;
 
 
 public class PlayerLogin implements Listener {
-    BungeeworldUserProfile worldUserProfile;
+    private BungeeworldUserProfile worldUserProfile;
     public PlayerLogin(Plugin plugin,BungeeworldUserProfile bungeeworldUserProfile) {
         ProxyServer.getInstance().getPluginManager().registerListener(plugin, this);
         this.worldUserProfile = bungeeworldUserProfile;
@@ -40,15 +41,17 @@ public class PlayerLogin implements Listener {
         DebugMessage.sendInfo("Player " + event.getPlayer().getName() + " from " + jsonObject.getString("country"));
         if(!UserAccountDataMySQL.Joinbefore(event.getPlayer().getUniqueId().toString()))
             UserAccountDataMySQL.SetUp(event.getPlayer().getUniqueId().toString());
+        if(!UserPhoenixPlayerDataMySQL.Joinbefore(event.getPlayer().getUniqueId().toString()))
+            UserPhoenixPlayerDataMySQL.SetUp(event.getPlayer().getUniqueId().toString());
 
         if(UserAccountDataMySQL.getSigned(event.getPlayer().getUniqueId().toString())){
             UserAccountData userAccountData = UserAccountDataMySQL.getDataClass(event.getPlayer().getUniqueId().toString());
             Date date = new Date();
             userAccountData.setCity(jsonObject.getString("city"));
-            userAccountData.setContinent("continent");
-            userAccountData.setCountry("country");
+            userAccountData.setContinent(jsonObject.getString("continent"));
+            userAccountData.setCountry(jsonObject.getString("country"));
             userAccountData.setIP(event.getPlayer().getAddress().toString());
-            userAccountData.setISP("org");
+            userAccountData.setISP(jsonObject.getString("org"));
             userAccountData.setLastLogin(date.getTime());
             userAccountData.setPlayername(event.getPlayer().getName());
             UserAccountDataMySQL.setDataClass(event.getPlayer().getUniqueId().toString(), userAccountData);
