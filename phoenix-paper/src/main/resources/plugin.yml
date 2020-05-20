@@ -5,7 +5,7 @@ authors:
   - paul0665
   - mc-serverworld
 website: mc-serverworld.com
-softdepend: [PlaceholderAPI,worldUserProfile]
+softdepend: [PlaceholderAPI,worldMISF-worldUserProfile]
 
 commands:
   misf:

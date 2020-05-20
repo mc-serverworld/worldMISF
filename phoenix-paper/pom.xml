@@ -116,7 +116,9 @@
                                 <filter>
                                     <artifact>com.mc-serverworld:worldMISF:worldUserProfile:*</artifact>
                                     <excludes>
-                                        <exclude>*.*</exclude>
+                                        <exclude>config.yml</exclude>
+                                        <exclude>plugin.yml</exclude>
+                                        <exclude>bungee.yml</exclude>
                                     </excludes>
                                 </filter>
                                 <filter>

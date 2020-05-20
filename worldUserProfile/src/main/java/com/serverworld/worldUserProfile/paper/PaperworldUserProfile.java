@@ -25,7 +25,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import java.sql.Connection;
 
 public class PaperworldUserProfile extends JavaPlugin {
-    public static PaperworldUserProfile paperworldUserProfile;
+    private static PaperworldUserProfile paperworldUserProfile;
     public static Connection connection;
     public static PaperworldUserProfileConfig config;
 
@@ -46,5 +46,9 @@ public class PaperworldUserProfile extends JavaPlugin {
 
     public void setSQL(){
         PaperSQLDatabase paperSQLDatabase = new PaperSQLDatabase(this);
+    }
+
+    public static PaperworldUserProfile getInstance(){
+        return paperworldUserProfile;
     }
 }

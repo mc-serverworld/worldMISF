@@ -25,19 +25,19 @@ import com.serverworld.worldUserProfile.paper.PaperworldUserProfile;
 public class DebugMessage {
 
     public static void sendInfo(String msg){
-        PaperworldUserProfile.paperworldUserProfile.getLogger().info(msg);
+        PaperworldUserProfile.getInstance().getLogger().info(msg);
     }
     public static void sendWarring(String msg){
-        PaperworldUserProfile.paperworldUserProfile.getLogger().warning(msg);
+        PaperworldUserProfile.getInstance().getLogger().warning(msg);
     }
     public static void sendInfoIfDebug(String msg){
-        if(PaperworldUserProfile.paperworldUserProfile.config.debug())
-            PaperworldUserProfile.paperworldUserProfile.getLogger().info(msg);
+        if(PaperworldUserProfile.config.debug())
+            PaperworldUserProfile.getInstance().getLogger().info(msg);
 
     }
     public static void sendWarringIfDebug(String msg){
-        if(PaperworldUserProfile.paperworldUserProfile.config.debug())
-            PaperworldUserProfile.paperworldUserProfile.getLogger().warning(msg);
+        if(PaperworldUserProfile.config.debug())
+            PaperworldUserProfile.getInstance().getLogger().warning(msg);
 
     }
 }
