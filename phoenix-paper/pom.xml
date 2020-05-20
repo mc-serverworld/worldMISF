@@ -116,9 +116,7 @@
                                 <filter>
                                     <artifact>com.mc-serverworld:worldMISF:worldUserProfile:*</artifact>
                                     <excludes>
-                                        <exclude>config.yml</exclude>
-                                        <exclude>plugin.yml</exclude>
-                                        <exclude>bungee.yml</exclude>
+                                        <exclude>*.*</exclude>
                                     </excludes>
                                 </filter>
                                 <filter>
@@ -218,6 +216,13 @@
             <groupId>com.mc-serverworld</groupId>
             <artifactId>worldSocket</artifactId>
             <version>1.1.1-release</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.mc-serverworld.worldMISF</groupId>
+            <artifactId>worldUserProfile</artifactId>
+            <version>indev</version>
             <scope>compile</scope>
         </dependency>
 

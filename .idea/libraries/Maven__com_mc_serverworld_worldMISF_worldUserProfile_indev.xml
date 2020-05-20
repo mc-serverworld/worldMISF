@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: com.mc-serverworld.worldMISF:worldUserProfile:indev">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/mc-serverworld/worldMISF/worldUserProfile/indev/worldUserProfile-indev.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/com/mc-serverworld/worldMISF/worldUserProfile/indev/worldUserProfile-indev-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/mc-serverworld/worldMISF/worldUserProfile/indev/worldUserProfile-indev-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
