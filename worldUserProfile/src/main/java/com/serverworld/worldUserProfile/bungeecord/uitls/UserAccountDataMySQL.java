@@ -55,7 +55,7 @@ public class UserAccountDataMySQL {
     public static boolean Joinbefore(String UUID){
         try {
             Statement statement = BungeeworldUserProfile.connection.createStatement();
-            ResultSet rs = statement.executeQuery("SELECT * FROM" + SearchByUUID(UUID));
+            ResultSet rs = statement.executeQuery("SELECT * FROM" + table + SearchByUUID(UUID));
             Boolean joinbefore = false;
             joinbefore = rs.next();
             return joinbefore;
