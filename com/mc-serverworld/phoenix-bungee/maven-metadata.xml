@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+  <groupId>com.mc-serverworld</groupId>
+  <artifactId>phoenix-bungee</artifactId>
+  <versioning>
+    <release>indev-3</release>
+    <versions>
+      <version>indev-3</version>
+    </versions>
+    <lastUpdated>20200521041157</lastUpdated>
+  </versioning>
+</metadata>
