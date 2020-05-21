@@ -34,18 +34,18 @@ public class worldinfo {
 
     public static Location getcenterlocation(World world){
         double x,z;
-        x = paperPhoenix.config.chunk_position_x() * paperPhoenix.config.chunksize();
+        x = PaperPhoenix.config.chunk_position_x() * PaperPhoenix.config.chunksize();
         if(x<0){
-            x = x - paperPhoenix.config.chunksize();
-        }else {
-            x = x + paperPhoenix.config.chunksize();
+            x = x - (double) (PaperPhoenix.config.chunksize() / 2);
+        }else if(x>0){
+            x = x + (double) (PaperPhoenix.config.chunksize() / 2);
         }
 
-        z = paperPhoenix.config.chunk_position_z() * paperPhoenix.config.chunksize();
+        z = PaperPhoenix.config.chunk_position_z() * PaperPhoenix.config.chunksize();
         if(z<0){
-            z = z - paperPhoenix.config.chunksize();
-        }else {
-            z = z + paperPhoenix.config.chunksize();
+            z = z - (double) (PaperPhoenix.config.chunksize() / 2);
+        }else if(z>0){
+            z = z + (double) (PaperPhoenix.config.chunksize() / 2);
         }
         Location center = new Location(world,x,255d,z);
         center.set(x,255d, z);
@@ -68,22 +68,22 @@ public class worldinfo {
 
     public static double getcenterx(){
         double x;
-        x = paperPhoenix.config.chunk_position_x() * paperPhoenix.config.chunksize();
+        x = PaperPhoenix.config.chunk_position_x() * PaperPhoenix.config.chunksize();
         if(x<0){
-            x = x - paperPhoenix.config.chunksize();
-        }else {
-            x = x + paperPhoenix.config.chunksize();
+            x = x - (double) (PaperPhoenix.config.chunksize() / 2);
+        }else if(x>0){
+            x = x + (double) (PaperPhoenix.config.chunksize() / 2);
         }
         return x;
     }
 
     public static double getcenterz(){
         double z;
-        z = paperPhoenix.config.chunk_position_z() * paperPhoenix.config.chunksize();
+        z = PaperPhoenix.config.chunk_position_z() * PaperPhoenix.config.chunksize();
         if(z<0){
-            z = z - paperPhoenix.config.chunksize();
-        }else {
-            z = z + paperPhoenix.config.chunksize();
+            z = z - (double) (PaperPhoenix.config.chunksize() / 2);
+        }else if(z>0){
+            z = z + (double) (PaperPhoenix.config.chunksize() / 2);
         }
         return z;
     }

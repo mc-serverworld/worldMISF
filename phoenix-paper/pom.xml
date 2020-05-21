@@ -108,17 +108,13 @@
                                 <filter>
                                     <artifact>com.mc-serverworld:worldSocket:*</artifact>
                                     <excludes>
-                                        <exclude>config.yml</exclude>
-                                        <exclude>plugin.yml</exclude>
-                                        <exclude>bungee.yml</exclude>
+                                        <exclude>*</exclude>
                                     </excludes>
                                 </filter>
                                 <filter>
                                     <artifact>com.mc-serverworld:worldMISF:worldUserProfile:*</artifact>
                                     <excludes>
-                                        <exclude>config.yml</exclude>
-                                        <exclude>plugin.yml</exclude>
-                                        <exclude>bungee.yml</exclude>
+                                        <exclude>*</exclude>
                                     </excludes>
                                 </filter>
                                 <filter>
