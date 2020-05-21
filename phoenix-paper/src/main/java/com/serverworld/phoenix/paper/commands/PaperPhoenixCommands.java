@@ -23,11 +23,13 @@ package com.serverworld.phoenix.paper.commands;
 import com.serverworld.phoenix.paper.PaperPhoenix;
 import com.serverworld.phoenix.paper.PaperPhoenixConfig;
 import com.serverworld.phoenix.paper.commands.subcommands.subCommand_set;
+import com.serverworld.phoenix.paper.util.DebugMessage;
 import net.md_5.bungee.api.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
+import org.bukkit.entity.Player;
 import org.bukkit.util.StringUtil;
 
 import java.util.ArrayList;
@@ -37,12 +39,14 @@ import java.util.List;
 
 public class PaperPhoenixCommands implements CommandExecutor , TabCompleter {
     private PaperPhoenix paperPhoenix;
+    private PaperPhoenixConfig config;
     private static final List<String> sub_commands = Arrays.asList("set");
     private static final List<String> sub_commands_set = Arrays.asList("weather", " time");
 
 
     public PaperPhoenixCommands(PaperPhoenix i){
         this.paperPhoenix = i;
+        this.config = paperPhoenix.config;
     }
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
         try {
@@ -54,22 +58,26 @@ public class PaperPhoenixCommands implements CommandExecutor , TabCompleter {
                 case "info": {
                     if(!commandSender.hasPermission("misf.command.info")){
                         commandSender.sendMessage( ChatColor.RED + "no permission");
+                        Player player = (Player)commandSender;
+                        player.setAllowFlight(true);
                         return false;
                     }
-                    PaperPhoenixConfig config = paperPhoenix.config;
+
                     commandSender.sendMessage(ChatColor.BLUE + "======info======");
                     commandSender.sendMessage(ChatColor.AQUA + "Servername: " + ChatColor.GREEN + config.servername());
+                    return true;
                 }
                 case "set": {
                     subCommand_set.cmd(commandSender,strings);
                 }
                 //=======================
-
             }
         }catch (ArrayIndexOutOfBoundsException e){
+            DebugMessage.sendWarringIfDebug(ChatColor.RED + "Error while executing command " + e.getMessage());
             commandSender.sendMessage(ChatColor.RED + "Invalid input");
         }catch (Exception e){
-            e.printStackTrace();
+            DebugMessage.sendWarring(ChatColor.RED + "Error while executing command " + e.getMessage());
+            commandSender.sendMessage(ChatColor.RED + "Error while executing command " + e.getMessage());
         }
         return true;
     }

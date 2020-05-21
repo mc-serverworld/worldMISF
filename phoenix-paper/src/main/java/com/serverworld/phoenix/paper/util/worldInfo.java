@@ -25,14 +25,14 @@ import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
 
-public class worldinfo {
+public class worldInfo {
     private static PaperPhoenix paperPhoenix;
 
-    public worldinfo(PaperPhoenix paperPhoenix){
+    public worldInfo(PaperPhoenix paperPhoenix){
         this.paperPhoenix = paperPhoenix;
     }
 
-    public static Location getcenterlocation(World world){
+    public static Location getCenterLocation(World world){
         double x,z;
         x = PaperPhoenix.config.chunk_position_x() * PaperPhoenix.config.chunksize();
         if(x<0){
@@ -66,7 +66,7 @@ public class worldinfo {
         return center;
     }
 
-    public static double getcenterx(){
+    public static double getCenterX(){
         double x;
         x = PaperPhoenix.config.chunk_position_x() * PaperPhoenix.config.chunksize();
         if(x<0){
@@ -77,7 +77,7 @@ public class worldinfo {
         return x;
     }
 
-    public static double getcenterz(){
+    public static double getCenterZ(){
         double z;
         z = PaperPhoenix.config.chunk_position_z() * PaperPhoenix.config.chunksize();
         if(z<0){

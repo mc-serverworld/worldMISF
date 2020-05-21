@@ -24,7 +24,7 @@ import com.serverworld.phoenix.paper.Listeners.Messagecoming;
 import com.serverworld.phoenix.paper.Listeners.PlayerDeath;
 import com.serverworld.phoenix.paper.Listeners.PlayerRespawn;
 import com.serverworld.phoenix.paper.commands.PaperPhoenixCommands;
-import com.serverworld.phoenix.paper.util.worldsyncer;
+import com.serverworld.phoenix.paper.util.worldSync;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class PaperPhoenix extends JavaPlugin{
@@ -59,7 +59,7 @@ public class PaperPhoenix extends JavaPlugin{
     }
 
     public void setuputil(){
-        worldsyncer worldsyncer = new worldsyncer(this);
+        worldSync worldsyncer = new worldSync(this);
     }
 
     public static PaperPhoenix getInstance(){

@@ -28,19 +28,19 @@ import net.md_5.bungee.api.ChatColor;
 import org.apache.commons.lang.math.NumberUtils;
 import org.bukkit.World;
 
-public class worldsyncer {
+public class worldSync {
     private PaperPhoenix paperPhoenix;
     private PaperPhoenixConfig config;
 
-    public worldsyncer(PaperPhoenix PaperPhoenix){
+    public worldSync(PaperPhoenix PaperPhoenix){
         this.paperPhoenix = PaperPhoenix;
         config = PaperPhoenix.config;
         if(config.chunk_position_x()==0&&config.chunk_position_z()==0&&config.worldtype().equals("overworld")){ }else return;
-        weathersyncer();
-        timesyncer();
+        WeatherSyncer();
+        TimeSyncer();
     }
 
-    public void timesyncer() {
+    public void TimeSyncer() {
         paperPhoenix.getServer().getScheduler().scheduleSyncRepeatingTask(paperPhoenix, new Runnable() {
             @Override
             public void run() {
@@ -51,7 +51,7 @@ public class worldsyncer {
                 messagecode.setChannel("MISF");
                 messagecode.setType("SYNC");
                 if(!NumberUtils.isNumber(String.valueOf(world.getTime()))){
-                    paperPhoenix.getLogger().warning(ChatColor.RED + "Cant get world time!");
+                    DebugMessage.sendWarring(ChatColor.RED + "Cant get world time!");
                     return;
                 }
                 messagecode.setMessage("TIME," + world.getTime());
@@ -60,7 +60,7 @@ public class worldsyncer {
         }, 0L, config.sync_time()*20);
     }
 
-    public void weathersyncer() {
+    public void WeatherSyncer() {
         paperPhoenix.getServer().getScheduler().scheduleSyncRepeatingTask(paperPhoenix, new Runnable() {
             @Override
             public void run() {

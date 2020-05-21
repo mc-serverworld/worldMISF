@@ -21,7 +21,7 @@
 package com.serverworld.phoenix.paper.Listeners;
 
 import com.serverworld.phoenix.paper.PaperPhoenix;
-import com.serverworld.phoenix.paper.util.worldinfo;
+import com.serverworld.phoenix.paper.util.worldInfo;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerRespawnEvent;
@@ -38,6 +38,6 @@ public class PlayerRespawn implements Listener {
     public void onPlayerRespawn(PlayerRespawnEvent event){
         if(paperPhoenix.config.chunk_position_x()==0&& paperPhoenix.config.chunk_position_z()==0)
             return;
-        event.setRespawnLocation(worldinfo.getcenterlocation(event.getPlayer().getWorld()));
+        event.setRespawnLocation(worldInfo.getCenterLocation(event.getPlayer().getWorld()));
     }
 }
