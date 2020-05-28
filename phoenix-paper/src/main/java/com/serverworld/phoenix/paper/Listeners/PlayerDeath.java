@@ -21,6 +21,8 @@
 package com.serverworld.phoenix.paper.Listeners;
 
 import com.serverworld.phoenix.paper.PaperPhoenix;
+import com.serverworld.worldUserProfile.jsondata.UserPhoenixPlayerData;
+import com.serverworld.worldUserProfile.paper.utils.UserPhoenixPlayerDataMySQL;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -37,6 +39,13 @@ public class PlayerDeath implements Listener {
     @EventHandler
     public void onPlayerDearh(PlayerDeathEvent event){
         if(event.getEntity() instanceof Player) {
+            UserPhoenixPlayerData userPhoenixPlayerData = UserPhoenixPlayerDataMySQL.getDataClass(event.getEntity().getUniqueId().toString());
+            userPhoenixPlayerData.setLastlocation_server(event.getEntity().getServer().getServerName());
+            userPhoenixPlayerData.setLastlocation_world(event.getEntity().getWorld().getName());
+            userPhoenixPlayerData.setLastlocation_x(event.getEntity().getLocation().getX());
+            userPhoenixPlayerData.setLastlocation_y(event.getEntity().getLocation().getY());
+            userPhoenixPlayerData.setLastlocation_z(event.getEntity().getLocation().getZ());
+            UserPhoenixPlayerDataMySQL.setDataClass(event.getEntity().getUniqueId().toString() , userPhoenixPlayerData);
             event.getEntity().spigot().respawn();
         }
     }
