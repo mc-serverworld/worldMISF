@@ -44,9 +44,25 @@ public class UserPhoenixPlayerDataMySQL {
             else {
                 UserPhoenixPlayerData userPhoenixPlayerData = new UserPhoenixPlayerData();
                 userPhoenixPlayerData.setPlaytinme(0L);
+                userPhoenixPlayerData.setResidence_total_size(0l);
+                userPhoenixPlayerData.setResidence_total_amount(0l);
+                userPhoenixPlayerData.setResidence_max_size(10000l);
+                userPhoenixPlayerData.setResidence_max_amount(3l);
                 userPhoenixPlayerData.setHome_server("none");
+                userPhoenixPlayerData.setHome_world("none");
+                userPhoenixPlayerData.setHome_x(0d);
+                userPhoenixPlayerData.setHome_y(0d);
+                userPhoenixPlayerData.setHome_z(0d);
                 userPhoenixPlayerData.setLastlocation_server("none");
+                userPhoenixPlayerData.setLastlocation_world("none");
+                userPhoenixPlayerData.setLastlocation_x(0d);
+                userPhoenixPlayerData.setLastlocation_y(0d);
+                userPhoenixPlayerData.setLastlocation_z(0d);
                 userPhoenixPlayerData.setLogoutlocation_server("none");
+                userPhoenixPlayerData.setLogoutlocation_world("none");
+                userPhoenixPlayerData.setLogoutlocation_x(0d);
+                userPhoenixPlayerData.setLogoutlocation_y(0d);
+                userPhoenixPlayerData.setLogoutlocation_z(0d);
                 Gson gson = new Gson();
                 String stg = gson.toJson(userPhoenixPlayerData,UserPhoenixPlayerData.class);
                 statement.execute("INSERT INTO worlduserporfile_userphoenixplayerdata (PlayerUUID, version, playerdata) VALUES ('" + UUID + "', '1', '" + stg + "');");

@@ -24,16 +24,18 @@ import com.serverworld.phoenix.paper.PaperPhoenix;
 
 public class worldSetup {
     public worldSetup(){
+        setworldspawn();
+    }
+
+    void setworldspawn(){
         String worldtype = PaperPhoenix.config.worldtype();
         if(PaperPhoenix.config.worldtype().toLowerCase().equals("end"))
             worldtype = "world_the_end";
         else if(PaperPhoenix.config.worldtype().toLowerCase().equals("nether"))
             worldtype = "world_nether";
-        else
+        else {
             worldtype = "world";
-        worldInfo.getCenterLocation(PaperPhoenix.getInstance().getServer().getWorld(){
-
         }
-        PaperPhoenix.config.chunk_position_x()
+        PaperPhoenix.getInstance().getServer().getWorld(worldtype).setSpawnLocation(worldInfo.getCenterLocation(PaperPhoenix.getInstance().getServer().getWorld(worldtype)));
     }
 }
