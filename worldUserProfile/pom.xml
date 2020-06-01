@@ -28,12 +28,12 @@
     <parent>
         <artifactId>worldMISF</artifactId>
         <groupId>com.mc-serverworld</groupId>
-        <version>indev-4</version>
+        <version>indev-5</version>
     </parent>
 
     <artifactId>worldUserProfile</artifactId>
     <name>worldMISF-worldUserProfile</name>
-    <version>indev-4</version>
+    <version>indev-5</version>
     <packaging>jar</packaging>
     <url>https://www.mc-serverworld.com</url>
     <inceptionYear>2020</inceptionYear>

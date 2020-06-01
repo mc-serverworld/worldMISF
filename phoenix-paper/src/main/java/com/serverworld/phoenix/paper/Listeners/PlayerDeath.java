@@ -39,13 +39,13 @@ public class PlayerDeath implements Listener {
     @EventHandler
     public void onPlayerDearh(PlayerDeathEvent event){
         if(event.getEntity() instanceof Player) {
-            UserPhoenixPlayerData userPhoenixPlayerData = UserPhoenixPlayerDataMySQL.getDataClass(event.getEntity().getUniqueId().toString());
-            userPhoenixPlayerData.setLastlocation_server(event.getEntity().getServer().getServerName());
-            userPhoenixPlayerData.setLastlocation_world(event.getEntity().getWorld().getName());
-            userPhoenixPlayerData.setLastlocation_x(event.getEntity().getLocation().getX());
-            userPhoenixPlayerData.setLastlocation_y(event.getEntity().getLocation().getY());
-            userPhoenixPlayerData.setLastlocation_z(event.getEntity().getLocation().getZ());
-            UserPhoenixPlayerDataMySQL.setDataClass(event.getEntity().getUniqueId().toString() , userPhoenixPlayerData);
+            UserPhoenixPlayerData playerData = UserPhoenixPlayerDataMySQL.getDataClass(event.getEntity().getUniqueId().toString());
+            playerData.setLastlocation_server(event.getEntity().getServer().getServerName());
+            playerData.setLastlocation_world(event.getEntity().getWorld().getName());
+            playerData.setLastlocation_x(event.getEntity().getLocation().getX());
+            playerData.setLastlocation_y(event.getEntity().getLocation().getY());
+            playerData.setLastlocation_z(event.getEntity().getLocation().getZ());
+            UserPhoenixPlayerDataMySQL.setDataClass(event.getEntity().getUniqueId().toString() , playerData);
             event.getEntity().spigot().respawn();
         }
     }

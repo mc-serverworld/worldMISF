@@ -27,7 +27,7 @@
     <groupId>com.mc-serverworld</groupId>
     <artifactId>worldMISF</artifactId>
     <name>worldMISF</name>
-    <version>indev-4</version>
+    <version>indev-5</version>
     <packaging>pom</packaging>
     <url>https://www.mc-serverworld.com</url>
     <inceptionYear>2019</inceptionYear>
@@ -140,6 +140,7 @@
                         <goals>
                             <goal>site</goal>
                         </goals>
+                        <phase>package</phase>
                     </execution>
                 </executions>
             </plugin>

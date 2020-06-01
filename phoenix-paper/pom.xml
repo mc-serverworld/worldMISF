@@ -27,12 +27,12 @@
     <parent>
         <artifactId>worldMISF</artifactId>
         <groupId>com.mc-serverworld</groupId>
-        <version>indev-4</version>
+        <version>indev-5</version>
     </parent>
 
     <artifactId>phoenix-paper</artifactId>
     <name>worldMISF-phoenix-paper</name>
-    <version>indev-4</version>
+    <version>indev-5</version>
     <packaging>jar</packaging>
     <url>https://www.mc-serverworld.com</url>
     <inceptionYear>2019</inceptionYear>
@@ -214,14 +214,12 @@
             <groupId>com.mc-serverworld</groupId>
             <artifactId>worldSocket</artifactId>
             <version>1.1.1-release</version>
-            <scope>compile</scope>
         </dependency>
 
         <dependency>
             <groupId>com.mc-serverworld.worldMISF</groupId>
             <artifactId>worldUserProfile</artifactId>
-            <version>indev</version>
-            <scope>compile</scope>
+            <version>indev-4</version>
         </dependency>
 
     </dependencies>

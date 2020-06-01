@@ -23,12 +23,12 @@
   <parent>
     <artifactId>worldMISF</artifactId>
     <groupId>com.mc-serverworld</groupId>
-    <version>indev-3</version>
+    <version>indev-4</version>
   </parent>
   <modelVersion>4.0.0</modelVersion>
   <artifactId>worldUserProfile</artifactId>
   <name>worldMISF-worldUserProfile</name>
-  <version>indev-3</version>
+  <version>indev-4</version>
   <url>https://www.mc-serverworld.com</url>
   <inceptionYear>2020</inceptionYear>
   <licenses>

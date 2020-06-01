@@ -88,6 +88,7 @@ public class PaperSQLDatabase {
     public void MYSQLopenConnection() throws SQLException, ClassNotFoundException {
         if (connection != null && !connection.isClosed()) {
             DebugMessage.sendInfo(ChatColor.GREEN + "Connected to database!");
+            PaperworldUserProfile.connection = connection;
             return;
         }
 
