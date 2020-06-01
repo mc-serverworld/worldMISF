@@ -40,7 +40,7 @@ public class PlayerDeath implements Listener {
     public void onPlayerDearh(PlayerDeathEvent event){
         if(event.getEntity() instanceof Player) {
             UserPhoenixPlayerData playerData = UserPhoenixPlayerDataMySQL.getDataClass(event.getEntity().getUniqueId().toString());
-            playerData.setLastlocation_server(event.getEntity().getServer().getServerName());
+            playerData.setLastlocation_server(PaperPhoenix.config.servername());
             playerData.setLastlocation_world(event.getEntity().getWorld().getName());
             playerData.setLastlocation_x(event.getEntity().getLocation().getX());
             playerData.setLastlocation_y(event.getEntity().getLocation().getY());

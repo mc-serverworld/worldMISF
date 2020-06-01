@@ -219,7 +219,7 @@
         <dependency>
             <groupId>com.mc-serverworld.worldMISF</groupId>
             <artifactId>worldUserProfile</artifactId>
-            <version>indev-4</version>
+            <version>indev-5.1</version>
         </dependency>
 
     </dependencies>
