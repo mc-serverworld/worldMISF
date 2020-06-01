@@ -140,7 +140,6 @@
                         <goals>
                             <goal>site</goal>
                         </goals>
-                        <phase>package</phase>
                     </execution>
                 </executions>
             </plugin>
