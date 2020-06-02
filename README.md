@@ -2,6 +2,7 @@
 
 [![Build](https://jitpack.io/v/com.mc-serverworld/worldMISF.svg)](https://jitpack.io/#com.mc-serverworld/worldMISF)
 [![GitHub license](https://img.shields.io/github/license/mc-serverworld/worldMISF)](https://github.com/mc-serverworld/worldMISF/blob/master/LICENSE)
+[![CodeFactor](https://www.codefactor.io/repository/github/mc-serverworld/worldmisf/badge)](https://www.codefactor.io/repository/github/mc-serverworld/worldmisf)
 
 major integration server framework ~~(i dont even know how it work)~~
 
