@@ -37,14 +37,14 @@
     <url>https://www.mc-serverworld.com</url>
     <inceptionYear>2019</inceptionYear>
 
+    <properties>
+        <maven-site-plugin.skip>true</maven-site-plugin.skip>
+    </properties>
+
     <organization>
         <name>mc-serverworld</name>
         <url>https://www.mc-serverworld.com</url>
     </organization>
-
-    <properties>
-        <license.dir>${project.parent}</license.dir>
-    </properties>
 
     <licenses>
         <license>
@@ -74,7 +74,6 @@
                 <artifactId>maven-assembly-plugin</artifactId>
                 <configuration>
                     <appendAssemblyId>false</appendAssemblyId>
-                    <outputDirectory>${project.parent.basedir}/output</outputDirectory>
                     <finalName>${project.name}-${project.version}</finalName>
                     <archive>
                         <manifest>
@@ -112,6 +111,37 @@
                     <target>1.8</target>
                     <encoding>UTF-8</encoding>
                 </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>3.1.0</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                        <configuration>
+                            <outputFile>${project.parent.basedir}/output/${project.name}-${project.version}.jar</outputFile>
+                            <filters>
+                                <filter>
+                                    <artifact>com.mc-serverworld:worldSocket:*</artifact>
+                                    <excludes>
+                                        <exclude>*</exclude>
+                                    </excludes>
+                                </filter>
+                                <filter>
+                                    <artifact>com.mc-serverworld:worldMISF:worldUserProfile:*</artifact>
+                                    <excludes>
+                                        <exclude>*</exclude>
+                                    </excludes>
+                                </filter>
+                            </filters>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
 
         </plugins>
@@ -160,15 +190,15 @@
         </dependency>
 
         <dependency>
-            <groupId>org.xerial</groupId>
-            <artifactId>sqlite-jdbc</artifactId>
-            <version>3.8.11.2</version>
+            <groupId>com.mc-serverworld</groupId>
+            <artifactId>worldSocket</artifactId>
+            <version>1.1.2-beta-2</version>
         </dependency>
 
         <dependency>
-            <groupId>com.mc-serverworld</groupId>
-            <artifactId>worldSocket</artifactId>
-            <version>1.1.1-release</version>
+            <groupId>com.mc-serverworld.worldMISF</groupId>
+            <artifactId>worldUserProfile</artifactId>
+            <version>indev-5.1</version>
         </dependency>
 
     </dependencies>

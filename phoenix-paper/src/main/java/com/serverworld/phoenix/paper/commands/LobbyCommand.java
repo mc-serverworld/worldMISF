@@ -28,23 +28,14 @@ import net.md_5.bungee.api.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
-import org.bukkit.util.StringUtil;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-
-public class PaperPhoenixCommands implements CommandExecutor , TabCompleter {
+public class LobbyCommand implements CommandExecutor{
     private PaperPhoenix paperPhoenix;
     private PaperPhoenixConfig config;
-    private static final List<String> sub_commands = Arrays.asList("set");
-    private static final List<String> sub_commands_set = Arrays.asList("weather", " time");
 
 
-    public PaperPhoenixCommands(PaperPhoenix i){
+    public LobbyCommand(PaperPhoenix i){
         this.paperPhoenix = i;
         this.config = paperPhoenix.config;
     }
@@ -80,56 +71,5 @@ public class PaperPhoenixCommands implements CommandExecutor , TabCompleter {
             commandSender.sendMessage(ChatColor.RED + "Error while executing command " + e.getMessage());
         }
         return true;
-    }
-
-    public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
-
-        List<String> completions = new ArrayList<>();
-        List<String> commands = new ArrayList<>();
-
-        if (args.length == 1) {
-            if (sender.hasPermission("misf.command.help"))
-                commands.add("help");
-            if (sender.hasPermission("misf.command.info"))
-                commands.add("info");
-            if (sender.hasPermission("misf.command.tpserver"))
-                commands.add("tpserver");
-            if (sender.hasPermission("misf.command.login"))
-                commands.add("login");
-            if (sender.hasPermission("misf.command.set"))
-                commands.add("set");
-            if (sender.hasPermission("misf.command.warpsv"))
-                commands.add("warpsv");
-
-            StringUtil.copyPartialMatches(args[0], commands, completions);
-        } else if (args.length == 2) {
-
-            if (args[0].equals("set")) {
-                if (sender.hasPermission("misf.command.set.time"))
-                    commands.add("time");
-                if (sender.hasPermission("misf.command.set.weather"))
-                    commands.add("weather");
-            }
-
-
-            StringUtil.copyPartialMatches(args[1], commands, completions);
-        } else if (args.length == 3) {
-
-            if (args[0].equals("set")&&args[1].equals("weather")) {
-                commands.add("clear");
-                commands.add("rain");
-                commands.add("thunder");
-            } else if (args[0].equals("set")&&args[1].equals("time")){
-                commands.add("day");
-                commands.add("noon");
-                commands.add("night");
-                commands.add("midnight");
-            }
-
-
-            StringUtil.copyPartialMatches(args[2], commands, completions);
-        }
-        Collections.sort(completions);
-        return completions;
     }
 }

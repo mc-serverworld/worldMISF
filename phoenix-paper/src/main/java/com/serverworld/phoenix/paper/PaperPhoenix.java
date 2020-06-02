@@ -43,15 +43,19 @@ public class PaperPhoenix extends JavaPlugin{
     @Override
     public void onEnable() {
 
-        //setup
-        setupevent();
-        setuputil();
-        new worldSetup();
-        //commands
+        if(config.servetype().toLowerCase().equals("lobby")){
 
-        PaperPhoenixCommands PaperPhoenixCommands = new PaperPhoenixCommands(this);
-        this.getCommand("misf").setExecutor(PaperPhoenixCommands);
-        this.getCommand("misf").setTabCompleter(PaperPhoenixCommands);
+        }else {
+            //setup
+            setupevent();
+            setuputil();
+            new worldSetup();
+            //commands
+
+            PaperPhoenixCommands PaperPhoenixCommands = new PaperPhoenixCommands(this);
+            this.getCommand("misf").setExecutor(PaperPhoenixCommands);
+            this.getCommand("misf").setTabCompleter(PaperPhoenixCommands);
+        }
     }
 
     public void setupevent(){

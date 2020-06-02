@@ -35,12 +35,14 @@ import java.sql.Connection;
 public class BungeePhoenix extends Plugin {
 
     private File file;
-    private BungeePhoenixConfig config;
+    public static BungeePhoenixConfig config;
+    private static BungeePhoenix bungeePhoenix;
     public static Configuration configuration;
     public static Connection connection;
     @Override
     public void onEnable() {
         setupconfig();
+        bungeePhoenix = this;
 
 
         getLogger().info("Yay! It loads!");
@@ -68,6 +70,10 @@ public class BungeePhoenix extends Plugin {
             e.printStackTrace();
         }
         config = new BungeePhoenixConfig(this);
+    }
+
+    public static BungeePhoenix getInstance() {
+        return bungeePhoenix;
     }
 
 

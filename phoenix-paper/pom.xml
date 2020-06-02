@@ -37,6 +37,10 @@
     <url>https://www.mc-serverworld.com</url>
     <inceptionYear>2019</inceptionYear>
 
+    <properties>
+        <maven-site-plugin.skip>true</maven-site-plugin.skip>
+    </properties>
+
     <organization>
         <name>mc-serverworld</name>
         <url>https://www.mc-serverworld.com</url>
@@ -106,7 +110,7 @@
                             <outputFile>${project.parent.basedir}/output/${project.name}-${project.version}.jar</outputFile>
                             <filters>
                                 <filter>
-                                    <artifact>com.mc-serverworld:worldSocket:*</artifact>
+                                    <artifact>com.mc-serverworld:worldSocket:**</artifact>
                                     <excludes>
                                         <exclude>*</exclude>
                                     </excludes>
@@ -213,7 +217,8 @@
         <dependency>
             <groupId>com.mc-serverworld</groupId>
             <artifactId>worldSocket</artifactId>
-            <version>1.1.1-release</version>
+            <version>1.1.2-beta-2</version>
+            <scope>compile</scope>
         </dependency>
 
         <dependency>

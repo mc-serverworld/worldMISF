@@ -1,7 +1,10 @@
 # ${project.name}
 # Version: ${project.version}
 # Gitgub: https://github.com/mc-serverworld/worldMISF
-
 configinfo:
-  api-version: 1
+  api-version: 2
   debug: false
+
+worldinfo:
+  chunksize: 5000
+  worldsize: 35000

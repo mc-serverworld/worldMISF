@@ -18,19 +18,26 @@
  *
  */
 
-package com.serverworld.phoenix.bungee;
+package com.serverworld.phoenix.bungee.util;
 
-public class BungeePhoenixConfig {
-    private BungeePhoenix plugin;
+import com.serverworld.phoenix.bungee.BungeePhoenix;
 
-    public BungeePhoenixConfig(BungeePhoenix i){
-        plugin = i;
+public class DebugMessage {
+
+    public static void sendInfo(String msg){
+        BungeePhoenix.getInstance().getLogger().info(msg);
     }
-    public void loadDefConfig(){ }
+    public static void sendWarring(String msg){
+        BungeePhoenix.getInstance().getLogger().warning(msg);
+    }
+    public static void sendInfoIfDebug(String msg){
+        if(BungeePhoenix.config.debug())
+            BungeePhoenix.getInstance().getLogger().info(msg);
 
-    public int apiversion() { return plugin.configuration.getInt("configinfo.api-version"); }
-    public boolean debug() { return plugin.configuration.getBoolean("configinfo.debug"); }
+    }
+    public static void sendWarringIfDebug(String msg){
+        if(BungeePhoenix.config.debug())
+            BungeePhoenix.getInstance().getLogger().warning(msg);
 
-    public int chunksize() { return plugin.configuration.getInt("worldinfo.chunksize"); }
-    public int worldsize() { return plugin.configuration.getInt("worldinfo.worldsize"); }
+    }
 }

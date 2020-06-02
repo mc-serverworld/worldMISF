@@ -38,6 +38,10 @@
     <url>https://www.mc-serverworld.com</url>
     <inceptionYear>2020</inceptionYear>
 
+    <properties>
+        <maven-site-plugin.skip>true</maven-site-plugin.skip>
+    </properties>
+
     <organization>
         <name>mc-serverworld</name>
         <url>https://www.mc-serverworld.com</url>

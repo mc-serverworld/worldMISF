@@ -1,9 +1,7 @@
-main: com.serverworld.worldSocket.paperspigot.worldSocket
+main: com.serverworld.phoenix.bungee.BungeePhoenixConfig
 name: ${project.name}
 version: ${project.version}
-authors:
-  - paul0665
-  - mc-serverworld
+author: mc-serverworld
 website: www.mc-serverworld.com
 
 commands:

@@ -58,6 +58,7 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <github.global.server>github</github.global.server>
+        <maven-site-plugin.skip>false</maven-site-plugin.skip>
     </properties>
 
     <distributionManagement>
@@ -132,7 +133,8 @@
                     <branch>refs/heads/mvn-repo</branch>                       <!-- remote branch name -->
                     <includes><include>**/*</include></includes>
                     <repositoryName>worldMISF</repositoryName>      <!-- github repo name -->
-                    <repositoryOwner>mc-serverworld</repositoryOwner>    <!-- github username  -->
+                    <repositoryOwner>mc-serverworld</repositoryOwner>
+                    <skip>${maven-site-plugin.skip}</skip><!-- github username  -->
                 </configuration>
                 <executions>
                     <!-- run site-maven-plugin's 'site' target as part of the build's normal 'deploy' phase -->

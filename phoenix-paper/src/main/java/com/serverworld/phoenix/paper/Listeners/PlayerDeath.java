@@ -23,6 +23,7 @@ package com.serverworld.phoenix.paper.Listeners;
 import com.serverworld.phoenix.paper.PaperPhoenix;
 import com.serverworld.worldUserProfile.jsondata.UserPhoenixPlayerData;
 import com.serverworld.worldUserProfile.paper.utils.UserPhoenixPlayerDataMySQL;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -46,7 +47,8 @@ public class PlayerDeath implements Listener {
             playerData.setLastlocation_y(event.getEntity().getLocation().getY());
             playerData.setLastlocation_z(event.getEntity().getLocation().getZ());
             UserPhoenixPlayerDataMySQL.setDataClass(event.getEntity().getUniqueId().toString() , playerData);
-            event.getEntity().spigot().respawn();
+            Bukkit.getScheduler().scheduleSyncDelayedTask(PaperPhoenix.getInstance(), () -> event.getEntity().getPlayer().spigot().respawn(), 5L);
+            //event.getEntity().getPlayer().spigot().respawn();
         }
     }
 }
