@@ -22,5 +22,7 @@ jobs:
       run: mvn package -file pom.xml
     - uses: actions/download-artifact@v2
       with:
-        path: ${user.dir}/output
-
+        path: path/to/artifacts
+    - name: Display structure of downloaded files
+      run: ls -R
+      working-directory: path/to/artifacts
