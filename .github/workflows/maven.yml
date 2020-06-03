@@ -28,7 +28,7 @@ jobs:
       run: mvn package shade:shade -file pom.xml
     - uses: actions/download-artifact@v2
       with:
-        path: /home/runner/work/worldMISF/worldMISF/output
+        path: /home/runner/work/worldMISF/worldMISF/output/**
         name: artifact.zip
     - name: Display structure of downloaded files
       run: ls -R
