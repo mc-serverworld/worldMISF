@@ -29,7 +29,8 @@ jobs:
     - name: Display structure of downloaded files
       run: ls -R
       working-directory: /home/runner/work/worldMISF/worldMISF
-    - uses: actions/download-artifact@v1
+    - run: mkdir staging && cp output/*.jar staging
+    - uses: actions/upload-artifact@v1
       with:
-        path: output
-        name: artifacts
+        name: Package
+        path: staging
