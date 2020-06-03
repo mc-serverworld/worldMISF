@@ -19,7 +19,7 @@ jobs:
       with:
         java-version: 1.8
     - name: Build with Maven
-      run: mvn package shade:shade --file pom.xml
+      run: mvn package -file pom.xml
     - uses: actions/download-artifact@v2
       with:
         name: my-artifact
