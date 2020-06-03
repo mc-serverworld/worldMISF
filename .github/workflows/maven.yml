@@ -26,10 +26,10 @@ jobs:
         restore-keys: ${{ runner.os }}-m2
     - name: Build with Maven
       run: mvn package shade:shade -file pom.xml
-    - uses: actions/download-artifact@v2
-      with:
-        path: /home/runner/work/worldMISF/worldMISF/output/*.jar
-        name: artifact.zip
     - name: Display structure of downloaded files
       run: ls -R
       working-directory: /home/runner/work/worldMISF/worldMISF
+    - uses: actions/download-artifact@v2
+      with:
+        path: output/
+        name: artifact
