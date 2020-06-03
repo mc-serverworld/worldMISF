@@ -31,5 +31,5 @@ jobs:
       working-directory: /home/runner/work/worldMISF/worldMISF
     - uses: actions/download-artifact@v2
       with:
-        path: output/
-        name: artifact
+        path: output
+        name: artifacts
