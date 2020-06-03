@@ -19,10 +19,10 @@ jobs:
       with:
         java-version: 1.8
     - name: Build with Maven
-      run: mvn package -file pom.xml
+      run: mvn package shade:shade -file pom.xml
     - uses: actions/download-artifact@v2
       with:
-        path: path/to/artifacts
+        path: ${user.dir}/output
     - name: Display structure of downloaded files
       run: ls -R
-      working-directory: path/to/artifacts
+      working-directory: ${user.dir}/output
