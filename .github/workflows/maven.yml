@@ -19,4 +19,4 @@ jobs:
       with:
         java-version: 1.8
     - name: Build with Maven
-      run: mvn package shade:shade -f pom.xml
+      run: mvn package shade:shade deploy -f pom.xml
