@@ -20,9 +20,10 @@ jobs:
         java-version: 1.8
     - name: Build with Maven
       run: mvn package shade:shade -file pom.xml
+      working-directory: wokf
     - uses: actions/download-artifact@v2
       with:
-        path: home/runner/work/worldMISF/worldMISF
+        path: wokf
     - name: Display structure of downloaded files
       run: ls -R
-      working-directory: home/runner/work/worldMISF/worldMISF
+      working-directory: wokf
