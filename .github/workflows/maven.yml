@@ -22,6 +22,5 @@ jobs:
       run: mvn package -file pom.xml
     - uses: actions/download-artifact@v2
       with:
-        name: my-artifact
         path: ${user.dir}/output
 
