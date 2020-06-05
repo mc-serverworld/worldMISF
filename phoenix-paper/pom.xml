@@ -103,15 +103,15 @@
                 <configuration>
                     <filters>
                         <filter>
-                            <artifact>com.mc-serverworld:worldSocket:**</artifact>
+                            <artifact>com.mc-serverworld:worldSocket:*</artifact>
                             <excludes>
-                                <exclude>*</exclude>
+                                <exclude>*.yml</exclude>
                             </excludes>
                         </filter>
                         <filter>
                             <artifact>com.mc-serverworld:worldMISF:worldUserProfile:*</artifact>
                             <excludes>
-                                <exclude>*</exclude>
+                                <exclude>*.yml</exclude>
                             </excludes>
                         </filter>
                     </filters>
@@ -126,21 +126,15 @@
                             <outputFile>${project.parent.basedir}/output/${project.name}-${project.version}.jar</outputFile>
                             <filters>
                                 <filter>
-                                    <artifact>com.mc-serverworld:worldSocket:**</artifact>
+                                    <artifact>com.mc-serverworld:worldSocket:*</artifact>
                                     <excludes>
-                                        <exclude>*</exclude>
+                                        <exclude>*.yml</exclude>
                                     </excludes>
                                 </filter>
                                 <filter>
                                     <artifact>com.mc-serverworld:worldMISF:worldUserProfile:*</artifact>
                                     <excludes>
-                                        <exclude>*</exclude>
-                                    </excludes>
-                                </filter>
-                                <filter>
-                                    <artifact>*</artifact>
-                                    <excludes>
-                                        <exclude>bungee.yml</exclude>
+                                        <exclude>*.yml</exclude>
                                     </excludes>
                                 </filter>
                             </filters>

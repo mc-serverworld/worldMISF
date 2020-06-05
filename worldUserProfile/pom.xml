@@ -122,9 +122,7 @@
                         <filter>
                             <artifact>com.mc-serverworld:worldIdiot:*</artifact>
                             <excludes>
-                                <exclude>config.yml</exclude>
-                                <exclude>plugin.yml</exclude>
-                                <exclude>bungee.yml</exclude>
+                                <exclude>*.yml</exclude>
                             </excludes>
                         </filter>
                     </filters>
@@ -141,9 +139,7 @@
                                 <filter>
                                     <artifact>com.mc-serverworld:worldIdiot:*</artifact>
                                     <excludes>
-                                        <exclude>config.yml</exclude>
-                                        <exclude>plugin.yml</exclude>
-                                        <exclude>bungee.yml</exclude>
+                                        <exclude>*.yml</exclude>
                                     </excludes>
                                 </filter>
                             </filters>
