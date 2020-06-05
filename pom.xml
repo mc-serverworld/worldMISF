@@ -132,7 +132,7 @@
                     <generatePom>false</generatePom>
                     <pomFile>pom.xml</pomFile>
                     <skip>true</skip>
-                    <file>${user.dir}/github/package/phoenix-paper-${project.version}.jar</file>
+                    <file>${user.dir}/github/package/worldMISF/phoenix-paper-${project.version}.jar</file>
                 </configuration>
                 <executions>
                     <execution>
