@@ -171,7 +171,11 @@
                 </configuration>
                 <executions>
                     <execution>
+                        <id>default-install</id>
                         <phase>install</phase>
+                        <goals>
+                            <goal>install</goal>
+                        </goals>
                     </execution>
                 </executions>
             </plugin>
