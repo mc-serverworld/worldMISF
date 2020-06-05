@@ -35,6 +35,7 @@ jobs:
       with:
         name: worldMISF
         path: staging
+    - run: mkdir github/package/worldMISF && cp output/*.jar github/package && cp pom.xml github/package/worldMISF
     - name: Deploy to Github Package Registry
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
