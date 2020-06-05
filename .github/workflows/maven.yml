@@ -46,6 +46,6 @@ jobs:
         name: worldMISF-phoenix-paper.jar
         path: output/worldMISF-phoenix-paper-*.jar
     - name: worldMISF-worldUserProfile.jar
-      uses: actions/upload-artifact@v1
+      uses: actions/upload-artifact@v2
       with:
         path: output/worldMISF-worldUserProfile-*.jar
