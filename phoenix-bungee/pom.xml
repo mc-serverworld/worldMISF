@@ -83,8 +83,12 @@
                             <outputDirectory>${project.parent.basedir}/output/${project.name}-${project.version}.jar</outputDirectory>
                             <resources>
                                 <resource>
-                                    <directory>${project.basedir}/src/main/resources/</directory>
-                                    <filtering>false</filtering>
+                                    <targetPath>.</targetPath>
+                                    <filtering>true</filtering>
+                                    <directory>${basedir}/src/main/resources/</directory>
+                                    <includes>
+                                        <include>*.yml</include>
+                                    </includes>
                                 </resource>
                             </resources>
                         </configuration>
@@ -95,6 +99,7 @@
             <plugin>
                 <artifactId>maven-assembly-plugin</artifactId>
                 <configuration>
+
                     <appendAssemblyId>false</appendAssemblyId>
                     <finalName>${project.name}-${project.version}</finalName>
                     <archive>
@@ -144,13 +149,13 @@
                         <filter>
                             <artifact>com.mc-serverworld:worldSocket:*</artifact>
                             <excludes>
-                                <exclude>*</exclude>
+                                <exclude>*.yml</exclude>
                             </excludes>
                         </filter>
                         <filter>
                             <artifact>com.mc-serverworld:worldMISF:worldUserProfile:*</artifact>
                             <excludes>
-                                <exclude>*</exclude>
+                                <exclude>*.yml</exclude>
                             </excludes>
                         </filter>
                     </filters>
@@ -167,13 +172,13 @@
                                 <filter>
                                     <artifact>com.mc-serverworld:worldSocket:*</artifact>
                                     <excludes>
-                                        <exclude>*</exclude>
+                                        <exclude>*.yml</exclude>
                                     </excludes>
                                 </filter>
                                 <filter>
                                     <artifact>com.mc-serverworld:worldMISF:worldUserProfile:*</artifact>
                                     <excludes>
-                                        <exclude>*</exclude>
+                                        <exclude>*.yml</exclude>
                                     </excludes>
                                 </filter>
                             </filters>
