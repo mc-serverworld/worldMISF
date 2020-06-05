@@ -30,16 +30,23 @@ jobs:
       run: ls -R
       working-directory: /home/runner/work/worldMISF/worldMISF
     - run: mkdir staging && cp output/*.jar staging
-    - uses: actions/upload-artifact@v1
+    - name: worldMISF-phoenix-bungee.jar
+      uses: actions/upload-artifact@v1
       with:
         name: Artifacts
         path: staging
-    - uses: actions/upload-artifact@v2
+    - name: worldMISF-phoenix-bungee.jar
+      uses: actions/upload-artifact@v2
       with:
+        name: worldMISF-phoenix-bungee.jar
         path: output/worldMISF-phoenix-bungee-*.jar
-    - uses: actions/upload-artifact@v2
+    - name: worldMISF-phoenix-paper.jar
+      uses: actions/upload-artifact@v2
       with:
+        name: worldMISF-phoenix-paper.jar
         path: output/worldMISF-phoenix-paper-*.jar
-    - uses: actions/upload-artifact@v2
+    - name: worldMISF-worldUserProfile.jar
+      uses: actions/upload-artifact@v2
       with:
+        name: .jar
         path: output/worldMISF-worldUserProfile-*.jar
