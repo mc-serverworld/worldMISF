@@ -35,21 +35,6 @@ jobs:
       with:
         name: Artifacts
         path: staging
-    - name: worldMISF-phoenix-bungee.jar
-      uses: actions/upload-artifact@v2
-      with:
-        name: worldMISF-phoenix-bungee.jar
-        path: output/worldMISF-phoenix-bungee-*.jar
-    - name: worldMISF-phoenix-paper.jar
-      uses: actions/upload-artifact@v2
-      with:
-        name: worldMISF-phoenix-paper.jar
-        path: output/worldMISF-phoenix-paper-*.jar
-    - name: worldMISF-worldUserProfile.jar
-      uses: actions/upload-artifact@v2
-      with:
-        name: worldMISF-worldUserProfile.jar
-        path: output/worldMISF-worldUserProfile-*.jar
     - name: Deploy to Github Package Registry
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -57,4 +42,4 @@ jobs:
           mkdir -p ~/.m2
           echo "<settings><servers><server><id>gh</id><username>$(echo "$GITHUB_REPOSITORY" | awk -F / '{print $1}')</username><password>\${env.GITHUB_TOKEN}</password></server></servers></settings>" > ~/.m2/settings.xml
           REPO="gh::default::https://maven.pkg.github.com/${GITHUB_REPOSITORY}"
-          mvn package shade:shade resources:resources -f pom.xml deploy -DaltReleaseDeploymentRepository="${REPO}" -DaltSnapshotDeploymentRepository="${REPO}"
+          mvn deploy -DaltReleaseDeploymentRepository="${REPO}" -DaltSnapshotDeploymentRepository="${REPO} -Dfile=${project.parent.basedir}/output/${project.name}-${project.version}.jar"
