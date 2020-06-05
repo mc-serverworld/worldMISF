@@ -119,6 +119,7 @@
                 <version>2.8.1</version>
                 <configuration>
                     <altDeploymentRepository>internal.repo::default::file://${user.dir}/output</altDeploymentRepository>
+                    <skip>true</skip>
                 </configuration>
             </plugin>
 
