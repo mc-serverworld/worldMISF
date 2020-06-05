@@ -119,30 +119,7 @@
                 <version>2.8.1</version>
                 <configuration>
                     <altDeploymentRepository>internal.repo::default::file://${user.dir}/output</altDeploymentRepository>
-                    <skip>true</skip>
                 </configuration>
-            </plugin>
-
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-install-plugin</artifactId>
-                <version>3.0.0-M1</version>
-                <configuration>
-                    <packaging>pom</packaging>
-                    <generatePom>false</generatePom>
-                    <pomFile>pom.xml</pomFile>
-                    <skip>true</skip>
-                    <file>${user.dir}/package-worldMISF/worldMISF-phoenix-paper-${project.version}.jar</file>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>default-install</id>
-                        <phase>install</phase>
-                        <goals>
-                            <goal>install</goal>
-                        </goals>
-                    </execution>
-                </executions>
             </plugin>
 
             <plugin>
