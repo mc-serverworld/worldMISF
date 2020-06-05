@@ -34,3 +34,12 @@ jobs:
       with:
         name: Artifacts
         path: staging
+    - uses: actions/upload-artifact@v2
+      with:
+        path: output/worldMISF-phoenix-bungee-*.jar
+    - uses: actions/upload-artifact@v2
+      with:
+        path: output/worldMISF-phoenix-paper-*.jar
+    - uses: actions/upload-artifact@v2
+      with:
+        path: output/worldMISF-worldUserProfile-*.jar
