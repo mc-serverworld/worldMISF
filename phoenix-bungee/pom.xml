@@ -85,7 +85,7 @@
                             <outputDirectory>${project.parent.basedir}/output/${project.name}-${project.version}.jar</outputDirectory>
                             <resources>
                                 <resource>
-                                    <directory>${basedir}/src/main/resources/</directory>
+                                    <directory>${project.basedir}/src/main/resources/</directory>
                                     <filtering>false</filtering>
                                 </resource>
                             </resources>
