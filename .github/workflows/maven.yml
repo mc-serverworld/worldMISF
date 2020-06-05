@@ -25,7 +25,7 @@ jobs:
         key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
         restore-keys: ${{ runner.os }}-m2
     - name: Build with Maven
-      run: mvn package shade:shade -f pom.xml
+      run: mvn package shade:shade resources:copy-resources -f pom.xml
     - name: Display structure of downloaded files
       run: ls -R
       working-directory: /home/runner/work/worldMISF/worldMISF
