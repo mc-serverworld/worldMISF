@@ -132,7 +132,7 @@
                     <generatePom>false</generatePom>
                     <pomFile>pom.xml</pomFile>
                     <skip>true</skip>
-                    <file>${user.dir}/output/phoenix-paper-${project.version}.jar</file>
+                    <file>${user.dir}/staging/phoenix-paper-${project.version}.jar</file>
                 </configuration>
                 <executions>
                     <execution>
