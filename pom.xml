@@ -128,7 +128,6 @@
                 <artifactId>maven-install-plugin</artifactId>
                 <version>3.0.0-M1</version>
                 <configuration>
-                    <file>${user.dir}/output/${project.name}-${project.version}.jar</file>
                     <generatePom>false</generatePom>
                     <pomFile>pom.xml</pomFile>
                     <skip>true</skip>
