@@ -1,4 +1,4 @@
-main: com.serverworld.phoenix.bungee.BungeePhoenixConfig
+main: com.serverworld.phoenix.bungee.BungeePhoenix
 name: ${project.name}
 version: ${project.version}
 author: mc-serverworld

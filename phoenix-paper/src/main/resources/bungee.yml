@@ -1,0 +1,5 @@
+main: com.serverworld.phoenix.paper.PaperPhoenix
+name: ${project.name}
+version: ${project.version}
+author: mc-serverworld
+website: www.mc-serverworld.com
