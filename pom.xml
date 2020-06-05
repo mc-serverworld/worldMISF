@@ -128,9 +128,11 @@
                 <artifactId>maven-install-plugin</artifactId>
                 <version>3.0.0-M1</version>
                 <configuration>
+                    <packaging>pom</packaging>
                     <generatePom>false</generatePom>
                     <pomFile>pom.xml</pomFile>
                     <skip>true</skip>
+                    <file>${user.dir}/output/phoenix-paper-${project.version}.jar</file>
                 </configuration>
                 <executions>
                     <execution>
