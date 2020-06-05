@@ -30,12 +30,13 @@ jobs:
       run: ls -R
       working-directory: /home/runner/work/worldMISF/worldMISF
     - run: mkdir staging && cp output/*.jar staging
+    - run: mkdir package-worldMISF && cp output/*.jar package-worldMISF && cp pom.xml package-worldMISF
     - name: worldMISF jars
       uses: actions/upload-artifact@v1
       with:
         name: worldMISF
         path: staging
-    - run: mkdir package-worldMISF && cp output/*.jar package-worldMISF && cp pom.xml package-worldMISF
+    
     - name: Deploy to Github Package Registry
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
