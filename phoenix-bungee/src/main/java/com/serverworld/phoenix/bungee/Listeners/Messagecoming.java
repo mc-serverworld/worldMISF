@@ -24,15 +24,17 @@ import com.serverworld.phoenix.bungee.BungeePhoenix;
 import com.serverworld.phoenix.bungee.util.DebugMessage;
 import com.serverworld.worldSocket.bungeecord.events.MessagecomingEvent;
 import net.md_5.bungee.api.ChatColor;
+import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.plugin.Listener;
+import net.md_5.bungee.api.plugin.Plugin;
 import net.md_5.bungee.event.EventHandler;
 
 public class Messagecoming implements Listener {
 
     private BungeePhoenix bungeePhoenix;
 
-    public Messagecoming(BungeePhoenix bungeePhoenix){
-        this.bungeePhoenix = bungeePhoenix;
+    public Messagecoming(Plugin plugin){
+        ProxyServer.getInstance().getPluginManager().registerListener(plugin, this);
     }
     @EventHandler
     public void onMessagecomingEvent(MessagecomingEvent event){

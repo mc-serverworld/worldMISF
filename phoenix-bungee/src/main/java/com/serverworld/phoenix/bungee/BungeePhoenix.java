@@ -50,7 +50,8 @@ public class BungeePhoenix extends Plugin {
         getLogger().info("Helloworld");
 
         getProxy().getPluginManager().registerCommand(this,new BungeePhoenixCommands(this));
-        getProxy().getPluginManager().registerListener(this , new Messagecoming(this));
+
+        new Messagecoming(this);
     }
 
     public void setupconfig(){
