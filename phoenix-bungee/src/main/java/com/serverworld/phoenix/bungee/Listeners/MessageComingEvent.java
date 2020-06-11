@@ -20,6 +20,8 @@
 
 package com.serverworld.phoenix.bungee.Listeners;
 
+import com.serverworld.phoenix.bungee.BungeePhoenix;
+import com.serverworld.phoenix.bungee.util.DebugMessage;
 import com.serverworld.worldSocket.bungeecord.events.MessagecomingEvent;
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.ProxyServer;
@@ -35,6 +37,9 @@ public class MessageComingEvent implements Listener {
 
     @EventHandler
     public void Messagecoming(MessagecomingEvent event){
+        DebugMessage.sendInfo("hello");
+        BungeePhoenix.getInstance().getLogger().info("Hellooooo");
+        System.out.println("awifoaiwffwaojpoaw");
      /*   if(!event.getChannel().equals("MISF"))
             return;
         if(!event.getReceiver().toLowerCase().equals("porxy"))
