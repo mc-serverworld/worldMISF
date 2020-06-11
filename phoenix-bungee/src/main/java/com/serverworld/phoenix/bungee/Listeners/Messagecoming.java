@@ -26,21 +26,21 @@ import com.serverworld.worldSocket.bungeecord.events.MessagecomingEvent;
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.plugin.Listener;
-import net.md_5.bungee.api.plugin.Plugin;
 import net.md_5.bungee.event.EventHandler;
-import net.md_5.bungee.event.EventPriority;
 
 public class Messagecoming implements Listener {
 
-    public Messagecoming(Plugin plugin){
-        ProxyServer.getInstance().getPluginManager().registerListener(plugin, this);
+    public Messagecoming(){
+        DebugMessage.sendInfo("hello");
     }
 
-    @EventHandler(priority = EventPriority.HIGHEST)
+    @EventHandler
     public void onMessagecoming(MessagecomingEvent event){
-        DebugMessage.sendInfo("hello");
         BungeePhoenix.getInstance().getLogger().info("Hellooooo");
         System.out.println("awifoaiwffwaojpoaw");
+        DebugMessage.sendInfo("hello");
+        DebugMessage.sendInfo("hello");
+        DebugMessage.sendInfo("hello");
      /*   if(!event.getChannel().equals("MISF"))
             return;
         if(!event.getReceiver().toLowerCase().equals("porxy"))
