@@ -23,7 +23,6 @@ package com.serverworld.phoenix.bungee.Listeners;
 import com.serverworld.phoenix.bungee.BungeePhoenix;
 import com.serverworld.phoenix.bungee.util.DebugMessage;
 import com.serverworld.worldSocket.bungeecord.events.MessagecomingEvent;
-import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.plugin.Listener;
 import net.md_5.bungee.api.plugin.Plugin;
@@ -43,7 +42,7 @@ public class Messagecoming implements Listener {
         if(!event.getReceiver().toLowerCase().equals("porxy"))
             return;*/
         try {
-            DebugMessage.sendInfo(ChatColor.GREEN + "Get: " + event.getMessage());
+            DebugMessage.sendInfo("Get: " + event.getMessage());
         }catch (Exception e){
             DebugMessage.sendWarring("Error on socket msg "+e.getMessage());
         }
