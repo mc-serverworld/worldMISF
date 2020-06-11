@@ -32,13 +32,14 @@ public class Messagecoming implements Listener {
     public Messagecoming(Plugin plugin){
         ProxyServer.getInstance().getPluginManager().registerListener(plugin, this);
     }
+
     @EventHandler
-    public void onMessagecomingEvent(MessagecomingEvent event){
+    public void MessagecomingEvent(MessagecomingEvent event){
      /*   if(!event.getChannel().equals("MISF"))
             return;
         if(!event.getReceiver().toLowerCase().equals("porxy"))
             return;*/
-        
+
         try {
             ProxyServer.getInstance().getLogger().info((ChatColor.DARK_GREEN + "Getbysocket: " + event.getMessage()));
         }catch (Exception e){

@@ -30,7 +30,6 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
-import java.sql.Connection;
 
 public class BungeePhoenix extends Plugin {
 
@@ -38,7 +37,7 @@ public class BungeePhoenix extends Plugin {
     public static BungeePhoenixConfig config;
     private static BungeePhoenix bungeePhoenix;
     public static Configuration configuration;
-    public static Connection connection;
+
     @Override
     public void onEnable() {
         setupconfig();
