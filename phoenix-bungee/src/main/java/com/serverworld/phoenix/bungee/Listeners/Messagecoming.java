@@ -36,10 +36,10 @@ public class Messagecoming implements Listener {
     }
     @EventHandler
     public void onMessagecomingEvent(MessagecomingEvent event){
-        if(!event.getChannel().equals("MISF"))
+     /*   if(!event.getChannel().equals("MISF"))
             return;
         if(!event.getReceiver().toLowerCase().equals("porxy"))
-            return;
+            return;*/
         try {
             DebugMessage.sendInfo(ChatColor.GREEN + "Get: " + event.getMessage());
         }catch (Exception e){
