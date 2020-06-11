@@ -29,10 +29,10 @@ import net.md_5.bungee.api.plugin.Listener;
 import net.md_5.bungee.api.plugin.Plugin;
 import net.md_5.bungee.event.EventHandler;
 
-public class MessageComingEvent implements Listener {
+public class Messagecoming implements Listener {
 
-    public MessageComingEvent(Plugin plugin){
-        ProxyServer.getInstance().getPluginManager().registerListener(plugin, this);
+    public Messagecoming(Plugin plugin){
+        //ProxyServer.getInstance().getPluginManager().registerListener(plugin, this);
     }
 
     @EventHandler

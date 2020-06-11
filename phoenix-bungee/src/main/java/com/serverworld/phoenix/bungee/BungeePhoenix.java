@@ -20,7 +20,7 @@
 
 package com.serverworld.phoenix.bungee;
 
-import com.serverworld.phoenix.bungee.Listeners.MessageComingEvent;
+import com.serverworld.phoenix.bungee.Listeners.Messagecoming;
 import net.md_5.bungee.api.plugin.Plugin;
 import net.md_5.bungee.config.Configuration;
 import net.md_5.bungee.config.ConfigurationProvider;
@@ -43,10 +43,10 @@ public class BungeePhoenix extends Plugin {
         setupconfig();
         bungeePhoenix = this;
 
-        new MessageComingEvent(this);
+        new Messagecoming(this);
         getLogger().info("Yay! It loads!");
         getLogger().info("Helloworld");
-
+        this.getProxy().getPluginManager().registerListener(this, new Messagecoming(this));
         //getProxy().getPluginManager().registerCommand(this,new BungeePhoenixCommands(this));
 
 
