@@ -27,14 +27,14 @@ import net.md_5.bungee.api.plugin.Listener;
 import net.md_5.bungee.api.plugin.Plugin;
 import net.md_5.bungee.event.EventHandler;
 
-public class Messagecoming implements Listener {
+public class MessageComingEvent implements Listener {
 
-    public Messagecoming(Plugin plugin){
+    public MessageComingEvent(Plugin plugin){
         ProxyServer.getInstance().getPluginManager().registerListener(plugin, this);
     }
 
     @EventHandler
-    public void MessagecomingEvent(MessagecomingEvent event){
+    public void Messagecoming(MessagecomingEvent event){
      /*   if(!event.getChannel().equals("MISF"))
             return;
         if(!event.getReceiver().toLowerCase().equals("porxy"))
