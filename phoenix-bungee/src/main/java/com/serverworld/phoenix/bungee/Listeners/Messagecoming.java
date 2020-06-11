@@ -20,17 +20,14 @@
 
 package com.serverworld.phoenix.bungee.Listeners;
 
-import com.serverworld.phoenix.bungee.BungeePhoenix;
-import com.serverworld.phoenix.bungee.util.DebugMessage;
 import com.serverworld.worldSocket.bungeecord.events.MessagecomingEvent;
+import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.plugin.Listener;
 import net.md_5.bungee.api.plugin.Plugin;
 import net.md_5.bungee.event.EventHandler;
 
 public class Messagecoming implements Listener {
-
-    private BungeePhoenix bungeePhoenix;
 
     public Messagecoming(Plugin plugin){
         ProxyServer.getInstance().getPluginManager().registerListener(plugin, this);
@@ -41,12 +38,11 @@ public class Messagecoming implements Listener {
             return;
         if(!event.getReceiver().toLowerCase().equals("porxy"))
             return;*/
-        ProxyServer.getInstance().getLogger().info("get" + event.getMessage());
-        DebugMessage.sendInfo("Get: " + event.getMessage());
+        
         try {
-            DebugMessage.sendInfo("Get: " + event.getMessage());
+            ProxyServer.getInstance().getLogger().info((ChatColor.DARK_GREEN + "Getbysocket: " + event.getMessage()));
         }catch (Exception e){
-            DebugMessage.sendWarring("Error on socket msg "+e.getMessage());
+            ProxyServer.getInstance().getLogger().info("Error on socket msg "+e.getMessage());
         }
     }
 }
