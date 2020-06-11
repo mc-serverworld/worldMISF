@@ -55,10 +55,10 @@ public class worldInfo {
                 center.setY(center.getBlockY()-1);
             }else if(center.getBlock().isLiquid()){
                 center.getBlock().setType(Material.COBBLESTONE);
-                center.setY(center.getY()+4);
+                center.setY(center.getY()+1);
                 break;
             }else {
-                center.setY(center.getY()+4);
+                center.setY(center.getY()+1);
                 break;
             }
         }
