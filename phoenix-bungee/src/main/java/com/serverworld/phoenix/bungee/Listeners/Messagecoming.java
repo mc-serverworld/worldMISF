@@ -41,6 +41,7 @@ public class Messagecoming implements Listener {
             return;
         if(!event.getReceiver().toLowerCase().equals("porxy"))
             return;*/
+        ProxyServer.getInstance().getLogger().info("get" + event.getMessage());
         DebugMessage.sendInfo("Get: " + event.getMessage());
         try {
             DebugMessage.sendInfo("Get: " + event.getMessage());
