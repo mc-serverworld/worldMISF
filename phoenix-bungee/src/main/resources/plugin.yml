@@ -3,6 +3,7 @@ name: ${project.name}
 version: ${project.version}
 author: mc-serverworld
 website: www.mc-serverworld.com
+depends: [worldMISF-worldUserProfile,worldSocket]
 
 commands:
   midfbungeecord:
