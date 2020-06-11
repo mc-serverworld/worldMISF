@@ -43,13 +43,11 @@ public class BungeePhoenix extends Plugin {
         setupconfig();
         bungeePhoenix = this;
 
-        new Messagecoming(this);
+
         getLogger().info("Yay! It loads!");
         getLogger().info("Helloworld");
-        this.getProxy().getPluginManager().registerListener(this, new Messagecoming(this));
-        //getProxy().getPluginManager().registerCommand(this,new BungeePhoenixCommands(this));
 
-
+        new Messagecoming(this);
     }
 
     public void setupconfig(){

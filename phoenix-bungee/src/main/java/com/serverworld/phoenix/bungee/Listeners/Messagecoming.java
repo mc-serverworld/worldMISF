@@ -37,7 +37,7 @@ public class Messagecoming implements Listener {
     }
 
     @EventHandler(priority = EventPriority.HIGHEST)
-    public void Messagecoming(MessagecomingEvent event){
+    public void onMessagecoming(MessagecomingEvent event){
         DebugMessage.sendInfo("hello");
         BungeePhoenix.getInstance().getLogger().info("Hellooooo");
         System.out.println("awifoaiwffwaojpoaw");
@@ -47,7 +47,7 @@ public class Messagecoming implements Listener {
             return;*/
 
         try {
-            ProxyServer.getInstance().getLogger().info((ChatColor.DARK_GREEN + "Getbysocket: " + event.getMessage()));
+            ProxyServer.getInstance().getLogger().info((ChatColor.DARK_GREEN + "Get: " + event.getMessage()));
         }catch (Exception e){
             ProxyServer.getInstance().getLogger().info("Error on socket msg "+e.getMessage());
         }
