@@ -28,14 +28,15 @@ import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.plugin.Listener;
 import net.md_5.bungee.api.plugin.Plugin;
 import net.md_5.bungee.event.EventHandler;
+import net.md_5.bungee.event.EventPriority;
 
 public class Messagecoming implements Listener {
 
     public Messagecoming(Plugin plugin){
-        //ProxyServer.getInstance().getPluginManager().registerListener(plugin, this);
+        ProxyServer.getInstance().getPluginManager().registerListener(plugin, this);
     }
 
-    @EventHandler
+    @EventHandler(priority = EventPriority.HIGHEST)
     public void Messagecoming(MessagecomingEvent event){
         DebugMessage.sendInfo("hello");
         BungeePhoenix.getInstance().getLogger().info("Hellooooo");
