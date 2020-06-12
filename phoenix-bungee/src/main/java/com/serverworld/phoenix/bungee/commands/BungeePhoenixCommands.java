@@ -32,7 +32,6 @@ public class BungeePhoenixCommands extends Command implements TabExecutor{
         super("misfbungeecord","misfbungeecord");
     }
 
-    //dan playername endtime reason
     public void execute(CommandSender commandSender, String[] strings) {
 
     }

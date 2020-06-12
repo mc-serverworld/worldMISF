@@ -45,3 +45,9 @@ permissions:
         misf.command.login: true
         misf.command.tpserver: true
         misfp.command.warpsv: true
+    misf.player:
+      children:
+        misf.command.help: true
+        misf.command.login: true
+        misf.command.warpsv: true
+        misf.notify: true

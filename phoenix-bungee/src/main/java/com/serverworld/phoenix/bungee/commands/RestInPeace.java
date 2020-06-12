@@ -17,29 +17,19 @@
  *  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  *
  */
+package com.serverworld.phoenix.bungee.commands;
 
-package com.serverworld.phoenix.bungee.Listeners;
-
-import com.serverworld.phoenix.bungee.util.DebugMessage;
-import com.serverworld.worldSocket.bungeecord.events.MessagecomingEvent;
-import net.md_5.bungee.api.ProxyServer;
-import net.md_5.bungee.api.plugin.Listener;
+import net.md_5.bungee.api.CommandSender;
+import net.md_5.bungee.api.plugin.Command;
 import net.md_5.bungee.api.plugin.Plugin;
-import net.md_5.bungee.event.EventHandler;
 
-public class Messagecoming implements Listener {
-
-    public Messagecoming(Plugin plugin){
-        ProxyServer.getInstance().getPluginManager().registerListener(plugin,this);
-        DebugMessage.sendInfo("hello");
+public class RestInPeace extends Command{
+    public RestInPeace(Plugin plugin){
+        super("avicii","misf.player");
     }
 
-    @EventHandler
-    public void onMessagecoming(MessagecomingEvent event) {
-        if(!event.getChannel().equals("MISF"))
-            return;
-        if(!event.getReceiver().toLowerCase().equals("porxy"))
-            return;
+    public void execute(CommandSender commandSender, String[] strings) {
 
     }
+
 }
