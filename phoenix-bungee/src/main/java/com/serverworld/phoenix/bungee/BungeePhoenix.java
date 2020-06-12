@@ -47,7 +47,7 @@ public class BungeePhoenix extends Plugin {
         getLogger().info("Yay! It loads!");
         getLogger().info("Helloworld");
 
-        getProxy().getPluginManager().registerListener(this,new Messagecoming());
+        new Messagecoming(this);
     }
 
     public void setupconfig(){

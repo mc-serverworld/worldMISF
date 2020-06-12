@@ -20,19 +20,19 @@
 
 package com.serverworld.phoenix.bungee.Listeners;
 
-import com.google.gson.internal.$Gson$Preconditions;
 import com.serverworld.phoenix.bungee.BungeePhoenix;
 import com.serverworld.phoenix.bungee.util.DebugMessage;
 import com.serverworld.worldSocket.bungeecord.events.MessagecomingEvent;
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.plugin.Listener;
-import net.md_5.bungee.event.EventBus;
+import net.md_5.bungee.api.plugin.Plugin;
 import net.md_5.bungee.event.EventHandler;
 
-public class Messagecoming extends EventBus {
+public class Messagecoming implements Listener {
 
-    public Messagecoming(){
+    public Messagecoming(Plugin plugin){
+        ProxyServer.getInstance().getPluginManager().registerListener(plugin,this);
         DebugMessage.sendInfo("hello");
     }
 
