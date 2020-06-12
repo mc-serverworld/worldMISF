@@ -222,20 +222,21 @@
             <groupId>net.luckperms</groupId>
             <artifactId>api</artifactId>
             <version>5.0</version>
-            <scope>compile</scope>
+            <scope>provided</scope>
         </dependency>
 
         <dependency>
             <groupId>com.mc-serverworld</groupId>
             <artifactId>worldSocket</artifactId>
             <version>1.1.2-beta-5</version>
-            <scope>compile</scope>
+            <scope>provided</scope>
         </dependency>
 
         <dependency>
             <groupId>com.mc-serverworld.worldMISF</groupId>
             <artifactId>worldUserProfile</artifactId>
             <version>indev-5.1</version>
+            <scope>provided</scope>
         </dependency>
 
     </dependencies>

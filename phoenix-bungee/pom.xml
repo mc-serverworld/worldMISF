@@ -242,6 +242,7 @@
             <groupId>com.mc-serverworld.worldMISF</groupId>
             <artifactId>worldUserProfile</artifactId>
             <version>indev-5.1</version>
+            <scope>provided</scope>
         </dependency>
 
     </dependencies>
