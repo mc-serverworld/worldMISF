@@ -4,6 +4,7 @@
 configinfo:
   api-version: 5
   debug: false
+  servers-prefix: "MISF_PHOENIX_"
 
 serverinfo:
   servername: server00

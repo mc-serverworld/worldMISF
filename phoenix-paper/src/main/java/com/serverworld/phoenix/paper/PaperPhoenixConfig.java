@@ -30,6 +30,9 @@ public class PaperPhoenixConfig {
     }
     public int apiversion() { return plugin.getConfig().getInt("configinfo.api-version"); }
     public Boolean debug() { return plugin.getConfig().getBoolean("configinfo.debug"); }
+    public String serversprefix() {
+        return plugin.getConfig().getString("configinfo.servers-prefix");
+    }
 
     public String type() {
         return plugin.getConfig().getString("database.type");

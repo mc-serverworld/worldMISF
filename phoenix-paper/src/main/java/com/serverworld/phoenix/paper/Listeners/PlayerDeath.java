@@ -52,7 +52,7 @@ public class PlayerDeath implements Listener {
             Bukkit.getScheduler().scheduleSyncDelayedTask(PaperPhoenix.getInstance(), () -> event.getEntity().getPlayer().spigot().respawn(), 5L);
             messagecoder messagecoder = new messagecoder();
             messagecoder.setSender(PaperPhoenix.config.servername());
-            messagecoder.setChannel("MISF");
+            messagecoder.setChannel("MISF_PHOENIX_");
             messagecoder.setReceiver("ALL");
             messagecoder.setType("ACTION");
             messagecoder.setMessage("");
