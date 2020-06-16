@@ -60,7 +60,7 @@ public class LobbyCommand implements CommandExecutor{
                     commandSender.sendMessage(prefix + ChatColor.AQUA + "worldMISF");
                     commandSender.sendMessage(prefix_sub + ChatColor.DARK_AQUA + "Plugin version: " + ChatColor.WHITE + PaperPhoenix.getInstance().getDescription().getVersion());
                     commandSender.sendMessage(prefix_sub + ChatColor.DARK_AQUA + "Server name(config): " + ChatColor.WHITE + config.servername());
-                    commandSender.sendMessage(prefix_sub + ChatColor.DARK_AQUA + "Server name(Bungecord): " + ChatColor.WHITE + config.serversprefix() + config.worldtype() + config.chunk_position_x() + "_" + config.chunk_position_z());
+                    commandSender.sendMessage(prefix_sub + ChatColor.DARK_AQUA + "Server name(Bungeecord): " + ChatColor.WHITE + config.serversprefix() + config.worldtype() + config.chunk_position_x() + "_" + config.chunk_position_z());
                     commandSender.sendMessage(prefix_sub + ChatColor.DARK_AQUA + "Server type: " + ChatColor.WHITE + config.servetype());
                     commandSender.sendMessage(prefix_sub + ChatColor.DARK_AQUA + "Server position: " + ChatColor.WHITE + "(" + config.chunk_position_x() + "," + config.chunk_position_z() + ")");
                     commandSender.sendMessage(prefix_sub + ChatColor.DARK_AQUA + "World type: " + ChatColor.WHITE + config.worldtype());
