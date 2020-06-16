@@ -77,6 +77,7 @@ public class PaperPhoenixCommands implements CommandExecutor , TabCompleter {
 
                     commandSender.sendMessage(prefix + ChatColor.DARK_AQUA + "Config servername: " + ChatColor.GREEN + config.servername());
                     commandSender.sendMessage();
+                    return true;
                 }
                 case "set": {
                     subCommand_set.cmd(commandSender,strings);
