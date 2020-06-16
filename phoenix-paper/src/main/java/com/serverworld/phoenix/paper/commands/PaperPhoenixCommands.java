@@ -64,7 +64,7 @@ public class PaperPhoenixCommands implements CommandExecutor , TabCompleter {
                     }
 
                     String prefix = (ChatColor.GRAY + "[" + ChatColor.DARK_AQUA + "MISF" + ChatColor.GRAY + "]" + ChatColor.WHITE + "  -  ");
-                    String prefix_sub = (ChatColor.GRAY + "[" + ChatColor.DARK_AQUA + "MISF" + ChatColor.GRAY + "]" + ChatColor.WHITE + "  -  ");
+                    String prefix_sub = (ChatColor.GRAY + "[" + ChatColor.DARK_AQUA + "MISF" + ChatColor.GRAY + "]" + ChatColor.WHITE + "    -  ");
                     commandSender.sendMessage(ChatColor.GRAY + "[" + ChatColor.DARK_AQUA + "MISF" + ChatColor.GRAY + "]" + ChatColor.GREEN + "worldMISF info");
                     commandSender.sendMessage(prefix + ChatColor.AQUA + "worldMISF");
                     commandSender.sendMessage(prefix_sub + ChatColor.DARK_AQUA + "Plugin version: " + ChatColor.WHITE + PaperPhoenix.getInstance().getDescription().getVersion());
