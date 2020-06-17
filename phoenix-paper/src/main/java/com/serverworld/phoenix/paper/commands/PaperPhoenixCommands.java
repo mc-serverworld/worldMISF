@@ -74,8 +74,6 @@ public class PaperPhoenixCommands implements CommandExecutor , TabCompleter {
                     commandSender.sendMessage(prefix_sub + ChatColor.DARK_AQUA + "Server position: " + ChatColor.WHITE + "(" + config.chunk_position_x() + "," + config.chunk_position_z() + ")");
                     commandSender.sendMessage(prefix_sub + ChatColor.DARK_AQUA + "World type: " + ChatColor.WHITE + config.worldtype());
                     commandSender.sendMessage(prefix_sub + ChatColor.DARK_AQUA + "World size: " + ChatColor.WHITE + config.worldsize());
-
-                    commandSender.sendMessage(prefix + ChatColor.DARK_AQUA + "Config servername: " + ChatColor.GREEN + config.servername());
                     commandSender.sendMessage();
                     return true;
                 }
