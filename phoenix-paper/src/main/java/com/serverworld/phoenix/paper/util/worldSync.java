@@ -48,7 +48,7 @@ public class worldSync {
                 messagecoder messagecode = new messagecoder();
                 messagecode.setSender(paperPhoenix.config.servername());
                 messagecode.setReceiver("ALL");
-                messagecode.setChannel("MISF");
+                messagecode.setChannel("MISF_PHOENIX");
                 messagecode.setType("SYNC");
                 if(!NumberUtils.isNumber(String.valueOf(world.getTime()))){
                     DebugMessage.sendWarring(ChatColor.RED + "Cant get world time!");
@@ -68,7 +68,7 @@ public class worldSync {
                 messagecoder messagecode = new messagecoder();
                 messagecode.setSender(paperPhoenix.config.servername());
                 messagecode.setReceiver("ALL");
-                messagecode.setChannel("MISF");
+                messagecode.setChannel("MISF_PHOENIX");
                 messagecode.setType("SYNC");
                 if(world.hasStorm()&&world.isThundering()){
                     messagecode.setMessage("WEATHER,THUNDER," + world.getWeatherDuration());

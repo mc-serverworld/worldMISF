@@ -50,13 +50,16 @@ public class PlayerDeath implements Listener {
             playerData.setLastlocation_z(event.getEntity().getLocation().getZ());
             UserPhoenixPlayerDataMySQL.setDataClass(event.getEntity().getUniqueId().toString() , playerData);
             Bukkit.getScheduler().scheduleSyncDelayedTask(PaperPhoenix.getInstance(), () -> event.getEntity().getPlayer().spigot().respawn(), 5L);
-            messagecoder messagecoder = new messagecoder();
-            messagecoder.setSender(PaperPhoenix.config.servername());
-            messagecoder.setChannel("MISF_PHOENIX_");
-            messagecoder.setReceiver("ALL");
-            messagecoder.setType("ACTION");
-            messagecoder.setMessage("");
-            messager.sendmessage(messagecoder.createmessage());
+            Bukkit.getScheduler().scheduleSyncDelayedTask(PaperPhoenix.getInstance(), () -> {
+                messagecoder messagecoder = new messagecoder();
+                messagecoder.setSender(PaperPhoenix.config.servername());
+                messagecoder.setChannel("MISF_PHOENIX");
+                messagecoder.setReceiver("PORXY");
+                messagecoder.setType("COMMAND");
+                messagecoder.setMessage("");
+                messager.sendmessage(messagecoder.createmessage());
+                }, 20L);
+
 
         }
     }

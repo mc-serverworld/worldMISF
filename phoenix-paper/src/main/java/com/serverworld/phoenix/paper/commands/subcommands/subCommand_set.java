@@ -33,7 +33,7 @@ public class subCommand_set {
         messagecoder messagecode = new messagecoder();
         messagecode.setSender(PaperPhoenix.config.servername());
         messagecode.setReceiver("ALL");
-        messagecode.setChannel("MISF");
+        messagecode.setChannel("MISF_PHOENIX");
         messagecode.setType("SET");
         switch (strings[1]) {
             case "weather": {

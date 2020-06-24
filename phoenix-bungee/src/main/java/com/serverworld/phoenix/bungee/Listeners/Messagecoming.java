@@ -20,6 +20,7 @@
 
 package com.serverworld.phoenix.bungee.Listeners;
 
+import com.serverworld.phoenix.bungee.util.DebugMessage;
 import com.serverworld.worldSocket.bungeecord.events.MessagecomingEvent;
 import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.plugin.Listener;
@@ -34,11 +35,20 @@ public class Messagecoming implements Listener {
 
     @EventHandler
     public void onMessagecoming(MessagecomingEvent event) {
-        if(!event.getChannel().equals("MISF"))
+        if(!event.getChannel().equals("MISF_PHOENIX"))
             return;
-
         if(!event.getReceiver().toLowerCase().equals("porxy"))
             return;
+        try{
+            switch (event.getType().toUpperCase()){
+                case "COMMAND": ProxyServer.getInstance().getPluginManager().dispatchCommand(ProxyServer.getInstance().getConsole(),event.getMessage());
 
+                case "REQUEST":;
+
+                case "ACTION":;
+            }
+        }catch (Exception e){
+            DebugMessage.sendWarring("Error on socket msg "+e.getMessage());
+        }
     }
 }
