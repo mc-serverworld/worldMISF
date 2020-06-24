@@ -48,7 +48,7 @@ public class Messagecoming implements Listener {
 
                 case "SYNC":{
                     String[] msg = event.getMessage().toUpperCase().split(",");
-                    if(event.getSender().equals(paperPhoenix.config.servername())) return;
+                    if(event.getSender().equals(PaperPhoenix.config.servername())) return;
                     switch (msg[0].toUpperCase()){
                         case "TIME": {
                             long time =Long.valueOf(msg[1]) - world.getTime();
