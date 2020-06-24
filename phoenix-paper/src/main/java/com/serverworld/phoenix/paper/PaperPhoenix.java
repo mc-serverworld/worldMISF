@@ -23,6 +23,7 @@ package com.serverworld.phoenix.paper;
 import com.serverworld.phoenix.paper.Listeners.Messagecoming;
 import com.serverworld.phoenix.paper.Listeners.PlayerDeath;
 import com.serverworld.phoenix.paper.Listeners.PlayerRespawn;
+import com.serverworld.phoenix.paper.commands.LobbyCommand;
 import com.serverworld.phoenix.paper.commands.PaperPhoenixCommands;
 import com.serverworld.phoenix.paper.util.worldSetup;
 import com.serverworld.phoenix.paper.util.worldSync;
@@ -44,7 +45,9 @@ public class PaperPhoenix extends JavaPlugin{
     public void onEnable() {
 
         if(config.servetype().toLowerCase().equals("lobby")){
-
+            LobbyCommand lobbyCommand = new LobbyCommand(this);
+            this.getCommand("misf").setExecutor(lobbyCommand);
+            this.getCommand("misf").setTabCompleter(lobbyCommand);
         }else {
             //setup
             setupevent();

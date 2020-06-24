@@ -22,15 +22,20 @@ package com.serverworld.phoenix.paper.commands;
 
 import com.serverworld.phoenix.paper.PaperPhoenix;
 import com.serverworld.phoenix.paper.PaperPhoenixConfig;
-import com.serverworld.phoenix.paper.commands.subcommands.subCommand_set;
 import com.serverworld.phoenix.paper.util.DebugMessage;
 import net.md_5.bungee.api.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.command.TabExecutor;
 import org.bukkit.entity.Player;
+import org.bukkit.util.StringUtil;
 
-public class LobbyCommand implements CommandExecutor{
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+public class LobbyCommand implements CommandExecutor , TabExecutor {
     private PaperPhoenix paperPhoenix;
     private PaperPhoenixConfig config;
 
@@ -62,14 +67,8 @@ public class LobbyCommand implements CommandExecutor{
                     commandSender.sendMessage(prefix_sub + ChatColor.DARK_AQUA + "Server name(config): " + ChatColor.WHITE + config.servername());
                     commandSender.sendMessage(prefix_sub + ChatColor.DARK_AQUA + "Server name(Bungeecord): " + ChatColor.WHITE + config.serversprefix() + config.worldtype().toUpperCase() + "_" + config.chunk_position_x() + "_" + config.chunk_position_z());
                     commandSender.sendMessage(prefix_sub + ChatColor.DARK_AQUA + "Server type: " + ChatColor.WHITE + config.servetype());
-                    commandSender.sendMessage(prefix_sub + ChatColor.DARK_AQUA + "Server position: " + ChatColor.WHITE + "(" + config.chunk_position_x() + "," + config.chunk_position_z() + ")");
-                    commandSender.sendMessage(prefix_sub + ChatColor.DARK_AQUA + "World type: " + ChatColor.WHITE + config.worldtype());
-                    commandSender.sendMessage(prefix_sub + ChatColor.DARK_AQUA + "World size: " + ChatColor.WHITE + config.worldsize());
                     commandSender.sendMessage();
                     return true;
-                }
-                case "set": {
-                    subCommand_set.cmd(commandSender,strings);
                 }
                 //=======================
             }
@@ -81,5 +80,19 @@ public class LobbyCommand implements CommandExecutor{
             commandSender.sendMessage(ChatColor.RED + "Error while executing command " + e.getMessage());
         }
         return true;
+    }
+
+    public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
+
+        List<String> completions = new ArrayList<>();
+        List<String> commands = new ArrayList<>();
+
+        if (args.length == 1) {
+            if (sender.hasPermission("misf.command.info"))
+                commands.add("info");
+        }
+            StringUtil.copyPartialMatches(args[0], commands, completions);
+        Collections.sort(completions);
+        return completions;
     }
 }
