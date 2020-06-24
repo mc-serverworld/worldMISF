@@ -59,8 +59,8 @@ public class PlayerDeath implements Listener {
                 messagecoder.setReceiver("PORXY");
                 messagecoder.setType("ACTION");
                 JSONObject json = new JSONObject();
-                json.put("TYPE","");
-                json.put("PLAYER","");
+                json.put("TYPE","SENDPLAYERTOSERVER");
+                json.put("PLAYER",event.getEntity().getUniqueId().toString());
                 json.put("SERVER",PaperPhoenix.config.serversprefix() + "OVERWORLD_0_0");
                 Gson gson = new Gson();
                 messagecoder.setMessage(gson.toJson(json));
