@@ -20,6 +20,7 @@
 
 package com.serverworld.phoenix.paper.Listeners;
 
+import com.google.gson.Gson;
 import com.serverworld.phoenix.paper.PaperPhoenix;
 import com.serverworld.worldSocket.paperspigot.util.messagecoder;
 import com.serverworld.worldSocket.paperspigot.util.messager;
@@ -30,6 +31,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
+import org.json.JSONObject;
 
 public class PlayerDeath implements Listener {
 
@@ -55,8 +57,13 @@ public class PlayerDeath implements Listener {
                 messagecoder.setSender(PaperPhoenix.config.servername());
                 messagecoder.setChannel("MISF_PHOENIX");
                 messagecoder.setReceiver("PORXY");
-                messagecoder.setType("COMMAND");
-                messagecoder.setMessage("");
+                messagecoder.setType("ACTION");
+                JSONObject json = new JSONObject();
+                json.put("TYPE","");
+                json.put("PLAYER","");
+                json.put("SERVER",PaperPhoenix.config.serversprefix() + "OVERWORLD_0_0");
+                Gson gson = new Gson();
+                messagecoder.setMessage(gson.toJson(json));
                 messager.sendmessage(messagecoder.createmessage());
                 }, 20L);
 

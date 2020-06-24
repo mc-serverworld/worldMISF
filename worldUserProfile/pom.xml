@@ -28,12 +28,12 @@
     <parent>
         <artifactId>worldMISF</artifactId>
         <groupId>com.mc-serverworld</groupId>
-        <version>indev-5</version>
+        <version>indev-6</version>
     </parent>
 
     <artifactId>worldUserProfile</artifactId>
     <name>worldMISF-worldUserProfile</name>
-    <version>indev-5</version>
+    <version>indev-6</version>
     <packaging>jar</packaging>
     <url>https://www.mc-serverworld.com</url>
     <inceptionYear>2020</inceptionYear>
@@ -236,9 +236,8 @@
         <dependency>
             <groupId>org.json</groupId>
             <artifactId>json</artifactId>
-            <version>20190722</version>
+            <version>20200518</version>
         </dependency>
-
 
         <dependency>
             <groupId>com.mc-serverworld</groupId>

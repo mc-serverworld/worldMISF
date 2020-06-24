@@ -23,9 +23,11 @@ package com.serverworld.phoenix.bungee.Listeners;
 import com.serverworld.phoenix.bungee.util.DebugMessage;
 import com.serverworld.worldSocket.bungeecord.events.MessagecomingEvent;
 import net.md_5.bungee.api.ProxyServer;
+import net.md_5.bungee.api.connection.ProxiedPlayer;
 import net.md_5.bungee.api.plugin.Listener;
 import net.md_5.bungee.api.plugin.Plugin;
 import net.md_5.bungee.event.EventHandler;
+import org.json.JSONObject;
 
 public class Messagecoming implements Listener {
 
@@ -41,14 +43,33 @@ public class Messagecoming implements Listener {
             return;
         try{
             switch (event.getType().toUpperCase()){
+                default:return;
+
                 case "COMMAND": ProxyServer.getInstance().getPluginManager().dispatchCommand(ProxyServer.getInstance().getConsole(),event.getMessage());
 
-                case "REQUEST":;
-
-                case "ACTION":;
+                case "ACTION": Actions(event);
             }
         }catch (Exception e){
             DebugMessage.sendWarring("Error on socket msg "+e.getMessage());
+        }
+    }
+
+    private void  Actions(MessagecomingEvent event){
+        JSONObject message = new JSONObject(event.getMessage());
+        //String[] msg = event.getMessage().toUpperCase().split(",");
+        switch (message.getString("TYPE")){
+            default: return;
+
+            case "SENDPLAYERTOSERVER": {
+                for (ProxiedPlayer player : ProxyServer.getInstance().getPlayers()) {
+                    if(player.getUniqueId().toString().equals(message.getString("PLAYER"))){
+                        player.connect(ProxyServer.getInstance().getServerInfo(message.getString("SERVER")));
+                        return;
+                    }
+                }
+
+            }
+
         }
     }
 }
