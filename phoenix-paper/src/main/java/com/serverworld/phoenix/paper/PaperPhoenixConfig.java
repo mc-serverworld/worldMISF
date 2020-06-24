@@ -27,6 +27,9 @@ public class PaperPhoenixConfig {
     public void loadDefConfig() {
         plugin.saveDefaultConfig();
         plugin.reloadConfig();
+        if(servetype().toUpperCase().equals("LOBBY"))
+            plugin.getConfig().set("serverinfo.servername","LOBBY");
+        else
         plugin.getConfig().set("serverinfo.servername", serversprefix() + worldtype().toUpperCase() + "_" + chunk_position_x() + "_" + chunk_position_z());
     }
     public int apiversion() { return plugin.getConfig().getInt("configinfo.api-version"); }
