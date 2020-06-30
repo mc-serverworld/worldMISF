@@ -40,7 +40,7 @@ public class Messagecoming implements Listener {
     public void onMessagecoming(MessagecomingEvent event) {
         if(!event.getChannel().equals("MISF_PHOENIX"))
             return;
-        if(!event.getReceiver().toLowerCase().equals("porxy"))
+        if(!event.getReceiver().toLowerCase().equals("proxy"))
             return;
         try{
             switch (event.getType().toUpperCase()){
