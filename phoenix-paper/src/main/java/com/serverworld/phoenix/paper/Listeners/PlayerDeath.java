@@ -55,7 +55,7 @@ public class PlayerDeath implements Listener {
                 messagecoder messagecoder = new messagecoder();
                 messagecoder.setSender(PaperPhoenix.config.servername());
                 messagecoder.setChannel("MISF_PHOENIX");
-                messagecoder.setReceiver("PORXY");
+                messagecoder.setReceiver("PROXY");
                 messagecoder.setType("ACTION");
                 JsonObject json = new JsonObject();
                 json.addProperty("TYPE","SENDPLAYERTOSERVER");
