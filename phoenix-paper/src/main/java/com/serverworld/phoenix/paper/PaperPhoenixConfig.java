@@ -20,7 +20,7 @@
 
 package com.serverworld.phoenix.paper;
 public class PaperPhoenixConfig {
-    private PaperPhoenix plugin;
+    private static PaperPhoenix plugin;
     public PaperPhoenixConfig(PaperPhoenix i){
         plugin = i;
     }
@@ -30,7 +30,7 @@ public class PaperPhoenixConfig {
         if(servetype().toUpperCase().equals("LOBBY"))
             plugin.getConfig().set("serverinfo.servername","LOBBY");
         else
-        plugin.getConfig().set("serverinfo.servername", serversprefix() + worldtype().toUpperCase() + "_" + chunk_position_x() + "_" + chunk_position_z());
+            plugin.getConfig().set("serverinfo.servername", serversprefix() + worldtype().toUpperCase() + "_" + chunk_position_x() + "_" + chunk_position_z());
         plugin.saveConfig();
         plugin.reloadConfig();
     }
