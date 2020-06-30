@@ -20,8 +20,8 @@
 
 package com.serverworld.phoenix.bungee.Listeners;
 
-import com.google.gson.Gson;
 import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import com.serverworld.phoenix.bungee.util.DebugMessage;
 import com.serverworld.worldSocket.bungeecord.events.MessagecomingEvent;
 import net.md_5.bungee.api.ProxyServer;
@@ -56,7 +56,7 @@ public class Messagecoming implements Listener {
     }
 
     private void  Actions(MessagecomingEvent event){
-        JsonObject message = new Gson().fromJson(event.getMessage(),JsonObject.class);
+        JsonObject message = JsonParser.parseString(event.getMessage()).getAsJsonObject();
         //String[] msg = event.getMessage().toUpperCase().split(",");
         switch (message.get("TYPE").getAsString().toUpperCase()){
             default: return;
