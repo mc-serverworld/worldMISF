@@ -20,7 +20,7 @@
 
 package com.serverworld.phoenix.paper;
 public class PaperPhoenixConfig {
-    private static PaperPhoenix plugin;
+    private PaperPhoenix plugin;
     public PaperPhoenixConfig(PaperPhoenix i){
         plugin = i;
     }

@@ -36,9 +36,8 @@ public class PaperPhoenix extends JavaPlugin{
 
     @Override
     public void onLoad() {
-        PaperPhoenixConfig configp = new PaperPhoenixConfig(this);
-        configp.loadDefConfig();
-        config = configp;
+        PaperPhoenixConfig config = new PaperPhoenixConfig(this);
+        config.loadDefConfig();
         paperPhoenix = this;
     }
 
