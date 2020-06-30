@@ -61,7 +61,7 @@ public class PlayerDeath implements Listener {
                 json.addProperty("TYPE","SENDPLAYERTOSERVER");
                 json.addProperty("PLAYER",event.getEntity().getUniqueId().toString());
                 json.addProperty("SERVER",PaperPhoenix.config.serversprefix() + "OVERWORLD_0_0");
-                messagecoder.setMessage(json.getAsString());
+                messagecoder.setMessage(json.toString());
                 messager.sendmessage(messagecoder.createmessage());
                 }, 20L);
 
