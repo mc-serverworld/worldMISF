@@ -41,11 +41,11 @@ jobs:
       with:
         name: worldMISF
         path: staging
-    - name: fwfawfwafaw
+    - name: Development Builds
       uses: "marvinpinto/action-automatic-releases@v1.0.0"
       with:
         repo_token: "${{ secrets.GITHUB_TOKEN }}"
-        automatic_release_tag: "Development Builds"
+        automatic_release_tag: "DEV-BUILD"
         prerelease: true
         title: "${{ steps.time.outputs.time }}"
         files: staging/*.jar
