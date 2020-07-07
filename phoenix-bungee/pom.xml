@@ -27,12 +27,12 @@
     <parent>
         <artifactId>worldMISF</artifactId>
         <groupId>com.mc-serverworld</groupId>
-        <version>indev-7</version>
+        <version>indev-8</version>
     </parent>
 
     <artifactId>phoenix-bungee</artifactId>
     <name>worldMISF-phoenix-bungee</name>
-    <version>indev-7</version>
+    <version>indev-8</version>
     <packaging>jar</packaging>
     <url>https://www.mc-serverworld.com</url>
     <inceptionYear>2019</inceptionYear>
@@ -64,7 +64,7 @@
 
 
     <build>
-        <finalName>${project.name}-${project.parent.version}-BUILD-${buildNumber}</finalName>
+        <finalName>${project.name}-${project.parent.version}</finalName>
         <sourceDirectory>src/main/java</sourceDirectory>
         <resources>
             <resource>
@@ -87,7 +87,7 @@
                             <goal>copy-resources</goal>
                         </goals>
                         <configuration>
-                            <outputDirectory>${project.parent.basedir}/output/${project.name}-${project.parent.version}-BUILD-${buildNumber}.jar</outputDirectory>
+                            <outputDirectory>${project.parent.basedir}/output/${project.name}-${project.parent.version}.jar</outputDirectory>
                             <resources>
                                 <resource>
                                     <targetPath>.</targetPath>
@@ -108,7 +108,7 @@
                 <configuration>
 
                     <appendAssemblyId>false</appendAssemblyId>
-                    <finalName>${project.name}-${project.parent.version}-BUILD-${buildNumber}</finalName>
+                    <finalName>${project.name}-${project.parent.version}</finalName>
                     <archive>
                         <manifest>
                             <mainClass>com.tang.CSVUtils</mainClass>
@@ -184,7 +184,7 @@
                             <goal>shade</goal>
                         </goals>
                         <configuration>
-                            <outputFile>${project.parent.basedir}/output/${project.name}-${project.parent.version}-BUILD-${buildNumber}.jar</outputFile>
+                            <outputFile>${project.parent.basedir}/output/${project.name}-${project.parent.version}.jar</outputFile>
                             <filters>
                                 <filter>
                                     <artifact>com.mc-serverworld:worldSocket:*</artifact>
