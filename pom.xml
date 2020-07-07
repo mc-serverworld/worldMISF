@@ -59,7 +59,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <github.global.server>github</github.global.server>
         <maven-site-plugin.skip>false</maven-site-plugin.skip>
-        <maven.deploy.skip>false</maven.deploy.skip>
+        <maven.deploy.skip>true</maven.deploy.skip>
     </properties>
 
     <scm>
@@ -148,8 +148,6 @@
                     <items>
                         <item>buildNumber</item>
                     </items>
-                    <outputDirectory>${user.dir}/</outputDirectory>
-                    <scmDirectory>${user.dir}/</scmDirectory>
                     <doCheck>true</doCheck>
                     <doUpdate>true</doUpdate>
                     <revisionOnScmFailure>unknownbuild</revisionOnScmFailure>
