@@ -18,7 +18,7 @@
  *  
  */
 
-package com.serverworld.worldUserProfile.paper;
+package com.serverworld.worlduserprofile.paper;
 
 import com.serverworld.worldUserProfile.paper.utils.DebugMessage;
 import net.md_5.bungee.api.ChatColor;

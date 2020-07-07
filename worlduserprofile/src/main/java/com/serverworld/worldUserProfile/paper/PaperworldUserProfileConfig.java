@@ -18,7 +18,7 @@
  *  
  */
 
-package com.serverworld.worldUserProfile.paper;
+package com.serverworld.worlduserprofile.paper;
 
 public class PaperworldUserProfileConfig {
     private PaperworldUserProfile plugin;

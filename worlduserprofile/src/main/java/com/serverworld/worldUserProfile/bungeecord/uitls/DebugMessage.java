@@ -18,9 +18,9 @@
  *  
  */
 
-package com.serverworld.worldUserProfile.bungeecord.uitls;
+package com.serverworld.worlduserprofile.bungeecord.uitls;
 
-import com.serverworld.worldUserProfile.bungeecord.BungeeworldUserProfile;
+import com.serverworld.worlduserprofile.bungeecord.BungeeworldUserProfile;
 
 public class DebugMessage {
 

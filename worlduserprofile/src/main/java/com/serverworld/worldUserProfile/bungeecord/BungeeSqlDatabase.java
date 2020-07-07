@@ -18,9 +18,9 @@
  *  
  */
 
-package com.serverworld.worldUserProfile.bungeecord;
+package com.serverworld.worlduserprofile.bungeecord;
 
-import com.serverworld.worldUserProfile.bungeecord.uitls.DebugMessage;
+import com.serverworld.worlduserprofile.bungeecord.uitls.DebugMessage;
 import net.md_5.bungee.api.ChatColor;
 
 import java.sql.Connection;

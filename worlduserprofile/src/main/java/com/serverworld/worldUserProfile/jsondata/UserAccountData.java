@@ -18,7 +18,7 @@
  *  
  */
 
-package com.serverworld.worldUserProfile.jsondata;
+package com.serverworld.worlduserprofile.jsondata;
 
 public class UserAccountData {
     private String playername;

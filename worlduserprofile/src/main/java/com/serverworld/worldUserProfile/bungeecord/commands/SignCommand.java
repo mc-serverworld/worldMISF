@@ -18,13 +18,13 @@
  *  
  */
 
-package com.serverworld.worldUserProfile.bungeecord.commands;
+package com.serverworld.worlduserprofile.bungeecord.commands;
 
-import com.serverworld.worldUserProfile.bungeecord.BungeeworldUserProfile;
-import com.serverworld.worldUserProfile.jsondata.UserAccountData;
-import com.serverworld.worldUserProfile.bungeecord.uitls.DebugMessage;
-import com.serverworld.worldUserProfile.utils.IPAPI;
-import com.serverworld.worldUserProfile.bungeecord.uitls.UserAccountDataMySQL;
+import com.serverworld.worlduserprofile.bungeecord.BungeeworldUserProfile;
+import com.serverworld.worlduserprofile.jsondata.UserAccountData;
+import com.serverworld.worlduserprofile.bungeecord.uitls.DebugMessage;
+import com.serverworld.worlduserprofile.utils.IPAPI;
+import com.serverworld.worlduserprofile.bungeecord.uitls.UserAccountDataMySQL;
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.CommandSender;
 import net.md_5.bungee.api.chat.ClickEvent;

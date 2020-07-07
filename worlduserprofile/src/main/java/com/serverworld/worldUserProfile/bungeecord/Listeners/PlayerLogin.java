@@ -18,15 +18,15 @@
  *  
  */
 
-package com.serverworld.worldUserProfile.bungeecord.Listeners;
+package com.serverworld.worlduserprofile.bungeecord.Listeners;
 
 import com.serverworld.worldIdiot.api.BanQueryAPI;
-import com.serverworld.worldUserProfile.bungeecord.BungeeworldUserProfile;
-import com.serverworld.worldUserProfile.bungeecord.uitls.DebugMessage;
-import com.serverworld.worldUserProfile.bungeecord.uitls.UserAccountDataMySQL;
-import com.serverworld.worldUserProfile.bungeecord.uitls.UserPhoenixPlayerDataMySQL;
-import com.serverworld.worldUserProfile.jsondata.UserAccountData;
-import com.serverworld.worldUserProfile.utils.IPAPI;
+import com.serverworld.worlduserprofile.bungeecord.BungeeworldUserProfile;
+import com.serverworld.worlduserprofile.bungeecord.uitls.DebugMessage;
+import com.serverworld.worlduserprofile.bungeecord.uitls.UserAccountDataMySQL;
+import com.serverworld.worlduserprofile.bungeecord.uitls.UserPhoenixPlayerDataMySQL;
+import com.serverworld.worlduserprofile.jsondata.UserAccountData;
+import com.serverworld.worlduserprofile.utils.IPAPI;
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.chat.ComponentBuilder;

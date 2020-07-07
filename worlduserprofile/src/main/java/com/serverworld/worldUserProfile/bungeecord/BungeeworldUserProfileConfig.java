@@ -18,7 +18,7 @@
  *  
  */
 
-package com.serverworld.worldUserProfile.bungeecord;
+package com.serverworld.worlduserprofile.bungeecord;
 
 public class BungeeworldUserProfileConfig {
     private BungeeworldUserProfile plugin;

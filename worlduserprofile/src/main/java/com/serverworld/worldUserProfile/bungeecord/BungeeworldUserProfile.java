@@ -18,10 +18,10 @@
  *  
  */
 
-package com.serverworld.worldUserProfile.bungeecord;
+package com.serverworld.worlduserprofile.bungeecord;
 
-import com.serverworld.worldUserProfile.bungeecord.Listeners.PlayerLogin;
-import com.serverworld.worldUserProfile.bungeecord.commands.SignCommand;
+import com.serverworld.worlduserprofile.bungeecord.Listeners.PlayerLogin;
+import com.serverworld.worlduserprofile.bungeecord.commands.SignCommand;
 import net.md_5.bungee.api.plugin.Plugin;
 import net.md_5.bungee.config.Configuration;
 import net.md_5.bungee.config.ConfigurationProvider;
