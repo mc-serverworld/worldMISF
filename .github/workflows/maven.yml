@@ -49,3 +49,10 @@ jobs:
         prerelease: true
         title: "${{ steps.time.outputs.time }}"
         files: staging/*.jar
+    - name: 'Create settings.xml'
+      uses: whelk-io/maven-settings-xml-action@v4
+      with:
+        servers: '[{"id": "github", "username": "${{ secrets.GITHUB_USERNAME }}", "password": "${{ secrets.GITHUB_PASSWORD }}"}]'
+    - name: Github package
+      run: mvn install
+      
