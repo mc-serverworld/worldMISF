@@ -63,7 +63,7 @@
     </licenses>
 
     <build>
-        <finalName>${project.name}-${project.parent.version}-BUILD-${buildNumber}</finalName>
+        <finalName>${project.name}-${project.parent.version}</finalName>
         <sourceDirectory>src/main/java</sourceDirectory>
         <resources>
             <resource>
@@ -81,7 +81,7 @@
                 <artifactId>maven-assembly-plugin</artifactId>
                 <configuration>
                     <appendAssemblyId>false</appendAssemblyId>
-                    <finalName>${project.name}-${project.parent.version}-BUILD-${buildNumber}</finalName>
+                    <finalName>${project.name}-${project.parent.version}</finalName>
                     <archive>
                         <manifest>
                             <mainClass>com.tang.CSVUtils</mainClass>
@@ -131,7 +131,7 @@
                             <goal>shade</goal>
                         </goals>
                         <configuration>
-                            <outputFile>${project.parent.basedir}/output/${project.name}-${project.parent.version}-BUILD-${buildNumber}.jar</outputFile>
+                            <outputFile>${project.parent.basedir}/output/${project.name}-${project.parent.version}.jar</outputFile>
                             <filters>
                                 <filter>
                                     <artifact>com.mc-serverworld:worldSocket:*</artifact>
