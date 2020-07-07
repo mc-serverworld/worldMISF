@@ -30,14 +30,12 @@ jobs:
       with:
         timeZone: 8
         format: 'YYYYMMDDHHmmss'
-    - name: 'Create settings.xml'
-      uses: whelk-io/maven-settings-xml-action@v4
-      with:
-        servers: '[{"id": "github", "username": "github", "password": "${GITHUB_TOKEN}}"]'
     - name: Deploy Github Package
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
+          mkdir -p ~/.m2
+          echo "<settings><servers><server><id>gh</id><username>$(echo "$GITHUB_REPOSITORY" | awk -F / '{print $1}')</username><password>\${env.GITHUB_TOKEN}</password></server></servers></settings>" > ~/.m2/settings.xml
           REPO="gh::default::https://maven.pkg.github.com/${GITHUB_REPOSITORY}"
           mvn versions:set -DnewVersion=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)-build-${{ github.run_number }} -DprocessAllModules -DgenerateBackupPoms=false versions:commit
           mvn deploy -DaltReleaseDeploymentRepository="${REPO}" -DaltSnapshotDeploymentRepository="${REPO}"
@@ -55,8 +53,8 @@ jobs:
       uses: "marvinpinto/action-automatic-releases@v1.0.0"
       with:
         repo_token: "${{ secrets.GITHUB_TOKEN }}"
-        automatic_release_tag: "DEV-BUILD"
+        automatic_release_tag: $(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
         prerelease: true
-        title: "${{ steps.time.outputs.time }}"
+        title: $(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
         files: staging/*.jar
 
