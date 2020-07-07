@@ -18,9 +18,9 @@
  *  
  */
 
-package com.serverworld.worldUserProfile.paper.utils;
+package com.serverworld.worlduserprofile.paper.utils;
 
-import com.serverworld.worldUserProfile.paper.PaperworldUserProfile;
+import com.serverworld.worlduserprofile.paper.PaperworldUserProfile;
 
 public class DebugMessage {
 

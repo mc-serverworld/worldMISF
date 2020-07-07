@@ -18,11 +18,11 @@
  *  
  */
 
-package com.serverworld.worldUserProfile.paper.utils;
+package com.serverworld.worlduserprofile.paper.utils;
 
 import com.google.gson.Gson;
-import com.serverworld.worldUserProfile.jsondata.UserPhoenixPlayerData;
-import com.serverworld.worldUserProfile.paper.PaperworldUserProfile;
+import com.serverworld.worlduserprofile.jsondata.UserPhoenixPlayerData;
+import com.serverworld.worlduserprofile.paper.PaperworldUserProfile;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
