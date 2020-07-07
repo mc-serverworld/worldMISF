@@ -37,6 +37,13 @@
     <url>https://www.mc-serverworld.com</url>
     <inceptionYear>2019</inceptionYear>
 
+    <scm>
+    <connection>scm:svn:http://127.0.0.1/dummy</connection>
+    <developerConnection>scm:svn:https://127.0.0.1/dummy</developerConnection>
+    <tag>HEAD</tag>
+    <url>http://127.0.0.1/dummy</url>
+    </scm>
+
     <properties>
         <maven-site-plugin.skip>true</maven-site-plugin.skip>
     </properties>
