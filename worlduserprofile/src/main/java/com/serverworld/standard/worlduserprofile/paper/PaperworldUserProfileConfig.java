@@ -18,35 +18,36 @@
  *  
  */
 
-package com.serverworld.worlduserprofile.bungeecord;
+package com.serverworld.standard.worlduserprofile.paper;
 
-public class BungeeworldUserProfileConfig {
-    private BungeeworldUserProfile plugin;
-
-    public BungeeworldUserProfileConfig(BungeeworldUserProfile i){
+public class PaperworldUserProfileConfig {
+    private PaperworldUserProfile plugin;
+    public PaperworldUserProfileConfig(PaperworldUserProfile i){
         plugin = i;
     }
-    public void loadDefConfig(){ }
-
-    public int apiversion() { return plugin.configuration.getInt("configinfo.api-version"); }
-    public boolean debug() { return plugin.configuration.getBoolean("configinfo.debug"); }
+    public void loadDefConfig() {
+        plugin.saveDefaultConfig();
+        plugin.reloadConfig();
+    }
+    public int apiversion() { return plugin.getConfig().getInt("configinfo.api-version"); }
+    public boolean debug() { return plugin.getConfig().getBoolean("configinfo.debug"); }
 
     public String type() {
-        return plugin.configuration.getString("database.type");
+        return plugin.getConfig().getString("database.type");
     }
     public String host() {
-        return plugin.configuration.getString("database.host");
+        return plugin.getConfig().getString("database.host");
     }
     public int port() {
-        return plugin.configuration.getInt("database.port");
+        return plugin.getConfig().getInt("database.port");
     }
     public String database() {
-        return plugin.configuration.getString("database.database");
+        return plugin.getConfig().getString("database.database");
     }
     public String username() {
-        return plugin.configuration.getString("database.username");
+        return plugin.getConfig().getString("database.username");
     }
     public String password() {
-        return plugin.configuration.getString("database.password");
+        return plugin.getConfig().getString("database.password");
     }
 }

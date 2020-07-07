@@ -18,14 +18,7 @@
  *  
  */
 
-package com.serverworld.worlduserprofile.jsondata;
+package com.serverworld.standard.worlduserprofile.jsondata;
 
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.Setter;
-
-public class ServerPhoenixWorldSettingData {
-
-    @Getter(AccessLevel.PUBLIC) @Setter(AccessLevel.PUBLIC) private String Server_Residence_Max_Blocks;
-    @Getter(AccessLevel.PUBLIC) @Setter(AccessLevel.PUBLIC) private String Server_Residence_Max_Amount;
+public class gsonRWer {
 }

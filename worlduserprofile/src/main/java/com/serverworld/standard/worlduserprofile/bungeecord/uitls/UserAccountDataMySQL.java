@@ -18,11 +18,11 @@
  *  
  */
 
-package com.serverworld.worlduserprofile.bungeecord.uitls;
+package com.serverworld.standard.worlduserprofile.bungeecord.uitls;
 
 import com.google.gson.Gson;
-import com.serverworld.worlduserprofile.bungeecord.BungeeworldUserProfile;
-import com.serverworld.worlduserprofile.jsondata.UserAccountData;
+import com.serverworld.standard.worlduserprofile.jsondata.UserAccountData;
+import com.serverworld.standard.worlduserprofile.bungeecord.BungeeworldUserProfile;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

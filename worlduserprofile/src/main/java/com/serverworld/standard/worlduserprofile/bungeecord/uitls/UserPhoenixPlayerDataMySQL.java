@@ -18,11 +18,11 @@
  *  
  */
 
-package com.serverworld.worlduserprofile.paper.utils;
+package com.serverworld.standard.worlduserprofile.bungeecord.uitls;
 
 import com.google.gson.Gson;
-import com.serverworld.worlduserprofile.jsondata.UserPhoenixPlayerData;
-import com.serverworld.worlduserprofile.paper.PaperworldUserProfile;
+import com.serverworld.standard.worlduserprofile.jsondata.UserPhoenixPlayerData;
+import com.serverworld.standard.worlduserprofile.bungeecord.BungeeworldUserProfile;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -36,7 +36,7 @@ public class UserPhoenixPlayerDataMySQL {
 
     public static boolean SetUp(String UUID){
         try {
-            Statement statement = PaperworldUserProfile.connection.createStatement();
+            Statement statement = BungeeworldUserProfile.connection.createStatement();
             ResultSet rs = statement.executeQuery("SELECT * FROM worlduserporfile_userphoenixplayerdata WHERE PlayerUUID = '" + UUID + "';");
             Boolean joinbefore = false;
             joinbefore = rs.next();
@@ -76,7 +76,7 @@ public class UserPhoenixPlayerDataMySQL {
 
     public static boolean Joinbefore(String UUID){
         try {
-            Statement statement = PaperworldUserProfile.connection.createStatement();
+            Statement statement = BungeeworldUserProfile.connection.createStatement();
             ResultSet rs = statement.executeQuery("SELECT * FROM worlduserporfile_userphoenixplayerdata WHERE PlayerUUID = '" + UUID + "';");
             Boolean joinbefore = false;
             joinbefore = rs.next();
@@ -89,7 +89,7 @@ public class UserPhoenixPlayerDataMySQL {
 
     public static UserPhoenixPlayerData getDataClass(String UUID){
         try {
-            Statement statement = PaperworldUserProfile.connection.createStatement();
+            Statement statement = BungeeworldUserProfile.connection.createStatement();
             ResultSet rs = statement.executeQuery("SELECT * FROM worlduserporfile_userphoenixplayerdata WHERE PlayerUUID = '" + UUID + "';");
             rs.next();
             Gson gson= new Gson();
@@ -102,7 +102,7 @@ public class UserPhoenixPlayerDataMySQL {
 
     public static Boolean setDataClass(String UUID, UserPhoenixPlayerData userPhoenixPlayerData){
         try {
-            Statement statement = PaperworldUserProfile.connection.createStatement();
+            Statement statement = BungeeworldUserProfile.connection.createStatement();
             Gson gson = new Gson();
             String stg = gson.toJson(userPhoenixPlayerData,UserPhoenixPlayerData.class);
             statement.execute("UPDATE worlduserporfile_userphoenixplayerdata SET playerdata = '" + stg + "' WHERE PlayerUUID = '" + UUID + "'");
@@ -115,7 +115,7 @@ public class UserPhoenixPlayerDataMySQL {
 
     public static int getDataClassVersion(String UUID){
         try {
-            Statement statement = PaperworldUserProfile.connection.createStatement();
+            Statement statement = BungeeworldUserProfile.connection.createStatement();
             ResultSet rs = statement.executeQuery("SELECT * FROM worlduserporfile_userphoenixplayerdata WHERE PlayerUUID = '" + UUID + "';");
             rs.next();
             return rs.getInt("version");
@@ -127,7 +127,7 @@ public class UserPhoenixPlayerDataMySQL {
 
     public static Boolean setDataClassVersion(String UUID, int version){
         try {
-            Statement statement = PaperworldUserProfile.connection.createStatement();
+            Statement statement = BungeeworldUserProfile.connection.createStatement();
             statement.execute("UPDATE worlduserporfile_userphoenixplayerdata SET version = '" + version + "' WHERE PlayerUUID = " + UUID);
             return true;
         } catch (SQLException e) {

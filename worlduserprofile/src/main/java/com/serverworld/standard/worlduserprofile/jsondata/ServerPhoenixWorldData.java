@@ -18,7 +18,14 @@
  *  
  */
 
-package com.serverworld.worlduserprofile.jsondata;
+package com.serverworld.standard.worlduserprofile.jsondata;
 
-public class gsonRWer {
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.Setter;
+
+public class ServerPhoenixWorldData {
+    @Getter(AccessLevel.PUBLIC) @Setter(AccessLevel.PUBLIC) private String Server_Residence_Total_Size;
+    @Getter(AccessLevel.PUBLIC) @Setter(AccessLevel.PUBLIC) private String Server_Residence_Total_Amount;
+
 }

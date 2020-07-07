@@ -18,7 +18,7 @@
  *  
  */
 
-package com.serverworld.worlduserprofile.utils;
+package com.serverworld.standard.worlduserprofile.utils;
 
 import org.json.JSONException;
 import org.json.JSONObject;

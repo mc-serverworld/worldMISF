@@ -18,7 +18,7 @@
  *  
  */
 
-package com.serverworld.worlduserprofile.jsondata;
+package com.serverworld.standard.worlduserprofile.jsondata;
 
 import lombok.AccessLevel;
 import lombok.Getter;

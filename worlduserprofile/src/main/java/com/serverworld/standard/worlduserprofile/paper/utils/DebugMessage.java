@@ -18,26 +18,26 @@
  *  
  */
 
-package com.serverworld.worlduserprofile.bungeecord.uitls;
+package com.serverworld.standard.worlduserprofile.paper.utils;
 
-import com.serverworld.worlduserprofile.bungeecord.BungeeworldUserProfile;
+import com.serverworld.standard.worlduserprofile.paper.PaperworldUserProfile;
 
 public class DebugMessage {
 
     public static void sendInfo(String msg){
-        BungeeworldUserProfile.getInstance().getLogger().info(msg);
+        PaperworldUserProfile.getInstance().getLogger().info(msg);
     }
     public static void sendWarring(String msg){
-        BungeeworldUserProfile.getInstance().getLogger().warning(msg);
+        PaperworldUserProfile.getInstance().getLogger().warning(msg);
     }
     public static void sendInfoIfDebug(String msg){
-        if(BungeeworldUserProfile.config.debug())
-            BungeeworldUserProfile.getInstance().getLogger().info(msg);
+        if(PaperworldUserProfile.config.debug())
+            PaperworldUserProfile.getInstance().getLogger().info(msg);
 
     }
     public static void sendWarringIfDebug(String msg){
-        if(BungeeworldUserProfile.config.debug())
-            BungeeworldUserProfile.getInstance().getLogger().warning(msg);
+        if(PaperworldUserProfile.config.debug())
+            PaperworldUserProfile.getInstance().getLogger().warning(msg);
 
     }
 }

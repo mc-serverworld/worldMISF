@@ -18,9 +18,9 @@
  *  
  */
 
-package com.serverworld.worlduserprofile.bungeecord.commands;
+package com.serverworld.standard.worlduserprofile.bungeecord.commands;
 
-import com.serverworld.worlduserprofile.bungeecord.uitls.UserAccountDataMySQL;
+import com.serverworld.standard.worlduserprofile.bungeecord.uitls.UserAccountDataMySQL;
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.CommandSender;
 import net.md_5.bungee.api.connection.ProxiedPlayer;

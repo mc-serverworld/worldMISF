@@ -18,7 +18,7 @@
  *  
  */
 
-package com.serverworld.worlduserprofile.paper;
+package com.serverworld.standard.worlduserprofile.paper;
 
 import org.bukkit.plugin.java.JavaPlugin;
 
