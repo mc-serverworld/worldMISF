@@ -33,7 +33,7 @@ jobs:
     - name: 'Create settings.xml'
       uses: whelk-io/maven-settings-xml-action@v4
       with:
-        servers: '[{"id": "github", "username": "github", "password": "\${env.GITHUB_TOKEN}"}]'
+        servers: '[{"id": "github", "username": "github", "password": "${GITHUB_TOKEN}}"]'
     - name: Deploy Github Package
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
