@@ -62,13 +62,6 @@
         <maven.deploy.skip>false</maven.deploy.skip>
     </properties>
 
-    <scm>
-        <connection>scm:svn:http://127.0.0.1/dummy</connection>
-        <developerConnection>scm:svn:https://127.0.0.1/dummy</developerConnection>
-        <tag>HEAD</tag>
-        <url>http://127.0.0.1/dummy</url>
-    </scm>
-
     <distributionManagement>
         <repository>
             <id>internal.repo</id>
@@ -148,6 +141,8 @@
                     <items>
                         <item>buildNumber</item>
                     </items>
+                    <outputDirectory>${user.dir}/</outputDirectory>
+                    <scmDirectory>${user.dir}/</scmDirectory>
                     <doCheck>true</doCheck>
                     <doUpdate>true</doUpdate>
                     <revisionOnScmFailure>unknownbuild</revisionOnScmFailure>
