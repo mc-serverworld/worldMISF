@@ -20,9 +20,9 @@
 
 package com.serverworld.worlduserdata.paper;
 
-public class PaperworldUserProfileConfig {
-    private PaperworldUserProfile plugin;
-    public PaperworldUserProfileConfig(PaperworldUserProfile i){
+public class PaperworldUserDataConfig {
+    private PaperworldUserData plugin;
+    public PaperworldUserDataConfig(PaperworldUserData i){
         plugin = i;
     }
     public void loadDefConfig() {

@@ -24,16 +24,16 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import java.sql.Connection;
 
-public class PaperworldUserProfile extends JavaPlugin {
-    private static PaperworldUserProfile paperworldUserProfile;
+public class PaperworldUserData extends JavaPlugin {
+    private static PaperworldUserData paperworldUserData;
     public static Connection connection;
-    public static PaperworldUserProfileConfig config;
+    public static PaperworldUserDataConfig config;
 
     @Override
     public void onLoad() {
-        config = new PaperworldUserProfileConfig(this);
+        config = new PaperworldUserDataConfig(this);
         config.loadDefConfig();
-        paperworldUserProfile = this;
+        paperworldUserData = this;
         setSQL();
     }
 
@@ -48,7 +48,7 @@ public class PaperworldUserProfile extends JavaPlugin {
         PaperSQLDatabase paperSQLDatabase = new PaperSQLDatabase(this);
     }
 
-    public static PaperworldUserProfile getInstance(){
-        return paperworldUserProfile;
+    public static PaperworldUserData getInstance(){
+        return paperworldUserData;
     }
 }

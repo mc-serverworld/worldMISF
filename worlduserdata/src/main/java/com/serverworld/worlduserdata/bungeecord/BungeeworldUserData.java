@@ -33,19 +33,19 @@ import java.io.InputStream;
 import java.nio.file.Files;
 import java.sql.Connection;
 
-public class BungeeworldUserProfile extends Plugin {
+public class BungeeworldUserData extends Plugin {
 
     private File file;
-    public static BungeeworldUserProfileConfig config;
-    private BungeeSqlDatabase database;
+    public static BungeeworldUserDataConfig config;
+    private BungeeSQLDatabase database;
     public static Configuration configuration;
     public static Connection connection;
-    private static BungeeworldUserProfile bungeeworldUserProfile;
+    private static BungeeworldUserData bungeeworldUserData;
     @Override
     public void onEnable() {
         setupconfig();
-        bungeeworldUserProfile = this;
-        database = new BungeeSqlDatabase(this);
+        bungeeworldUserData = this;
+        database = new BungeeSQLDatabase(this);
         connection = database.connection;
         new PlayerLogin(this,this);
         getLogger().info("Yay! It loads!");
@@ -72,10 +72,10 @@ public class BungeeworldUserProfile extends Plugin {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        config = new BungeeworldUserProfileConfig(this);
+        config = new BungeeworldUserDataConfig(this);
     }
 
-    public static BungeeworldUserProfile getInstance(){ ;
-        return bungeeworldUserProfile;
+    public static BungeeworldUserData getInstance(){ ;
+        return bungeeworldUserData;
     }
 }

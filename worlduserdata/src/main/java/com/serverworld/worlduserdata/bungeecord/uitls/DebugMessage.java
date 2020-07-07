@@ -20,24 +20,24 @@
 
 package com.serverworld.worlduserdata.bungeecord.uitls;
 
-import com.serverworld.worlduserdata.bungeecord.BungeeworldUserProfile;
+import com.serverworld.worlduserdata.bungeecord.BungeeworldUserData;
 
 public class DebugMessage {
 
     public static void sendInfo(String msg){
-        BungeeworldUserProfile.getInstance().getLogger().info(msg);
+        BungeeworldUserData.getInstance().getLogger().info(msg);
     }
     public static void sendWarring(String msg){
-        BungeeworldUserProfile.getInstance().getLogger().warning(msg);
+        BungeeworldUserData.getInstance().getLogger().warning(msg);
     }
     public static void sendInfoIfDebug(String msg){
-        if(BungeeworldUserProfile.config.debug())
-            BungeeworldUserProfile.getInstance().getLogger().info(msg);
+        if(BungeeworldUserData.config.debug())
+            BungeeworldUserData.getInstance().getLogger().info(msg);
 
     }
     public static void sendWarringIfDebug(String msg){
-        if(BungeeworldUserProfile.config.debug())
-            BungeeworldUserProfile.getInstance().getLogger().warning(msg);
+        if(BungeeworldUserData.config.debug())
+            BungeeworldUserData.getInstance().getLogger().warning(msg);
 
     }
 }

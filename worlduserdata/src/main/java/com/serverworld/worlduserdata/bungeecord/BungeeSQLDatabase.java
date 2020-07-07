@@ -28,17 +28,17 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class BungeeSqlDatabase {
-    private BungeeworldUserProfile bungeeworldUserProfile;
-    private BungeeworldUserProfileConfig config;
+public class BungeeSQLDatabase {
+    private BungeeworldUserData bungeeworldUserData;
+    private BungeeworldUserDataConfig config;
 
     public static Connection connection;
     private String host, database, username, password;
     private int port;
 
-    public BungeeSqlDatabase(BungeeworldUserProfile bungeeworldUserProfile){
-        this.bungeeworldUserProfile = bungeeworldUserProfile;
-        config = bungeeworldUserProfile.config;
+    public BungeeSQLDatabase(BungeeworldUserData bungeeworldUserData){
+        this.bungeeworldUserData = bungeeworldUserData;
+        config = bungeeworldUserData.config;
         if(config.type().toLowerCase().equals("mysql")){
             DebugMessage.sendInfo("Using mysql");
             MYSQLlogin();
@@ -63,11 +63,11 @@ public class BungeeSqlDatabase {
             Statement statement = connection.createStatement();
             //create database
             //useraccountdata
-            statement.executeUpdate("CREATE TABLE IF NOT EXISTS `worlduserporfile_useraccountdata` (`PlayerUUID` char(36), `version` INT, `accountdata` TEXT, `signed` BOOLEAN, PRIMARY KEY(PlayerUUID))");
+            statement.executeUpdate("CREATE TABLE IF NOT EXISTS `worlduserdata_useraccountdata` (`PlayerUUID` char(36), `version` INT, `accountdata` TEXT, `signed` BOOLEAN, PRIMARY KEY(PlayerUUID))");
             //userphoenixdata
-            statement.executeUpdate("CREATE TABLE IF NOT EXISTS `worlduserporfile_userphoenixplayerdata` (`PlayerUUID` char(36), `version` INT, `playerdata` TEXT, PRIMARY KEY(PlayerUUID))");
+            statement.executeUpdate("CREATE TABLE IF NOT EXISTS `worlduserdata_userphoenixplayerdata` (`PlayerUUID` char(36), `version` INT, `playerdata` TEXT, PRIMARY KEY(PlayerUUID))");
             //notuse
-            //statement.executeUpdate("CREATE TABLE IF NOT EXISTS `worlduserporfile_userlastlocation` (`PlayerUUID` char(36), `Server` varchar(8), PRIMARY KEY(PlayerUUID),INDEX (Lang))");
+            //statement.executeUpdate("CREATE TABLE IF NOT EXISTS `worlduserdata_userlastlocation` (`PlayerUUID` char(36), `Server` varchar(8), PRIMARY KEY(PlayerUUID),INDEX (Lang))");
 
 
         }catch (Exception e){

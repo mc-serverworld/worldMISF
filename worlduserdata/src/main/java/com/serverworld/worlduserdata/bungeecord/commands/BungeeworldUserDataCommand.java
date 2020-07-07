@@ -31,8 +31,8 @@ import net.md_5.bungee.api.plugin.TabExecutor;
 import java.util.HashSet;
 import java.util.Set;
 
-public class BungeeworldUserProfileCommand extends Command implements TabExecutor {
-    public BungeeworldUserProfileCommand(Plugin plugin){
+public class BungeeworldUserDataCommand extends Command implements TabExecutor {
+    public BungeeworldUserDataCommand(Plugin plugin){
         super("sign");
     }
 

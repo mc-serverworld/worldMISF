@@ -24,7 +24,7 @@ import com.serverworld.worlduserdata.bungeecord.uitls.DebugMessage;
 import com.serverworld.worlduserdata.bungeecord.uitls.UserAccountDataMySQL;
 import com.serverworld.worlduserdata.jsondata.UserAccountData;
 import com.serverworld.worlduserdata.utils.IPAPI;
-import com.serverworld.worlduserdata.bungeecord.BungeeworldUserProfile;
+import com.serverworld.worlduserdata.bungeecord.BungeeworldUserData;
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.CommandSender;
 import net.md_5.bungee.api.chat.ClickEvent;
@@ -117,7 +117,7 @@ public class SignCommand extends Command {
                 agreement.addExtra(ButtonNOComponent);
                 commandSender.sendMessage(agreement);
                 players.add(commandSender);
-                BungeeworldUserProfile.getInstance().getProxy().getScheduler().schedule(BungeeworldUserProfile.getInstance(), new Runnable() {
+                BungeeworldUserData.getInstance().getProxy().getScheduler().schedule(BungeeworldUserData.getInstance(), new Runnable() {
                     public void run() {
                         players.remove(commandSender);
                     }

@@ -22,7 +22,7 @@ package com.serverworld.worlduserdata.bungeecord.uitls;
 
 import com.google.gson.Gson;
 import com.serverworld.worlduserdata.jsondata.UserPhoenixPlayerData;
-import com.serverworld.worlduserdata.bungeecord.BungeeworldUserProfile;
+import com.serverworld.worlduserdata.bungeecord.BungeeworldUserData;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -36,8 +36,8 @@ public class UserPhoenixPlayerDataMySQL {
 
     public static boolean SetUp(String UUID){
         try {
-            Statement statement = BungeeworldUserProfile.connection.createStatement();
-            ResultSet rs = statement.executeQuery("SELECT * FROM worlduserporfile_userphoenixplayerdata WHERE PlayerUUID = '" + UUID + "';");
+            Statement statement = BungeeworldUserData.connection.createStatement();
+            ResultSet rs = statement.executeQuery("SELECT * FROM worlduserdata_userphoenixplayerdata WHERE PlayerUUID = '" + UUID + "';");
             Boolean joinbefore = false;
             joinbefore = rs.next();
             if (joinbefore){return true;}
@@ -65,7 +65,7 @@ public class UserPhoenixPlayerDataMySQL {
                 userPhoenixPlayerData.setLogoutlocation_z(0d);
                 Gson gson = new Gson();
                 String stg = gson.toJson(userPhoenixPlayerData,UserPhoenixPlayerData.class);
-                statement.execute("INSERT INTO worlduserporfile_userphoenixplayerdata (PlayerUUID, version, playerdata) VALUES ('" + UUID + "', '1', '" + stg + "');");
+                statement.execute("INSERT INTO worlduserdata_userphoenixplayerdata (PlayerUUID, version, playerdata) VALUES ('" + UUID + "', '1', '" + stg + "');");
             }
             return true;
         } catch (SQLException e) {
@@ -76,8 +76,8 @@ public class UserPhoenixPlayerDataMySQL {
 
     public static boolean Joinbefore(String UUID){
         try {
-            Statement statement = BungeeworldUserProfile.connection.createStatement();
-            ResultSet rs = statement.executeQuery("SELECT * FROM worlduserporfile_userphoenixplayerdata WHERE PlayerUUID = '" + UUID + "';");
+            Statement statement = BungeeworldUserData.connection.createStatement();
+            ResultSet rs = statement.executeQuery("SELECT * FROM worlduserdata_userphoenixplayerdata WHERE PlayerUUID = '" + UUID + "';");
             Boolean joinbefore = false;
             joinbefore = rs.next();
             return joinbefore;
@@ -89,8 +89,8 @@ public class UserPhoenixPlayerDataMySQL {
 
     public static UserPhoenixPlayerData getDataClass(String UUID){
         try {
-            Statement statement = BungeeworldUserProfile.connection.createStatement();
-            ResultSet rs = statement.executeQuery("SELECT * FROM worlduserporfile_userphoenixplayerdata WHERE PlayerUUID = '" + UUID + "';");
+            Statement statement = BungeeworldUserData.connection.createStatement();
+            ResultSet rs = statement.executeQuery("SELECT * FROM worlduserdata_userphoenixplayerdata WHERE PlayerUUID = '" + UUID + "';");
             rs.next();
             Gson gson= new Gson();
             return gson.fromJson(rs.getString("playerdata"), UserPhoenixPlayerData.class);
@@ -102,10 +102,10 @@ public class UserPhoenixPlayerDataMySQL {
 
     public static Boolean setDataClass(String UUID, UserPhoenixPlayerData userPhoenixPlayerData){
         try {
-            Statement statement = BungeeworldUserProfile.connection.createStatement();
+            Statement statement = BungeeworldUserData.connection.createStatement();
             Gson gson = new Gson();
             String stg = gson.toJson(userPhoenixPlayerData,UserPhoenixPlayerData.class);
-            statement.execute("UPDATE worlduserporfile_userphoenixplayerdata SET playerdata = '" + stg + "' WHERE PlayerUUID = '" + UUID + "'");
+            statement.execute("UPDATE worlduserdata_userphoenixplayerdata SET playerdata = '" + stg + "' WHERE PlayerUUID = '" + UUID + "'");
             return true;
         } catch (SQLException e) {
             DebugMessage.sendWarring(e.toString());
@@ -115,8 +115,8 @@ public class UserPhoenixPlayerDataMySQL {
 
     public static int getDataClassVersion(String UUID){
         try {
-            Statement statement = BungeeworldUserProfile.connection.createStatement();
-            ResultSet rs = statement.executeQuery("SELECT * FROM worlduserporfile_userphoenixplayerdata WHERE PlayerUUID = '" + UUID + "';");
+            Statement statement = BungeeworldUserData.connection.createStatement();
+            ResultSet rs = statement.executeQuery("SELECT * FROM worlduserdata_userphoenixplayerdata WHERE PlayerUUID = '" + UUID + "';");
             rs.next();
             return rs.getInt("version");
         } catch (SQLException e) {
@@ -127,8 +127,8 @@ public class UserPhoenixPlayerDataMySQL {
 
     public static Boolean setDataClassVersion(String UUID, int version){
         try {
-            Statement statement = BungeeworldUserProfile.connection.createStatement();
-            statement.execute("UPDATE worlduserporfile_userphoenixplayerdata SET version = '" + version + "' WHERE PlayerUUID = " + UUID);
+            Statement statement = BungeeworldUserData.connection.createStatement();
+            statement.execute("UPDATE worlduserdata_userphoenixplayerdata SET version = '" + version + "' WHERE PlayerUUID = " + UUID);
             return true;
         } catch (SQLException e) {
             DebugMessage.sendWarring(e.toString());

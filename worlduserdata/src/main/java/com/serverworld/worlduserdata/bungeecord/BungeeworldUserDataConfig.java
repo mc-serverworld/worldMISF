@@ -20,10 +20,10 @@
 
 package com.serverworld.worlduserdata.bungeecord;
 
-public class BungeeworldUserProfileConfig {
-    private BungeeworldUserProfile plugin;
+public class BungeeworldUserDataConfig {
+    private BungeeworldUserData plugin;
 
-    public BungeeworldUserProfileConfig(BungeeworldUserProfile i){
+    public BungeeworldUserDataConfig(BungeeworldUserData i){
         plugin = i;
     }
     public void loadDefConfig(){ }

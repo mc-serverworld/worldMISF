@@ -26,7 +26,7 @@ import com.serverworld.worlduserdata.bungeecord.uitls.UserPhoenixPlayerDataMySQL
 import com.serverworld.worlduserdata.jsondata.UserAccountData;
 import com.serverworld.worlduserdata.utils.IPAPI;
 import com.serverworld.worldIdiot.api.BanQueryAPI;
-import com.serverworld.worlduserdata.bungeecord.BungeeworldUserProfile;
+import com.serverworld.worlduserdata.bungeecord.BungeeworldUserData;
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.chat.ComponentBuilder;
@@ -43,10 +43,10 @@ import java.util.concurrent.TimeUnit;
 
 
 public class PlayerLogin implements Listener {
-    private BungeeworldUserProfile worldUserProfile;
-    public PlayerLogin(Plugin plugin,BungeeworldUserProfile bungeeworldUserProfile) {
+    private BungeeworldUserData worldUserProfile;
+    public PlayerLogin(Plugin plugin, BungeeworldUserData bungeeworldUserData) {
         ProxyServer.getInstance().getPluginManager().registerListener(plugin, this);
-        this.worldUserProfile = bungeeworldUserProfile;
+        this.worldUserProfile = bungeeworldUserData;
     }
 
     @EventHandler
