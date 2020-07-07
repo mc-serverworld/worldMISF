@@ -36,6 +36,7 @@ jobs:
           mvn deploy -DaltReleaseDeploymentRepository="${REPO}" -DaltSnapshotDeploymentRepository="${REPO}"
           
 
+
     - name: Display structure of downloaded files
       run: ls -R
       working-directory: /home/runner/work/worldMISF/worldMISF
