@@ -7,7 +7,7 @@
       <root url="jar://$MAVEN_REPOSITORY$/com/mc-serverworld/worldIdiot/3.1.11-beta-1/worldIdiot-3.1.11-beta-1-javadoc.jar!/" />
     </JAVADOC>
     <SOURCES>
-      <root url="jar://$MAVEN_REPOSITORY$/com/mc-serverworld/worldidiot/3.1.11-beta-1/worldIdiot-3.1.11-beta-1-sources.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/com/mc-serverworld/worldIdiot/3.1.11-beta-1/worldIdiot-3.1.11-beta-1-sources.jar!/" />
     </SOURCES>
   </library>
 </component>
