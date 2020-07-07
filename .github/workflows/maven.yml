@@ -32,7 +32,7 @@ jobs:
           mkdir -p ~/.m2
           echo "<settings><servers><server><id>gh</id><username>$(echo "$GITHUB_REPOSITORY" | awk -F / '{print $1}')</username><password>\${env.GITHUB_TOKEN}</password></server></servers></settings>" > ~/.m2/settings.xml
           REPO="gh::default::https://maven.pkg.github.com/${GITHUB_REPOSITORY}"
-          mvn versions:set -DnewVersion=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)-build-$(mvn help:evaluate -Dexpression=buildNumber -q -DforceStdout) versions:commit
+          mvn versions:set build-helper:parse-version -DnewVersion=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)-build-\${parsedVersion.buildNumber}  versions:commit
           mvn deploy -DaltReleaseDeploymentRepository="${REPO}" -DaltSnapshotDeploymentRepository="${REPO}"
     - name: Display structure of downloaded files
       run: ls -R
