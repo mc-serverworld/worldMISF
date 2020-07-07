@@ -24,7 +24,12 @@ jobs:
         path: ~/.m2
         key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
         restore-keys: ${{ runner.os }}-m2
-        
+    - name: Get Time
+      id: time
+      uses: nanzm/get-time-action@v1.0
+      with:
+        timeZone: 8
+        format: 'YYYYMMDDHHmmss'
     - name: Deploy Github Package
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -32,18 +37,13 @@ jobs:
           mkdir -p ~/.m2
           echo "<settings><servers><server><id>gh</id><username>$(echo "$GITHUB_REPOSITORY" | awk -F / '{print $1}')</username><password>\${env.GITHUB_TOKEN}</password></server></servers></settings>" > ~/.m2/settings.xml
           REPO="gh::default::https://maven.pkg.github.com/${GITHUB_REPOSITORY}"
-          mvn versions:set -DnewVersion=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)-build-$(mvn help:evaluate -Dexpression=buildnumber -q -DforceStdout)  versions:commit
+          mvn versions:set -DnewVersion=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)-build-${{ steps.time.outputs.time }} versions:commit
           mvn deploy -DaltReleaseDeploymentRepository="${REPO}" -DaltSnapshotDeploymentRepository="${REPO}"
     - name: Display structure of downloaded files
       run: ls -R
       working-directory: /home/runner/work/worldMISF/worldMISF
     - run: mkdir staging && cp output/*.jar staging
-    - name: Get Time
-      id: time
-      uses: nanzm/get-time-action@v1.0
-      with:
-        timeZone: 8
-        format: 'YYYY-MM-DD-HH-mm'
+
     - name: worldMISF jars
       uses: actions/upload-artifact@v1
       with:
