@@ -2,7 +2,7 @@
   <artifact type="jar" name="worldUserProfile:jar">
     <output-path>$PROJECT_DIR$/artifacts</output-path>
     <root id="archive" name="worldUserProfile.jar">
-      <element id="module-output" name="worldUserProfile" />
+      <element id="module-output" name="standard-worldUserProfile" />
       <element id="directory" name="libs">
         <element id="extracted-dir" path="$MAVEN_REPOSITORY$/com/mc-serverworld/worldIdiot/3.1.10-alpha-2/worldIdiot-3.1.10-alpha-2.jar" path-in-jar="/" />
         <element id="extracted-dir" path="$MAVEN_REPOSITORY$/com/google/guava/guava/21.0/guava-21.0.jar" path-in-jar="/" />

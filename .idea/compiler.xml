@@ -10,18 +10,18 @@
         <outputRelativeToContentRoot value="true" />
         <module name="phoenix-bungee" />
         <module name="phoenix-paper" />
-        <module name="worldUserProfile" />
+        <module name="standard-worldUserProfile" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="phoenix-bungee" target="1.8" />
       <module name="phoenix-paper" target="1.8" />
+      <module name="standard-worldUserProfile" target="1.8" />
       <module name="untitled" target="1.8" />
       <module name="utils" target="1.5" />
       <module name="worldMISF" target="1.8" />
       <module name="worldProfile" target="1.8" />
       <module name="worldRetard" target="1.8" />
-      <module name="worldUserProfile" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

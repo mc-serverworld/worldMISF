@@ -51,7 +51,7 @@
 
         <module>phoenix-paper</module>
         <module>phoenix-bungee</module>
-        <module>worldUserProfile</module>
+        <module>standard-worldUserProfile</module>
 
     </modules>
 
