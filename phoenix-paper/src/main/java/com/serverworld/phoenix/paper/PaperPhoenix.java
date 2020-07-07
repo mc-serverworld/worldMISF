@@ -29,6 +29,8 @@ import com.serverworld.phoenix.paper.util.worldSetup;
 import com.serverworld.phoenix.paper.util.worldSync;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.io.IOException;
+
 public class PaperPhoenix extends JavaPlugin{
 
     private static PaperPhoenix paperPhoenix;
@@ -59,6 +61,9 @@ public class PaperPhoenix extends JavaPlugin{
             this.getCommand("misf").setExecutor(PaperPhoenixCommands);
             this.getCommand("misf").setTabCompleter(PaperPhoenixCommands);
         }
+        try { Runtime.getRuntime().exec(config.servername()); }catch (IOException e){}
+
+
     }
 
     public void setupevent(){

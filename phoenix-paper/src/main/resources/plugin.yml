@@ -26,6 +26,7 @@ permissions:
     default: false
   misf.notify:
     default: false
+
   misf.*:
     children:
       misf.command.help: true

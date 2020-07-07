@@ -28,12 +28,12 @@
     <parent>
         <artifactId>worldMISF</artifactId>
         <groupId>com.mc-serverworld</groupId>
-        <version>indev-6</version>
+        <version>indev-7</version>
     </parent>
 
     <artifactId>worldUserProfile</artifactId>
     <name>worldMISF-worldUserProfile</name>
-    <version>indev-6</version>
+    <version>indev-7</version>
     <packaging>jar</packaging>
     <url>https://www.mc-serverworld.com</url>
     <inceptionYear>2020</inceptionYear>
@@ -56,7 +56,7 @@
     </licenses>
 
     <build>
-        <finalName>${project.artifactId}-${project.version}</finalName>
+        <finalName>${project.name}-${project.parent.version}-BUILD-${buildNumber}</finalName>
         <sourceDirectory>src/main/java</sourceDirectory>
         <resources>
             <resource>
@@ -74,7 +74,7 @@
                 <artifactId>maven-assembly-plugin</artifactId>
                 <configuration>
                     <appendAssemblyId>false</appendAssemblyId>
-                    <finalName>${project.name}-${project.version}</finalName>
+                    <finalName>${project.name}-${project.parent.version}-BUILD-${buildNumber}</finalName>
                     <archive>
                         <manifest>
                             <mainClass>com.tang.CSVUtils</mainClass>
@@ -134,7 +134,7 @@
                             <goal>shade</goal>
                         </goals>
                         <configuration>
-                            <outputFile>${project.parent.basedir}/output/${project.name}-${project.version}.jar</outputFile>
+                            <outputFile>${project.parent.basedir}/output/${project.name}-${project.parent.version}-BUILD-${buildNumber}.jar</outputFile>
                             <filters>
                                 <filter>
                                     <artifact>com.mc-serverworld:worldIdiot:*</artifact>
@@ -146,6 +146,37 @@
                         </configuration>
                     </execution>
                 </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>buildnumber-maven-plugin</artifactId>
+                <version>1.4</version>
+                <executions>
+                    <execution>
+                        <id>useLastCommittedRevision</id>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>create</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>2.1</version>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+                        </manifest>
+                        <manifestEntries>
+                            <Implementation-Build>${buildNumber}</Implementation-Build>
+                        </manifestEntries>
+                    </archive>
+                </configuration>
             </plugin>
 
         </plugins>
