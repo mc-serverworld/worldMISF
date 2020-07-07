@@ -13,12 +13,6 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-    - name: Get Time
-      id: time
-      uses: nanzm/get-time-action@v1.0
-      with:
-        timeZone: 8
-        format: 'YYYY-MM-DD-HH-mm'
     - uses: actions/checkout@v2
     - name: Set up JDK 1.8
       uses: actions/setup-java@v1
@@ -36,6 +30,12 @@ jobs:
       run: ls -R
       working-directory: /home/runner/work/worldMISF/worldMISF
     - run: mkdir staging && cp output/*.jar staging
+    - name: Get Time
+      id: time
+      uses: nanzm/get-time-action@v1.0
+      with:
+        timeZone: 8
+        format: 'YYYY-MM-DD-HH-mm'
     - name: worldMISF jars
       uses: actions/upload-artifact@v1
       with:
