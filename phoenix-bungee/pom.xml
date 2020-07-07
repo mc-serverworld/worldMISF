@@ -46,6 +46,7 @@
 
     <properties>
         <maven-site-plugin.skip>true</maven-site-plugin.skip>
+        <maven.deploy.skip>false</maven.deploy.skip>
     </properties>
 
     <organization>
@@ -209,13 +210,22 @@
                 <version>1.4</version>
                 <executions>
                     <execution>
-                        <id>useLastCommittedRevision</id>
+                        <id>buildnumber</id>
                         <phase>validate</phase>
                         <goals>
                             <goal>create</goal>
                         </goals>
                     </execution>
                 </executions>
+                <configuration>
+                    <format>{0,number}</format>
+                    <items>
+                        <item>buildNumber</item>
+                    </items>
+                    <doCheck>false</doCheck>
+                    <doUpdate>false</doUpdate>
+                    <revisionOnScmFailure>unknownbuild</revisionOnScmFailure>
+                </configuration>
             </plugin>
 
         </plugins>
