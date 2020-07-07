@@ -1,6 +1,0 @@
-main: com.serverworld.worldUserProfile.paper.PaperworldUserProfile
-name: worldMISF-worldUserProfile
-version: indev-5
-author: mc-serverworld
-website: mc-serverworld.com
-softdepend: [PlaceholderAPI]
