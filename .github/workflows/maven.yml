@@ -38,6 +38,7 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
+          REPO="gh::default::https://maven.pkg.github.com/${GITHUB_REPOSITORY}"
           mvn versions:set -DnewVersion=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)-build-${{ github.run_number }} -DprocessAllModules -DgenerateBackupPoms=false versions:commit
           mvn deploy -DaltReleaseDeploymentRepository="${REPO}" -DaltSnapshotDeploymentRepository="${REPO}"
     - name: Display structure of downloaded files
