@@ -59,7 +59,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <github.global.server>github</github.global.server>
         <maven-site-plugin.skip>false</maven-site-plugin.skip>
-        <maven.deploy.skip>true</maven.deploy.skip>
+        <maven.deploy.skip>false</maven.deploy.skip>
     </properties>
 
     <scm>
@@ -68,7 +68,7 @@
         <tag>HEAD</tag>
         <url>http://127.0.0.1/dummy</url>
     </scm>
-    
+
     <distributionManagement>
         <repository>
             <id>internal.repo</id>
