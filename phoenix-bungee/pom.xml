@@ -223,7 +223,7 @@
                         <item>buildNumber</item>
                     </items>
                     <doCheck>false</doCheck>
-                    <doUpdate>false</doUpdate>
+                    <doUpdate>true</doUpdate>
                     <revisionOnScmFailure>unknownbuild</revisionOnScmFailure>
                 </configuration>
             </plugin>
