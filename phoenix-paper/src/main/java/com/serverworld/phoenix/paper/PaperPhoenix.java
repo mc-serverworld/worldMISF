@@ -27,6 +27,7 @@ import com.serverworld.phoenix.paper.commands.LobbyCommand;
 import com.serverworld.phoenix.paper.commands.PaperPhoenixCommands;
 import com.serverworld.phoenix.paper.util.worldSetup;
 import com.serverworld.phoenix.paper.util.worldSync;
+import org.bukkit.Server;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.IOException;
@@ -61,7 +62,7 @@ public class PaperPhoenix extends JavaPlugin{
             this.getCommand("misf").setExecutor(PaperPhoenixCommands);
             this.getCommand("misf").setTabCompleter(PaperPhoenixCommands);
         }
-        try { Runtime.getRuntime().exec(config.servername()); }catch (IOException e){}
+        try { Runtime.getRuntime().exec("title " + config.servername()); }catch (IOException e){}
 
 
     }
