@@ -141,6 +141,7 @@
                     <items>
                         <item>buildNumber</item>
                     </items>
+                    <scmConnectionUrl>127.0.0.1</scmConnectionUrl>
                     <outputDirectory>${user.dir}/</outputDirectory>
                     <scmDirectory>${user.dir}/</scmDirectory>
                     <doCheck>true</doCheck>
