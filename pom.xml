@@ -148,7 +148,7 @@
                     <items>
                         <item>buildNumber</item>
                     </items>
-                    <doCheck>false</doCheck>
+                    <doCheck>true</doCheck>
                     <doUpdate>true</doUpdate>
                     <revisionOnScmFailure>unknownbuild</revisionOnScmFailure>
                 </configuration>
