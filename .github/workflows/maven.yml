@@ -53,8 +53,8 @@ jobs:
       uses: "marvinpinto/action-automatic-releases@v1.0.0"
       with:
         repo_token: "${{ secrets.GITHUB_TOKEN }}"
-        automatic_release_tag: $(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
+        automatic_release_tag: ${{ github.run_number }}
         prerelease: true
-        title: $(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
+        title: build-${{ github.run_number }}
         files: staging/*.jar
 
