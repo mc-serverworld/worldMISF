@@ -62,8 +62,6 @@ public class PaperPhoenix extends JavaPlugin{
             this.getCommand("misf").setExecutor(PaperPhoenixCommands);
             this.getCommand("misf").setTabCompleter(PaperPhoenixCommands);
         }
-        try { Runtime.getRuntime().exec("title " + config.servername()); }catch (IOException e){}
-
 
     }
 

@@ -275,8 +275,8 @@
 
         <dependency>
             <groupId>com.mc-serverworld.worldMISF</groupId>
-            <artifactId>worldUserProfile</artifactId>
-            <version>indev-5.1</version>
+            <artifactId>worlduserdata</artifactId>
+            <version>build-233</version>
             <scope>provided</scope>
         </dependency>
 
