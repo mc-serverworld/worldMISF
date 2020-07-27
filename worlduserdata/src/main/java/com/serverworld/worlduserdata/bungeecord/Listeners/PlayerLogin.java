@@ -54,28 +54,39 @@ public class PlayerLogin implements Listener {
         if(BanQueryAPI.isBanned(event.getPlayer().getUniqueId().toString()))
             return;
         JSONObject jsonObject = IPAPI.getJSON(event.getPlayer().getAddress().getAddress().toString());
-        if (jsonObject.getString("status").equals("fail")){
-            DebugMessage.sendWarring(ChatColor.RED + "Fail to get country!");
-            return;
-        }
-        DebugMessage.sendInfo("Player " + event.getPlayer().getName() + " from " + jsonObject.getString("country"));
         if(!UserAccountDataMySQL.Joinbefore(event.getPlayer().getUniqueId().toString()))
             UserAccountDataMySQL.SetUp(event.getPlayer().getUniqueId().toString());
         if(!UserPhoenixPlayerDataMySQL.Joinbefore(event.getPlayer().getUniqueId().toString()))
             UserPhoenixPlayerDataMySQL.SetUp(event.getPlayer().getUniqueId().toString());
-
-        if(UserAccountDataMySQL.getSigned(event.getPlayer().getUniqueId().toString())){
-            UserAccountData userAccountData = UserAccountDataMySQL.getDataClass(event.getPlayer().getUniqueId().toString());
-            Date date = new Date();
-            userAccountData.setCity(jsonObject.getString("city"));
-            userAccountData.setContinent(jsonObject.getString("continent"));
-            userAccountData.setCountry(jsonObject.getString("country"));
-            userAccountData.setIP(event.getPlayer().getAddress().toString());
-            userAccountData.setISP(jsonObject.getString("org"));
-            userAccountData.setLastLogin(date.getTime());
-            userAccountData.setPlayername(event.getPlayer().getName());
-            UserAccountDataMySQL.setDataClass(event.getPlayer().getUniqueId().toString(), userAccountData);
+        if (jsonObject.getString("status").equals("fail")){
+            DebugMessage.sendWarring(ChatColor.RED + "Fail to get country!");
+            if(UserAccountDataMySQL.getSigned(event.getPlayer().getUniqueId().toString())){
+                UserAccountData userAccountData = UserAccountDataMySQL.getDataClass(event.getPlayer().getUniqueId().toString());
+                Date date = new Date();
+                userAccountData.setCity("none");
+                userAccountData.setContinent("none");
+                userAccountData.setCountry("none");
+                userAccountData.setIP(event.getPlayer().getAddress().toString());
+                userAccountData.setISP("none");
+                userAccountData.setLastLogin(date.getTime());
+                userAccountData.setPlayername(event.getPlayer().getName());
+                UserAccountDataMySQL.setDataClass(event.getPlayer().getUniqueId().toString(), userAccountData);
+            }
         }else {
+            DebugMessage.sendInfo("Player " + event.getPlayer().getName() + " from " + jsonObject.getString("country"));
+            if (UserAccountDataMySQL.getSigned(event.getPlayer().getUniqueId().toString())) {
+                UserAccountData userAccountData = UserAccountDataMySQL.getDataClass(event.getPlayer().getUniqueId().toString());
+                Date date = new Date();
+                userAccountData.setCity(jsonObject.getString("city"));
+                userAccountData.setContinent(jsonObject.getString("continent"));
+                userAccountData.setCountry(jsonObject.getString("country"));
+                userAccountData.setIP(event.getPlayer().getAddress().toString());
+                userAccountData.setISP(jsonObject.getString("org"));
+                userAccountData.setLastLogin(date.getTime());
+                userAccountData.setPlayername(event.getPlayer().getName());
+                UserAccountDataMySQL.setDataClass(event.getPlayer().getUniqueId().toString(), userAccountData);
+            }
+        }
             List<String> support_country_list = new ArrayList();
             support_country_list.add("taiwan");
             support_country_list.add("china");
@@ -85,41 +96,56 @@ public class PlayerLogin implements Listener {
             ProxyServer.getInstance().createTitle()
                     .reset()
                     .send(event.getPlayer());
+            try {
+                if(support_country_list.contains(jsonObject.getString("country").toLowerCase())){
+                    //support
+                    worldUserProfile.getProxy().getScheduler().schedule(worldUserProfile, new Runnable() {
+                        public void run() {
+                            ProxyServer.getInstance().createTitle()
+                                    .title(new ComponentBuilder("歡迎來到mc-serverworld")
+                                            .color(ChatColor.AQUA).create())
+                                    .subTitle(new ComponentBuilder("請輸入/sign來簽署協議")
+                                            .color(ChatColor.GREEN).create())
+                                    .fadeIn(20)
+                                    .stay(40)
+                                    .fadeOut(20)
+                                    .send(event.getPlayer());
+                        }
+                    }, 5, 5, TimeUnit.SECONDS);
+                }else {
+                    //unsupport
+                    worldUserProfile.getProxy().getScheduler().schedule(worldUserProfile, new Runnable() {
+                        public void run() {
+                            ProxyServer.getInstance().createTitle()
+                                    .title(new ComponentBuilder("Wellcome to mc-serverworld")
+                                            .color(ChatColor.AQUA).create())
+                                    .subTitle(new ComponentBuilder("Please enter /sign to sign the agreement")
+                                            .color(ChatColor.GREEN).create())
+                                    .fadeIn(20)
+                                    .stay(40)
+                                    .fadeOut(20)
+                                    .send(event.getPlayer());
+                        }
+                    }, 5, 5,TimeUnit.SECONDS);
 
-            if(support_country_list.contains(jsonObject.getString("country").toLowerCase())){
-                //support
-                worldUserProfile.getProxy().getScheduler().schedule(worldUserProfile, new Runnable() {
-                    public void run() {
-                        ProxyServer.getInstance().createTitle()
-                                .title(new ComponentBuilder("歡迎來到mc-serverworld")
-                                        .color(ChatColor.AQUA).create())
-                                .subTitle(new ComponentBuilder("請輸入/sign來簽署協議")
-                                        .color(ChatColor.GREEN).create())
-                                .fadeIn(20)
-                                .stay(40)
-                                .fadeOut(20)
-                                .send(event.getPlayer());
-                    }
-                }, 5, 5, TimeUnit.SECONDS);
-            }else {
-                //unsupport
-                worldUserProfile.getProxy().getScheduler().schedule(worldUserProfile, new Runnable() {
-                    public void run() {
-                        ProxyServer.getInstance().createTitle()
-                                .title(new ComponentBuilder("Wellcome to mc-serverworld")
-                                        .color(ChatColor.AQUA).create())
-                                .subTitle(new ComponentBuilder("Please enter /sign to sign the agreement")
-                                        .color(ChatColor.GREEN).create())
-                                .fadeIn(20)
-                                .stay(40)
-                                .fadeOut(20)
-                                .send(event.getPlayer());
-                    }
-                }, 5, 5,TimeUnit.SECONDS);
-
+                }
+            }catch (Exception e) {
+                    //unsupport
+                    worldUserProfile.getProxy().getScheduler().schedule(worldUserProfile, new Runnable() {
+                        public void run() {
+                            ProxyServer.getInstance().createTitle()
+                                    .title(new ComponentBuilder("Wellcome to mc-serverworld")
+                                            .color(ChatColor.AQUA).create())
+                                    .subTitle(new ComponentBuilder("Please enter /sign to sign the agreement")
+                                            .color(ChatColor.GREEN).create())
+                                    .fadeIn(20)
+                                    .stay(40)
+                                    .fadeOut(20)
+                                    .send(event.getPlayer());
+                        }
+                    }, 5, 5,TimeUnit.SECONDS);
             }
+
         }
 
     }
-
-}
