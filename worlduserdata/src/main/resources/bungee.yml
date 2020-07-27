@@ -1,4 +1,4 @@
-main: com.serverworld.worlduserdata.bungeecord.BungeeworldUserProfile
+main: com.serverworld.worlduserdata.bungeecord.BungeeworldUserData
 name: ${project.name}
 version: ${project.version}
 author: mc-serverworld
