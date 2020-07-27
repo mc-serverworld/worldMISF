@@ -43,10 +43,10 @@ import java.util.concurrent.TimeUnit;
 
 
 public class PlayerLogin implements Listener {
-    private BungeeworldUserData worldUserProfile;
+    private BungeeworldUserData bungeeworldUserData;
     public PlayerLogin(Plugin plugin, BungeeworldUserData bungeeworldUserData) {
         ProxyServer.getInstance().getPluginManager().registerListener(plugin, this);
-        this.worldUserProfile = bungeeworldUserData;
+        this.bungeeworldUserData = bungeeworldUserData;
     }
 
     @EventHandler
@@ -96,25 +96,43 @@ public class PlayerLogin implements Listener {
             ProxyServer.getInstance().createTitle()
                     .reset()
                     .send(event.getPlayer());
-            try {
-                if(support_country_list.contains(jsonObject.getString("country").toLowerCase())){
-                    //support
-                    worldUserProfile.getProxy().getScheduler().schedule(worldUserProfile, new Runnable() {
-                        public void run() {
-                            ProxyServer.getInstance().createTitle()
-                                    .title(new ComponentBuilder("歡迎來到mc-serverworld")
-                                            .color(ChatColor.AQUA).create())
-                                    .subTitle(new ComponentBuilder("請輸入/sign來簽署協議")
-                                            .color(ChatColor.GREEN).create())
-                                    .fadeIn(20)
-                                    .stay(40)
-                                    .fadeOut(20)
-                                    .send(event.getPlayer());
-                        }
-                    }, 5, 5, TimeUnit.SECONDS);
-                }else {
+            if(!UserAccountDataMySQL.getSigned(event.getPlayer().getUniqueId().toString())){
+                try {
+                    if(support_country_list.contains(jsonObject.getString("country").toLowerCase())){
+                        //support
+                        bungeeworldUserData.getProxy().getScheduler().schedule(bungeeworldUserData, new Runnable() {
+                            public void run() {
+                                ProxyServer.getInstance().createTitle()
+                                        .title(new ComponentBuilder("歡迎來到mc-serverworld")
+                                                .color(ChatColor.AQUA).create())
+                                        .subTitle(new ComponentBuilder("請輸入/sign來簽署協議")
+                                                .color(ChatColor.GREEN).create())
+                                        .fadeIn(20)
+                                        .stay(40)
+                                        .fadeOut(20)
+                                        .send(event.getPlayer());
+                            }
+                        }, 5, 5, TimeUnit.SECONDS);
+                    }else {
+                        //unsupport
+                        bungeeworldUserData.getProxy().getScheduler().schedule(bungeeworldUserData, new Runnable() {
+                            public void run() {
+                                ProxyServer.getInstance().createTitle()
+                                        .title(new ComponentBuilder("Wellcome to mc-serverworld")
+                                                .color(ChatColor.AQUA).create())
+                                        .subTitle(new ComponentBuilder("Please enter /sign to sign the agreement")
+                                                .color(ChatColor.GREEN).create())
+                                        .fadeIn(20)
+                                        .stay(40)
+                                        .fadeOut(20)
+                                        .send(event.getPlayer());
+                            }
+                        }, 5, 5,TimeUnit.SECONDS);
+
+                    }
+                }catch (Exception e) {
                     //unsupport
-                    worldUserProfile.getProxy().getScheduler().schedule(worldUserProfile, new Runnable() {
+                    bungeeworldUserData.getProxy().getScheduler().schedule(bungeeworldUserData, new Runnable() {
                         public void run() {
                             ProxyServer.getInstance().createTitle()
                                     .title(new ComponentBuilder("Wellcome to mc-serverworld")
@@ -127,25 +145,8 @@ public class PlayerLogin implements Listener {
                                     .send(event.getPlayer());
                         }
                     }, 5, 5,TimeUnit.SECONDS);
-
                 }
-            }catch (Exception e) {
-                    //unsupport
-                    worldUserProfile.getProxy().getScheduler().schedule(worldUserProfile, new Runnable() {
-                        public void run() {
-                            ProxyServer.getInstance().createTitle()
-                                    .title(new ComponentBuilder("Wellcome to mc-serverworld")
-                                            .color(ChatColor.AQUA).create())
-                                    .subTitle(new ComponentBuilder("Please enter /sign to sign the agreement")
-                                            .color(ChatColor.GREEN).create())
-                                    .fadeIn(20)
-                                    .stay(40)
-                                    .fadeOut(20)
-                                    .send(event.getPlayer());
-                        }
-                    }, 5, 5,TimeUnit.SECONDS);
             }
-
         }
 
     }
