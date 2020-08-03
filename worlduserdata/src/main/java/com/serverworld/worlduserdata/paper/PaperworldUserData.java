@@ -26,7 +26,6 @@ import java.sql.Connection;
 
 public class PaperworldUserData extends JavaPlugin {
     private static PaperworldUserData paperworldUserData;
-    public static Connection connection;
     public static PaperworldUserDataConfig config;
 
     @Override

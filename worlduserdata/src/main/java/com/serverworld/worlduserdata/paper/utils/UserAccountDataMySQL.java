@@ -22,6 +22,7 @@ package com.serverworld.worlduserdata.paper.utils;
 
 import com.google.gson.Gson;
 import com.serverworld.worlduserdata.jsondata.UserAccountData;
+import com.serverworld.worlduserdata.paper.PaperSQLDatabase;
 import com.serverworld.worlduserdata.paper.PaperworldUserData;
 
 import java.sql.ResultSet;
@@ -36,10 +37,11 @@ public class UserAccountDataMySQL {
 
     public static boolean SetUp(String UUID){
         try {
-            Statement statement = PaperworldUserData.connection.createStatement();
+            Statement statement = PaperSQLDatabase.getConnection().createStatement();
             statement.execute("INSERT INTO worlduserdata_useraccountdata (PlayerUUID, version, accountdata, signed) VALUES ('" + UUID + "', '1', 'notsign', '0');");
+            statement.close();
             return true;
-        } catch (SQLException e) {
+        } catch (Exception e) {
             DebugMessage.sendWarring(e.toString());
             return false;
         }
@@ -47,12 +49,13 @@ public class UserAccountDataMySQL {
 
     public static boolean Joinbefore(String UUID){
         try {
-            Statement statement = PaperworldUserData.connection.createStatement();
+            Statement statement = PaperSQLDatabase.getConnection().createStatement();
             ResultSet rs = statement.executeQuery("SELECT * FROM worlduserdata_useraccountdata WHERE PlayerUUID = '" + UUID + "';");
             Boolean joinbefore = false;
             joinbefore = rs.next();
+            statement.close();
             return joinbefore;
-        } catch (SQLException e) {
+        } catch (Exception e) {
             DebugMessage.sendWarring(e.toString());
             return false;
         }
@@ -60,11 +63,13 @@ public class UserAccountDataMySQL {
 
     public static boolean getSigned(String UUID){
         try {
-            Statement statement = PaperworldUserData.connection.createStatement();
+            Statement statement = PaperSQLDatabase.getConnection().createStatement();
             ResultSet rs = statement.executeQuery("SELECT * FROM worlduserdata_useraccountdata WHERE PlayerUUID = '" + UUID +  "' LIMIT 1;");
             rs.next();
-            return rs.getBoolean("signed");
-        } catch (SQLException e) {
+            boolean rsb = rs.getBoolean("signed");
+            statement.close();
+            return rsb;
+        } catch (Exception e) {
             DebugMessage.sendWarring(e.toString());
             return false;
         }
@@ -72,10 +77,11 @@ public class UserAccountDataMySQL {
 
     public static boolean setSigned(String UUID ,Boolean status){
         try {
-            Statement statement = PaperworldUserData.connection.createStatement();
+            Statement statement = PaperSQLDatabase.getConnection().createStatement();
             statement.execute("UPDATE worlduserdata_useraccountdata SET signed = '" + status.compareTo(false) + "' WHERE PlayerUUID = '" + UUID + "';");
+            statement.close();
             return true;
-        } catch (SQLException e) {
+        } catch (Exception e) {
             DebugMessage.sendWarring(e.toString());
             return false;
         }
@@ -83,12 +89,14 @@ public class UserAccountDataMySQL {
 
     public static UserAccountData getDataClass(String UUID){
         try {
-            Statement statement = PaperworldUserData.connection.createStatement();
+            Statement statement = PaperSQLDatabase.getConnection().createStatement();
             ResultSet rs = statement.executeQuery("SELECT * FROM worlduserdata_useraccountdata WHERE PlayerUUID = '" + UUID + "';");
             rs.next();
             Gson gson= new Gson();
-            return gson.fromJson(rs.getString("accountdata"), UserAccountData.class);
-        } catch (SQLException e) {
+            UserAccountData data = gson.fromJson(rs.getString("accountdata"), UserAccountData.class);
+            statement.close();
+            return data;
+        } catch (Exception e) {
             DebugMessage.sendWarring(e.toString());
             return null;
         }
@@ -96,12 +104,12 @@ public class UserAccountDataMySQL {
 
     public static Boolean setDataClass(String UUID, UserAccountData userAccountData){
         try {
-            Statement statement = PaperworldUserData.connection.createStatement();
+            Statement statement = PaperSQLDatabase.getConnection().createStatement();
             Gson gson = new Gson();
             String stg = gson.toJson(userAccountData,UserAccountData.class);
             statement.execute("UPDATE worlduserdata_useraccountdata SET accountdata = '" + stg + "' WHERE PlayerUUID = '" + UUID + "'");
             return true;
-        } catch (SQLException e) {
+        } catch (Exception e) {
             DebugMessage.sendWarring(e.toString());
             return false;
         }
@@ -109,11 +117,13 @@ public class UserAccountDataMySQL {
 
     public static int getDataClassVersion(String UUID){
         try {
-            Statement statement = PaperworldUserData.connection.createStatement();
+            Statement statement = PaperSQLDatabase.getConnection().createStatement();
             ResultSet rs = statement.executeQuery("SELECT * FROM worlduserdata_useraccountdata WHERE PlayerUUID = '" + UUID + "';");
             rs.next();
-            return rs.getInt("version");
-        } catch (SQLException e) {
+            int res = rs.getInt("version");
+            statement.close();
+            return res;
+        } catch (Exception e) {
             DebugMessage.sendWarring(e.toString());
             return 0;
         }
@@ -121,10 +131,11 @@ public class UserAccountDataMySQL {
 
     public static Boolean setDataClassVersion(String UUID, int version){
         try {
-            Statement statement = PaperworldUserData.connection.createStatement();
+            Statement statement = PaperSQLDatabase.getConnection().createStatement();
             statement.execute("UPDATE worlduserdata_useraccountdata SET version = '" + version + "' WHERE PlayerUUID = " + UUID);
+            statement.close();
             return true;
-        } catch (SQLException e) {
+        } catch (Exception e) {
             DebugMessage.sendWarring(e.toString());
             return false;
         }

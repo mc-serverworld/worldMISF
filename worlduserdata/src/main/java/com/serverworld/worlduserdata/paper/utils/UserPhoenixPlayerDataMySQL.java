@@ -22,6 +22,7 @@ package com.serverworld.worlduserdata.paper.utils;
 
 import com.google.gson.Gson;
 import com.serverworld.worlduserdata.jsondata.UserPhoenixPlayerData;
+import com.serverworld.worlduserdata.paper.PaperSQLDatabase;
 import com.serverworld.worlduserdata.paper.PaperworldUserData;
 
 import java.sql.ResultSet;
@@ -36,7 +37,7 @@ public class UserPhoenixPlayerDataMySQL {
 
     public static boolean SetUp(String UUID){
         try {
-            Statement statement = PaperworldUserData.connection.createStatement();
+            Statement statement = PaperSQLDatabase.getConnection().createStatement();
             ResultSet rs = statement.executeQuery("SELECT * FROM worlduserdata_userphoenixplayerdata WHERE PlayerUUID = '" + UUID + "';");
             Boolean joinbefore = false;
             joinbefore = rs.next();
@@ -66,9 +67,10 @@ public class UserPhoenixPlayerDataMySQL {
                 Gson gson = new Gson();
                 String stg = gson.toJson(userPhoenixPlayerData,UserPhoenixPlayerData.class);
                 statement.execute("INSERT INTO worlduserdata_userphoenixplayerdata (PlayerUUID, version, playerdata) VALUES ('" + UUID + "', '1', '" + stg + "');");
+                statement.close();
             }
             return true;
-        } catch (SQLException e) {
+        } catch (Exception e) {
             DebugMessage.sendWarring(e.toString());
             return false;
         }
@@ -76,12 +78,13 @@ public class UserPhoenixPlayerDataMySQL {
 
     public static boolean Joinbefore(String UUID){
         try {
-            Statement statement = PaperworldUserData.connection.createStatement();
+            Statement statement = PaperSQLDatabase.getConnection().createStatement();
             ResultSet rs = statement.executeQuery("SELECT * FROM worlduserdata_userphoenixplayerdata WHERE PlayerUUID = '" + UUID + "';");
             Boolean joinbefore = false;
             joinbefore = rs.next();
+            statement.close();
             return joinbefore;
-        } catch (SQLException e) {
+        } catch (Exception e) {
             DebugMessage.sendWarring(e.toString());
             return false;
         }
@@ -89,12 +92,14 @@ public class UserPhoenixPlayerDataMySQL {
 
     public static UserPhoenixPlayerData getDataClass(String UUID){
         try {
-            Statement statement = PaperworldUserData.connection.createStatement();
+            Statement statement = PaperSQLDatabase.getConnection().createStatement();
             ResultSet rs = statement.executeQuery("SELECT * FROM worlduserdata_userphoenixplayerdata WHERE PlayerUUID = '" + UUID + "';");
             rs.next();
             Gson gson= new Gson();
-            return gson.fromJson(rs.getString("playerdata"), UserPhoenixPlayerData.class);
-        } catch (SQLException e) {
+            UserPhoenixPlayerData playerdataclass = gson.fromJson(rs.getString("playerdata"), UserPhoenixPlayerData.class);
+            statement.close();
+            return playerdataclass;
+        } catch (Exception e) {
             DebugMessage.sendWarring(e.toString());
             return null;
         }
@@ -102,12 +107,13 @@ public class UserPhoenixPlayerDataMySQL {
 
     public static Boolean setDataClass(String UUID, UserPhoenixPlayerData userPhoenixPlayerData){
         try {
-            Statement statement = PaperworldUserData.connection.createStatement();
+            Statement statement = PaperSQLDatabase.getConnection().createStatement();
             Gson gson = new Gson();
             String stg = gson.toJson(userPhoenixPlayerData,UserPhoenixPlayerData.class);
             statement.execute("UPDATE worlduserdata_userphoenixplayerdata SET playerdata = '" + stg + "' WHERE PlayerUUID = '" + UUID + "'");
+            statement.close();
             return true;
-        } catch (SQLException e) {
+        } catch (Exception e) {
             DebugMessage.sendWarring(e.toString());
             return false;
         }
@@ -115,11 +121,13 @@ public class UserPhoenixPlayerDataMySQL {
 
     public static int getDataClassVersion(String UUID){
         try {
-            Statement statement = PaperworldUserData.connection.createStatement();
+            Statement statement = PaperSQLDatabase.getConnection().createStatement();
             ResultSet rs = statement.executeQuery("SELECT * FROM worlduserdata_userphoenixplayerdata WHERE PlayerUUID = '" + UUID + "';");
             rs.next();
-            return rs.getInt("version");
-        } catch (SQLException e) {
+            int ver = rs.getInt("version");
+            statement.close();
+            return ver;
+        } catch (Exception e) {
             DebugMessage.sendWarring(e.toString());
             return 0;
         }
@@ -127,10 +135,11 @@ public class UserPhoenixPlayerDataMySQL {
 
     public static Boolean setDataClassVersion(String UUID, int version){
         try {
-            Statement statement = PaperworldUserData.connection.createStatement();
+            Statement statement = PaperSQLDatabase.getConnection().createStatement();
             statement.execute("UPDATE worlduserdata_userphoenixplayerdata SET version = '" + version + "' WHERE PlayerUUID = " + UUID);
+            statement.close();
             return true;
-        } catch (SQLException e) {
+        } catch (Exception e) {
             DebugMessage.sendWarring(e.toString());
             return false;
         }

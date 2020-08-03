@@ -33,8 +33,8 @@ public class PaperSQLDatabase {
     private PaperworldUserDataConfig config;
 
     public static Connection connection;
-    private String host, database, username, password;
-    private int port;
+    private static String host, database, username, password;
+    private static int port;
 
     public PaperSQLDatabase(PaperworldUserData paperworldUserData){
         this.paperworldUserData = paperworldUserData;
@@ -88,7 +88,6 @@ public class PaperSQLDatabase {
     public void MYSQLopenConnection() throws SQLException, ClassNotFoundException {
         if (connection != null && !connection.isClosed()) {
             DebugMessage.sendInfo(ChatColor.GREEN + "Connected to database!");
-            PaperworldUserData.connection = connection;
             return;
         }
 
@@ -99,5 +98,13 @@ public class PaperSQLDatabase {
             Class.forName("com.mysql.jdbc.Driver");
             connection = DriverManager.getConnection("jdbc:mysql://" + this.host + ":" + this.port + "/" + this.database+"?autoReconnect=true&characterEncoding=utf-8", this.username, this.password);
         }
+    }
+
+    public static Connection getConnection() throws SQLException, ClassNotFoundException {
+        if (connection != null && !connection.isClosed()) {
+            return connection;
+        }
+        connection = DriverManager.getConnection("jdbc:mysql://" + host + ":" + port + "/" + database+"?autoReconnect=true&characterEncoding=utf-8", username, password);
+        return connection;
     }
 }
