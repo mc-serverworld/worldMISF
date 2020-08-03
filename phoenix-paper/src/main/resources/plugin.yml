@@ -10,6 +10,8 @@ commands:
     description: Basic misf command.
     aliases: [misf]
 permissions:
+  misf.command.back:
+    default: false
   misf.command.help:
     default: false
   misf.command.info:
@@ -20,6 +22,10 @@ permissions:
     default: false
   misf.command.login:
     default: false
+  misf.command.tpa:
+    default: false
+  misf.command.tpahere:
+    default: false
   misf.command.tpserver:
     default: false
   misf.command.warpsv:
@@ -29,26 +35,33 @@ permissions:
 
   misf.*:
     children:
-      misf.command.help: true
+      misf.command.back: true
+      midf.command.help: true
       misf.command.info: true
       misf.command.set.time: true
       misf.command.set.weather: true
       misf.command.login: true
+      misf.command.tpa: true
+      misf.command.tpahere: true
       misf.command.tpserver: true
-      misf.command.warpsv: true
-      misf.notify: true
+      misfp.command.warpsv: true
     misf.command.*:
       children:
+        misf.command.back: true
         midf.command.help: true
         misf.command.info: true
         misf.command.set.time: true
         misf.command.set.weather: true
         misf.command.login: true
+        misf.command.tpa: true
+        misf.command.tpahere: true
         misf.command.tpserver: true
         misfp.command.warpsv: true
     misf.player:
       children:
+        misf.command.back: true
         misf.command.help: true
         misf.command.login: true
+        misf.command.tpa: true
+        misf.command.tpahere: true
         misf.command.warpsv: true
-        misf.notify: true
