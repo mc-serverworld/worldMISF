@@ -24,9 +24,12 @@ import com.serverworld.phoenix.paper.PaperPhoenix;
 import com.serverworld.phoenix.paper.util.DebugMessage;
 import com.serverworld.worldSocket.paperspigot.events.MessagecomingEvent;
 import net.md_5.bungee.api.ChatColor;
+import net.md_5.bungee.api.ProxyServer;
+import net.md_5.bungee.api.connection.ProxiedPlayer;
 import org.bukkit.World;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.json.JSONObject;
 
 public class Messagecoming implements Listener {
 
@@ -44,7 +47,7 @@ public class Messagecoming implements Listener {
             switch (event.getType().toUpperCase()){
                 case "COMMAND": paperPhoenix.getServer().dispatchCommand(paperPhoenix.getServer().getConsoleSender(),event.getMessage().toString());
 
-                case "REQUEST":;
+                case "ACTION":Actions(event);
 
                 case "SYNC":{
                     String[] msg = event.getMessage().toUpperCase().split(",");
@@ -128,4 +131,25 @@ public class Messagecoming implements Listener {
             paperPhoenix.getLogger().warning("Error on socket msg "+e.getMessage());
         }
     }
+
+    private void  Actions(MessagecomingEvent event){
+        //JsonObject message = JsonParser.parseString(event.getMessage()).getAsJsonObject();
+        JSONObject message = new JSONObject(event.getMessage());
+        //String[] msg = event.getMessage().toUpperCase().split(",");
+        switch (message.getString("TYPE").toUpperCase()){
+            default: return;
+
+            case "SENDPLAYERTOSERVER": {
+                for (ProxiedPlayer player : ProxyServer.getInstance().getPlayers()) {
+                    if(player.getUniqueId().toString().equals(message.getString("PLAYER"))){
+                        player.connect(ProxyServer.getInstance().getServerInfo(message.getString("SERVER")));
+                        return;
+                    }
+                }
+
+            }
+
+        }
+    }
+
 }
