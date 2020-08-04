@@ -30,6 +30,9 @@ jobs:
       with:
         timeZone: 8
         format: 'YYYYMMDDHHmmss'
+    - name: Display structure of downloaded files
+      run: ls -R
+      
     - name: Deploy Github Package
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
