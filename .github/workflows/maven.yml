@@ -30,6 +30,9 @@ jobs:
       with:
         timeZone: 8
         format: 'YYYYMMDDHHmmss'
+    - name: Display structure of downloaded files
+      run: ls -R
+      
     - name: Deploy Github Package
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -37,6 +40,7 @@ jobs:
           mkdir -p ~/.m2
           echo "<settings><servers><server><id>gh</id><username>$(echo "$GITHUB_REPOSITORY" | awk -F / '{print $1}')</username><password>\${env.GITHUB_TOKEN}</password></server></servers></settings>" > ~/.m2/settings.xml
           REPO="gh::default::https://maven.pkg.github.com/${GITHUB_REPOSITORY}"
+          mvn install:install-file -Dfile=phoenix-paper/src/main/resources/Residence4.9.1.6.zip -DgroupId=com.bekvon -DartifactId=Residence -Dversion=4.9.1.6 -Dpackaging=jar
           mvn versions:set -DnewVersion=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)-build-${{ github.run_number }} -DprocessAllModules -DgenerateBackupPoms=false versions:commit
           mvn deploy -DaltReleaseDeploymentRepository="${REPO}" -DaltSnapshotDeploymentRepository="${REPO}"
     - name: Display structure of downloaded files
