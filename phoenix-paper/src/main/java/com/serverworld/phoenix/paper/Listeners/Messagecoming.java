@@ -24,9 +24,9 @@ import com.serverworld.phoenix.paper.PaperPhoenix;
 import com.serverworld.phoenix.paper.util.DebugMessage;
 import com.serverworld.worldSocket.paperspigot.events.MessagecomingEvent;
 import net.md_5.bungee.api.ChatColor;
-import net.md_5.bungee.api.ProxyServer;
-import net.md_5.bungee.api.connection.ProxiedPlayer;
+import org.bukkit.Server;
 import org.bukkit.World;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.json.JSONObject;
@@ -139,12 +139,11 @@ public class Messagecoming implements Listener {
         switch (message.getString("TYPE").toUpperCase()){
             default: return;
 
-            case "SENDPLAYERTOSERVER": {
-                for (ProxiedPlayer player : ProxyServer.getInstance().getPlayers()) {
-                    if(player.getUniqueId().toString().equals(message.getString("PLAYER"))){
-                        player.connect(ProxyServer.getInstance().getServerInfo(message.getString("SERVER")));
-                        return;
-                    }
+            case "RESPAWNPLAYER": {
+                try{
+                    PaperPhoenix.getInstance().getServer().getPlayer(message.getString("PLAYER")).spigot().respawn();
+                }catch (Exception e){
+                    DebugMessage.sendWarring("The player is gone!");
                 }
 
             }

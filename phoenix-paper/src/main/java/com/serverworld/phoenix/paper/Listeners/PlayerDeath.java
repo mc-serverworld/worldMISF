@@ -19,7 +19,6 @@
  */
 
 package com.serverworld.phoenix.paper.Listeners;
-
 import com.google.gson.JsonObject;
 import com.serverworld.phoenix.paper.PaperPhoenix;
 import com.serverworld.worldSocket.paperspigot.util.messagecoder;
@@ -49,7 +48,8 @@ public class PlayerDeath implements Listener {
             playerData.setLastlocation_x(event.getEntity().getLocation().getX());
             playerData.setLastlocation_y(event.getEntity().getLocation().getY());
             playerData.setLastlocation_z(event.getEntity().getLocation().getZ());
-            UserPhoenixPlayerDataMySQL.setDataClass(event.getEntity().getUniqueId().toString() , playerData);
+            UserPhoenixPlayerDataMySQL.setDataClass(event.getEntity().getUniqueId().toString() , playerData);//save dead pos to database
+
             Bukkit.getScheduler().scheduleSyncDelayedTask(PaperPhoenix.getInstance(), () -> event.getEntity().getPlayer().spigot().respawn(), 5L);
             Bukkit.getScheduler().scheduleSyncDelayedTask(PaperPhoenix.getInstance(), () -> {
                 messagecoder messagecoder = new messagecoder();
@@ -63,9 +63,20 @@ public class PlayerDeath implements Listener {
                 json.addProperty("SERVER",PaperPhoenix.config.serversprefix() + "OVERWORLD_0_0");
                 messagecoder.setMessage(json.toString());
                 messager.sendmessage(messagecoder.createmessage());
-                }, 20L);
+                }, 20L);//send player to spawn
 
-
+            Bukkit.getScheduler().scheduleSyncDelayedTask(PaperPhoenix.getInstance(), () -> {
+                messagecoder messagecoder = new messagecoder();
+                messagecoder.setSender(PaperPhoenix.config.servername());
+                messagecoder.setChannel("MISF_PHOENIX");
+                messagecoder.setReceiver(PaperPhoenix.config.serversprefix() + "OVERWORLD_0_0");
+                messagecoder.setType("ACTION");
+                JsonObject json = new JsonObject();
+                json.addProperty("TYPE","RESPAWNPLAYER");
+                json.addProperty("PLAYER",event.getEntity().getUniqueId().toString());
+                messagecoder.setMessage(json.toString());
+                messager.sendmessage(messagecoder.createmessage());
+            }, 40L);//tell spawn server to respawn player
         }
     }
 }
