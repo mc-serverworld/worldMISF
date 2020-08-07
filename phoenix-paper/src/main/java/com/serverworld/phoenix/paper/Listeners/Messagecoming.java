@@ -26,6 +26,7 @@ import com.serverworld.worldSocket.paperspigot.events.MessagecomingEvent;
 import net.md_5.bungee.api.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.World;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.json.JSONObject;
@@ -142,7 +143,8 @@ public class Messagecoming implements Listener {
                 try{
                     World world = paperPhoenix.getServer().getWorld("world");
                     Location spawn = new Location(world,paperPhoenix.config.spawnx(), paperPhoenix.config.spawny(),paperPhoenix.config.spawnz());
-                    PaperPhoenix.getInstance().getServer().getPlayer(message.getString("PLAYER")).teleport(spawn);
+                    Player player = PaperPhoenix.getInstance().getServer().getPlayer(message.getString("PLAYER"));
+                    player.teleport(spawn);
                 }catch (Exception e){
                     DebugMessage.sendWarring("The player is gone!");
                 }
