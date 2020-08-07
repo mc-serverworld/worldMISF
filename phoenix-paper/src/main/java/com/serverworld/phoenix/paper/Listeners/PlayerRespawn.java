@@ -37,7 +37,7 @@ public class PlayerRespawn implements Listener {
 
     @EventHandler(ignoreCancelled = true)
     public void onPlayerRespawn(PlayerRespawnEvent event){
-        if (paperPhoenix.config.chunk_position_x()==0&& paperPhoenix.config.chunk_position_z()==0&& paperPhoenix.config.worldtype()=="overworld"){
+        if (paperPhoenix.config.chunk_position_x()==0&& paperPhoenix.config.chunk_position_z()==0&& paperPhoenix.config.worldtype().toLowerCase().equals("overworld")){
             Location sapwn = new Location(event.getRespawnLocation().getWorld(),0,255,0);
             sapwn.set(paperPhoenix.config.spawnx(), paperPhoenix.config.spawny(),paperPhoenix.config.spawnz());
             sapwn.setWorld(event.getRespawnLocation().getWorld());
