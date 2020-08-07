@@ -74,6 +74,11 @@ public class PaperPhoenixConfig {
         return plugin.getConfig().getInt("worldinfo.position.x");
     }
     public int chunk_position_z() { return plugin.getConfig().getInt("worldinfo.position.z"); }
+    public double spawnx() { return plugin.getConfig().getDouble("worldinfo.spawn.x"); }
+    public double spawny() {
+        return plugin.getConfig().getDouble("worldinfo.spawn.y");
+    }
+    public double spawnz() { return plugin.getConfig().getDouble("worldinfo.spawn.z"); }
 
     public long sync_weather_time () { return plugin.getConfig().getLong("sync-time.weather"); }
     public long sync_time () { return plugin.getConfig().getLong("sync-time.time"); }

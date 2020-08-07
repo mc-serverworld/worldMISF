@@ -51,6 +51,8 @@ public class PlayerDeath implements Listener {
             UserPhoenixPlayerDataMySQL.setDataClass(event.getEntity().getUniqueId().toString() , playerData);//save dead pos to database
 
             Bukkit.getScheduler().scheduleSyncDelayedTask(PaperPhoenix.getInstance(), () -> event.getEntity().getPlayer().spigot().respawn(), 5L);
+            if(PaperPhoenix.config.servername().equals(PaperPhoenix.config.serversprefix() + "OVERWORLD_0_0"))
+                return;
             Bukkit.getScheduler().scheduleSyncDelayedTask(PaperPhoenix.getInstance(), () -> {
                 messagecoder messagecoder = new messagecoder();
                 messagecoder.setSender(PaperPhoenix.config.servername());
@@ -63,7 +65,7 @@ public class PlayerDeath implements Listener {
                 json.addProperty("SERVER",PaperPhoenix.config.serversprefix() + "OVERWORLD_0_0");
                 messagecoder.setMessage(json.toString());
                 messager.sendmessage(messagecoder.createmessage());
-                }, 20L);//send player to spawn
+                }, 10L);//send player to spawn
 
             Bukkit.getScheduler().scheduleSyncDelayedTask(PaperPhoenix.getInstance(), () -> {
                 messagecoder messagecoder = new messagecoder();
@@ -76,7 +78,7 @@ public class PlayerDeath implements Listener {
                 json.addProperty("PLAYER",event.getEntity().getUniqueId().toString());
                 messagecoder.setMessage(json.toString());
                 messager.sendmessage(messagecoder.createmessage());
-            }, 40L);//tell spawn server to respawn player
+            }, 50L);//tell spawn server to respawn player
         }
     }
 }

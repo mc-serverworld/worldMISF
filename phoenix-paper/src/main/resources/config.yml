@@ -16,6 +16,10 @@ worldinfo:
   position:
     x: 0
     z: 0
+  spawn:
+    x: 0
+    y: 100
+    z: 0
 
 #sec
 sync-time:
