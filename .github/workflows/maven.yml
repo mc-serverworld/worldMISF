@@ -54,7 +54,7 @@ jobs:
         name: worldMISF
         path: staging
     - name: Create Release
-      uses: "marvinpinto/action-automatic-releases@v1.0.0"
+      uses: "marvinpinto/action-automatic-releases@latest"
       with:
         repo_token: "${{ secrets.GITHUB_TOKEN }}"
         automatic_release_tag: build-${{ github.run_number }}
