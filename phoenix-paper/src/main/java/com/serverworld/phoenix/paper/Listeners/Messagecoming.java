@@ -135,7 +135,7 @@ public class Messagecoming implements Listener {
     private void  Actions(MessagecomingEvent event){
         //JsonObject message = JsonParser.parseString(event.getMessage()).getAsJsonObject();
         String msg = event.getMessage();
-        msg = msg.replace("\\\\", "");
+        msg = msg.replaceAll("\\", "");
         JSONObject message = new JSONObject(msg);
         //String[] msg = event.getMessage().toUpperCase().split(",");
         switch (message.getString("TYPE").toUpperCase()){
