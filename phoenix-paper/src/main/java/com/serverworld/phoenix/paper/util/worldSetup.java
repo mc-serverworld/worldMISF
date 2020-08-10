@@ -38,7 +38,7 @@ public class worldSetup {
             worldtype = "world";
         }
         Location spawn = new Location(PaperPhoenix.getInstance().getServer().getWorld(worldtype),PaperPhoenix.config.spawnx(),PaperPhoenix.config.spawny(),PaperPhoenix.config.spawnz());
-        if(PaperPhoenix.config.servername().equals(String.valueOf(PaperPhoenix.config.serversprefix() + "OVERWORLD_0_0")))
+        if(PaperPhoenix.config.chunk_position_x()==0&& PaperPhoenix.config.chunk_position_z()==0&& PaperPhoenix.config.worldtype().toLowerCase().equals("overworld"))
             PaperPhoenix.getInstance().getServer().getWorld(worldtype).setSpawnLocation(spawn);
         else
             PaperPhoenix.getInstance().getServer().getWorld(worldtype).setSpawnLocation(worldInfo.getCenterLocation(PaperPhoenix.getInstance().getServer().getWorld(worldtype)));
