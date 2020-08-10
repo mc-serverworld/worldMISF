@@ -20,6 +20,8 @@
 
 package com.serverworld.phoenix.paper.Listeners;
 
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import com.serverworld.phoenix.paper.PaperPhoenix;
 import com.serverworld.phoenix.paper.util.DebugMessage;
 import com.serverworld.worldSocket.paperspigot.events.MessagecomingEvent;
@@ -29,7 +31,6 @@ import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.json.JSONObject;
 
 public class Messagecoming implements Listener {
 
@@ -134,16 +135,17 @@ public class Messagecoming implements Listener {
 
     private void  Actions(MessagecomingEvent event){
         //JsonObject message = JsonParser.parseString(event.getMessage()).getAsJsonObject();
-        JSONObject message = new JSONObject(event.getMessage());
+        JsonParser jsonParser = new JsonParser();
+        JsonObject message = jsonParser.parse(event.getMessage()).getAsJsonObject();
         //String[] msg = event.getMessage().toUpperCase().split(",");
-        switch (message.getString("TYPE").toUpperCase()){
+        switch (message.get("TYPE").toString().toUpperCase()){
             default: return;
 
             case "RESPAWNPLAYER": {
                 try{
                     World world = PaperPhoenix.getInstance().getServer().getWorld("world");
                     Location spawn = new Location(world,PaperPhoenix.config.spawnx(), PaperPhoenix.config.spawny(),PaperPhoenix.config.spawnz());
-                    Player player = PaperPhoenix.getInstance().getServer().getPlayer(message.getString("PLAYER"));
+                    Player player = PaperPhoenix.getInstance().getServer().getPlayer(message.get("PLAYER").toString());
                     DebugMessage.sendInfoIfDebug("Send Player" + player.getName() + "to spawn");
                     player.teleport(spawn);
                 }catch (Exception e){
