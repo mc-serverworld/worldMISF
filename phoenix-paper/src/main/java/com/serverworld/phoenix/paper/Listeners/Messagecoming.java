@@ -141,7 +141,7 @@ public class Messagecoming implements Listener {
 
             case "RESPAWNPLAYER": {
                 try{
-                    World world = paperPhoenix.getServer().getWorld("world");
+                    World world = PaperPhoenix.getInstance().getServer().getWorld("world");
                     Location spawn = new Location(world,paperPhoenix.config.spawnx(), paperPhoenix.config.spawny(),paperPhoenix.config.spawnz());
                     Player player = PaperPhoenix.getInstance().getServer().getPlayer(message.getString("PLAYER"));
                     player.teleport(spawn);
