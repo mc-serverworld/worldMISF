@@ -22,6 +22,8 @@ permissions:
     default: false
   misf.command.login:
     default: false
+  misf.command.test:
+    default: false
   misf.command.tpa:
     default: false
   misf.command.tpahere:
@@ -41,6 +43,7 @@ permissions:
       misf.command.set.time: true
       misf.command.set.weather: true
       misf.command.login: true
+      misf.command.test: true
       misf.command.tpa: true
       misf.command.tpahere: true
       misf.command.tpserver: true
@@ -53,6 +56,7 @@ permissions:
         misf.command.set.time: true
         misf.command.set.weather: true
         misf.command.login: true
+        misf.command.test: true
         misf.command.tpa: true
         misf.command.tpahere: true
         misf.command.tpserver: true

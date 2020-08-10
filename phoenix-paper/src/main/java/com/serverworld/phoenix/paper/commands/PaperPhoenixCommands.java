@@ -25,6 +25,7 @@ import com.serverworld.phoenix.paper.PaperPhoenixConfig;
 import com.serverworld.phoenix.paper.commands.subcommands.subCommand_set;
 import com.serverworld.phoenix.paper.util.DebugMessage;
 import net.md_5.bungee.api.ChatColor;
+import org.bukkit.Location;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -54,6 +55,10 @@ public class PaperPhoenixCommands implements CommandExecutor , TabCompleter {
                 default:{
                     commandSender.sendMessage(ChatColor.RED + "Invalid input");
                     return true;
+                }
+                case "test": {
+                    if (commandSender instanceof Player)
+                        ((Player) commandSender).teleport(new Location(PaperPhoenix.getInstance().getServer().getWorld("world"),PaperPhoenix.config.spawnx(),PaperPhoenix.config.spawny(),PaperPhoenix.config.spawnz()));
                 }
                 case "info": {
                     if(!commandSender.hasPermission("misf.command.info")){
@@ -102,6 +107,8 @@ public class PaperPhoenixCommands implements CommandExecutor , TabCompleter {
                 commands.add("help");
             if (sender.hasPermission("misf.command.info"))
                 commands.add("info");
+            if (sender.hasPermission("misf.command.test"))
+                commands.add("test");
             if (sender.hasPermission("misf.command.tpserver"))
                 commands.add("tpserver");
             if (sender.hasPermission("misf.command.login"))
