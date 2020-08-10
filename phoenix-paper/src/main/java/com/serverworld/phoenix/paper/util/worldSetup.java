@@ -21,6 +21,7 @@
 package com.serverworld.phoenix.paper.util;
 
 import com.serverworld.phoenix.paper.PaperPhoenix;
+import org.bukkit.Location;
 
 public class worldSetup {
     public worldSetup(){
@@ -36,6 +37,10 @@ public class worldSetup {
         else {
             worldtype = "world";
         }
-        PaperPhoenix.getInstance().getServer().getWorld(worldtype).setSpawnLocation(worldInfo.getCenterLocation(PaperPhoenix.getInstance().getServer().getWorld(worldtype)));
+        Location spawn = new Location(PaperPhoenix.getInstance().getServer().getWorld(worldtype),PaperPhoenix.config.spawnx(),PaperPhoenix.config.spawny(),PaperPhoenix.config.spawnz());
+        if(PaperPhoenix.config.servername().equals(String.valueOf(PaperPhoenix.config.serversprefix() + "OVERWORLD_0_0")))
+            PaperPhoenix.getInstance().getServer().getWorld(worldtype).setSpawnLocation(spawn);
+        else
+            PaperPhoenix.getInstance().getServer().getWorld(worldtype).setSpawnLocation(worldInfo.getCenterLocation(PaperPhoenix.getInstance().getServer().getWorld(worldtype)));
     }
 }
