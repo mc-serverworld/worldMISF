@@ -144,6 +144,7 @@ public class Messagecoming implements Listener {
                     World world = PaperPhoenix.getInstance().getServer().getWorld("world");
                     Location spawn = new Location(world,PaperPhoenix.config.spawnx(), PaperPhoenix.config.spawny(),PaperPhoenix.config.spawnz());
                     Player player = PaperPhoenix.getInstance().getServer().getPlayer(message.getString("PLAYER"));
+                    DebugMessage.sendInfoIfDebug("Send Player" + player.getName() + "to spawn");
                     player.teleport(spawn);
                 }catch (Exception e){
                     DebugMessage.sendWarring("The player is gone!");
