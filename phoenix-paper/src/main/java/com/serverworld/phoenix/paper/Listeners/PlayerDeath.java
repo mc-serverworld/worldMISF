@@ -78,7 +78,7 @@ public class PlayerDeath implements Listener {
                 json.addProperty("PLAYER",event.getEntity().getUniqueId().toString());
                 messagecoder.setMessage(json.toString());
                 messager.sendmessage(messagecoder.createmessage());
-            }, 50L);//tell spawn server to respawn player
+            }, 100L);//tell spawn server to respawn player
         }
     }
 }
