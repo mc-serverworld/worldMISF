@@ -41,6 +41,7 @@ public class Messagecoming implements Listener {
     @EventHandler
     public void onMessagecomingEvent(MessagecomingEvent event){
         if(!event.getChannel().toUpperCase().equals("MISF_PHOENIX")) return;
+        DebugMessage.sendInfoIfDebug("Incoming message: " + "sender: " + event.getSender() + " receiver: " + event.getReceiver() + "channel" + event.getChannel() + "type: " + event.getType());
         //worldmisfpaperspigot.getLogger().info(event.getMessage());
         World world = paperPhoenix.getServer().getWorld("world");
         try{
