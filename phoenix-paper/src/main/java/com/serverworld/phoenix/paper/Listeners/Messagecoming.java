@@ -135,8 +135,8 @@ public class Messagecoming implements Listener {
     private void  Actions(MessagecomingEvent event){
         //JsonObject message = JsonParser.parseString(event.getMessage()).getAsJsonObject();
         JSONObject message = new JSONObject(event.getMessage());
-        DebugMessage.sendInfo(event.getMessage());
-        DebugMessage.sendInfo(message.getString("TYPE") + message.getString("PLAYER"));
+        DebugMessage.sendInfoIfDebug("Action triggered: " + event.getMessage());
+        DebugMessage.sendInfoIfDebug(message.getString("TYPE") + message.getString("PLAYER"));//del
         //String[] msg = event.getMessage().toUpperCase().split(",");
         switch (message.getString("TYPE").toUpperCase()){
             default: return;
