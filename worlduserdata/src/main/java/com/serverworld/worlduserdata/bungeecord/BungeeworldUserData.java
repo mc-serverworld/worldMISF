@@ -75,7 +75,7 @@ public class BungeeworldUserData extends Plugin {
         config = new BungeeworldUserDataConfig(this);
     }
 
-    public static BungeeworldUserData getInstance(){ ;
+    public static BungeeworldUserData getInstance(){
         return bungeeworldUserData;
     }
 }
