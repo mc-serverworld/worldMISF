@@ -20,16 +20,7 @@
 
 package com.serverworld.phoenix.paper.Listeners;
 
-import net.md_5.bungee.api.ChatColor;
-import org.bukkit.Bukkit;
-import org.bukkit.entity.Player;
-import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.player.PlayerJoinEvent;
-
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 
 public class PlayerJoin implements Listener {
 /*
@@ -38,6 +29,7 @@ public class PlayerJoin implements Listener {
         plugin=plg;
         Bukkit.getPluginManager().registerEvents(this, plugin);
     }
+    
     @EventHandler
     public void onPLayerJoin(PlayerJoinEvent e) {
         Player player = e.getPlayer();
