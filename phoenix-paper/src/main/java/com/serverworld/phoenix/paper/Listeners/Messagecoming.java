@@ -41,7 +41,7 @@ public class Messagecoming implements Listener {
     @EventHandler
     public void onMessagecomingEvent(MessagecomingEvent event){
         if(!event.getChannel().toUpperCase().equals("MISF_PHOENIX")) return;
-        DebugMessage.sendInfoIfDebug("Incoming message: " + "sender: " + event.getSender() + " receiver: " + event.getReceiver() + "channel" + event.getChannel() + "type: " + event.getType());
+        DebugMessage.sendInfoIfDebug("Incoming message: " + "sender: " + event.getSender() + " receiver: " + event.getReceiver() + " channel: " + event.getChannel() + " type: " + event.getType());
         //worldmisfpaperspigot.getLogger().info(event.getMessage());
         World world = paperPhoenix.getServer().getWorld("world");
         try{
@@ -148,8 +148,10 @@ public class Messagecoming implements Listener {
                     Location spawn = new Location(world,PaperPhoenix.config.spawnx(), PaperPhoenix.config.spawny(),PaperPhoenix.config.spawnz());
                     Player player = PaperPhoenix.getInstance().getServer().getPlayer(message.getString("PLAYER"));
                     DebugMessage.sendInfoIfDebug("Send Player" + player.getName() + "to spawn");
+
                     player.teleport(spawn);
                 }catch (Exception e){
+                    e.printStackTrace();
                     DebugMessage.sendWarring("The player is gone!");
                 }
 

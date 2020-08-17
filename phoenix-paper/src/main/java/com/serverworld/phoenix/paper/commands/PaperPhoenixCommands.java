@@ -56,10 +56,14 @@ public class PaperPhoenixCommands implements CommandExecutor , TabCompleter {
                     commandSender.sendMessage(ChatColor.RED + "Invalid input");
                     return true;
                 }
+                
                 case "test": {
-                    if (commandSender instanceof Player)
-                        ((Player) commandSender).teleport(new Location(PaperPhoenix.getInstance().getServer().getWorld("world"),PaperPhoenix.config.spawnx(),PaperPhoenix.config.spawny(),PaperPhoenix.config.spawnz()));
-                }
+                    if (commandSender instanceof Player){
+                        Player player =  PaperPhoenix.getInstance().getServer().getPlayer(strings[1]);
+                        player.teleport(new Location(PaperPhoenix.getInstance().getServer().getWorld("world"),PaperPhoenix.config.spawnx(),PaperPhoenix.config.spawny(),PaperPhoenix.config.spawnz()));
+                    }
+                        }
+
                 case "info": {
                     if(!commandSender.hasPermission("misf.command.info")){
                         commandSender.sendMessage( ChatColor.RED + "no permission");
