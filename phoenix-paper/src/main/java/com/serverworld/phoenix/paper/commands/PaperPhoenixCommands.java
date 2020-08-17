@@ -52,11 +52,6 @@ public class PaperPhoenixCommands implements CommandExecutor , TabCompleter {
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
         try {
             switch (strings[0]) {
-                default:{
-                    commandSender.sendMessage(ChatColor.RED + "Invalid input");
-                    return true;
-                }
-                
                 case "test": {
                     if (commandSender instanceof Player){
                         Player player =  PaperPhoenix.getInstance().getServer().getPlayer(strings[1]);
@@ -88,6 +83,10 @@ public class PaperPhoenixCommands implements CommandExecutor , TabCompleter {
                 }
                 case "set": {
                     subCommand_set.cmd(commandSender,strings);
+                }
+                default:{
+                    commandSender.sendMessage(ChatColor.RED + "Invalid input");
+                    return true;
                 }
                 //=======================
             }

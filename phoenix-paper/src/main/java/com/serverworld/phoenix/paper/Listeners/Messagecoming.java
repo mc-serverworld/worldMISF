@@ -89,6 +89,7 @@ public class Messagecoming implements Listener {
                             }
                             return;
                         }
+                        default: return;
                     }
                 }
 
@@ -123,10 +124,10 @@ public class Messagecoming implements Listener {
                             }
                             return;
                         }
-
-
+                        default: return;
                     }
                 }
+                default: return;
             }
         }catch (Exception e){
             paperPhoenix.getLogger().warning("Error on socket msg "+e.getMessage());
@@ -140,8 +141,6 @@ public class Messagecoming implements Listener {
         DebugMessage.sendInfoIfDebug(message.getString("TYPE") + message.getString("PLAYER"));//del
         //String[] msg = event.getMessage().toUpperCase().split(",");
         switch (message.getString("TYPE").toUpperCase()){
-            default: return;
-
             case "RESPAWNPLAYER": {
                 try{
                     World world = PaperPhoenix.getInstance().getServer().getWorld("world");
@@ -156,6 +155,8 @@ public class Messagecoming implements Listener {
                 }
 
             }
+
+            default: return;
 
         }
     }
