@@ -35,9 +35,10 @@ public class worldSync {
     public worldSync(PaperPhoenix PaperPhoenix){
         this.paperPhoenix = PaperPhoenix;
         config = PaperPhoenix.config;
-        if(config.chunk_position_x()==0&&config.chunk_position_z()==0&&config.worldtype().equals("overworld")){ }else return;
-        WeatherSyncer();
-        TimeSyncer();
+        if(config.chunk_position_x()==0&&config.chunk_position_z()==0&&config.worldtype().equals("overworld")){
+            WeatherSyncer();
+            TimeSyncer();
+        }else return;
     }
 
     public void TimeSyncer() {
