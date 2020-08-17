@@ -36,10 +36,6 @@ public class subCommand_set {
         messagecode.setChannel("MISF_PHOENIX");
         messagecode.setType("SET");
         switch (strings[1]) {
-            default: {
-                commandSender.sendMessage(ChatColor.RED + "Invalid input");
-                return true;
-            }
             case "weather": {
                 if (!commandSender.hasPermission("misf.command.set.weather")) {
                     commandSender.sendMessage(ChatColor.RED + "no permission");
@@ -78,10 +74,6 @@ public class subCommand_set {
                     return true;
                 }
                 switch (strings[2].toUpperCase()) {
-                    default: {
-                        commandSender.sendMessage(ChatColor.RED + "Invalid input");
-                        return true;
-                    }
                     case "DAY": {
                         messagecode.setMessage("TIME,1000");
                         commandSender.sendMessage(ChatColor.GREEN + "Set time to " + strings[2].toLowerCase());
@@ -106,7 +98,15 @@ public class subCommand_set {
                         messager.sendmessage(messagecode.createmessage());
                         return true;
                     }
+                    default: {
+                        commandSender.sendMessage(ChatColor.RED + "Invalid input");
+                        return true;
+                    }
                 }
+            }
+            default: {
+                commandSender.sendMessage(ChatColor.RED + "Invalid input");
+                return true;
             }
         }
     }
