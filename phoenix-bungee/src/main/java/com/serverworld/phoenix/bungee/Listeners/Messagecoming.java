@@ -43,11 +43,11 @@ public class Messagecoming implements Listener {
             return;
         try{
             switch (event.getType().toUpperCase()){
-                default:return;
-
                 case "COMMAND": ProxyServer.getInstance().getPluginManager().dispatchCommand(ProxyServer.getInstance().getConsole(),event.getMessage());
 
                 case "ACTION": Actions(event);
+
+                default:return;
             }
         }catch (Exception e){
             DebugMessage.sendWarring("Error on socket msg "+e.getMessage());
@@ -59,8 +59,6 @@ public class Messagecoming implements Listener {
         JSONObject message = new JSONObject(event.getMessage());
         //String[] msg = event.getMessage().toUpperCase().split(",");
         switch (message.getString("TYPE").toUpperCase()){
-            default: return;
-
             case "SENDPLAYERTOSERVER": {
                 for (ProxiedPlayer player : ProxyServer.getInstance().getPlayers()) {
                     if(player.getUniqueId().toString().equals(message.getString("PLAYER"))){
@@ -70,7 +68,7 @@ public class Messagecoming implements Listener {
                 }
 
             }
-
+            default: return;
         }
     }
 }
