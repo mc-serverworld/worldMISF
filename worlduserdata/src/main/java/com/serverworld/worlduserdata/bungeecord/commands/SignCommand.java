@@ -76,7 +76,7 @@ public class SignCommand extends Command {
                             userAccountData.setIP(player.getAddress().toString());
                             userAccountData.setISP("org");
                             userAccountData.setLastLogin(date.getTime());
-                            userAccountData.setPlayedTime(0l);
+                            userAccountData.setPlayedTime(0L);
                             userAccountData.setPlayername(player.getName());
                             userAccountData.setSignData(date.getTime());
                             userAccountData.setworldCoin(0);
