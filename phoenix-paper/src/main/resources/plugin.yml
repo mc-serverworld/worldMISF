@@ -9,6 +9,10 @@ commands:
   misf:
     description: Basic misf command.
     aliases: [misf]
+  back:
+    description: Teleports you to your last location.
+    usage: /back
+
 permissions:
   misf.command.back:
     default: false

@@ -27,10 +27,7 @@ import com.serverworld.phoenix.paper.commands.LobbyCommand;
 import com.serverworld.phoenix.paper.commands.PaperPhoenixCommands;
 import com.serverworld.phoenix.paper.util.worldSetup;
 import com.serverworld.phoenix.paper.util.worldSync;
-import org.bukkit.Server;
 import org.bukkit.plugin.java.JavaPlugin;
-
-import java.io.IOException;
 
 public class PaperPhoenix extends JavaPlugin{
 
@@ -61,6 +58,10 @@ public class PaperPhoenix extends JavaPlugin{
             PaperPhoenixCommands PaperPhoenixCommands = new PaperPhoenixCommands(this);
             this.getCommand("misf").setExecutor(PaperPhoenixCommands);
             this.getCommand("misf").setTabCompleter(PaperPhoenixCommands);
+
+            //player commands
+            this.getCommand("back").setExecutor(PaperPhoenixCommands);
+            this.getCommand("back").setTabCompleter(PaperPhoenixCommands);
         }
 
     }
