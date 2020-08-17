@@ -23,10 +23,8 @@ package com.serverworld.worlduserdata.paper.utils;
 import com.google.gson.Gson;
 import com.serverworld.worlduserdata.jsondata.UserPhoenixPlayerData;
 import com.serverworld.worlduserdata.paper.PaperSQLDatabase;
-import com.serverworld.worlduserdata.paper.PaperworldUserData;
 
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Statement;
 
 public class UserPhoenixPlayerDataMySQL {
@@ -45,10 +43,10 @@ public class UserPhoenixPlayerDataMySQL {
             else {
                 UserPhoenixPlayerData userPhoenixPlayerData = new UserPhoenixPlayerData();
                 userPhoenixPlayerData.setPlaytinme(0L);
-                userPhoenixPlayerData.setResidence_total_size(0l);
-                userPhoenixPlayerData.setResidence_total_amount(0l);
-                userPhoenixPlayerData.setResidence_max_size(10000l);
-                userPhoenixPlayerData.setResidence_max_amount(3l);
+                userPhoenixPlayerData.setResidence_total_size(0L);
+                userPhoenixPlayerData.setResidence_total_amount(0L);
+                userPhoenixPlayerData.setResidence_max_size(10000L);
+                userPhoenixPlayerData.setResidence_max_amount(3L);
                 userPhoenixPlayerData.setHome_server("none");
                 userPhoenixPlayerData.setHome_world("none");
                 userPhoenixPlayerData.setHome_x(0d);
