@@ -41,7 +41,7 @@ public class Messagecoming implements Listener {
     @EventHandler
     public void onMessagecomingEvent(MessagecomingEvent event){
         if(!event.getChannel().toUpperCase().equals("MISF_PHOENIX")) return;
-        DebugMessage.sendInfoIfDebug("Incoming message: " + "sender: " + event.getSender() + " receiver: " + event.getReceiver() + " channel: " + event.getChannel() + " type: " + event.getType());
+        //DebugMessage.sendInfoIfDebug("Incoming message: " + "sender: " + event.getSender() + " receiver: " + event.getReceiver() + " channel: " + event.getChannel() + " type: " + event.getType());
         //worldmisfpaperspigot.getLogger().info(event.getMessage());
         World world = paperPhoenix.getServer().getWorld("world");
         try{
@@ -135,11 +135,8 @@ public class Messagecoming implements Listener {
     }
 
     private void  Actions(MessagecomingEvent event){
-        //JsonObject message = JsonParser.parseString(event.getMessage()).getAsJsonObject();
         JSONObject message = new JSONObject(event.getMessage());
         DebugMessage.sendInfoIfDebug("Action triggered: " + event.getMessage());
-        DebugMessage.sendInfoIfDebug(message.getString("TYPE") + message.getString("PLAYER"));//del
-        //String[] msg = event.getMessage().toUpperCase().split(",");
         switch (message.getString("TYPE").toUpperCase()){
             case "RESPAWNPLAYER": {
                 try{
