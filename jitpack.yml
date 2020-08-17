@@ -1,0 +1,9 @@
+jdk:
+  - openjdk9
+before_install:
+  - mvn install:install-file -Dfile=phoenix-paper/src/main/resources/Residence4.9.1.9.zip -DgroupId=com.bekvon -DartifactId=Residence -Dversion=4.9.1.9 -Dpackaging=jar -f pom.xml
+install:
+  - echo "Running a custom install command"
+  - mvn install
+env:
+  MYVAR: "custom environment variable"
