@@ -47,10 +47,6 @@ public class LobbyCommand implements CommandExecutor , TabExecutor {
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
         try {
             switch (strings[0]) {
-                default:{
-                    commandSender.sendMessage(ChatColor.RED + "Invalid input");
-                    return true;
-                }
                 case "info": {
                     if(!commandSender.hasPermission("misf.command.info")){
                         commandSender.sendMessage( ChatColor.RED + "no permission");
@@ -68,6 +64,10 @@ public class LobbyCommand implements CommandExecutor , TabExecutor {
                     commandSender.sendMessage(prefix_sub + ChatColor.DARK_AQUA + "Server name(Bungeecord): " + ChatColor.WHITE + config.servername());
                     commandSender.sendMessage(prefix_sub + ChatColor.DARK_AQUA + "Server type: " + ChatColor.WHITE + config.servetype());
                     commandSender.sendMessage();
+                    return true;
+                }
+                default:{
+                    commandSender.sendMessage(ChatColor.RED + "Invalid input");
                     return true;
                 }
                 //=======================
