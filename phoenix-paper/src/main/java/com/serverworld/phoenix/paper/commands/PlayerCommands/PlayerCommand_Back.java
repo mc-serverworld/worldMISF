@@ -32,7 +32,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-public class Back implements CommandExecutor {
+public class PlayerCommand_Back implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if(!(sender instanceof Player)){
@@ -41,7 +41,7 @@ public class Back implements CommandExecutor {
         }
         UserPhoenixPlayerData playerdata = UserPhoenixPlayerDataMySQL.getDataClass(((Player) sender).getPlayer().getUniqueId().toString());
         messagecoder messagecoder = new messagecoder();
-        messagecoder.setSender(PaperPhoenix.config.servername());
+        messagecoder.setSender(PaperPhoenix.getInstance().config.servername());
         messagecoder.setChannel("MISF_PHOENIX");
         messagecoder.setReceiver("PROXY");
         messagecoder.setType("ACTION");

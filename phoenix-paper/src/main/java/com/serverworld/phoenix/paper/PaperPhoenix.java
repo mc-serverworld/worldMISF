@@ -25,6 +25,7 @@ import com.serverworld.phoenix.paper.Listeners.PlayerDeath;
 import com.serverworld.phoenix.paper.Listeners.PlayerRespawn;
 import com.serverworld.phoenix.paper.commands.LobbyCommand;
 import com.serverworld.phoenix.paper.commands.PaperPhoenixCommands;
+import com.serverworld.phoenix.paper.commands.PlayerCommands.PlayerCommand_Back;
 import com.serverworld.phoenix.paper.util.worldSetup;
 import com.serverworld.phoenix.paper.util.worldSync;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -60,8 +61,9 @@ public class PaperPhoenix extends JavaPlugin{
             this.getCommand("misf").setTabCompleter(PaperPhoenixCommands);
 
             //player commands
-            this.getCommand("back").setExecutor(PaperPhoenixCommands);
-            this.getCommand("back").setTabCompleter(PaperPhoenixCommands);
+            PlayerCommand_Back PlayerCommand_Back = new PlayerCommand_Back();
+            this.getCommand("back").setExecutor(PlayerCommand_Back);
+            //this.getCommand("back").setTabCompleter(PaperPhoenixCommands);
         }
 
     }
