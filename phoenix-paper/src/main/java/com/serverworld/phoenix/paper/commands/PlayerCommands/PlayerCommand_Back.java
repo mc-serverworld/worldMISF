@@ -66,7 +66,7 @@ public class PlayerCommand_Back implements CommandExecutor {
             messagecoder Messagecoder = new messagecoder();
             Messagecoder.setSender(PaperPhoenix.config.servername());
             Messagecoder.setChannel("MISF_PHOENIX");
-            Messagecoder.setReceiver(PaperPhoenix.config.serversprefix() + "OVERWORLD_0_0");
+            Messagecoder.setReceiver(playerdata.getLastlocation_server());
             Messagecoder.setType("ACTION");
             JsonObject Json = new JsonObject();
             Json.addProperty("TYPE","TELEPORTPLAYER");
