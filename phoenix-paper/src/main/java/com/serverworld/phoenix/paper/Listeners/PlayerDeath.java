@@ -65,7 +65,7 @@ public class PlayerDeath implements Listener {
                 json.addProperty("SERVER",PaperPhoenix.config.serversprefix() + "OVERWORLD_0_0");
                 messagecoder.setMessage(json.toString());
                 messager.sendmessage(messagecoder.createmessage());
-                }, 10L);//send player to spawn
+                }, 5L);//send player to spawn
 
             Bukkit.getScheduler().scheduleSyncDelayedTask(PaperPhoenix.getInstance(), () -> {
                 messagecoder messagecoder = new messagecoder();
@@ -78,7 +78,7 @@ public class PlayerDeath implements Listener {
                 json.addProperty("PLAYER",event.getEntity().getPlayer().getName());
                 messagecoder.setMessage(json.toString());
                 messager.sendmessage(messagecoder.createmessage());
-            }, 30L);//tell spawn server to respawn player
+            }, 20L);//tell spawn server to respawn player
         }
     }
 }

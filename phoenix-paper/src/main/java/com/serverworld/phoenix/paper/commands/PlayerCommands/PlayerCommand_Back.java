@@ -50,17 +50,21 @@ public class PlayerCommand_Back implements CommandExecutor {
         playerData.setLastlocation_z(player.getLocation().getZ());
         UserPhoenixPlayerDataMySQL.setDataClass(player.getUniqueId().toString() , playerData);//save dead pos to database
 
-        messagecoder messagecoder = new messagecoder();
-        messagecoder.setSender(PaperPhoenix.getInstance().config.servername());
-        messagecoder.setChannel("MISF_PHOENIX");
-        messagecoder.setReceiver("PROXY");
-        messagecoder.setType("ACTION");
-        JsonObject json = new JsonObject();
-        json.addProperty("TYPE","SENDPLAYERTOSERVER");
-        json.addProperty("PLAYER",((Player) sender).getPlayer().getUniqueId().toString());
-        json.addProperty("SERVER",playerdata.getLastlocation_server());
-        messagecoder.setMessage(json.toString());
-        messager.sendmessage(messagecoder.createmessage());
+        player.sendMessage(ChatColor.GREEN + "將您傳送到上一個位置");//TODO: Langauge seleter
+        
+        if(!PaperPhoenix.config.servername().equals(playerdata.getLastlocation_server())){
+            messagecoder messagecoder = new messagecoder();
+            messagecoder.setSender(PaperPhoenix.getInstance().config.servername());
+            messagecoder.setChannel("MISF_PHOENIX");
+            messagecoder.setReceiver("PROXY");
+            messagecoder.setType("ACTION");
+            JsonObject json = new JsonObject();
+            json.addProperty("TYPE","SENDPLAYERTOSERVER");
+            json.addProperty("PLAYER",((Player) sender).getPlayer().getUniqueId().toString());
+            json.addProperty("SERVER",playerdata.getLastlocation_server());
+            messagecoder.setMessage(json.toString());
+            messager.sendmessage(messagecoder.createmessage());
+        }
 
         Bukkit.getScheduler().scheduleSyncDelayedTask(PaperPhoenix.getInstance(), () -> {
             messagecoder Messagecoder = new messagecoder();
@@ -77,7 +81,7 @@ public class PlayerCommand_Back implements CommandExecutor {
             Json.addProperty("LOCATION_Z",playerdata.getLastlocation_z());
             Messagecoder.setMessage(Json.toString());
             messager.sendmessage(Messagecoder.createmessage());
-        }, 30L);
+        }, 20L);
 
 
         return true;
