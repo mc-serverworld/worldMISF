@@ -83,6 +83,7 @@ public class PaperPhoenixCommands implements CommandExecutor , TabCompleter {
                 }
                 case "set": {
                     subCommand_set.cmd(commandSender,strings);
+                    return true;
                 }
                 default:{
                     commandSender.sendMessage(ChatColor.RED + "Invalid input");

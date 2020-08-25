@@ -143,7 +143,7 @@ public class Messagecoming implements Listener {
                     World world = PaperPhoenix.getInstance().getServer().getWorld("world");
                     Location spawn = new Location(world,PaperPhoenix.config.spawnx(), PaperPhoenix.config.spawny(),PaperPhoenix.config.spawnz());
                     Player player = PaperPhoenix.getInstance().getServer().getPlayer(message.getString("PLAYER"));
-                    DebugMessage.sendInfoIfDebug("Send Player" + player.getName() + "to spawn");
+                    DebugMessage.sendInfoIfDebug("Send Player " + player.getName() + " to spawn");
 
                     player.teleport(spawn);
                 }catch (Exception e){
@@ -156,7 +156,7 @@ public class Messagecoming implements Listener {
                 World world = PaperPhoenix.getInstance().getServer().getWorld(message.getString("WORLD"));
                 Location spawn = new Location(world,message.getDouble("LOCATION_X"), message.getDouble("LOCATION_Y"),message.getDouble("LOCATION_Z"));
                 Player player = PaperPhoenix.getInstance().getServer().getPlayer(message.getString("PLAYER"));
-                DebugMessage.sendInfoIfDebug("Teleport Player" + player.getName() + "to " + message.get("LOCATION_X") + " " + message.get("LOCATION_Y") + " " + message.get("LOCATION_Z"));
+                DebugMessage.sendInfoIfDebug("Teleport Player " + player.getName() + "to " + message.get("LOCATION_X") + " " + message.get("LOCATION_Y") + " " + message.get("LOCATION_Z"));
 
                 player.teleport(spawn);
             }
