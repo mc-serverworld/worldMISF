@@ -48,6 +48,6 @@ public class PlayerCommand_Sethome implements CommandExecutor {
         UserPhoenixPlayerDataMySQL.setDataClass(player.getUniqueId().toString() , playerData);//save dead pos to database
 
         player.sendMessage(ChatColor.GREEN + "將您傳送至家");//TODO: Langauge seleter
-        return false;
+        return false;//
     }
 }
