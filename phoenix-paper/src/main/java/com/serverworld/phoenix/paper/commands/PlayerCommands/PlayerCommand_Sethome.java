@@ -40,11 +40,11 @@ public class PlayerCommand_Sethome implements CommandExecutor {
         Player player = (Player) sender;
         UserPhoenixPlayerData playerdata = UserPhoenixPlayerDataMySQL.getDataClass(((Player) sender).getPlayer().getUniqueId().toString());//get player data
         UserPhoenixPlayerData playerData = UserPhoenixPlayerDataMySQL.getDataClass(player.getUniqueId().toString());
-        playerData.setLastlocation_server(PaperPhoenix.config.servername());
-        playerData.setLastlocation_world(player.getWorld().getName());
-        playerData.setLastlocation_x(player.getLocation().getX());
-        playerData.setLastlocation_y(player.getLocation().getY());
-        playerData.setLastlocation_z(player.getLocation().getZ());
+        playerData.setHome_server(PaperPhoenix.config.servername());
+        playerData.setHome_world(player.getWorld().getName());
+        playerData.setHome_x(player.getLocation().getX());
+        playerData.setHome_y(player.getLocation().getY());
+        playerData.setHome_z(player.getLocation().getZ());
         UserPhoenixPlayerDataMySQL.setDataClass(player.getUniqueId().toString() , playerData);//save dead pos to database
 
         player.sendMessage(ChatColor.GREEN + "將您傳送至家");//TODO: Langauge seleter
