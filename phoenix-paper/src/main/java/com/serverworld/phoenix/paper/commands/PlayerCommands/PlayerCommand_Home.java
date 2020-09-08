@@ -54,7 +54,7 @@ public class PlayerCommand_Home implements CommandExecutor {
 
         if(!PaperPhoenix.config.servername().equals(playerdata.getLastlocation_server())){
             messagecoder messagecoder = new messagecoder();
-            messagecoder.setSender(PaperPhoenix.getInstance().config.servername());
+            messagecoder.setSender(PaperPhoenix.config.servername());
             messagecoder.setChannel("MISF_PHOENIX");
             messagecoder.setReceiver("PROXY");
             messagecoder.setType("ACTION");
