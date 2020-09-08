@@ -26,6 +26,8 @@ import com.serverworld.phoenix.paper.Listeners.PlayerRespawn;
 import com.serverworld.phoenix.paper.commands.LobbyCommand;
 import com.serverworld.phoenix.paper.commands.PaperPhoenixCommands;
 import com.serverworld.phoenix.paper.commands.PlayerCommands.PlayerCommand_Back;
+import com.serverworld.phoenix.paper.commands.PlayerCommands.PlayerCommand_Home;
+import com.serverworld.phoenix.paper.commands.PlayerCommands.PlayerCommand_Sethome;
 import com.serverworld.phoenix.paper.util.worldSetup;
 import com.serverworld.phoenix.paper.util.worldSync;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -63,6 +65,10 @@ public class PaperPhoenix extends JavaPlugin{
             //player commands
             PlayerCommand_Back PlayerCommand_Back = new PlayerCommand_Back();
             this.getCommand("back").setExecutor(PlayerCommand_Back);
+            PlayerCommand_Home PlayerCommand_Home = new PlayerCommand_Home();
+            this.getCommand("home").setExecutor(PlayerCommand_Home);
+            PlayerCommand_Sethome PlayerCommand_Sethome = new PlayerCommand_Sethome();
+            this.getCommand("sethome").setExecutor(PlayerCommand_Sethome);
             //this.getCommand("back").setTabCompleter(PaperPhoenixCommands);
         }
 
