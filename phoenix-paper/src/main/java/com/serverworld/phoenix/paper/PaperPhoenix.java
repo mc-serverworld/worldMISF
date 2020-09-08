@@ -81,8 +81,10 @@ public class PaperPhoenix extends JavaPlugin{
         //player commands
         PlayerCommand_Back PlayerCommand_Back = new PlayerCommand_Back();
         this.getCommand("back").setExecutor(PlayerCommand_Back);
+
         PlayerCommand_Home PlayerCommand_Home = new PlayerCommand_Home();
         this.getCommand("home").setExecutor(PlayerCommand_Home);
+
         PlayerCommand_Sethome PlayerCommand_Sethome = new PlayerCommand_Sethome();
         this.getCommand("sethome").setExecutor(PlayerCommand_Sethome);
         //this.getCommand("back").setTabCompleter(PaperPhoenixCommands);

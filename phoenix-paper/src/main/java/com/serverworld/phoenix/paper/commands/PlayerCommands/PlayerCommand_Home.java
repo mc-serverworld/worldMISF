@@ -34,6 +34,9 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 public class PlayerCommand_Home implements CommandExecutor {
+    public PlayerCommand_Home(){
+        
+    }
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if(!(sender instanceof Player)){
