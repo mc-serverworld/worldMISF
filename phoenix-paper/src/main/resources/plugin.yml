@@ -10,8 +10,15 @@ commands:
     description: Basic misf command.
     aliases: [misf]
   back:
-    description: Teleports you to your last location.
+    description: Teleport you to your last location.
     usage: /back
+  home:
+    description: Teleport you back to your home.
+    usage: /home
+  sethome:
+    description: Set current location as your home.
+    usage: /sethome
+    
 
 permissions:
   misf.command.back:
