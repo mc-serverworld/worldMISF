@@ -33,7 +33,6 @@ import com.serverworld.phoenix.paper.util.worldSync;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class PaperPhoenix extends JavaPlugin{
-
     private static PaperPhoenix paperPhoenix;
     public static PaperPhoenixConfig config;
 
