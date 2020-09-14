@@ -18,6 +18,16 @@ commands:
   sethome:
     description: Set current location as your home.
     usage: /sethome
+  spawn:
+    description: Teleport you to spawn.
+    usage: /spawn
+  tpa:
+    description: Sent a teleport request to the specific player.
+    usage: /tpa [player]
+  tpahere:
+    description: Sent a teleport request to the specific player to you.
+    usage: /tpahere [player]
+
 
 permissions:
   misf.command.back:
@@ -47,6 +57,8 @@ permissions:
   misf.command.warpsv:
     default: false
   misf.notify:
+    default: false
+  misf.debug:
     default: false
 
   misf.*:

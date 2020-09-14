@@ -47,7 +47,7 @@ public class PlayerCommand_Sethome implements CommandExecutor {
         UserPhoenixPlayerDataMySQL.setDataClass(player.getUniqueId().toString() , playerData);//save dead pos to database
 
         player.sendMessage(ChatColor.GREEN + "設定您的家於此");//TODO: Langauge seleter
-        player.sendMessage("Server: " + PaperPhoenix.config.servername() + " World: " + player.getWorld().getName());
+        player.sendMessage("Server: " + PaperPhoenix.config.servername() + " World: " + player.getWorld().getName());// debug
 
         return false;//
     }

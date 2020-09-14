@@ -33,11 +33,9 @@ public class DebugMessage {
     public static void sendInfoIfDebug(String msg){
         if(PaperPhoenix.config.debug())
             PaperPhoenix.getInstance().getLogger().info(msg);
-
     }
     public static void sendWarringIfDebug(String msg){
         if(PaperPhoenix.config.debug())
             PaperPhoenix.getInstance().getLogger().warning(msg);
-
     }
 }
