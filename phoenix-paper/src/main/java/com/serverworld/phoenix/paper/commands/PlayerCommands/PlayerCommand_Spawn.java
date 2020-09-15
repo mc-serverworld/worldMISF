@@ -20,14 +20,72 @@
 
 package com.serverworld.phoenix.paper.commands.PlayerCommands;
 
+import com.google.gson.JsonObject;
+import com.serverworld.phoenix.paper.PaperPhoenix;
+import com.serverworld.worldSocket.paperspigot.util.messagecoder;
+import com.serverworld.worldSocket.paperspigot.util.messager;
+import com.serverworld.worlduserdata.jsondata.UserPhoenixPlayerData;
+import com.serverworld.worlduserdata.paper.utils.UserPhoenixPlayerDataMySQL;
+import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
 
 public class PlayerCommand_Spawn implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        return false;
+        if(!(sender instanceof Player)){
+            sender.sendMessage(ChatColor.RED + "Only player can use this command!");
+            return false;
+        }
+        Player player = (Player) sender;
+        UserPhoenixPlayerData playerdata = UserPhoenixPlayerDataMySQL.getDataClass(((Player) sender).getPlayer().getUniqueId().toString());//get player data
+        UserPhoenixPlayerData playerData = UserPhoenixPlayerDataMySQL.getDataClass(player.getUniqueId().toString());
+        playerData.setLastlocation_server(PaperPhoenix.config.servername());
+        playerData.setLastlocation_world(player.getWorld().getName());
+        playerData.setLastlocation_x(player.getLocation().getX());
+        playerData.setLastlocation_y(player.getLocation().getY());
+        playerData.setLastlocation_z(player.getLocation().getZ());
+        UserPhoenixPlayerDataMySQL.setDataClass(player.getUniqueId().toString() , playerData);//save dead pos to database
+
+        player.sendMessage(ChatColor.GREEN + "將您傳送至家重生點");//TODO: Langauge seleter
+
+        if(PaperPhoenix.config.servername().equals(PaperPhoenix.config.serversprefix() + "OVERWORLD_0_0"))
+            return true
+
+
+
+                    ;
+        Bukkit.getScheduler().scheduleSyncDelayedTask(PaperPhoenix.getInstance(), () -> {
+            messagecoder messagecoder = new messagecoder();
+            messagecoder.setSender(PaperPhoenix.config.servername());
+            messagecoder.setChannel("MISF_PHOENIX");
+            messagecoder.setReceiver("PROXY");
+            messagecoder.setType("ACTION");
+            JsonObject json = new JsonObject();
+            json.addProperty("TYPE","SENDPLAYERTOSERVER");
+            json.addProperty("PLAYER",player.getUniqueId().toString());
+            json.addProperty("SERVER",PaperPhoenix.config.serversprefix() + "OVERWORLD_0_0");
+            messagecoder.setMessage(json.toString());
+            messager.sendmessage(messagecoder.createmessage());
+        }, 5L);//send player to spawn
+
+        Bukkit.getScheduler().scheduleSyncDelayedTask(PaperPhoenix.getInstance(), () -> {
+            messagecoder messagecoder = new messagecoder();
+            messagecoder.setSender(PaperPhoenix.config.servername());
+            messagecoder.setChannel("MISF_PHOENIX");
+            messagecoder.setReceiver(PaperPhoenix.config.serversprefix() + "OVERWORLD_0_0");
+            messagecoder.setType("ACTION");
+            JsonObject json = new JsonObject();
+            json.addProperty("TYPE","RESPAWNPLAYER");
+            json.addProperty("PLAYER",player.getName());
+            messagecoder.setMessage(json.toString());
+            messager.sendmessage(messagecoder.createmessage());
+        }, 20L);//tell spawn server to respawn player
+
+        return true;
     }
 }
