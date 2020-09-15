@@ -25,9 +25,7 @@ import com.serverworld.phoenix.paper.Listeners.PlayerDeath;
 import com.serverworld.phoenix.paper.Listeners.PlayerRespawn;
 import com.serverworld.phoenix.paper.commands.LobbyCommand;
 import com.serverworld.phoenix.paper.commands.PaperPhoenixCommands;
-import com.serverworld.phoenix.paper.commands.PlayerCommands.PlayerCommand_Back;
-import com.serverworld.phoenix.paper.commands.PlayerCommands.PlayerCommand_Home;
-import com.serverworld.phoenix.paper.commands.PlayerCommands.PlayerCommand_Sethome;
+import com.serverworld.phoenix.paper.commands.PlayerCommands.*;
 import com.serverworld.phoenix.paper.util.worldSetup;
 import com.serverworld.phoenix.paper.util.worldSync;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -86,7 +84,16 @@ public class PaperPhoenix extends JavaPlugin{
 
         PlayerCommand_Sethome PlayerCommand_Sethome = new PlayerCommand_Sethome();
         this.getCommand("sethome").setExecutor(PlayerCommand_Sethome);
-        //this.getCommand("back").setTabCompleter(PaperPhoenixCommands);
+
+        PlayerCommand_Spawn PlayerCommand_Spawn = new PlayerCommand_Spawn();
+        this.getCommand("spawn").setExecutor(PlayerCommand_Spawn);
+
+        PlayerCommand_Tpa PlayerCommand_Tpa = new PlayerCommand_Tpa();
+        this.getCommand("home").setExecutor(PlayerCommand_Tpa);
+
+        PlayerCommand_Tpahere PlayerCommand_Tpahere = new PlayerCommand_Tpahere();
+        this.getCommand("sethome").setExecutor(PlayerCommand_Tpahere);
+
     }
 
     public static PaperPhoenix getInstance(){
