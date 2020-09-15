@@ -22,6 +22,7 @@ package com.serverworld.phoenix.paper.commands.PlayerCommands;
 
 import com.google.gson.JsonObject;
 import com.serverworld.phoenix.paper.PaperPhoenix;
+import com.serverworld.phoenix.paper.util.Formats;
 import com.serverworld.worldSocket.paperspigot.util.messagecoder;
 import com.serverworld.worldSocket.paperspigot.util.messager;
 import com.serverworld.worlduserdata.jsondata.UserPhoenixPlayerData;
@@ -51,14 +52,11 @@ public class PlayerCommand_Spawn implements CommandExecutor {
         playerData.setLastlocation_z(player.getLocation().getZ());
         UserPhoenixPlayerDataMySQL.setDataClass(player.getUniqueId().toString() , playerData);//save dead pos to database
 
-        player.sendMessage(ChatColor.GREEN + "將您傳送至家重生點");//TODO: Langauge seleter
+        player.sendMessage(Formats.perfix() + ChatColor.GREEN + "將您傳送至重生點");//TODO: Langauge seleter
 
         if(PaperPhoenix.config.servername().equals(PaperPhoenix.config.serversprefix() + "OVERWORLD_0_0"))
-            return true
+            return true;
 
-
-
-                    ;
         Bukkit.getScheduler().scheduleSyncDelayedTask(PaperPhoenix.getInstance(), () -> {
             messagecoder messagecoder = new messagecoder();
             messagecoder.setSender(PaperPhoenix.config.servername());
