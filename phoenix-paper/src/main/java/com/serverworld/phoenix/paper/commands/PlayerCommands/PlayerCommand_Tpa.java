@@ -20,14 +20,34 @@
 
 package com.serverworld.phoenix.paper.commands.PlayerCommands;
 
+import com.serverworld.phoenix.paper.PaperPhoenix;
+import com.serverworld.worlduserdata.jsondata.UserPhoenixPlayerData;
+import com.serverworld.worlduserdata.paper.utils.UserPhoenixPlayerDataMySQL;
+import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
 
 public class PlayerCommand_Tpa  implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+        if(!(sender instanceof Player)){
+            sender.sendMessage(ChatColor.RED + "Only player can use this command!");
+            return false;
+        }
+        Player player = (Player) sender;
+        UserPhoenixPlayerData playerdata = UserPhoenixPlayerDataMySQL.getDataClass(((Player) sender).getPlayer().getUniqueId().toString());//get player data
+        UserPhoenixPlayerData playerData = UserPhoenixPlayerDataMySQL.getDataClass(player.getUniqueId().toString());
+        playerData.setHome_server(PaperPhoenix.config.servername());
+        playerData.setHome_world(player.getWorld().getName());
+        playerData.setHome_x(player.getLocation().getX());
+        playerData.setHome_y(player.getLocation().getY());
+        playerData.setHome_z(player.getLocation().getZ());
+        UserPhoenixPlayerDataMySQL.setDataClass(player.getUniqueId().toString() , playerData);//save dead pos to database
+
+        player.sendMessage(ChatColor.GREEN + "設定您的家於此");//TODO: Langauge seleter
         return false;
     }
 }

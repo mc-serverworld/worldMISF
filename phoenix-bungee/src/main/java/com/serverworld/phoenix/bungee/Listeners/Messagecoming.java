@@ -67,7 +67,10 @@ public class Messagecoming implements Listener {
                     }
                 }
             }
-            case "SENDPLAYERTOPLAYER"
+            case "SENDTOPLAYERSERVER": {
+
+            }
+
             default: return;
         }
     }
