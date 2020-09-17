@@ -11,9 +11,11 @@ commands:
     aliases: [misfbungee]
   tpa:
     description: Sent a teleport request to the specific player.
+    permission: misf.command.tpa
     usage: /tpa [player]
   tpahere:
     description: Sent a teleport request to the specific player to you.
+    permission: misf.command.tpahere
     usage: /tpahere [player]
 
 permissions:
