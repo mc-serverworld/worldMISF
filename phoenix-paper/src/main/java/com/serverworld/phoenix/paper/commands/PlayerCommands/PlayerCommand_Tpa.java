@@ -41,7 +41,8 @@ public class PlayerCommand_Tpa  implements CommandExecutor {
             sender.sendMessage(ChatColor.RED + "Only player can use this command!");
             return false;
         }
-        
+
+
         Bukkit.getScheduler().scheduleSyncDelayedTask(PaperPhoenix.getInstance(), () -> {
             messagecoder messagecoder = new messagecoder();
             messagecoder.setSender(PaperPhoenix.config.servername());
