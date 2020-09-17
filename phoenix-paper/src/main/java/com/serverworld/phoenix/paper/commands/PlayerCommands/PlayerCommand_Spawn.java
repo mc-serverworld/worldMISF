@@ -22,6 +22,7 @@ package com.serverworld.phoenix.paper.commands.PlayerCommands;
 
 import com.google.gson.JsonObject;
 import com.serverworld.phoenix.paper.PaperPhoenix;
+import com.serverworld.phoenix.paper.util.DebugMessage;
 import com.serverworld.phoenix.paper.util.Formats;
 import com.serverworld.worldSocket.paperspigot.util.messagecoder;
 import com.serverworld.worldSocket.paperspigot.util.messager;
@@ -29,6 +30,8 @@ import com.serverworld.worlduserdata.jsondata.UserPhoenixPlayerData;
 import com.serverworld.worlduserdata.paper.utils.UserPhoenixPlayerDataMySQL;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.Location;
+import org.bukkit.World;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -54,8 +57,14 @@ public class PlayerCommand_Spawn implements CommandExecutor {
 
         player.sendMessage(Formats.perfix() + ChatColor.GREEN + "將您傳送至重生點");//TODO: Langauge seleter
 
-        if(PaperPhoenix.config.servername().equals(PaperPhoenix.config.serversprefix() + "OVERWORLD_0_0"))
-            return true;
+
+
+        if(PaperPhoenix.config.servername().equals(PaperPhoenix.config.serversprefix() + "OVERWORLD_0_0")){
+            World world = PaperPhoenix.getInstance().getServer().getWorld("world");
+            Location spawn = new Location(world,PaperPhoenix.config.spawnx(), PaperPhoenix.config.spawny(),PaperPhoenix.config.spawnz());
+            DebugMessage.sendInfoIfDebug("Send Player " + player.getName() + " to spawn");
+            player.teleport(spawn);
+        }
 
         Bukkit.getScheduler().scheduleSyncDelayedTask(PaperPhoenix.getInstance(), () -> {
             messagecoder messagecoder = new messagecoder();
