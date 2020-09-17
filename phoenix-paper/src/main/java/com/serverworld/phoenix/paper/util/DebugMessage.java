@@ -21,6 +21,7 @@
 package com.serverworld.phoenix.paper.util;
 
 import com.serverworld.phoenix.paper.PaperPhoenix;
+import org.bukkit.command.CommandSender;
 
 public class DebugMessage {
 
@@ -37,5 +38,9 @@ public class DebugMessage {
     public static void sendWarringIfDebug(String msg){
         if(PaperPhoenix.config.debug())
             PaperPhoenix.getInstance().getLogger().warning(msg);
+    }
+    public static void sendIfHasPermission(CommandSender sender , Object msg){
+        if(sender.hasPermission("misf.debug"))
+            sender.sendMessage(msg.toString());
     }
 }
