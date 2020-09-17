@@ -50,9 +50,9 @@ public class PlayerCommand_Tpa  implements CommandExecutor {
             messagecoder.setReceiver("PROXY");
             messagecoder.setType("ACTION");
             JsonObject json = new JsonObject();
-            json.addProperty("TYPE","SENDTOPLAYERSERVER");
+            json.addProperty("TYPE","SEND_PLAYER_TO_SERVER");
             json.addProperty("PLAYER",((Player) sender).getUniqueId().toString());
-            json.addProperty("TARGETPLAYER",args[0]);
+            json.addProperty("TARGET_PLAYER",args[0]);
             messagecoder.setMessage(json.toString());
             messager.sendmessage(messagecoder.createmessage());
         }, 5L);//send player to spawn
@@ -70,6 +70,6 @@ public class PlayerCommand_Tpa  implements CommandExecutor {
         player.sendMessage(ChatColor.GREEN + "設定您的家於此");//TODO: Langauge seleter
 
 
-        return false;
+        return true;
     }
 }

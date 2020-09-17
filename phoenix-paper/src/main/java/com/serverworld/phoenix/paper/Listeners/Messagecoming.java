@@ -138,7 +138,7 @@ public class Messagecoming implements Listener {
         JSONObject message = new JSONObject(event.getMessage());
         DebugMessage.sendInfoIfDebug("Action triggered: " + event.getMessage());
         switch (message.getString("TYPE").toUpperCase()){
-            case "RESPAWNPLAYER": {
+            case "RESPAWN_PLAYER": {
                 try{
                     World world = PaperPhoenix.getInstance().getServer().getWorld("world");
                     Location spawn = new Location(world,PaperPhoenix.config.spawnx(), PaperPhoenix.config.spawny(),PaperPhoenix.config.spawnz());
@@ -152,15 +152,32 @@ public class Messagecoming implements Listener {
                 }
             }
 
-            case "TELEPORTPLAYER": {
-                World world = PaperPhoenix.getInstance().getServer().getWorld(message.getString("WORLD"));
-                Location spawn = new Location(world,message.getDouble("LOCATION_X"), message.getDouble("LOCATION_Y"),message.getDouble("LOCATION_Z"));
-                Player player = PaperPhoenix.getInstance().getServer().getPlayer(message.getString("PLAYER"));
-                DebugMessage.sendInfoIfDebug("Teleport Player " + player.getName() + "to " + message.get("LOCATION_X") + " " + message.get("LOCATION_Y") + " " + message.get("LOCATION_Z"));
+            case "TELEPORT_PLAYER": {
+                try {
+                    World world = PaperPhoenix.getInstance().getServer().getWorld(message.getString("WORLD"));
+                    Location spawn = new Location(world,message.getDouble("LOCATION_X"), message.getDouble("LOCATION_Y"),message.getDouble("LOCATION_Z"));
+                    Player player = PaperPhoenix.getInstance().getServer().getPlayer(message.getString("PLAYER"));
+                    DebugMessage.sendInfoIfDebug("Teleport Player " + player.getName() + " to " + message.get("LOCATION_X") + " " + message.get("LOCATION_Y") + " " + message.get("LOCATION_Z"));
 
-                player.teleport(spawn);
+                    player.teleport(spawn);
+                }catch (Exception e){
+                    e.printStackTrace();
+                    DebugMessage.sendWarring("The Player is gone!");
+                }
             }
 
+            case "TELEPORT_PLAYER_TO_PLAYER": {
+                try {
+                    Player player = PaperPhoenix.getInstance().getServer().getPlayer(message.getString("PLAYER"));
+                    Player target_player = PaperPhoenix.getInstance().getServer().getPlayer(message.getString("TARGET_PLAYER"));
+                    DebugMessage.sendInfoIfDebug("Teleport Player " + player.getName() + " to " + target_player);
+
+                    player.teleport(target_player);
+                }catch (Exception e){
+                    e.printStackTrace();
+                    DebugMessage.sendWarring("The Player is gone!");
+                }
+            }
             default: return;
 
         }

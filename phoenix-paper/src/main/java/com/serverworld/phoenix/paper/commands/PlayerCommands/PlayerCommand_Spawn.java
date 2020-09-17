@@ -72,7 +72,7 @@ public class PlayerCommand_Spawn implements CommandExecutor {
             messagecoder.setReceiver("PROXY");
             messagecoder.setType("ACTION");
             JsonObject json = new JsonObject();
-            json.addProperty("TYPE","SENDPLAYERTOSERVER");
+            json.addProperty("TYPE","SEND_PLAYER_TO_SERVER");
             json.addProperty("PLAYER",player.getUniqueId().toString());
             json.addProperty("SERVER",PaperPhoenix.config.serversprefix() + "OVERWORLD_0_0");
             messagecoder.setMessage(json.toString());
@@ -86,7 +86,7 @@ public class PlayerCommand_Spawn implements CommandExecutor {
             messagecoder.setReceiver(PaperPhoenix.config.serversprefix() + "OVERWORLD_0_0");
             messagecoder.setType("ACTION");
             JsonObject json = new JsonObject();
-            json.addProperty("TYPE","RESPAWNPLAYER");
+            json.addProperty("TYPE","RESPAWN_PLAYER");
             json.addProperty("PLAYER",player.getName());
             messagecoder.setMessage(json.toString());
             messager.sendmessage(messagecoder.createmessage());

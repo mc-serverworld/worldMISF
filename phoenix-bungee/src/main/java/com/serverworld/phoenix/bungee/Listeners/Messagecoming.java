@@ -59,7 +59,7 @@ public class Messagecoming implements Listener {
         JSONObject message = new JSONObject(event.getMessage());
         //String[] msg = event.getMessage().toUpperCase().split(",");
         switch (message.getString("TYPE").toUpperCase()){
-            case "SENDPLAYERTOSERVER": {
+            case "SEND_PLAYER_TO_SERVER": {
                 for (ProxiedPlayer player : ProxyServer.getInstance().getPlayers()) {
                     if(player.getUniqueId().toString().equals(message.getString("PLAYER"))){
                         player.connect(ProxyServer.getInstance().getServerInfo(message.getString("SERVER")));

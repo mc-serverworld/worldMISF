@@ -9,12 +9,23 @@ commands:
   midfbungeecord:
     description: Basic misf command.
     aliases: [misfbungee]
+  tpa:
+    description: Sent a teleport request to the specific player.
+    usage: /tpa [player]
+  tpahere:
+    description: Sent a teleport request to the specific player to you.
+    usage: /tpahere [player]
+
 permissions:
-      misfbungeecord.command.help:
-        default: false
-      misfbungeecord.command.info:
-        default: false
-      misfbungeecord.command.sudo.setup:
-        default: false
-      misfbungeecord.notify:
-        default: false
+  misfbungeecord.command.help:
+    default: false
+  misfbungeecord.command.info:
+    default: false
+  misfbungeecord.command.sudo.setup:
+    default: false
+  misfbungeecord.notify:
+    default: false
+  misf.command.tpa:
+    default: true
+  misf.command.tpahere:
+    default: true

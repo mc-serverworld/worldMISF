@@ -21,12 +21,7 @@ commands:
   spawn:
     description: Teleport you to spawn.
     usage: /spawn
-  tpa:
-    description: Sent a teleport request to the specific player.
-    usage: /tpa [player]
-  tpahere:
-    description: Sent a teleport request to the specific player to you.
-    usage: /tpahere [player]
+
 
 
 permissions:

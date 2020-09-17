@@ -22,6 +22,7 @@ package com.serverworld.phoenix.paper.commands.PlayerCommands;
 
 import com.serverworld.phoenix.paper.PaperPhoenix;
 import com.serverworld.phoenix.paper.util.DebugMessage;
+import com.serverworld.phoenix.paper.util.Formats;
 import com.serverworld.worlduserdata.jsondata.UserPhoenixPlayerData;
 import com.serverworld.worlduserdata.paper.utils.UserPhoenixPlayerDataMySQL;
 import org.bukkit.ChatColor;
@@ -48,9 +49,9 @@ public class PlayerCommand_Sethome implements CommandExecutor {
         playerData.setHome_z(player.getLocation().getZ());
         UserPhoenixPlayerDataMySQL.setDataClass(player.getUniqueId().toString() , playerData);//save dead pos to database
 
-        player.sendMessage(ChatColor.GREEN + "設定您的家於此");//TODO: Langauge seleter
-        DebugMessage.sendIfHasPermission(sender,"Server: " + PaperPhoenix.config.servername() + " World: " + player.getWorld().getName());
+        player.sendMessage(Formats.perfix() + ChatColor.GREEN + "設定您的家於此");//TODO: Langauge seleter
+        DebugMessage.sendIfHasPermission(sender,Formats.debug_perfix() + "Server: " + PaperPhoenix.config.servername() + " World: " + player.getWorld().getName());
 
-        return false;//
+        return true;
     }
 }

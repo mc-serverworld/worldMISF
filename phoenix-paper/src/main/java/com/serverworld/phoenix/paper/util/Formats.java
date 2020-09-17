@@ -29,4 +29,10 @@ public class Formats {
         return pf;
     }
 
+    public static String debug_perfix(){
+        String pf;
+        pf = ChatColor.DARK_GRAY + "[" + ChatColor.RED + "MISF SYSTEM" + ChatColor.DARK_GRAY+ "] " +ChatColor.WHITE;
+        return pf;
+    }
+
 }

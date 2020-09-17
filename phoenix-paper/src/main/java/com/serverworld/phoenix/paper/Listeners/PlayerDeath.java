@@ -21,11 +21,13 @@
 package com.serverworld.phoenix.paper.Listeners;
 import com.google.gson.JsonObject;
 import com.serverworld.phoenix.paper.PaperPhoenix;
+import com.serverworld.phoenix.paper.util.Formats;
 import com.serverworld.worldSocket.paperspigot.util.messagecoder;
 import com.serverworld.worldSocket.paperspigot.util.messager;
 import com.serverworld.worlduserdata.jsondata.UserPhoenixPlayerData;
 import com.serverworld.worlduserdata.paper.utils.UserPhoenixPlayerDataMySQL;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -49,6 +51,7 @@ public class PlayerDeath implements Listener {
             playerData.setLastlocation_y(event.getEntity().getLocation().getY());
             playerData.setLastlocation_z(event.getEntity().getLocation().getZ());
             UserPhoenixPlayerDataMySQL.setDataClass(event.getEntity().getUniqueId().toString() , playerData);//save dead pos to database
+            event.getEntity().sendMessage(Formats.perfix() + ChatColor.GOLD + "輸入/back 可傳送回上一個位置");//TODO: Langauge seleter
 
             Bukkit.getScheduler().scheduleSyncDelayedTask(PaperPhoenix.getInstance(), () -> event.getEntity().getPlayer().spigot().respawn(), 5L);
             if(PaperPhoenix.config.servername().equals(PaperPhoenix.config.serversprefix() + "OVERWORLD_0_0"))
@@ -60,7 +63,7 @@ public class PlayerDeath implements Listener {
                 messagecoder.setReceiver("PROXY");
                 messagecoder.setType("ACTION");
                 JsonObject json = new JsonObject();
-                json.addProperty("TYPE","SENDPLAYERTOSERVER");
+                json.addProperty("TYPE","SEND_PLAYER_TO_SERVER");
                 json.addProperty("PLAYER",event.getEntity().getUniqueId().toString());
                 json.addProperty("SERVER",PaperPhoenix.config.serversprefix() + "OVERWORLD_0_0");
                 messagecoder.setMessage(json.toString());
@@ -74,7 +77,7 @@ public class PlayerDeath implements Listener {
                 messagecoder.setReceiver(PaperPhoenix.config.serversprefix() + "OVERWORLD_0_0");
                 messagecoder.setType("ACTION");
                 JsonObject json = new JsonObject();
-                json.addProperty("TYPE","RESPAWNPLAYER");
+                json.addProperty("TYPE","RESPAWN_PLAYER");
                 json.addProperty("PLAYER",event.getEntity().getPlayer().getName());
                 messagecoder.setMessage(json.toString());
                 messager.sendmessage(messagecoder.createmessage());

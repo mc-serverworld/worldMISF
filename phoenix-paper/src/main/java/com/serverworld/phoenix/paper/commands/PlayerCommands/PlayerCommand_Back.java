@@ -22,6 +22,7 @@ package com.serverworld.phoenix.paper.commands.PlayerCommands;
 
 import com.google.gson.JsonObject;
 import com.serverworld.phoenix.paper.PaperPhoenix;
+import com.serverworld.phoenix.paper.util.Formats;
 import com.serverworld.worldSocket.paperspigot.util.messagecoder;
 import com.serverworld.worldSocket.paperspigot.util.messager;
 import com.serverworld.worlduserdata.jsondata.UserPhoenixPlayerData;
@@ -51,7 +52,7 @@ public class PlayerCommand_Back implements CommandExecutor {
         playerData.setLastlocation_z(player.getLocation().getZ());
         UserPhoenixPlayerDataMySQL.setDataClass(player.getUniqueId().toString() , playerData);//save dead pos to database
 
-        player.sendMessage(ChatColor.GREEN + "將您傳送到上一個位置");//TODO: Langauge seleter
+        player.sendMessage(Formats.perfix() + ChatColor.GREEN + "將您傳送到上一個位置");//TODO: Langauge seleter
         
         if(!PaperPhoenix.config.servername().equals(playerdata.getLastlocation_server())){
             messagecoder messagecoder = new messagecoder();
@@ -60,7 +61,7 @@ public class PlayerCommand_Back implements CommandExecutor {
             messagecoder.setReceiver("PROXY");
             messagecoder.setType("ACTION");
             JsonObject json = new JsonObject();
-            json.addProperty("TYPE","SENDPLAYERTOSERVER");
+            json.addProperty("TYPE","SEND_PLAYER_TO_SERVER");
             json.addProperty("PLAYER",((Player) sender).getPlayer().getUniqueId().toString());
             json.addProperty("SERVER",playerdata.getLastlocation_server());
             messagecoder.setMessage(json.toString());
@@ -74,7 +75,7 @@ public class PlayerCommand_Back implements CommandExecutor {
             Messagecoder.setReceiver(playerdata.getLastlocation_server());
             Messagecoder.setType("ACTION");
             JsonObject Json = new JsonObject();
-            Json.addProperty("TYPE","TELEPORTPLAYER");
+            Json.addProperty("TYPE","TELEPORT_PLAYER");
             Json.addProperty("PLAYER",sender.getName());
             Json.addProperty("WORLD",playerdata.getLastlocation_world());
             Json.addProperty("LOCATION_X",playerdata.getLastlocation_x());
