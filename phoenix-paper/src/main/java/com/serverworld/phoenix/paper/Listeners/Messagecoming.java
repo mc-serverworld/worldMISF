@@ -146,6 +146,7 @@ public class Messagecoming implements Listener {
                     DebugMessage.sendInfoIfDebug("Send Player " + player.getName() + " to spawn");
 
                     player.teleport(spawn);
+                    return;
                 }catch (Exception e){
                     e.printStackTrace();
                     DebugMessage.sendWarring("The player is gone!");
@@ -160,6 +161,7 @@ public class Messagecoming implements Listener {
                     DebugMessage.sendInfoIfDebug("Teleport Player " + player.getName() + " to " + message.get("LOCATION_X") + " " + message.get("LOCATION_Y") + " " + message.get("LOCATION_Z"));
 
                     player.teleport(spawn);
+                    return;
                 }catch (Exception e){
                     e.printStackTrace();
                     DebugMessage.sendWarring("The Player is gone!");
@@ -173,6 +175,7 @@ public class Messagecoming implements Listener {
                     DebugMessage.sendInfoIfDebug("Teleport Player " + player.getName() + " to " + target_player);
 
                     player.teleport(target_player);
+                    return;
                 }catch (Exception e){
                     e.printStackTrace();
                     DebugMessage.sendWarring("The Player is gone!");
