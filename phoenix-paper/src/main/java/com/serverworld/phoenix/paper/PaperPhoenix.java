@@ -88,11 +88,11 @@ public class PaperPhoenix extends JavaPlugin{
         PlayerCommand_Spawn PlayerCommand_Spawn = new PlayerCommand_Spawn();
         this.getCommand("spawn").setExecutor(PlayerCommand_Spawn);
 
-        PlayerCommand_Tpa PlayerCommand_Tpa = new PlayerCommand_Tpa();
-        this.getCommand("tpa").setExecutor(PlayerCommand_Tpa);
+        //PlayerCommand_Tpa PlayerCommand_Tpa = new PlayerCommand_Tpa();
+        //this.getCommand("tpa").setExecutor(PlayerCommand_Tpa);
 
-        PlayerCommand_Tpahere PlayerCommand_Tpahere = new PlayerCommand_Tpahere();
-        this.getCommand("tpahere").setExecutor(PlayerCommand_Tpahere);
+        //PlayerCommand_Tpahere PlayerCommand_Tpahere = new PlayerCommand_Tpahere();
+        //this.getCommand("tpahere").setExecutor(PlayerCommand_Tpahere);
 
     }
 
