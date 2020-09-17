@@ -62,6 +62,7 @@ public class PlayerCommand_Spawn implements CommandExecutor {
             Location spawn = new Location(world,PaperPhoenix.config.spawnx(), PaperPhoenix.config.spawny(),PaperPhoenix.config.spawnz());
             DebugMessage.sendInfoIfDebug("Send Player " + player.getName() + " to spawn");
             player.teleport(spawn);
+            return true;
         }//if server is x0z0
 
         Bukkit.getScheduler().scheduleSyncDelayedTask(PaperPhoenix.getInstance(), () -> {
