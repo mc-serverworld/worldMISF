@@ -23,7 +23,7 @@ package com.serverworld.phoenix.paper.commands;
 import org.bukkit.command.CommandSender;
 
 public class DebugCommands {
-    public void misf_test(CommandSender commandSender , String[] stg){
+    public static void misf_test(CommandSender commandSender , String[] stg){
 
     }
 }

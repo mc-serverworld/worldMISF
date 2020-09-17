@@ -39,8 +39,8 @@ public class DebugMessage {
         if(PaperPhoenix.config.debug())
             PaperPhoenix.getInstance().getLogger().warning(msg);
     }
-    public static void sendIfHasPermission(CommandSender sender , Object msg){
+    public static void sendIfHasPermission(CommandSender sender , String msg){
         if(sender.hasPermission("misf.debug"))
-            sender.sendMessage(msg.toString());
+            sender.sendMessage(msg);
     }
 }

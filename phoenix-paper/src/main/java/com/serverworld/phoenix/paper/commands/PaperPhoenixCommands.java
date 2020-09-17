@@ -25,7 +25,6 @@ import com.serverworld.phoenix.paper.PaperPhoenixConfig;
 import com.serverworld.phoenix.paper.commands.subcommands.subCommand_set;
 import com.serverworld.phoenix.paper.util.DebugMessage;
 import net.md_5.bungee.api.ChatColor;
-import org.bukkit.Location;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -52,13 +51,7 @@ public class PaperPhoenixCommands implements CommandExecutor , TabCompleter {
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
         try {
             switch (strings[0]) {
-                case "test": {
-                    if (commandSender instanceof Player){
-                        Player player =  PaperPhoenix.getInstance().getServer().getPlayer(strings[1]);
-                        player.teleport(new Location(PaperPhoenix.getInstance().getServer().getWorld("world"),PaperPhoenix.config.spawnx(),PaperPhoenix.config.spawny(),PaperPhoenix.config.spawnz()));
-                    }
-                        }
-
+                case "test": DebugCommands.misf_test(commandSender , strings);
                 case "info": {
                     if(!commandSender.hasPermission("misf.command.info")){
                         commandSender.sendMessage( ChatColor.RED + "no permission");
@@ -132,7 +125,6 @@ public class PaperPhoenixCommands implements CommandExecutor , TabCompleter {
                     commands.add("weather");
             }
 
-
             StringUtil.copyPartialMatches(args[1], commands, completions);
         } else if (args.length == 3) {
 
@@ -146,7 +138,6 @@ public class PaperPhoenixCommands implements CommandExecutor , TabCompleter {
                 commands.add("night");
                 commands.add("midnight");
             }
-
 
             StringUtil.copyPartialMatches(args[2], commands, completions);
         }

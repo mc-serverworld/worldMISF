@@ -20,9 +20,13 @@
 
 package com.serverworld.phoenix.paper.commands.PlayerCommands;
 
+import com.google.gson.JsonObject;
 import com.serverworld.phoenix.paper.PaperPhoenix;
+import com.serverworld.worldSocket.paperspigot.util.messagecoder;
+import com.serverworld.worldSocket.paperspigot.util.messager;
 import com.serverworld.worlduserdata.jsondata.UserPhoenixPlayerData;
 import com.serverworld.worlduserdata.paper.utils.UserPhoenixPlayerDataMySQL;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -37,6 +41,21 @@ public class PlayerCommand_Tpa  implements CommandExecutor {
             sender.sendMessage(ChatColor.RED + "Only player can use this command!");
             return false;
         }
+        
+        Bukkit.getScheduler().scheduleSyncDelayedTask(PaperPhoenix.getInstance(), () -> {
+            messagecoder messagecoder = new messagecoder();
+            messagecoder.setSender(PaperPhoenix.config.servername());
+            messagecoder.setChannel("MISF_PHOENIX");
+            messagecoder.setReceiver("PROXY");
+            messagecoder.setType("ACTION");
+            JsonObject json = new JsonObject();
+            json.addProperty("TYPE","SENDTOPLAYERSERVER");
+            json.addProperty("PLAYER",((Player) sender).getUniqueId().toString());
+            json.addProperty("TARGETPLAYER",args[0]);
+            messagecoder.setMessage(json.toString());
+            messager.sendmessage(messagecoder.createmessage());
+        }, 5L);//send player to spawn
+
         Player player = (Player) sender;
         UserPhoenixPlayerData playerdata = UserPhoenixPlayerDataMySQL.getDataClass(((Player) sender).getPlayer().getUniqueId().toString());//get player data
         UserPhoenixPlayerData playerData = UserPhoenixPlayerDataMySQL.getDataClass(player.getUniqueId().toString());
@@ -48,6 +67,8 @@ public class PlayerCommand_Tpa  implements CommandExecutor {
         UserPhoenixPlayerDataMySQL.setDataClass(player.getUniqueId().toString() , playerData);//save dead pos to database
 
         player.sendMessage(ChatColor.GREEN + "設定您的家於此");//TODO: Langauge seleter
+
+
         return false;
     }
 }
