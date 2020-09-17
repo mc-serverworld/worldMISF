@@ -57,14 +57,12 @@ public class PlayerCommand_Spawn implements CommandExecutor {
 
         player.sendMessage(Formats.perfix() + ChatColor.GREEN + "將您傳送至重生點");//TODO: Langauge seleter
 
-
-
         if(PaperPhoenix.config.servername().equals(PaperPhoenix.config.serversprefix() + "OVERWORLD_0_0")){
             World world = PaperPhoenix.getInstance().getServer().getWorld("world");
             Location spawn = new Location(world,PaperPhoenix.config.spawnx(), PaperPhoenix.config.spawny(),PaperPhoenix.config.spawnz());
             DebugMessage.sendInfoIfDebug("Send Player " + player.getName() + " to spawn");
             player.teleport(spawn);
-        }
+        }//if server is x0z0
 
         Bukkit.getScheduler().scheduleSyncDelayedTask(PaperPhoenix.getInstance(), () -> {
             messagecoder messagecoder = new messagecoder();
