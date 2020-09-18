@@ -21,8 +21,6 @@
 package com.serverworld.phoenix.bungee;
 
 import com.serverworld.phoenix.bungee.Listeners.Messagecoming;
-import com.serverworld.phoenix.bungee.commands.PlayerCommands.PlayerCommand_Tpa;
-import com.serverworld.phoenix.bungee.commands.PlayerCommands.PlayerCommand_Tpahere;
 import net.md_5.bungee.api.plugin.Plugin;
 import net.md_5.bungee.config.Configuration;
 import net.md_5.bungee.config.ConfigurationProvider;
@@ -50,8 +48,8 @@ public class BungeePhoenix extends Plugin {
         getLogger().info("Helloworld");
 
         new Messagecoming(this);
-        getProxy().getPluginManager().registerCommand(this ,new PlayerCommand_Tpa(this));
-        getProxy().getPluginManager().registerCommand(this ,new PlayerCommand_Tpahere(this));
+        //getProxy().getPluginManager().registerCommand(this ,new PlayerCommand_Tpa(this));
+        //getProxy().getPluginManager().registerCommand(this ,new PlayerCommand_Tpahere(this));
     }
 
     public void setupconfig(){
