@@ -23,11 +23,21 @@ package com.serverworld.phoenix.paper.util;
 import com.serverworld.phoenix.paper.PaperPhoenix;
 import com.serverworld.worldSocket.paperspigot.util.messagecoder;
 import com.serverworld.worldSocket.paperspigot.util.messager;
-import net.md_5.bungee.api.ChatColor;
-import org.apache.commons.lang.math.NumberUtils;
-import org.bukkit.World;
 
 public class BungeeParameter {
+
+    static int totalservers ;
+    static String[] serverlist;
+    static int totalplayers;
+    static String[] playerlist;
+
+    public static int getTotalServer(){ return totalservers;}
+
+    public static String[] getServerList(){ return serverlist;}
+
+    public static int getTotalPlayer(){ return totalplayers;}
+
+    public static String[] getPlayerList(){ return playerlist;}
 
     public void SyncBungeePlayerList(){
         PaperPhoenix.getInstance().getServer().getScheduler().scheduleSyncRepeatingTask(PaperPhoenix.getInstance(), new Runnable() {
@@ -35,12 +45,12 @@ public class BungeeParameter {
             public void run() {
                 messagecoder messagecode = new messagecoder();
                 messagecode.setSender(PaperPhoenix.config.servername());
-                messagecode.setReceiver("ALL");
+                messagecode.setReceiver("PROXY");
                 messagecode.setChannel("MISF_PHOENIX");
-                messagecode.setType("SYNC");
-                messagecode.setMessage("TIME," + );
+                messagecode.setType("SYNC_V2");
+                messagecode.setMessage("REQUEST_INFO");
                 messager.sendmessage(messagecode.createmessage());
             }
-        },0L,200L);
+        },0L,200L);//Sync Bungee player list from proxy
     }
 }

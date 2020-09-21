@@ -20,6 +20,7 @@
 
 package com.serverworld.phoenix.paper.Listeners;
 
+import com.serverworld.phoenix.paper.Listeners.subListeners.Sync_v2;
 import com.serverworld.phoenix.paper.PaperPhoenix;
 import com.serverworld.phoenix.paper.util.DebugMessage;
 import com.serverworld.worldSocket.paperspigot.events.MessagecomingEvent;
@@ -49,6 +50,8 @@ public class Messagecoming implements Listener {
                 case "COMMAND": paperPhoenix.getServer().dispatchCommand(paperPhoenix.getServer().getConsoleSender(),event.getMessage().toString());
 
                 case "ACTION":Actions(event);
+
+                case "SYNC_V2": new Sync_v2(event);
 
                 case "SYNC":{
                     String[] msg = event.getMessage().toUpperCase().split(",");
