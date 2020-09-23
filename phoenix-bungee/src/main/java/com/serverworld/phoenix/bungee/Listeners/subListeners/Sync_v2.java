@@ -27,7 +27,6 @@ import com.serverworld.worldSocket.bungeecord.events.MessagecomingEvent;
 import com.serverworld.worldSocket.bungeecord.util.messagecoder;
 import com.serverworld.worldSocket.bungeecord.worldSocket;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
-import org.json.JSONObject;
 
 import java.util.ArrayList;
 
@@ -40,9 +39,9 @@ public class Sync_v2 {
 
     public Sync_v2(MessagecomingEvent event) {
         try {
-            JSONObject message = new JSONObject(event.getMessage());
+            //JSONObject message = new JSONObject(event.getMessage());
             DebugMessage.sendInfoIfDebug("Sync v2 triggered: " + event.getMessage());
-            switch (message.getString("TYPE").toUpperCase()){
+            switch (event.getMessage().toUpperCase()){
                 case "REQUEST_BUNGEE_INFO_V1": BUNGEE_INFO_V1(event);
 
                 default: return;
