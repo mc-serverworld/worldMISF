@@ -48,7 +48,7 @@ public class BungeeParameter {
                 messagecode.setReceiver("PROXY");
                 messagecode.setChannel("MISF_PHOENIX");
                 messagecode.setType("SYNC_V2");
-                messagecode.setMessage("REQUEST_INFO");
+                messagecode.setMessage("REQUEST_BUNGEE_INFO_V1");
                 messager.sendmessage(messagecode.createmessage());
             }
         },0L,200L);//Sync Bungee player list from proxy

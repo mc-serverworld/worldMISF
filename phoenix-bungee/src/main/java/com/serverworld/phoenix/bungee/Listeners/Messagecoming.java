@@ -20,6 +20,7 @@
 
 package com.serverworld.phoenix.bungee.Listeners;
 
+import com.serverworld.phoenix.bungee.Listeners.subListeners.Sync_v2;
 import com.serverworld.phoenix.bungee.util.DebugMessage;
 import com.serverworld.worldSocket.bungeecord.events.MessagecomingEvent;
 import net.md_5.bungee.api.ProxyServer;
@@ -46,6 +47,8 @@ public class Messagecoming implements Listener {
                 case "COMMAND": ProxyServer.getInstance().getPluginManager().dispatchCommand(ProxyServer.getInstance().getConsole(),event.getMessage());
 
                 case "ACTION": Actions(event);
+
+                case "SYNC_V2": new Sync_v2(event);
 
                 default:return;
             }

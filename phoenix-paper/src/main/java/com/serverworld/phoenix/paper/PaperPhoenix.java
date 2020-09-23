@@ -26,6 +26,7 @@ import com.serverworld.phoenix.paper.Listeners.PlayerRespawn;
 import com.serverworld.phoenix.paper.commands.LobbyCommand;
 import com.serverworld.phoenix.paper.commands.PaperPhoenixCommands;
 import com.serverworld.phoenix.paper.commands.PlayerCommands.*;
+import com.serverworld.phoenix.paper.util.BungeeParameter;
 import com.serverworld.phoenix.paper.util.worldSetup;
 import com.serverworld.phoenix.paper.util.worldSync;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -53,6 +54,7 @@ public class PaperPhoenix extends JavaPlugin{
             setupevent();
             setuputil();
             new worldSetup();
+            new BungeeParameter().SyncBungeePlayerList();
             //commands
 
             PaperPhoenixCommands PaperPhoenixCommands = new PaperPhoenixCommands(this);
