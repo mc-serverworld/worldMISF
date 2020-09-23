@@ -78,7 +78,7 @@ public class Sync_v2 {
         json.addProperty("TOTAL_SERVERS", totalservers);
         json.addProperty("SERVERLIST", serverlist);
         json.addProperty("TOTAL_PLAYERS",totalplayers);
-        json.addProperty("PLAYERLIST",totalservers);
+        json.addProperty("PLAYERLIST",playerlist);
         json.addProperty("TYPE","RETURN_BUNGEE_INFO_V1");
 
         messagecoder messagecode = new messagecoder();
