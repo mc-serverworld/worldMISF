@@ -31,10 +31,10 @@ public class Sync_v2 {
             DebugMessage.sendInfoIfDebug("Sync v2 triggered: " + event.getMessage());
             switch (message.getString("TYPE").toUpperCase()){
                 case "RETURN_BUNGEE_INFO_V1": {
-                    DebugMessage.sendInfoIfDebug("GET TOTAL_SERVERS: ");message.get("TOTAL_SERVERS");
-                    DebugMessage.sendInfoIfDebug("GET SERVERLIST: ");message.get("SERVERLIST");
-                    DebugMessage.sendInfoIfDebug("GET TOTAL_PLAYERS: ");message.get("TOTAL_PLAYERS");
-                    DebugMessage.sendInfoIfDebug("GET PLAYERLIST: ");message.get("PLAYERLIST");
+                    DebugMessage.sendInfoIfDebug("GET TOTAL_SERVERS: " + message.get("TOTAL_SERVERS"));
+                    DebugMessage.sendInfoIfDebug("GET SERVERLIST: " + message.get("SERVERLIST"));
+                    DebugMessage.sendInfoIfDebug("GET TOTAL_PLAYERS: " + message.get("TOTAL_PLAYERS"));
+                    DebugMessage.sendInfoIfDebug("GET PLAYERLIST: " + message.get("PLAYERLIST"));
                     int totalservers;
                     String[] serverlist;
                     int totalplayers;
