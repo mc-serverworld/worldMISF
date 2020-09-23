@@ -29,6 +29,7 @@ import com.serverworld.worldSocket.bungeecord.worldSocket;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Sync_v2 {
 
@@ -65,7 +66,7 @@ public class Sync_v2 {
         totalservers = BungeePhoenix.getInstance().getProxy().getServers().size();
         serverlist = convertObjectArrayToString(BungeePhoenix.getInstance().getProxy().getServers().keySet().toArray(new String[0]),",");
         totalplayers = BungeePhoenix.getInstance().getProxy().getPlayers().size();
-        ArrayList<String> plist = new ArrayList<>();
+        List<String> plist = new ArrayList<String>();
         for(ProxiedPlayer p: BungeePhoenix.getInstance().getProxy().getPlayers()){
             plist.add(p.getName());
         }
