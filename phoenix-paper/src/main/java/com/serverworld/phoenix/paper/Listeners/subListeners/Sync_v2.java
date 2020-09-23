@@ -24,6 +24,8 @@ import com.serverworld.phoenix.paper.util.DebugMessage;
 import com.serverworld.worldSocket.paperspigot.events.MessagecomingEvent;
 import org.json.JSONObject;
 
+import java.lang.reflect.Array;
+
 public class Sync_v2 {
     public Sync_v2(MessagecomingEvent event) {
         try {
@@ -35,7 +37,8 @@ public class Sync_v2 {
                     DebugMessage.sendInfoIfDebug("GET SERVERLIST: " + message.get("SERVERLIST"));
                     DebugMessage.sendInfoIfDebug("GET TOTAL_PLAYERS: " + message.get("TOTAL_PLAYERS"));
                     DebugMessage.sendInfoIfDebug("GET PLAYERLIST: " + message.get("PLAYERLIST"));
-
+                    String[] playerlist;
+                    playerlist = message.get("hh").toString().split(",");
 
                 }
                 default: return;

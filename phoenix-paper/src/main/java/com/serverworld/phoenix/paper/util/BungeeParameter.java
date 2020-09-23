@@ -23,17 +23,20 @@ package com.serverworld.phoenix.paper.util;
 import com.serverworld.phoenix.paper.PaperPhoenix;
 import com.serverworld.worldSocket.paperspigot.util.messagecoder;
 import com.serverworld.worldSocket.paperspigot.util.messager;
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.Setter;
 
 public class BungeeParameter {
 
-    static int totalservers ;
-    static String[] serverlist;
-    static int totalplayers;
-    static String[] playerlist;
-    
-    public static int getTotalServer(){ return totalservers;}
+    @Getter(AccessLevel.PUBLIC) @Setter(AccessLevel.PUBLIC) static int totalservers ;
+    @Getter(AccessLevel.PUBLIC) @Setter(AccessLevel.PUBLIC) static String[] serverlist;
+    @Getter(AccessLevel.PUBLIC) @Setter(AccessLevel.PUBLIC) static int totalplayers;
+    @Getter(AccessLevel.PUBLIC) @Setter(AccessLevel.PUBLIC) static String[] playerlist;
 
-    public static String[] getServerList(){ return serverlist;}
+    static int getTotalServer(){ return totalservers;}
+
+    //public static String[] getServerList(){ return serverlist;}
 
     public static int getTotalPlayer(){ return totalplayers;}
 
@@ -43,6 +46,8 @@ public class BungeeParameter {
         PaperPhoenix.getInstance().getServer().getScheduler().scheduleSyncRepeatingTask(PaperPhoenix.getInstance(), new Runnable() {
             @Override
             public void run() {
+                if(PaperPhoenix.getInstance().getServer().getOnlinePlayers().isEmpty())
+                    return;
                 messagecoder messagecode = new messagecoder();
                 messagecode.setSender(PaperPhoenix.config.servername());
                 messagecode.setReceiver("PROXY");
