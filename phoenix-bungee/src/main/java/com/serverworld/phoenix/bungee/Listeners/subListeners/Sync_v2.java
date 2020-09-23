@@ -55,6 +55,8 @@ public class Sync_v2 {
     }
 
     private static String convertObjectArrayToString(Object[] arr, String delimiter) {
+        if (arr.length==1)
+            return arr[0].toString();
         StringBuilder sb = new StringBuilder();
         for (Object obj : arr)
             sb.append(obj.toString()).append(delimiter);
