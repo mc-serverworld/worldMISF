@@ -83,7 +83,7 @@ public class Sync_v2 {
         messagecode.setReceiver(event.getSender());
         messagecode.setChannel("MISF_PHOENIX");
         messagecode.setType("SYNC_V2");
-        messagecode.setMessage(json.getAsString());
+        messagecode.setMessage(json.toString());
         worldSocket.getInstance().sendmessage(messagecode.createmessage());
         return;
     }
