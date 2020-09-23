@@ -42,11 +42,11 @@ jobs:
       run: ls -R
       working-directory: /home/runner/work/worldMISF/worldMISF
     - run: mkdir staging && cp output/*.jar staging
-    - name: worldMISF jars
-      uses: actions/upload-artifact@v1
-      with:
-        name: worldMISF
-        path: staging
+    #- name: worldMISF jars
+      #uses: actions/upload-artifact@v1
+      #with:
+        #name: worldMISF
+        #path: staging
     - name: Create Release
       uses: "marvinpinto/action-automatic-releases@latest"
       with:
