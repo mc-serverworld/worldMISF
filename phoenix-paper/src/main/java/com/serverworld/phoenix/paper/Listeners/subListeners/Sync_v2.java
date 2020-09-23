@@ -35,11 +35,8 @@ public class Sync_v2 {
                     DebugMessage.sendInfoIfDebug("GET SERVERLIST: " + message.get("SERVERLIST"));
                     DebugMessage.sendInfoIfDebug("GET TOTAL_PLAYERS: " + message.get("TOTAL_PLAYERS"));
                     DebugMessage.sendInfoIfDebug("GET PLAYERLIST: " + message.get("PLAYERLIST"));
-                    int totalservers;
-                    String[] serverlist;
-                    int totalplayers;
-                    String[] playerlist;
-                    return;
+
+
                 }
                 default: return;
 

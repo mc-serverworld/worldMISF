@@ -30,7 +30,7 @@ public class BungeeParameter {
     static String[] serverlist;
     static int totalplayers;
     static String[] playerlist;
-
+    
     public static int getTotalServer(){ return totalservers;}
 
     public static String[] getServerList(){ return serverlist;}
