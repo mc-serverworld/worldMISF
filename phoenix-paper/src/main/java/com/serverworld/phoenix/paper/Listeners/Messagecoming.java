@@ -28,6 +28,10 @@ import com.serverworld.worldSocket.paperspigot.events.MessagecomingEvent;
 import com.serverworld.worlduserdata.jsondata.UserPhoenixPlayerData;
 import com.serverworld.worlduserdata.paper.utils.UserPhoenixPlayerDataMySQL;
 import net.md_5.bungee.api.ChatColor;
+import net.md_5.bungee.api.chat.ClickEvent;
+import net.md_5.bungee.api.chat.ComponentBuilder;
+import net.md_5.bungee.api.chat.HoverEvent;
+import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
@@ -217,10 +221,20 @@ public class Messagecoming implements Listener {
                         return;
                     }
 
+                    TextComponent ButtonYESComponent = new TextComponent( "接受【✔】" );
+                    ButtonYESComponent.setColor( ChatColor.GREEN );
+                    ButtonYESComponent.setHoverEvent( new HoverEvent( HoverEvent.Action.SHOW_TEXT, new ComponentBuilder( "接受傳送請求" ).create() ) );
+                    ButtonYESComponent.setClickEvent( new ClickEvent( ClickEvent.Action.RUN_COMMAND, "/tpaccept" ) );
+
+                    TextComponent ButtonNOComponent = new TextComponent( "拒絕【✖】" );
+                    ButtonNOComponent.setColor( ChatColor.RED );
+                    ButtonNOComponent.setHoverEvent( new HoverEvent( HoverEvent.Action.SHOW_TEXT, new ComponentBuilder( "拒絕傳送請求" ).create() ) );
+                    ButtonNOComponent.setClickEvent( new ClickEvent( ClickEvent.Action.RUN_COMMAND, "/tpdeny" ) );
                     target_player.sendMessage(Formats.perfix() + ChatColor.GOLD + "玩家 " + ChatColor.YELLOW + message.getString("PLAYER") + ChatColor.GOLD + " 想要" + ChatColor.GREEN + "傳送到你的位置");
-                    target_player.sendMessage(Formats.perfix() + ChatColor.GOLD + "輸入" + ChatColor.GREEN + "/tpaccept" + ChatColor.GOLD + " 接受傳送請求");
+                    target_player.sendMessage(Formats.perfix() + ChatColor.GOLD + "點選" + ChatColor.GREEN + "/tpaccept" + ChatColor.GOLD + " 接受傳送請求");
                     target_player.sendMessage(Formats.perfix() + ChatColor.GOLD + "輸入" + ChatColor.RED + "/tpdeny" + ChatColor.GOLD + " 拒絕傳送請求");
                     target_player.sendMessage(Formats.perfix() + ChatColor.GOLD + "此傳送請求將在" + ChatColor.RED + "30秒" + ChatColor.GOLD + "後過期");
+                    target_player.sendMessage(Formats.perfix() + ChatColor.GOLD + "輸入" + ChatColor.GREEN + "/tpaccept" + ChatColor.GOLD + " 接受傳送請求");
 
                     //DebugMessage.sendInfoIfDebug("Teleport Player " + player.getName() + " to " + target_player);
 
