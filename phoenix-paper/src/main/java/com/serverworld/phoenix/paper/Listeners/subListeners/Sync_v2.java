@@ -20,11 +20,10 @@
 
 package com.serverworld.phoenix.paper.Listeners.subListeners;
 
+import com.serverworld.phoenix.paper.util.BungeeParameter;
 import com.serverworld.phoenix.paper.util.DebugMessage;
 import com.serverworld.worldSocket.paperspigot.events.MessagecomingEvent;
 import org.json.JSONObject;
-
-import java.lang.reflect.Array;
 
 public class Sync_v2 {
     public Sync_v2(MessagecomingEvent event) {
@@ -39,6 +38,10 @@ public class Sync_v2 {
                     DebugMessage.sendInfoIfDebug("GET PLAYERLIST: " + message.get("PLAYERLIST"));
                     String[] playerlist;
                     playerlist = message.get("hh").toString().split(",");
+                    BungeeParameter.setPlayerlist(playerlist);
+                    BungeeParameter.setTotalplayers(message.getInt("TOTAL_PLAYERS"));
+                    DebugMessage.sendInfo(BungeeParameter.getTotalplayers().toString());
+                    DebugMessage.sendInfo(BungeeParameter.getPlayerlist().toString());
 
                 }
                 default: return;

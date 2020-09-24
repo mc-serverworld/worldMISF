@@ -29,18 +29,10 @@ import lombok.Setter;
 
 public class BungeeParameter {
 
-    @Getter(AccessLevel.PUBLIC) @Setter(AccessLevel.PUBLIC) static int totalservers ;
+    @Getter(AccessLevel.PUBLIC) @Setter(AccessLevel.PUBLIC) static Integer totalservers ;
     @Getter(AccessLevel.PUBLIC) @Setter(AccessLevel.PUBLIC) static String[] serverlist;
-    @Getter(AccessLevel.PUBLIC) @Setter(AccessLevel.PUBLIC) static int totalplayers;
+    @Getter(AccessLevel.PUBLIC) @Setter(AccessLevel.PUBLIC) static Integer totalplayers;
     @Getter(AccessLevel.PUBLIC) @Setter(AccessLevel.PUBLIC) static String[] playerlist;
-
-    static int getTotalServer(){ return totalservers;}
-
-    //public static String[] getServerList(){ return serverlist;}
-
-    public static int getTotalPlayer(){ return totalplayers;}
-
-    public static String[] getPlayerList(){ return playerlist;}
 
     public void SyncBungeePlayerList(){
         PaperPhoenix.getInstance().getServer().getScheduler().scheduleSyncRepeatingTask(PaperPhoenix.getInstance(), new Runnable() {
