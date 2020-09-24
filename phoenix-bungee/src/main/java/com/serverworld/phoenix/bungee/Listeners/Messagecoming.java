@@ -23,6 +23,8 @@ package com.serverworld.phoenix.bungee.Listeners;
 import com.serverworld.phoenix.bungee.Listeners.subListeners.Sync_v2;
 import com.serverworld.phoenix.bungee.util.DebugMessage;
 import com.serverworld.worldSocket.bungeecord.events.MessagecomingEvent;
+import com.serverworld.worldSocket.bungeecord.util.messagecoder;
+import com.serverworld.worldSocket.bungeecord.worldSocket;
 import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 import net.md_5.bungee.api.plugin.Listener;
@@ -71,7 +73,13 @@ public class Messagecoming implements Listener {
                 }
             }
             case "TELEPORT_REQUEST_TPA": {
-
+                messagecoder messagecode = new messagecoder();
+                messagecode.setSender(event.getSender());
+                messagecode.setReceiver(ProxyServer.getInstance().getPlayer(message.getString("TARGET_PLAYER")).getServer().getInfo().getName());
+                messagecode.setChannel("MISF_PHOENIX");
+                messagecode.setType("ACTION");
+                messagecode.setMessage(event.getMessage());
+                worldSocket.getInstance().sendmessage(messagecode.createmessage());
             }
 
             default: return;
