@@ -65,6 +65,8 @@ public class Sync_v2 {
     }
 
     private void BUNGEE_INFO_V1(MessagecomingEvent event){
+        if (BungeePhoenix.getInstance().getProxy().getPlayers().isEmpty())
+            return;
         totalservers = BungeePhoenix.getInstance().getProxy().getServers().size();
         serverlist = convertObjectArrayToString(BungeePhoenix.getInstance().getProxy().getServers().keySet().toArray(new String[0]),",");
         totalplayers = BungeePhoenix.getInstance().getProxy().getPlayers().size();
