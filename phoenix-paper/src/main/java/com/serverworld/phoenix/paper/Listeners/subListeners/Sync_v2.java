@@ -25,6 +25,8 @@ import com.serverworld.phoenix.paper.util.DebugMessage;
 import com.serverworld.worldSocket.paperspigot.events.MessagecomingEvent;
 import org.json.JSONObject;
 
+import java.util.Arrays;
+
 public class Sync_v2 {
     public Sync_v2(MessagecomingEvent event) {
         try {
@@ -37,9 +39,9 @@ public class Sync_v2 {
                     //DebugMessage.sendInfoIfDebug("GET TOTAL_PLAYERS: " + message.get("TOTAL_PLAYERS"));
                     //DebugMessage.sendInfoIfDebug("GET PLAYERLIST: " + message.get("PLAYERLIST"));
                     BungeeParameter.setTotalservers(message.getInt("TOTAL_SERVERS"));
-                    BungeeParameter.setServerlist(message.get("SERVERLIST").toString().split(","));
+                    BungeeParameter.setServerlist(Arrays.asList(message.get("SERVERLIST").toString().split(",")));
                     BungeeParameter.setTotalplayers(message.getInt("TOTAL_PLAYERS"));
-                    BungeeParameter.setPlayerlist(message.get("PLAYERLIST").toString().split(","));
+                    BungeeParameter.setPlayerlist(Arrays.asList(message.get("PLAYERLIST").toString().split(",")));
                     DebugMessage.sendInfoIfDebug("Synced BUNGEE_INFO_V1");
                     return;
                 }

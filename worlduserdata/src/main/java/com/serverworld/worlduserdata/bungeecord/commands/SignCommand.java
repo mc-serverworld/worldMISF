@@ -87,6 +87,8 @@ public class SignCommand extends Command {
                 }
                 else if(strings[0].equals("no")){
                     ((ProxiedPlayer) commandSender).disconnect(ChatColor.RED + "\nYou must signed the agreeement if you want to playing this server\n\n" + ChatColor.AQUA + "Please rejoin the server and sign");
+                }else {
+                    return;
                 }
             }else {
                 TextComponent agreement = new TextComponent("BY CLICKING ON YES, YOU ACKNOWLEDGE THAT YOU, HAVE READ, UNDERSTAND, AND AGREE TO THE ");

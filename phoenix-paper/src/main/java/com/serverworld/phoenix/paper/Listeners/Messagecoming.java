@@ -23,7 +23,10 @@ package com.serverworld.phoenix.paper.Listeners;
 import com.serverworld.phoenix.paper.Listeners.subListeners.Sync_v2;
 import com.serverworld.phoenix.paper.PaperPhoenix;
 import com.serverworld.phoenix.paper.util.DebugMessage;
+import com.serverworld.phoenix.paper.util.Formats;
 import com.serverworld.worldSocket.paperspigot.events.MessagecomingEvent;
+import com.serverworld.worlduserdata.jsondata.UserPhoenixPlayerData;
+import com.serverworld.worlduserdata.paper.utils.UserPhoenixPlayerDataMySQL;
 import net.md_5.bungee.api.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.World;
@@ -141,6 +144,26 @@ public class Messagecoming implements Listener {
         JSONObject message = new JSONObject(event.getMessage());
         DebugMessage.sendInfoIfDebug("Action triggered: " + event.getMessage());
         switch (message.getString("TYPE").toUpperCase()){
+            case "SAVE_PLAYER_LOCATION_AS_LAST": {
+                try{
+                    Player player = PaperPhoenix.getInstance().getServer().getPlayer(message.getString("PLAYER"));
+
+                    UserPhoenixPlayerData playerData = UserPhoenixPlayerDataMySQL.getDataClass(player.getUniqueId().toString());
+                    playerData.setLastlocation_server(PaperPhoenix.config.servername());
+                    playerData.setLastlocation_world(player.getWorld().getName());
+                    playerData.setLastlocation_x(player.getLocation().getX());
+                    playerData.setLastlocation_y(player.getLocation().getY());
+                    playerData.setLastlocation_z(player.getLocation().getZ());
+                    UserPhoenixPlayerDataMySQL.setDataClass(player.getUniqueId().toString() , playerData);//save dead pos to database
+
+                    DebugMessage.sendInfoIfDebug("Save Player: " + player.getName() + " location");
+                    return;
+                }catch (Exception e){
+                    e.printStackTrace();
+                    DebugMessage.sendWarring("Some thing go wrong!");
+                }
+            }
+
             case "RESPAWN_PLAYER": {
                 try{
                     World world = PaperPhoenix.getInstance().getServer().getWorld("world");
@@ -184,6 +207,30 @@ public class Messagecoming implements Listener {
                     DebugMessage.sendWarring("The Player is gone!");
                 }
             }
+
+            case "TELEPORT_REQUEST_TPA": {
+                try {
+                    //Player player = PaperPhoenix.getInstance().getServer().getPlayer(message.getString("PLAYER"));
+                    Player target_player = PaperPhoenix.getInstance().getServer().getPlayer(message.getString("TARGET_PLAYER"));
+                    if(!target_player.isOnline()){
+                        //TODO return
+                        return;
+                    }
+
+                    target_player.sendMessage(Formats.perfix() + ChatColor.GOLD + "玩家 " + ChatColor.YELLOW + message.getString("PLAYER") + ChatColor.GOLD + " 想要傳送到你的位置");
+                    target_player.sendMessage(Formats.perfix() + ChatColor.GOLD + "輸入" + ChatColor.GREEN + "/tpaccept" + ChatColor.GOLD + " 接受傳送請求");
+                    target_player.sendMessage(Formats.perfix() + ChatColor.GOLD + "輸入" + ChatColor.RED + "/tpdeny" + ChatColor.GOLD + " 拒絕傳送請求");
+                    target_player.sendMessage(Formats.perfix() + ChatColor.GOLD + "此傳送請求將在" + ChatColor.RED + "30秒" + ChatColor.GOLD + "後過期");
+
+                    //DebugMessage.sendInfoIfDebug("Teleport Player " + player.getName() + " to " + target_player);
+
+                    return;
+                }catch (Exception e){
+                    e.printStackTrace();
+                    DebugMessage.sendWarring("The Player is gone!");
+                }
+            }
+
             default: return;
 
         }

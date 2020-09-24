@@ -70,7 +70,7 @@ public class Messagecoming implements Listener {
                     }
                 }
             }
-            case "SENDTOPLAYERSERVER": {
+            case "TELEPORT_REQUEST_TPA": {
 
             }
 
