@@ -37,7 +37,7 @@ public class Sync_v2 {
                     DebugMessage.sendInfoIfDebug("GET TOTAL_PLAYERS: " + message.get("TOTAL_PLAYERS"));
                     DebugMessage.sendInfoIfDebug("GET PLAYERLIST: " + message.get("PLAYERLIST"));
                     String[] playerlist;
-                    playerlist = message.get("hh").toString().split(",");
+                    playerlist = message.get("PLAYERLIST").toString().split(",");
                     BungeeParameter.setPlayerlist(playerlist);
                     BungeeParameter.setTotalplayers(message.getInt("TOTAL_PLAYERS"));
                     DebugMessage.sendInfo(BungeeParameter.getTotalplayers().toString());
