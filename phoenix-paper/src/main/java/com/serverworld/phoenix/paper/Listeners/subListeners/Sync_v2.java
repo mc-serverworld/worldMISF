@@ -32,17 +32,16 @@ public class Sync_v2 {
             DebugMessage.sendInfoIfDebug("Sync v2 triggered: " + event.getMessage());
             switch (message.getString("TYPE").toUpperCase()){
                 case "RETURN_BUNGEE_INFO_V1": {
-                    DebugMessage.sendInfoIfDebug("GET TOTAL_SERVERS: " + message.get("TOTAL_SERVERS"));
-                    DebugMessage.sendInfoIfDebug("GET SERVERLIST: " + message.get("SERVERLIST"));
-                    DebugMessage.sendInfoIfDebug("GET TOTAL_PLAYERS: " + message.get("TOTAL_PLAYERS"));
-                    DebugMessage.sendInfoIfDebug("GET PLAYERLIST: " + message.get("PLAYERLIST"));
-                    String[] playerlist;
-                    playerlist = message.get("PLAYERLIST").toString().split(",");
-                    BungeeParameter.setPlayerlist(playerlist);
+                    //DebugMessage.sendInfoIfDebug("GET TOTAL_SERVERS: " + message.get("TOTAL_SERVERS"));
+                    //DebugMessage.sendInfoIfDebug("GET SERVERLIST: " + message.get("SERVERLIST"));
+                    //DebugMessage.sendInfoIfDebug("GET TOTAL_PLAYERS: " + message.get("TOTAL_PLAYERS"));
+                    //DebugMessage.sendInfoIfDebug("GET PLAYERLIST: " + message.get("PLAYERLIST"));
+                    BungeeParameter.setTotalservers(message.getInt("TOTAL_SERVERS"));
+                    BungeeParameter.setServerlist(message.get("SERVERLIST").toString().split(","));
                     BungeeParameter.setTotalplayers(message.getInt("TOTAL_PLAYERS"));
-                    DebugMessage.sendInfo(BungeeParameter.getTotalplayers().toString());
-                    DebugMessage.sendInfo(BungeeParameter.getPlayerlist().toString());
-
+                    BungeeParameter.setPlayerlist(message.get("PLAYERLIST").toString().split(","));
+                    DebugMessage.sendInfoIfDebug("Synced BUNGEE_INFO_V1");
+                    return;
                 }
                 default: return;
 

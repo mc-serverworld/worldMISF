@@ -21,8 +21,18 @@ commands:
   spawn:
     description: Teleport you to spawn.
     usage: /spawn
-
-
+  tpa:
+    description: Sent a teleport request to the specific player.
+    usage: /tpa [player]
+  tpaccept:
+    description: Accept the teleport request.
+    usage: /tpaccept
+  tpahere:
+    description: Sent a teleport request to the specific player to you.
+    usage: /tpahere [player]
+  tpdeny:
+    description: Deny the teleport request.
+    usage: /tpdeny
 
 permissions:
   misf.command.back:
@@ -30,7 +40,7 @@ permissions:
   misf.command.help:
     default: false
   misf.command.home:
-    default: true
+    default: false
   misf.command.info:
     default: false
   misf.command.set.time:
@@ -38,14 +48,18 @@ permissions:
   misf.command.set.weather:
     default: false
   misf.command.sethome:
-    default: true
+    default: false
   misf.command.login:
     default: false
   misf.command.test:
     default: false
   misf.command.tpa:
     default: false
+  misf.command.tpaccept:
+    default: false
   misf.command.tpahere:
+    default: false
+  misf.command.tpdeny:
     default: false
   misf.command.tpserver:
     default: false
@@ -66,9 +80,11 @@ permissions:
       misf.command.login: true
       misf.command.test: true
       misf.command.tpa: true
+      misf.command.tpaccept: true
       misf.command.tpahere: true
+      misf.command.tpdeny: true
       misf.command.tpserver: true
-      misfp.command.warpsv: true
+      misf.command.warpsv: true
     misf.command.*:
       children:
         misf.command.back: true
@@ -79,9 +95,11 @@ permissions:
         misf.command.login: true
         misf.command.test: true
         misf.command.tpa: true
+        misf.command.tpaccept: true
         misf.command.tpahere: true
+        misf.command.tpdeny: true
         misf.command.tpserver: true
-        misfp.command.warpsv: true
+        misf.command.warpsv: true
     misf.player:
       children:
         misf.command.back: true
@@ -90,5 +108,7 @@ permissions:
         misf.command.login: true
         misf.command.sethome: true
         misf.command.tpa: true
+        misf.command.tpaccept: true
         misf.command.tpahere: true
+        misf.command.tpdeny: true
         misf.command.warpsv: true

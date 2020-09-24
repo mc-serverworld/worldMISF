@@ -22,7 +22,6 @@ package com.serverworld.phoenix.paper.commands.PlayerCommands;
 
 import com.google.gson.JsonObject;
 import com.serverworld.phoenix.paper.PaperPhoenix;
-import com.serverworld.phoenix.paper.util.BungeeParameter;
 import com.serverworld.worldSocket.paperspigot.util.messagecoder;
 import com.serverworld.worldSocket.paperspigot.util.messager;
 import com.serverworld.worlduserdata.jsondata.UserPhoenixPlayerData;
@@ -42,8 +41,6 @@ public class PlayerCommand_Tpa  implements CommandExecutor {
             sender.sendMessage(ChatColor.RED + "Only player can use this command!");
             return false;
         }
-
-
 
         Bukkit.getScheduler().scheduleSyncDelayedTask(PaperPhoenix.getInstance(), () -> {
             messagecoder messagecoder = new messagecoder();

@@ -27,7 +27,3 @@ permissions:
     default: false
   misfbungeecord.notify:
     default: false
-  misf.command.tpa:
-    default: true
-  misf.command.tpahere:
-    default: true
