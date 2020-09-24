@@ -47,9 +47,17 @@ public class PlayerCommand_Tpa implements CommandExecutor , TabCompleter {
             sender.sendMessage(ChatColor.RED + "Only player can use this command!");
             return false;
         }
+        if(args.length==0){
+            sender.sendMessage(Formats.perfix() + ChatColor.RED + "請輸入正確的玩家名稱");//TODO: Langauge seleter
+            return true;
+        }
+        if(args[0].equals(sender.getName())){
+            sender.sendMessage(Formats.perfix() + ChatColor.RED + "你不能傳送到你自己身上");//TODO: Langauge seleter
+            return true;
+        }
         if(!BungeeParameter.getPlayerlist().contains(args[0])){
             sender.sendMessage(Formats.perfix() + ChatColor.RED + "找不到此玩家");//TODO: Langauge seleter
-            return false;
+            return true;
         }
 
         Bukkit.getScheduler().scheduleSyncDelayedTask(PaperPhoenix.getInstance(), () -> {
@@ -66,7 +74,7 @@ public class PlayerCommand_Tpa implements CommandExecutor , TabCompleter {
             messager.sendmessage(messagecoder.createmessage());
         }, 0L);
 
-        sender.sendMessage(ChatColor.GOLD + "向 " + args[0] + " 送出傳送請求");//TODO: Langauge seleter
+        sender.sendMessage(Formats.perfix() + ChatColor.GOLD + "向 " + ChatColor.YELLOW + args[0] +ChatColor.GOLD + " 送出傳送請求");//TODO: Langauge seleter
         return true;
     }
 

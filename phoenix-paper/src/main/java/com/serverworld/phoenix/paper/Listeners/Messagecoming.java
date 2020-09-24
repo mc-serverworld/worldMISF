@@ -217,7 +217,7 @@ public class Messagecoming implements Listener {
                         return;
                     }
 
-                    target_player.sendMessage(Formats.perfix() + ChatColor.GOLD + "玩家 " + ChatColor.YELLOW + message.getString("PLAYER") + ChatColor.GOLD + " 想要傳送到你的位置");
+                    target_player.sendMessage(Formats.perfix() + ChatColor.GOLD + "玩家 " + ChatColor.YELLOW + message.getString("PLAYER") + ChatColor.GOLD + " 想要" + ChatColor.GREEN + "傳送到你的位置");
                     target_player.sendMessage(Formats.perfix() + ChatColor.GOLD + "輸入" + ChatColor.GREEN + "/tpaccept" + ChatColor.GOLD + " 接受傳送請求");
                     target_player.sendMessage(Formats.perfix() + ChatColor.GOLD + "輸入" + ChatColor.RED + "/tpdeny" + ChatColor.GOLD + " 拒絕傳送請求");
                     target_player.sendMessage(Formats.perfix() + ChatColor.GOLD + "此傳送請求將在" + ChatColor.RED + "30秒" + ChatColor.GOLD + "後過期");
