@@ -233,7 +233,9 @@ public class Messagecoming implements Listener {
                     TextComponent Line1 = new TextComponent(Formats.perfix());
                     Line1.addExtra(ChatColor.GOLD + "玩家 " + ChatColor.YELLOW + message.getString("PLAYER") + ChatColor.GOLD + " 想要" + ChatColor.GREEN + "傳送到你的位置");
                     TextComponent Line2 = new TextComponent(Formats.perfix());
-                    Line2.addExtra(ChatColor.GOLD + "點選或輸入" + ButtonYESComponent.toString() + ChatColor.GOLD + " 接受傳送請求");
+                    Line2.addExtra(ChatColor.GOLD + "點選或輸入");
+                    Line2.addExtra(ButtonYESComponent);
+                    Line2.addExtra(ChatColor.GOLD + " 接受傳送請求");
                     target_player.sendMessage(Line1);
                     target_player.sendMessage(Line2);
                     /*target_player.sendMessage(new TextComponent(Formats.perfix() + ChatColor.GOLD + "玩家 " + ChatColor.YELLOW + message.getString("PLAYER") + ChatColor.GOLD + " 想要" + ChatColor.GREEN + "傳送到你的位置");
