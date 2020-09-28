@@ -235,6 +235,7 @@ public class Messagecoming implements Listener {
                     target_player.sendMessage(Formats.perfix() + ChatColor.GOLD + "點選或輸入" + ButtonNOComponent.toString() + ChatColor.GOLD + " 拒絕傳送請求");
                     target_player.sendMessage(Formats.perfix() + ChatColor.GOLD + "此傳送請求將在" + ChatColor.RED + "30秒" + ChatColor.GOLD + "後過期");
                     target_player.sendMessage(Formats.perfix() + ChatColor.GOLD + "輸入" + ChatColor.GREEN + "/tpaccept" + ChatColor.GOLD + " 接受傳送請求");
+                    
 
                     //DebugMessage.sendInfoIfDebug("Teleport Player " + player.getName() + " to " + target_player);
 
