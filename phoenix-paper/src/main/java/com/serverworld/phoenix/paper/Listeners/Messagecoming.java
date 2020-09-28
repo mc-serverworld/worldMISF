@@ -230,12 +230,16 @@ public class Messagecoming implements Listener {
                     ButtonNOComponent.setColor( ChatColor.RED );
                     ButtonNOComponent.setHoverEvent( new HoverEvent( HoverEvent.Action.SHOW_TEXT, new ComponentBuilder( "拒絕傳送請求" ).create() ) );
                     ButtonNOComponent.setClickEvent( new ClickEvent( ClickEvent.Action.RUN_COMMAND, "/tpdeny" ) );
-                    target_player.sendMessage(Formats.perfix() + ChatColor.GOLD + "玩家 " + ChatColor.YELLOW + message.getString("PLAYER") + ChatColor.GOLD + " 想要" + ChatColor.GREEN + "傳送到你的位置");
-                    target_player.sendMessage(Formats.perfix() + ChatColor.GOLD + "點選或輸入" + ButtonYESComponent.toString() + ChatColor.GOLD + " 接受傳送請求");
-                    target_player.sendMessage(Formats.perfix() + ChatColor.GOLD + "點選或輸入" + ButtonNOComponent.toString() + ChatColor.GOLD + " 拒絕傳送請求");
-                    target_player.sendMessage(Formats.perfix() + ChatColor.GOLD + "此傳送請求將在" + ChatColor.RED + "30秒" + ChatColor.GOLD + "後過期");
-                    target_player.sendMessage(Formats.perfix() + ChatColor.GOLD + "輸入" + ChatColor.GREEN + "/tpaccept" + ChatColor.GOLD + " 接受傳送請求");
-                    
+                    TextComponent Line1 = new TextComponent(Formats.perfix());
+                    Line1.addExtra(ChatColor.GOLD + "玩家 " + ChatColor.YELLOW + message.getString("PLAYER") + ChatColor.GOLD + " 想要" + ChatColor.GREEN + "傳送到你的位置");
+                    TextComponent Line2 = new TextComponent(Formats.perfix());
+                    Line2.addExtra(ChatColor.GOLD + "點選或輸入" + ButtonYESComponent.toString() + ChatColor.GOLD + " 接受傳送請求");
+                    /*target_player.sendMessage(new TextComponent(Formats.perfix() + ChatColor.GOLD + "玩家 " + ChatColor.YELLOW + message.getString("PLAYER") + ChatColor.GOLD + " 想要" + ChatColor.GREEN + "傳送到你的位置");
+                    target_player.sendMessage(new TextComponent(Formats.perfix() + ChatColor.GOLD + "點選或輸入" + ButtonYESComponent.toString() + ChatColor.GOLD + " 接受傳送請求");
+                    target_player.sendMessage(new TextComponent(Formats.perfix() + ChatColor.GOLD + "點選或輸入" + ButtonNOComponent.toString() + ChatColor.GOLD + " 拒絕傳送請求");
+                    target_player.sendMessage(new TextComponent(Formats.perfix() + ChatColor.GOLD + "此傳送請求將在" + ChatColor.RED + "30秒" + ChatColor.GOLD + "後過期");
+                    target_player.sendMessage(new TextComponent(Formats.perfix() + ChatColor.GOLD + "輸入" + ChatColor.GREEN + "/tpaccept" + ChatColor.GOLD + " 接受傳送請求");
+                    */
 
                     //DebugMessage.sendInfoIfDebug("Teleport Player " + player.getName() + " to " + target_player);
 
