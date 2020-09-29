@@ -24,10 +24,16 @@ import com.serverworld.phoenix.paper.PaperPhoenix;
 import org.bukkit.entity.Player;
 import org.json.JSONObject;
 
-public class TpaQueue {
-    private Player player;
+import java.util.List;
 
-    public void addQueue(Player player , JSONObject message){
+public class TpaQueue {
+    private static Player players;
+    public static List<JSONObject> messages;
+
+    public static void addQueue(JSONObject message){
+        for (JSONObject stuff:messages){
+            if(stuff.getString("TARGET_PLAYER").)
+        }
         //Player player = PaperPhoenix.getInstance().getServer().getPlayer(message.getString("PLAYER"));
         Player target_player = PaperPhoenix.getInstance().getServer().getPlayer(message.getString("TARGET_PLAYER"));
         if(!target_player.isOnline()){
@@ -35,7 +41,7 @@ public class TpaQueue {
         }
     }
 
-    public void executeQueue(Player player){
+    public static void executeQueue(Player player){
 
     }
 
