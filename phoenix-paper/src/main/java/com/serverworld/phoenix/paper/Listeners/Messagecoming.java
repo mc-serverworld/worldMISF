@@ -144,6 +144,8 @@ public class Messagecoming implements Listener {
         }
     }
 
+    //private static Set<Player> players = new HashSet<>();
+
     private void  Actions(MessagecomingEvent event){
         JSONObject message = new JSONObject(event.getMessage());
         DebugMessage.sendInfoIfDebug("Action triggered: " + event.getMessage());
@@ -247,11 +249,12 @@ public class Messagecoming implements Listener {
 
                     Line4.addExtra(ChatColor.GOLD + "此傳送請求將在" + ChatColor.RED + "30秒" + ChatColor.GOLD + "後過期");
 
-
                     target_player.sendMessage(Line1);
                     target_player.sendMessage(Line2);
                     target_player.sendMessage(Line3);
                     target_player.sendMessage(Line4);
+
+
                     /*target_player.sendMessage(new TextComponent(Formats.perfix() + ChatColor.GOLD + "玩家 " + ChatColor.YELLOW + message.getString("PLAYER") + ChatColor.GOLD + " 想要" + ChatColor.GREEN + "傳送到你的位置");
                     target_player.sendMessage(new TextComponent(Formats.perfix() + ChatColor.GOLD + "點選或輸入" + ButtonYESComponent.toString() + ChatColor.GOLD + " 接受傳送請求");
                     target_player.sendMessage(new TextComponent(Formats.perfix() + ChatColor.GOLD + "點選或輸入" + ButtonNOComponent.toString() + ChatColor.GOLD + " 拒絕傳送請求");
