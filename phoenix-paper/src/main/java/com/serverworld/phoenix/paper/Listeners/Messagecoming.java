@@ -20,6 +20,7 @@
 
 package com.serverworld.phoenix.paper.Listeners;
 
+import com.serverworld.phoenix.paper.Listeners.queue.TpQueue;
 import com.serverworld.phoenix.paper.Listeners.subListeners.Sync_v2;
 import com.serverworld.phoenix.paper.PaperPhoenix;
 import com.serverworld.phoenix.paper.util.DebugMessage;
@@ -253,6 +254,8 @@ public class Messagecoming implements Listener {
                     target_player.sendMessage(Line2);
                     target_player.sendMessage(Line3);
                     target_player.sendMessage(Line4);
+
+                    TpQueue.addQueue(message);
 
 
                     /*target_player.sendMessage(new TextComponent(Formats.perfix() + ChatColor.GOLD + "玩家 " + ChatColor.YELLOW + message.getString("PLAYER") + ChatColor.GOLD + " 想要" + ChatColor.GREEN + "傳送到你的位置");

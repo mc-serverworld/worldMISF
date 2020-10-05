@@ -35,11 +35,11 @@ import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
 import org.bukkit.util.StringUtil;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 public class PlayerCommand_Tpa implements CommandExecutor , TabCompleter {
+
+    private static Set<CommandSender> players = new HashSet<>();
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
@@ -48,8 +48,6 @@ public class PlayerCommand_Tpa implements CommandExecutor , TabCompleter {
             return false;
         }
         if(args.length==0){
-            sender.sendMessage(Formats.perfix() + ChatColor.RED + "請輸入正確的玩家名稱");//TODO: Langauge seleter
-            return true;
         }
         if(args[0].equals(sender.getName())){
             sender.sendMessage(Formats.perfix() + ChatColor.RED + "你不能傳送到你自己身上");//TODO: Langauge seleter
@@ -59,6 +57,15 @@ public class PlayerCommand_Tpa implements CommandExecutor , TabCompleter {
             sender.sendMessage(Formats.perfix() + ChatColor.RED + "找不到此玩家");//TODO: Langauge seleter
             return true;
         }
+
+        if(players.contains(sender)){
+            sender.sendMessage(Formats.perfix() + ChatColor.RED + "您最近已發送過請求, 請等待30秒");//TODO: Langauge seleter
+            return true;
+        }
+
+        Bukkit.getScheduler().scheduleSyncDelayedTask(PaperPhoenix.getInstance(), () -> {
+            try {players.remove(sender);}catch (Exception e){ }
+        }, 600L);
 
         Bukkit.getScheduler().scheduleSyncDelayedTask(PaperPhoenix.getInstance(), () -> {
             messagecoder messagecoder = new messagecoder();

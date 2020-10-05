@@ -20,14 +20,31 @@
 
 package com.serverworld.phoenix.paper.commands.PlayerCommands;
 
+import com.serverworld.phoenix.paper.Listeners.queue.TpQueue;
+import com.serverworld.phoenix.paper.util.Formats;
+import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
 
 public class PlayerCommand_Tpaccept implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+        if(!(sender instanceof Player)){
+            sender.sendMessage(ChatColor.RED + "Only player can use this command!");
+            return false;
+        }
+
+        if (!TpQueue.hasQueue(((Player) sender))){
+            sender.sendMessage(Formats.perfix() + ChatColor.RED + "您沒有待確認的傳送請求");
+            return true;
+        }
+
+        if
         return true;
+
+
     }
 }

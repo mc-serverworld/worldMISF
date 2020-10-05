@@ -20,29 +20,44 @@
 
 package com.serverworld.phoenix.paper.Listeners.queue;
 
-import com.serverworld.phoenix.paper.PaperPhoenix;
 import org.bukkit.entity.Player;
 import org.json.JSONObject;
 
 import java.util.List;
 
-public class TpaQueue {
-    private static Player players;
+public class TpQueue {
+    //private static Player players;
     public static List<JSONObject> messages;
 
     public static void addQueue(JSONObject message){
         for (JSONObject stuff:messages){
-            if(stuff.getString("TARGET_PLAYER").)
+            if(stuff.getString("TARGET_PLAYER").toLowerCase().equals(message.getString("TARGET_PLAYER").toLowerCase())){
+                messages.remove(stuff);
+            }
         }
+
         //Player player = PaperPhoenix.getInstance().getServer().getPlayer(message.getString("PLAYER"));
-        Player target_player = PaperPhoenix.getInstance().getServer().getPlayer(message.getString("TARGET_PLAYER"));
-        if(!target_player.isOnline()){
-            return;
+        //Player target_player = PaperPhoenix.getInstance().getServer().getPlayer(message.getString("TARGET_PLAYER"));
+        //if(!target_player.isOnline()){
+         //   return;
+        //}
+    }
+
+    public static JSONObject getAndDelQueue(Player player){
+        for (JSONObject stuff:messages){
+            if(stuff.getString("TARGET_PLAYER").toLowerCase().equals(player.getName().toLowerCase())){
+                messages.remove(stuff);
+                return stuff;
+            }
         }
+        return null;
     }
 
-    public static void executeQueue(Player player){
-
+    public static boolean hasQueue(Player player){
+        for (JSONObject stuff:messages){
+            if(stuff.getString("TARGET_PLAYER").toLowerCase().equals(player.getName().toLowerCase()))
+                return true;
+        }
+        return false;
     }
-
 }
