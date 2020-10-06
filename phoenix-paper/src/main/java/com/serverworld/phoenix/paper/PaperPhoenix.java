@@ -94,6 +94,9 @@ public class PaperPhoenix extends JavaPlugin {
         PlayerCommand_Tpa PlayerCommand_Tpa = new PlayerCommand_Tpa();
         this.getCommand("tpa").setExecutor(PlayerCommand_Tpa);
 
+        PlayerCommand_Tpaccept PlayerCommand_Tpaccept = new PlayerCommand_Tpaccept();
+        this.getCommand("tpaccept").setExecutor(PlayerCommand_Tpaccept);
+
         //PlayerCommand_Tpahere PlayerCommand_Tpahere = new PlayerCommand_Tpahere();
         //this.getCommand("tpahere").setExecutor(PlayerCommand_Tpahere);
 
