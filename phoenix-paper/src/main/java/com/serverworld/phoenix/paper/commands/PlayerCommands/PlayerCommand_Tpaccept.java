@@ -20,13 +20,18 @@
 
 package com.serverworld.phoenix.paper.commands.PlayerCommands;
 
+import com.google.gson.JsonObject;
 import com.serverworld.phoenix.paper.Listeners.queue.TpQueue;
+import com.serverworld.phoenix.paper.PaperPhoenix;
 import com.serverworld.phoenix.paper.util.Formats;
+import com.serverworld.worldSocket.paperspigot.util.messagecoder;
+import com.serverworld.worldSocket.paperspigot.util.messager;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.json.JSONObject;
 
 public class PlayerCommand_Tpaccept implements CommandExecutor {
 
@@ -42,7 +47,21 @@ public class PlayerCommand_Tpaccept implements CommandExecutor {
             return true;
         }
 
-        if
+        JSONObject message = TpQueue.getAndDelQueue(((Player) sender));
+        //message.getString();
+
+        messagecoder messagecoder = new messagecoder();
+        messagecoder.setSender(PaperPhoenix.getInstance().config.servername());
+        messagecoder.setChannel("MISF_PHOENIX");
+        messagecoder.setReceiver("PROXY");
+        messagecoder.setType("ACTION");
+        JsonObject json = new JsonObject();
+        json.addProperty("TYPE","SEND_PLAYER_TO_SERVER");
+        //json.addProperty("PLAYER",message.getString());
+        json.addProperty("SERVER",PaperPhoenix.config.servername());
+        messagecoder.setMessage(json.toString());
+        messager.sendmessage(messagecoder.createmessage());
+
         return true;
 
 
