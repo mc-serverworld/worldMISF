@@ -26,6 +26,7 @@ import com.serverworld.phoenix.paper.PaperPhoenix;
 import com.serverworld.phoenix.paper.util.Formats;
 import com.serverworld.worldSocket.paperspigot.util.messagecoder;
 import com.serverworld.worldSocket.paperspigot.util.messager;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -48,19 +49,43 @@ public class PlayerCommand_Tpaccept implements CommandExecutor {
         }
 
         JSONObject message = TpQueue.getAndDelQueue(((Player) sender));
-        //message.getString();
+        message.getString();
 
-        messagecoder messagecoder = new messagecoder();
-        messagecoder.setSender(PaperPhoenix.getInstance().config.servername());
-        messagecoder.setChannel("MISF_PHOENIX");
-        messagecoder.setReceiver("PROXY");
-        messagecoder.setType("ACTION");
-        JsonObject json = new JsonObject();
-        json.addProperty("TYPE","SEND_PLAYER_TO_SERVER");
-        //json.addProperty("PLAYER",message.getString());
-        json.addProperty("SERVER",PaperPhoenix.config.servername());
-        messagecoder.setMessage(json.toString());
-        messager.sendmessage(messagecoder.createmessage());
+        Bukkit.getScheduler().scheduleSyncDelayedTask(PaperPhoenix.getInstance(), () -> {
+            messagecoder messagecoder = new messagecoder();
+            messagecoder.setSender(PaperPhoenix.config.servername());
+            messagecoder.setChannel("MISF_PHOENIX");
+            messagecoder.setReceiver("PROXY");
+            messagecoder.setType("ACTION");
+            JsonObject json = new JsonObject();
+            json.addProperty("TYPE","TELEPORT_REQUEST_TPA");
+            json.addProperty("PLAYER",sender.getName());
+            json.addProperty("TARGET_PLAYER",args[0]);
+            messagecoder.setMessage(json.toString());
+            messager.sendmessage(messagecoder.createmessage());
+        }, 0L);
+        //save player last location
+
+
+        Bukkit.getScheduler().scheduleSyncDelayedTask(PaperPhoenix.getInstance(), () -> {
+            messagecoder messagecoder = new messagecoder();
+            messagecoder.setSender(PaperPhoenix.getInstance().config.servername());
+            messagecoder.setChannel("MISF_PHOENIX");
+            messagecoder.setReceiver("PROXY");
+            messagecoder.setType("ACTION");
+            JsonObject json = new JsonObject();
+            json.addProperty("TYPE","SEND_PLAYER_TO_SERVER");
+            json.addProperty("PLAYER",message.getString("PLAYER"));
+            json.addProperty("SERVER",PaperPhoenix.config.servername());
+            messagecoder.setMessage(json.toString());
+            messager.sendmessage(messagecoder.createmessage());
+        }, 0L);//send player to this server
+
+
+
+        Bukkit.getScheduler().scheduleSyncDelayedTask(PaperPhoenix.getInstance(), () -> {
+
+        }, 0L);
 
         return true;
 

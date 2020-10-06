@@ -220,7 +220,7 @@ public class Messagecoming implements Listener {
                     //Player player = PaperPhoenix.getInstance().getServer().getPlayer(message.getString("PLAYER"));
                     Player target_player = PaperPhoenix.getInstance().getServer().getPlayer(message.getString("TARGET_PLAYER"));
                     if(!target_player.isOnline()){
-                        //TODO return
+                        //TODO return player not found
                         return;
                     }
 
@@ -266,6 +266,36 @@ public class Messagecoming implements Listener {
                     */
 
                     //DebugMessage.sendInfoIfDebug("Teleport Player " + player.getName() + " to " + target_player);
+
+                    return;
+                }catch (Exception e){
+                    e.printStackTrace();
+                    DebugMessage.sendWarring("The Player is gone!");
+                }
+            }
+
+            case "TELEPORT_REQUEST_TPA_ACCEPT": {
+                try {
+                    Player player = PaperPhoenix.getInstance().getServer().getPlayer(message.getString("PLAYER"));
+                    //Player target_player = PaperPhoenix.getInstance().getServer().getPlayer(message.getString("TARGET_PLAYER"));
+                    if(!player.isOnline()){
+                        //TODO return player not found
+                        return;
+                    }
+
+                    player.sendMessage(Formats.perfix() + ChatColor.GOLD + "玩家 " + ChatColor.YELLOW + message.getString("TARGET_PLAYER") + ChatColor.GREEN + " 接受你的傳送請求");
+                    player.sendMessage(Formats.perfix() + ChatColor.GREEN + "正在傳送你到目標伺服器...");
+
+                    UserPhoenixPlayerData playerData = UserPhoenixPlayerDataMySQL.getDataClass(player.getUniqueId().toString());
+                    playerData.setLastlocation_server(PaperPhoenix.config.servername());
+                    playerData.setLastlocation_world(player.getWorld().getName());
+                    playerData.setLastlocation_x(player.getLocation().getX());
+                    playerData.setLastlocation_y(player.getLocation().getY());
+                    playerData.setLastlocation_z(player.getLocation().getZ());
+                    UserPhoenixPlayerDataMySQL.setDataClass(player.getUniqueId().toString() , playerData);//save dead pos to database
+
+                    DebugMessage.sendInfoIfDebug("Save Player: " + player.getName() + " location");
+                    return;
 
                     return;
                 }catch (Exception e){
