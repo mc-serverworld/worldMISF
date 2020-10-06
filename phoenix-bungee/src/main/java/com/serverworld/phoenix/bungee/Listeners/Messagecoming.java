@@ -70,6 +70,10 @@ public class Messagecoming implements Listener {
                         player.connect(ProxyServer.getInstance().getServerInfo(message.getString("SERVER")));
                         return;
                     }
+                    if(player.getName().toLowerCase().equals(message.getString("PLAYER").toLowerCase())) {
+                        player.connect(ProxyServer.getInstance().getServerInfo(message.getString("SERVER")));
+                        return;
+                    }
                 }
             }
             case "TELEPORT_REQUEST_TPA": {
