@@ -49,23 +49,21 @@ public class PlayerCommand_Tpaccept implements CommandExecutor {
         }
 
         JSONObject message = TpQueue.getAndDelQueue(((Player) sender));
-        message.getString();
+        //message.getString();
 
         Bukkit.getScheduler().scheduleSyncDelayedTask(PaperPhoenix.getInstance(), () -> {
-            messagecoder messagecoder = new messagecoder();
-            messagecoder.setSender(PaperPhoenix.config.servername());
-            messagecoder.setChannel("MISF_PHOENIX");
-            messagecoder.setReceiver("PROXY");
-            messagecoder.setType("ACTION");
-            JsonObject json = new JsonObject();
-            json.addProperty("TYPE","TELEPORT_REQUEST_TPA");
-            json.addProperty("PLAYER",sender.getName());
-            json.addProperty("TARGET_PLAYER",args[0]);
-            messagecoder.setMessage(json.toString());
-            messager.sendmessage(messagecoder.createmessage());
-        }, 0L);
-        //save player last location
-
+        messagecoder messagecoder = new messagecoder();
+        messagecoder.setSender(PaperPhoenix.config.servername());
+        messagecoder.setChannel("MISF_PHOENIX");
+        messagecoder.setReceiver("PROXY");
+        messagecoder.setType("ACTION");
+        JsonObject json = new JsonObject();
+        json.addProperty("TYPE","TELEPORT_REQUEST_TPA");
+        json.addProperty("PLAYER",sender.getName());
+        json.addProperty("TARGET_PLAYER",args[0]);
+        messagecoder.setMessage(json.toString());
+        messager.sendmessage(messagecoder.createmessage());
+        }, 0L);//send teleport status: accept
 
         Bukkit.getScheduler().scheduleSyncDelayedTask(PaperPhoenix.getInstance(), () -> {
             messagecoder messagecoder = new messagecoder();
@@ -79,13 +77,14 @@ public class PlayerCommand_Tpaccept implements CommandExecutor {
             json.addProperty("SERVER",PaperPhoenix.config.servername());
             messagecoder.setMessage(json.toString());
             messager.sendmessage(messagecoder.createmessage());
-        }, 0L);//send player to this server
-
+        }, 20L);//send player to this server
 
 
         Bukkit.getScheduler().scheduleSyncDelayedTask(PaperPhoenix.getInstance(), () -> {
-
-        }, 0L);
+            Player target_player = PaperPhoenix.getInstance().getServer().getPlayer(message.getString("TARGET_PLAYER"));
+            Player player = PaperPhoenix.getInstance().getServer().getPlayer(message.getString("PLAYER"));
+            player.teleport(target_player);
+        }, 40L);
 
         return true;
 

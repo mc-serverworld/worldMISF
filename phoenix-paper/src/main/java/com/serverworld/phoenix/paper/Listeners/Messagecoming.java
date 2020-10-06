@@ -25,9 +25,8 @@ import com.serverworld.phoenix.paper.Listeners.subListeners.Sync_v2;
 import com.serverworld.phoenix.paper.PaperPhoenix;
 import com.serverworld.phoenix.paper.util.DebugMessage;
 import com.serverworld.phoenix.paper.util.Formats;
+import com.serverworld.phoenix.paper.util.Player.PlayerData;
 import com.serverworld.worldSocket.paperspigot.events.MessagecomingEvent;
-import com.serverworld.worlduserdata.jsondata.UserPhoenixPlayerData;
-import com.serverworld.worlduserdata.paper.utils.UserPhoenixPlayerDataMySQL;
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.chat.ClickEvent;
 import net.md_5.bungee.api.chat.ComponentBuilder;
@@ -154,16 +153,7 @@ public class Messagecoming implements Listener {
             case "SAVE_PLAYER_LOCATION_AS_LAST": {
                 try{
                     Player player = PaperPhoenix.getInstance().getServer().getPlayer(message.getString("PLAYER"));
-
-                    UserPhoenixPlayerData playerData = UserPhoenixPlayerDataMySQL.getDataClass(player.getUniqueId().toString());
-                    playerData.setLastlocation_server(PaperPhoenix.config.servername());
-                    playerData.setLastlocation_world(player.getWorld().getName());
-                    playerData.setLastlocation_x(player.getLocation().getX());
-                    playerData.setLastlocation_y(player.getLocation().getY());
-                    playerData.setLastlocation_z(player.getLocation().getZ());
-                    UserPhoenixPlayerDataMySQL.setDataClass(player.getUniqueId().toString() , playerData);//save dead pos to database
-
-                    DebugMessage.sendInfoIfDebug("Save Player: " + player.getName() + " location");
+                    PlayerData.SaveCurrentLocationAsLast(player,player.getLocation());
                     return;
                 }catch (Exception e){
                     e.printStackTrace();
@@ -284,19 +274,9 @@ public class Messagecoming implements Listener {
                     }
 
                     player.sendMessage(Formats.perfix() + ChatColor.GOLD + "玩家 " + ChatColor.YELLOW + message.getString("TARGET_PLAYER") + ChatColor.GREEN + " 接受你的傳送請求");
-                    player.sendMessage(Formats.perfix() + ChatColor.GREEN + "正在傳送你到目標伺服器...");
+                    player.sendMessage(Formats.perfix() + ChatColor.GREEN + "正在傳送您到目標伺服器...");
 
-                    UserPhoenixPlayerData playerData = UserPhoenixPlayerDataMySQL.getDataClass(player.getUniqueId().toString());
-                    playerData.setLastlocation_server(PaperPhoenix.config.servername());
-                    playerData.setLastlocation_world(player.getWorld().getName());
-                    playerData.setLastlocation_x(player.getLocation().getX());
-                    playerData.setLastlocation_y(player.getLocation().getY());
-                    playerData.setLastlocation_z(player.getLocation().getZ());
-                    UserPhoenixPlayerDataMySQL.setDataClass(player.getUniqueId().toString() , playerData);//save dead pos to database
-
-                    DebugMessage.sendInfoIfDebug("Save Player: " + player.getName() + " location");
-                    return;
-
+                    PlayerData.SaveCurrentLocationAsLast(player,player.getLocation());
                     return;
                 }catch (Exception e){
                     e.printStackTrace();
