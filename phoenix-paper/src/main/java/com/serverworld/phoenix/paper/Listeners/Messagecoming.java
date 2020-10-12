@@ -264,6 +264,65 @@ public class Messagecoming implements Listener {
                 }
             }
 
+            case "TELEPORT_REQUEST_TPAHERE": {
+                try {
+                    //Player player = PaperPhoenix.getInstance().getServer().getPlayer(message.getString("PLAYER"));
+                    Player target_player = PaperPhoenix.getInstance().getServer().getPlayer(message.getString("TARGET_PLAYER"));
+                    if(!target_player.isOnline()){
+                        //TODO return player not found
+                        return;
+                    }
+
+                    TextComponent ButtonYESComponent = new TextComponent( "/tpaccept" );
+                    ButtonYESComponent.setColor( ChatColor.GREEN );
+                    ButtonYESComponent.setHoverEvent( new HoverEvent( HoverEvent.Action.SHOW_TEXT, new ComponentBuilder( "接受傳送請求" ).create() ) );
+                    ButtonYESComponent.setClickEvent( new ClickEvent( ClickEvent.Action.RUN_COMMAND, "/tpaccept" ) );
+
+                    TextComponent ButtonNOComponent = new TextComponent( "/tpdeny" );
+                    ButtonNOComponent.setColor( ChatColor.RED );
+                    ButtonNOComponent.setHoverEvent( new HoverEvent( HoverEvent.Action.SHOW_TEXT, new ComponentBuilder( "拒絕傳送請求" ).create() ) );
+                    ButtonNOComponent.setClickEvent( new ClickEvent( ClickEvent.Action.RUN_COMMAND, "/tpdeny" ) );
+
+                    TextComponent Line1 = new TextComponent(Formats.perfix());
+                    TextComponent Line2 = new TextComponent(Formats.perfix());
+                    TextComponent Line3 = new TextComponent(Formats.perfix());
+                    TextComponent Line4 = new TextComponent(Formats.perfix());
+                    Line1.addExtra(ChatColor.GOLD + "玩家 " + ChatColor.YELLOW + message.getString("PLAYER") + ChatColor.GOLD + " 想要" + ChatColor.RED + "傳送你到他的位置");
+
+                    Line2.addExtra(ChatColor.GOLD + "點選或輸入");
+                    Line2.addExtra(ButtonYESComponent);
+                    Line2.addExtra(ChatColor.GOLD + " 接受傳送請求");
+
+                    Line3.addExtra(ChatColor.GOLD + "點選或輸入");
+                    Line3.addExtra(ButtonNOComponent);
+                    Line3.addExtra(ChatColor.GOLD + " 拒絕傳送請求");
+
+                    Line4.addExtra(ChatColor.GOLD + "此傳送請求將在" + ChatColor.RED + "30秒" + ChatColor.GOLD + "後過期");
+
+                    target_player.sendMessage(Line1);
+                    target_player.sendMessage(Line2);
+                    target_player.sendMessage(Line3);
+                    target_player.sendMessage(Line4);
+
+                    TpQueue.addQueue(message);
+
+
+                    /*target_player.sendMessage(new TextComponent(Formats.perfix() + ChatColor.GOLD + "玩家 " + ChatColor.YELLOW + message.getString("PLAYER") + ChatColor.GOLD + " 想要" + ChatColor.GREEN + "傳送到你的位置");
+                    target_player.sendMessage(new TextComponent(Formats.perfix() + ChatColor.GOLD + "點選或輸入" + ButtonYESComponent.toString() + ChatColor.GOLD + " 接受傳送請求");
+                    target_player.sendMessage(new TextComponent(Formats.perfix() + ChatColor.GOLD + "點選或輸入" + ButtonNOComponent.toString() + ChatColor.GOLD + " 拒絕傳送請求");
+                    target_player.sendMessage(new TextComponent(Formats.perfix() + ChatColor.GOLD + "此傳送請求將在" + ChatColor.RED + "30秒" + ChatColor.GOLD + "後過期");
+                    target_player.sendMessage(new TextComponent(Formats.perfix() + ChatColor.GOLD + "輸入" + ChatColor.GREEN + "/tpaccept" + ChatColor.GOLD + " 接受傳送請求");
+                    */
+
+                    //DebugMessage.sendInfoIfDebug("Teleport Player " + player.getName() + " to " + target_player);
+
+                    return;
+                }catch (Exception e){
+                    e.printStackTrace();
+                    DebugMessage.sendWarring("The Player is gone!");
+                }
+            }
+
             case "TELEPORT_REQUEST_TPA_ACCEPT": {
                 try {
                     Player player = PaperPhoenix.getInstance().getServer().getPlayer(message.getString("PLAYER"));
@@ -277,6 +336,44 @@ public class Messagecoming implements Listener {
                     player.sendMessage(Formats.perfix() + ChatColor.GREEN + "正在傳送您到目標伺服器...");
 
                     PlayerData.SaveCurrentLocationAsLast(player,player.getLocation());
+                    return;
+                }catch (Exception e){
+                    e.printStackTrace();
+                    DebugMessage.sendWarring("The Player is gone!");
+                }
+            }
+
+            case "TELEPORT_REQUEST_TPAHERE_ACCEPT": {
+                try {
+                    Player player = PaperPhoenix.getInstance().getServer().getPlayer(message.getString("PLAYER"));
+                    //Player target_player = PaperPhoenix.getInstance().getServer().getPlayer(message.getString("TARGET_PLAYER"));
+                    if(!player.isOnline()){
+                        //TODO return player not found
+                        return;
+                    }
+
+                    player.sendMessage(Formats.perfix() + ChatColor.GOLD + "玩家 " + ChatColor.YELLOW + message.getString("TARGET_PLAYER") + ChatColor.GREEN + " 接受了你的傳送請求");
+                    player.sendMessage(Formats.perfix() + ChatColor.GREEN + "正在傳送對方到您的伺服器...");
+
+
+                    return;
+                }catch (Exception e){
+                    e.printStackTrace();
+                    DebugMessage.sendWarring("The Player is gone!");
+                }
+            }
+
+            case "TELEPORT_REQUEST_DENY": {
+                try {
+                    Player player = PaperPhoenix.getInstance().getServer().getPlayer(message.getString("PLAYER"));
+                    //Player target_player = PaperPhoenix.getInstance().getServer().getPlayer(message.getString("TARGET_PLAYER"));
+                    if(!player.isOnline()){
+                        //TODO return player not found
+                        return;
+                    }
+
+                    player.sendMessage(Formats.perfix() + ChatColor.GOLD + "玩家 " + ChatColor.YELLOW + message.getString("TARGET_PLAYER") + ChatColor.RED + " 拒絕了你的傳送請求");
+
                     return;
                 }catch (Exception e){
                     e.printStackTrace();

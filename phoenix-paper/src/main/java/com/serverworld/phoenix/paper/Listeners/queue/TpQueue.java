@@ -27,7 +27,7 @@ import java.util.ArrayList;
 
 public class TpQueue {
     //private static Player players;
-    public static ArrayList<JSONObject> messages;
+    public static ArrayList<JSONObject> messages = new ArrayList<JSONObject>();
 
     public static void addQueue(JSONObject message){
         if(messages.size()!=0){

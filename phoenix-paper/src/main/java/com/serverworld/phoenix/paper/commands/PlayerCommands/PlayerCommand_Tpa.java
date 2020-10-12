@@ -48,6 +48,8 @@ public class PlayerCommand_Tpa implements CommandExecutor , TabCompleter {
             return false;
         }
         if(args.length==0){
+            sender.sendMessage(Formats.perfix() + ChatColor.RED + "找不到此玩家");//TODO: Langauge seleter
+            return true;
         }
         if(args[0].equals(sender.getName())){
             sender.sendMessage(Formats.perfix() + ChatColor.RED + "你不能傳送到你自己身上");//TODO: Langauge seleter
@@ -62,7 +64,7 @@ public class PlayerCommand_Tpa implements CommandExecutor , TabCompleter {
             sender.sendMessage(Formats.perfix() + ChatColor.RED + "您最近已發送過請求, 請等待30秒");//TODO: Langauge seleter
             return true;
         }
-
+        players.add(sender);
         Bukkit.getScheduler().scheduleSyncDelayedTask(PaperPhoenix.getInstance(), () -> {
             try {players.remove(sender);}catch (Exception e){ }
         }, 600L);

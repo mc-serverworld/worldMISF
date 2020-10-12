@@ -20,14 +20,49 @@
 
 package com.serverworld.phoenix.paper.commands.PlayerCommands;
 
+import com.google.gson.JsonObject;
+import com.serverworld.phoenix.paper.Listeners.queue.TpQueue;
+import com.serverworld.phoenix.paper.PaperPhoenix;
+import com.serverworld.phoenix.paper.util.Formats;
+import com.serverworld.worldSocket.paperspigot.util.messagecoder;
+import com.serverworld.worldSocket.paperspigot.util.messager;
+import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
+import org.json.JSONObject;
 
 public class PlayerCommand_Tpdeny implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+
+        if(!(sender instanceof Player)){
+            sender.sendMessage(ChatColor.RED + "Only player can use this command!");
+            return false;
+        }
+
+        if (!TpQueue.hasQueue(((Player) sender))){
+            sender.sendMessage(Formats.perfix() + ChatColor.RED + "您沒有待確認的傳送請求");
+            return true;
+        }
+
+        JSONObject message = TpQueue.getAndDelQueue(((Player) sender));
+        Bukkit.getScheduler().scheduleSyncDelayedTask(PaperPhoenix.getInstance(), () -> {
+            messagecoder messagecoder = new messagecoder();
+            messagecoder.setSender(PaperPhoenix.config.servername());
+            messagecoder.setChannel("MISF_PHOENIX");
+            messagecoder.setReceiver("PROXY");
+            messagecoder.setType("ACTION");
+            JsonObject json = new JsonObject();
+            json.addProperty("TYPE","TELEPORT_REQUEST_DENY");
+            json.addProperty("PLAYER",sender.getName());
+            json.addProperty("TARGET_PLAYER",args[0]);
+            messagecoder.setMessage(json.toString());
+            messager.sendmessage(messagecoder.createmessage());
+        }, 0L);//send teleport status: deny
         return true;
     }
 }
