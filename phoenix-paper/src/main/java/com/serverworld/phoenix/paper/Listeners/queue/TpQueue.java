@@ -35,7 +35,7 @@ public class TpQueue {
                 messages.remove(stuff);
             }
         }
-
+        messages.add(message);
         //Player player = PaperPhoenix.getInstance().getServer().getPlayer(message.getString("PLAYER"));
         //Player target_player = PaperPhoenix.getInstance().getServer().getPlayer(message.getString("TARGET_PLAYER"));
         //if(!target_player.isOnline()){
