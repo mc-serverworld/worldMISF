@@ -46,11 +46,11 @@ public class PaperPhoenix extends JavaPlugin {
     @Override
     public void onEnable() {
 
-        if(config.servetype().toLowerCase().equals("lobby")){
+        if (config.servetype().toLowerCase().equals("lobby")) {
             LobbyCommand lobbyCommand = new LobbyCommand(this);
             this.getCommand("misf").setExecutor(lobbyCommand);
             this.getCommand("misf").setTabCompleter(lobbyCommand);
-        }else {
+        } else {
             //setup
             setupevent();
             setuputil();
@@ -64,7 +64,6 @@ public class PaperPhoenix extends JavaPlugin {
 
             setupPlayerCommands();
         }
-
     }
 
     public void setupevent(){

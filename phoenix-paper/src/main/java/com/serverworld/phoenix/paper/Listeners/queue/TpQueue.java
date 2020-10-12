@@ -23,11 +23,11 @@ package com.serverworld.phoenix.paper.Listeners.queue;
 import org.bukkit.entity.Player;
 import org.json.JSONObject;
 
-import java.util.List;
+import java.util.ArrayList;
 
 public class TpQueue {
     //private static Player players;
-    public static List<JSONObject> messages;
+    public static ArrayList<JSONObject> messages;
 
     public static void addQueue(JSONObject message){
         if(!messages.isEmpty()){
@@ -37,7 +37,6 @@ public class TpQueue {
                 }
             }
         }
-
         messages.add(message);
         //Player player = PaperPhoenix.getInstance().getServer().getPlayer(message.getString("PLAYER"));
         //Player target_player = PaperPhoenix.getInstance().getServer().getPlayer(message.getString("TARGET_PLAYER"));
