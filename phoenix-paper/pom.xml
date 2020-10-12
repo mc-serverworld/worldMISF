@@ -275,10 +275,9 @@
         <dependency>
             <groupId>com.github.PryPurity</groupId>
             <artifactId>WorldBorder</artifactId>
-            <version>v2.0.9</version>
+            <version>v2.1.0</version>
             <scope>provided</scope>
         </dependency>
-
 
         <dependency>
             <groupId>com.mc-serverworld</groupId>
