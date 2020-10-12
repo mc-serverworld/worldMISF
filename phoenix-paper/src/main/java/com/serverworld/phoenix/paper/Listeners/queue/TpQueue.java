@@ -30,11 +30,14 @@ public class TpQueue {
     public static List<JSONObject> messages;
 
     public static void addQueue(JSONObject message){
-        for (JSONObject stuff:messages){
-            if(stuff.getString("TARGET_PLAYER").toLowerCase().equals(message.getString("TARGET_PLAYER").toLowerCase())){
-                messages.remove(stuff);
+        if(!messages.isEmpty()){
+            for (JSONObject stuff:messages){
+                if(stuff.getString("TARGET_PLAYER").toLowerCase().equals(message.getString("TARGET_PLAYER").toLowerCase())){
+                    messages.remove(stuff);
+                }
             }
         }
+
         messages.add(message);
         //Player player = PaperPhoenix.getInstance().getServer().getPlayer(message.getString("PLAYER"));
         //Player target_player = PaperPhoenix.getInstance().getServer().getPlayer(message.getString("TARGET_PLAYER"));
@@ -44,19 +47,23 @@ public class TpQueue {
     }
 
     public static JSONObject getAndDelQueue(Player player){
-        for (JSONObject stuff:messages){
-            if(stuff.getString("TARGET_PLAYER").toLowerCase().equals(player.getName().toLowerCase())){
-                messages.remove(stuff);
-                return stuff;
+        if(!messages.isEmpty()){
+            for (JSONObject stuff:messages){
+                if(stuff.getString("TARGET_PLAYER").toLowerCase().equals(player.getName().toLowerCase())){
+                    messages.remove(stuff);
+                    return stuff;
+                }
             }
         }
         return null;
     }
 
     public static boolean hasQueue(Player player){
-        for (JSONObject stuff:messages){
-            if(stuff.getString("TARGET_PLAYER").toLowerCase().equals(player.getName().toLowerCase()))
-                return true;
+        if(!messages.isEmpty()){
+            for (JSONObject stuff:messages){
+                if(stuff.getString("TARGET_PLAYER").toLowerCase().equals(player.getName().toLowerCase()))
+                    return true;
+            }
         }
         return false;
     }
