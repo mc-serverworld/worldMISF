@@ -59,8 +59,8 @@ public class PlayerCommand_Tpaccept implements CommandExecutor {
                 messagecoder.setType("ACTION");
                 JsonObject json = new JsonObject();
                 json.addProperty("TYPE","TELEPORT_REQUEST_TPA_ACCEPT");
-                json.addProperty("PLAYER",sender.getName());
-                json.addProperty("TARGET_PLAYER",args[0]);
+                json.addProperty("PLAYER",message.getString("PLAYER"));
+                json.addProperty("TARGET_PLAYER",sender.getName());
                 messagecoder.setMessage(json.toString());
                 messager.sendmessage(messagecoder.createmessage());
             }, 0L);//send teleport status: accept
@@ -77,19 +77,45 @@ public class PlayerCommand_Tpaccept implements CommandExecutor {
                 json.addProperty("SERVER",PaperPhoenix.config.servername());
                 messagecoder.setMessage(json.toString());
                 messager.sendmessage(messagecoder.createmessage());
-            }, 20L);//send player to this server
+            }, 40L);//send player to this server
 
 
             Bukkit.getScheduler().scheduleSyncDelayedTask(PaperPhoenix.getInstance(), () -> {
                 Player target_player = PaperPhoenix.getInstance().getServer().getPlayer(message.getString("TARGET_PLAYER"));
                 Player player = PaperPhoenix.getInstance().getServer().getPlayer(message.getString("PLAYER"));
                 player.teleport(target_player);
-            }, 40L);
+            }, 60L);
 
             return true;
 
         }else if(message.get("TYPE").equals("TELEPORT_REQUEST_TPAHERE")){
+            Bukkit.getScheduler().scheduleSyncDelayedTask(PaperPhoenix.getInstance(), () -> {
+                messagecoder messagecoder = new messagecoder();
+                messagecoder.setSender(PaperPhoenix.config.servername());
+                messagecoder.setChannel("MISF_PHOENIX");
+                messagecoder.setReceiver("PROXY");
+                messagecoder.setType("ACTION");
+                JsonObject json = new JsonObject();
+                json.addProperty("TYPE","TELEPORT_REQUEST_TPAHERE_ACCEPT");
+                json.addProperty("PLAYER",message.getString("PLAYER"));
+                json.addProperty("TARGET_PLAYER",sender.getName());
+                messagecoder.setMessage(json.toString());
+                messager.sendmessage(messagecoder.createmessage());
+            }, 0L);//send teleport status: accept
 
+            Bukkit.getScheduler().scheduleSyncDelayedTask(PaperPhoenix.getInstance(), () -> {
+                messagecoder messagecoder = new messagecoder();
+                messagecoder.setSender(PaperPhoenix.getInstance().config.servername());
+                messagecoder.setChannel("MISF_PHOENIX");
+                messagecoder.setReceiver("PROXY");
+                messagecoder.setType("ACTION");
+                JsonObject json = new JsonObject();
+                json.addProperty("TYPE","SEND_PLAYER_TO_SERVER");
+                json.addProperty("PLAYER",message.getString("PLAYER"));
+                json.addProperty("SERVER",PaperPhoenix.config.servername());
+                messagecoder.setMessage(json.toString());
+                messager.sendmessage(messagecoder.createmessage());
+            }, 0L);//send player to this server
         }
         //message.getString();
         return true;

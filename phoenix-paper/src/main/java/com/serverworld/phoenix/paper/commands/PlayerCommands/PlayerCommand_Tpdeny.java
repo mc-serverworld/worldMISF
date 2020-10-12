@@ -34,7 +34,12 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.json.JSONObject;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class PlayerCommand_Tpdeny implements CommandExecutor {
+
+    private static Set<CommandSender> players = new HashSet<>();
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
@@ -49,6 +54,15 @@ public class PlayerCommand_Tpdeny implements CommandExecutor {
             return true;
         }
 
+        if(players.contains(sender)){
+            sender.sendMessage(Formats.perfix() + ChatColor.RED + "您最近已發送過請求, 請等待30秒");//TODO: Langauge seleter
+            return true;
+        }
+        players.add(sender);
+        Bukkit.getScheduler().scheduleSyncDelayedTask(PaperPhoenix.getInstance(), () -> {
+            try {players.remove(sender);}catch (Exception e){ }
+        }, 600L);
+
         JSONObject message = TpQueue.getAndDelQueue(((Player) sender));
         Bukkit.getScheduler().scheduleSyncDelayedTask(PaperPhoenix.getInstance(), () -> {
             messagecoder messagecoder = new messagecoder();
@@ -59,7 +73,7 @@ public class PlayerCommand_Tpdeny implements CommandExecutor {
             JsonObject json = new JsonObject();
             json.addProperty("TYPE","TELEPORT_REQUEST_DENY");
             json.addProperty("PLAYER",sender.getName());
-            json.addProperty("TARGET_PLAYER",args[0]);
+            json.addProperty("TARGET_PLAYER",message.getString("TARGET_PLAYER"));
             messagecoder.setMessage(json.toString());
             messager.sendmessage(messagecoder.createmessage());
         }, 0L);//send teleport status: deny
