@@ -23,6 +23,7 @@ package com.serverworld.phoenix.paper;
 import com.serverworld.phoenix.paper.Listeners.Messagecoming;
 import com.serverworld.phoenix.paper.Listeners.PlayerDeath;
 import com.serverworld.phoenix.paper.Listeners.PlayerRespawn;
+import com.serverworld.phoenix.paper.Listeners.queue.TpQueue;
 import com.serverworld.phoenix.paper.commands.LobbyCommand;
 import com.serverworld.phoenix.paper.commands.PaperPhoenixCommands;
 import com.serverworld.phoenix.paper.commands.PlayerCommands.*;
@@ -30,6 +31,9 @@ import com.serverworld.phoenix.paper.util.BungeeParameter;
 import com.serverworld.phoenix.paper.util.worldSetup;
 import com.serverworld.phoenix.paper.util.worldSync;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
 
 
 public class PaperPhoenix extends JavaPlugin {
@@ -64,6 +68,8 @@ public class PaperPhoenix extends JavaPlugin {
 
             setupPlayerCommands();
         }
+            TpQueue.messages = new ArrayList<JSONObject>();
+
     }
 
     public void setupevent(){
