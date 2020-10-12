@@ -30,7 +30,7 @@ public class TpQueue {
     public static ArrayList<JSONObject> messages;
 
     public static void addQueue(JSONObject message){
-        if(!messages.isEmpty()){
+        if(messages.size()!=0){
             for (JSONObject stuff:messages){
                 if(stuff.getString("TARGET_PLAYER").toLowerCase().equals(message.getString("TARGET_PLAYER").toLowerCase())){
                     messages.remove(stuff);
@@ -46,7 +46,7 @@ public class TpQueue {
     }
 
     public static JSONObject getAndDelQueue(Player player){
-        if(!messages.isEmpty()){
+        if(messages.size()!=0){
             for (JSONObject stuff:messages){
                 if(stuff.getString("TARGET_PLAYER").toLowerCase().equals(player.getName().toLowerCase())){
                     messages.remove(stuff);
@@ -58,7 +58,7 @@ public class TpQueue {
     }
 
     public static boolean hasQueue(Player player){
-        if(!messages.isEmpty()){
+        if(messages.size()!=0){
             for (JSONObject stuff:messages){
                 if(stuff.getString("TARGET_PLAYER").toLowerCase().equals(player.getName().toLowerCase()))
                     return true;
