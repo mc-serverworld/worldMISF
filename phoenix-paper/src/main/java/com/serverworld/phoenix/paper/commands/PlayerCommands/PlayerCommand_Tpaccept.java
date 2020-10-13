@@ -24,6 +24,7 @@ import com.google.gson.JsonObject;
 import com.serverworld.phoenix.paper.Listeners.queue.TpQueue;
 import com.serverworld.phoenix.paper.PaperPhoenix;
 import com.serverworld.phoenix.paper.util.Formats;
+import com.serverworld.phoenix.paper.util.Player.PlayerData;
 import com.serverworld.worldSocket.paperspigot.util.messagecoder;
 import com.serverworld.worldSocket.paperspigot.util.messager;
 import org.bukkit.Bukkit;
@@ -44,12 +45,13 @@ public class PlayerCommand_Tpaccept implements CommandExecutor {
         }
 
         if (!TpQueue.hasQueue(((Player) sender))){
-            sender.sendMessage(Formats.perfix() + ChatColor.RED + "您沒有待確認的傳送請求");
+            sender.sendMessage(Formats.perfix() + ChatColor.RED + "您沒有待確認的傳送請求");//TODO: Langauge seleter
             return true;
         }
 
         JSONObject message = TpQueue.getAndDelQueue(((Player) sender));
         if(message.get("TYPE").equals("TELEPORT_REQUEST_TPA")){
+            sender.sendMessage(Formats.perfix() + ChatColor.GREEN + "您接受了對方的傳送請求, 正在將對方傳送至您的伺服器");//TODO: Langauge seleter
 
             Bukkit.getScheduler().scheduleSyncDelayedTask(PaperPhoenix.getInstance(), () -> {
                 messagecoder messagecoder = new messagecoder();
@@ -89,7 +91,10 @@ public class PlayerCommand_Tpaccept implements CommandExecutor {
             return true;
 
         }else if(message.get("TYPE").equals("TELEPORT_REQUEST_TPAHERE")){
-            sender.sendMessage(Formats.perfix() + "您接受了對方的傳送請求 正在將您傳送到目標伺服器");
+            sender.sendMessage(Formats.perfix() + ChatColor.GREEN + "您接受了對方的傳送請求, 正在將您傳送到目標伺服器");//TODO: Langauge seleter
+
+            PlayerData.SaveCurrentLocationAsLast(((Player) sender).getPlayer(), ((Player) sender).getLocation());
+
             Bukkit.getScheduler().scheduleSyncDelayedTask(PaperPhoenix.getInstance(), () -> {
                 messagecoder messagecoder = new messagecoder();
                 messagecoder.setSender(PaperPhoenix.config.servername());
@@ -102,7 +107,7 @@ public class PlayerCommand_Tpaccept implements CommandExecutor {
                 json.addProperty("TARGET_PLAYER",sender.getName());
                 messagecoder.setMessage(json.toString());
                 messager.sendmessage(messagecoder.createmessage());
-            }, 0L);//send teleport status: accept
+            }, 20L);//send teleport status: accept
 
         }
         //message.getString();

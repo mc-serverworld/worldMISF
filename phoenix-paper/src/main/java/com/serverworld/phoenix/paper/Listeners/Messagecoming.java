@@ -218,6 +218,7 @@ public class Messagecoming implements Listener {
                         return;
                     }
 
+                    //TODO: Langauge seleter
                     TextComponent ButtonYESComponent = new TextComponent( "/tpaccept" );
                     ButtonYESComponent.setColor( ChatColor.GREEN );
                     ButtonYESComponent.setHoverEvent( new HoverEvent( HoverEvent.Action.SHOW_TEXT, new ComponentBuilder( "接受傳送請求" ).create() ) );
@@ -277,6 +278,7 @@ public class Messagecoming implements Listener {
                         return;
                     }
 
+                    //TODO: Langauge seleter
                     TextComponent ButtonYESComponent = new TextComponent( "/tpaccept" );
                     ButtonYESComponent.setColor( ChatColor.GREEN );
                     ButtonYESComponent.setHoverEvent( new HoverEvent( HoverEvent.Action.SHOW_TEXT, new ComponentBuilder( "接受傳送請求" ).create() ) );
@@ -336,6 +338,7 @@ public class Messagecoming implements Listener {
                         return;
                     }
 
+                    //TODO: Langauge seleter
                     player.sendMessage(Formats.perfix() + ChatColor.GOLD + "玩家 " + ChatColor.YELLOW + message.getString("TARGET_PLAYER") + ChatColor.GREEN + " 接受你的傳送請求");
                     player.sendMessage(Formats.perfix() + ChatColor.GREEN + "正在傳送您到目標伺服器...");
 
@@ -354,6 +357,8 @@ public class Messagecoming implements Listener {
                         //TODO return player not found
                         return;
                     }
+
+                    //TODO: Langauge seleter
                     player.sendMessage(Formats.perfix() + ChatColor.GOLD + "玩家 " + ChatColor.YELLOW + message.getString("TARGET_PLAYER") + ChatColor.GREEN + " 接受了你的傳送請求");
                     player.sendMessage(Formats.perfix() + ChatColor.GREEN + "正在傳送對方到您的伺服器...");
 
@@ -393,6 +398,7 @@ public class Messagecoming implements Listener {
                         return;
                     }
 
+                    //TODO: Langauge seleter
                     player.sendMessage(Formats.perfix() + ChatColor.GOLD + "玩家 " + ChatColor.YELLOW + message.getString("TARGET_PLAYER") + ChatColor.RED + " 拒絕了你的傳送請求");
 
                     return;

@@ -50,7 +50,7 @@ public class PlayerCommand_Tpdeny implements CommandExecutor {
         }
 
         if (!TpQueue.hasQueue(((Player) sender))){
-            sender.sendMessage(Formats.perfix() + ChatColor.RED + "您沒有待確認的傳送請求");
+            sender.sendMessage(Formats.perfix() + ChatColor.RED + "您沒有待確認的傳送請求");//TODO: Langauge seleter
             return true;
         }
 
