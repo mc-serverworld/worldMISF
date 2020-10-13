@@ -350,12 +350,12 @@ public class Messagecoming implements Listener {
             case "TELEPORT_REQUEST_TPAHERE_ACCEPT": {
                 try {
                     Player player = PaperPhoenix.getInstance().getServer().getPlayer(message.getString("PLAYER"));
-                    //Player target_player = PaperPhoenix.getInstance().getServer().getPlayer(message.getString("TARGET_PLAYER"));
                     if(!player.isOnline()){
                         //TODO return player not found
                         return;
                     }
-
+                    player.sendMessage(Formats.perfix() + ChatColor.GOLD + "玩家 " + ChatColor.YELLOW + message.getString("TARGET_PLAYER") + ChatColor.GREEN + " 接受了你的傳送請求");
+                    player.sendMessage(Formats.perfix() + ChatColor.GREEN + "正在傳送對方到您的伺服器...");
 
                     Bukkit.getScheduler().scheduleSyncDelayedTask(PaperPhoenix.getInstance(), () -> {
                         messagecoder messagecoder = new messagecoder();
@@ -365,13 +365,16 @@ public class Messagecoming implements Listener {
                         messagecoder.setType("ACTION");
                         JsonObject json = new JsonObject();
                         json.addProperty("TYPE","SEND_PLAYER_TO_SERVER");
-                        json.addProperty("PLAYER",message.getString("PLAYER"));
+                        json.addProperty("PLAYER",message.getString("TARGET_PLAYER"));
                         json.addProperty("SERVER",PaperPhoenix.config.servername());
                         messagecoder.setMessage(json.toString());
                         messager.sendmessage(messagecoder.createmessage());
                     }, 0L);//send player to this server
-                    player.sendMessage(Formats.perfix() + ChatColor.GOLD + "玩家 " + ChatColor.YELLOW + message.getString("TARGET_PLAYER") + ChatColor.GREEN + " 接受了你的傳送請求");
-                    player.sendMessage(Formats.perfix() + ChatColor.GREEN + "正在傳送對方到您的伺服器...");
+
+                    Bukkit.getScheduler().scheduleSyncDelayedTask(PaperPhoenix.getInstance(), () -> {
+                        Player target_player = PaperPhoenix.getInstance().getServer().getPlayer(message.getString("TARGET_PLAYER"));
+                        target_player.teleport(player);
+                    }, 30L);//send target player to player
 
 
                     return;

@@ -70,9 +70,9 @@ public class PlayerCommand_Tpahere  implements CommandExecutor , TabCompleter {
             json.addProperty("TYPE","TELEPORT_REQUEST_TPAHERE");
             json.addProperty("PLAYER",sender.getName());
             json.addProperty("TARGET_PLAYER",args[0]);
-            json.addProperty("TELEPORT_LOCATION_X",((Player) sender).getLocation().getX());
-            json.addProperty("TELEPORT_LOCATION_Y",((Player) sender).getLocation().getY());
-            json.addProperty("TELEPORT_LOCATION_Z",((Player) sender).getLocation().getZ());
+            //json.addProperty("TELEPORT_LOCATION_X",((Player) sender).getLocation().getX());
+            //json.addProperty("TELEPORT_LOCATION_Y",((Player) sender).getLocation().getY());
+            //json.addProperty("TELEPORT_LOCATION_Z",((Player) sender).getLocation().getZ());
             messagecoder.setMessage(json.toString());
             messager.sendmessage(messagecoder.createmessage());
         }, 0L);
