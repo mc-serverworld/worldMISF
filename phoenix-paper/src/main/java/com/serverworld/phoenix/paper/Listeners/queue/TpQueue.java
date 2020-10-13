@@ -20,6 +20,7 @@
 
 package com.serverworld.phoenix.paper.Listeners.queue;
 
+import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.json.JSONObject;
 
@@ -28,6 +29,7 @@ import java.util.ArrayList;
 public class TpQueue {
     //private static Player players;
     public static ArrayList<JSONObject> messages = new ArrayList<JSONObject>();
+    public static ArrayList<CommandSender> senders = new ArrayList<CommandSender>();
 
     public static void addQueue(JSONObject message){
         if(messages.size()!=0){

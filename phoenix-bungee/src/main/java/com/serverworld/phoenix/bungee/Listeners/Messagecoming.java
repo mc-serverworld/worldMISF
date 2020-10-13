@@ -86,6 +86,16 @@ public class Messagecoming implements Listener {
                 worldSocket.getInstance().sendmessage(messagecode.createmessage());
             }
 
+            case "TELEPORT_REQUEST_TPAHERE": {
+                messagecoder messagecode = new messagecoder();
+                messagecode.setSender(event.getSender());
+                messagecode.setReceiver(ProxyServer.getInstance().getPlayer(message.getString("TARGET_PLAYER")).getServer().getInfo().getName());
+                messagecode.setChannel("MISF_PHOENIX");
+                messagecode.setType("ACTION");
+                messagecode.setMessage(event.getMessage());
+                worldSocket.getInstance().sendmessage(messagecode.createmessage());
+            }
+
             case "TELEPORT_REQUEST_TPA_ACCEPT": {
                 messagecoder messagecode = new messagecoder();
                 messagecode.setSender(event.getSender());
@@ -97,6 +107,16 @@ public class Messagecoming implements Listener {
             }
 
             case "TELEPORT_REQUEST_TPAHERE_ACCEPT": {
+                messagecoder messagecode = new messagecoder();
+                messagecode.setSender(event.getSender());
+                messagecode.setReceiver(ProxyServer.getInstance().getPlayer(message.getString("PLAYER")).getServer().getInfo().getName());
+                messagecode.setChannel("MISF_PHOENIX");
+                messagecode.setType("ACTION");
+                messagecode.setMessage(event.getMessage());
+                worldSocket.getInstance().sendmessage(messagecode.createmessage());
+            }
+
+            case "TELEPORT_REQUEST_DENY": {
                 messagecoder messagecode = new messagecoder();
                 messagecode.setSender(event.getSender());
                 messagecode.setReceiver(ProxyServer.getInstance().getPlayer(message.getString("PLAYER")).getServer().getInfo().getName());
