@@ -103,19 +103,6 @@ public class PlayerCommand_Tpaccept implements CommandExecutor {
                 messager.sendmessage(messagecoder.createmessage());
             }, 0L);//send teleport status: accept
 
-            Bukkit.getScheduler().scheduleSyncDelayedTask(PaperPhoenix.getInstance(), () -> {
-                messagecoder messagecoder = new messagecoder();
-                messagecoder.setSender(PaperPhoenix.getInstance().config.servername());
-                messagecoder.setChannel("MISF_PHOENIX");
-                messagecoder.setReceiver("PROXY");
-                messagecoder.setType("ACTION");
-                JsonObject json = new JsonObject();
-                json.addProperty("TYPE","SEND_PLAYER_TO_SERVER");
-                json.addProperty("PLAYER",message.getString("PLAYER"));
-                json.addProperty("SERVER",PaperPhoenix.config.servername());
-                messagecoder.setMessage(json.toString());
-                messager.sendmessage(messagecoder.createmessage());
-            }, 0L);//send player to this server
         }
         //message.getString();
         return true;

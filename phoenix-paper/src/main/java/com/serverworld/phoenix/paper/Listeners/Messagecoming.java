@@ -20,6 +20,7 @@
 
 package com.serverworld.phoenix.paper.Listeners;
 
+import com.google.gson.JsonObject;
 import com.serverworld.phoenix.paper.Listeners.queue.TpQueue;
 import com.serverworld.phoenix.paper.Listeners.subListeners.Sync_v2;
 import com.serverworld.phoenix.paper.PaperPhoenix;
@@ -27,11 +28,14 @@ import com.serverworld.phoenix.paper.util.DebugMessage;
 import com.serverworld.phoenix.paper.util.Formats;
 import com.serverworld.phoenix.paper.util.Player.PlayerData;
 import com.serverworld.worldSocket.paperspigot.events.MessagecomingEvent;
+import com.serverworld.worldSocket.paperspigot.util.messagecoder;
+import com.serverworld.worldSocket.paperspigot.util.messager;
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.chat.ClickEvent;
 import net.md_5.bungee.api.chat.ComponentBuilder;
 import net.md_5.bungee.api.chat.HoverEvent;
 import net.md_5.bungee.api.chat.TextComponent;
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
@@ -352,6 +356,20 @@ public class Messagecoming implements Listener {
                         return;
                     }
 
+
+                    Bukkit.getScheduler().scheduleSyncDelayedTask(PaperPhoenix.getInstance(), () -> {
+                        messagecoder messagecoder = new messagecoder();
+                        messagecoder.setSender(PaperPhoenix.getInstance().config.servername());
+                        messagecoder.setChannel("MISF_PHOENIX");
+                        messagecoder.setReceiver("PROXY");
+                        messagecoder.setType("ACTION");
+                        JsonObject json = new JsonObject();
+                        json.addProperty("TYPE","SEND_PLAYER_TO_SERVER");
+                        json.addProperty("PLAYER",message.getString("PLAYER"));
+                        json.addProperty("SERVER",PaperPhoenix.config.servername());
+                        messagecoder.setMessage(json.toString());
+                        messager.sendmessage(messagecoder.createmessage());
+                    }, 0L);//send player to this server
                     player.sendMessage(Formats.perfix() + ChatColor.GOLD + "玩家 " + ChatColor.YELLOW + message.getString("TARGET_PLAYER") + ChatColor.GREEN + " 接受了你的傳送請求");
                     player.sendMessage(Formats.perfix() + ChatColor.GREEN + "正在傳送對方到您的伺服器...");
 
