@@ -29,7 +29,7 @@ import java.util.ArrayList;
 public class TpQueue {
     //private static Player players;
     public static ArrayList<JSONObject> messages = new ArrayList<JSONObject>();
-    public static ArrayList<CommandSender> senders = new ArrayList<CommandSender>();
+
 
     public static void addQueue(JSONObject message){
         if(messages.size()!=0){
@@ -40,11 +40,6 @@ public class TpQueue {
             }
         }
         messages.add(message);
-        //Player player = PaperPhoenix.getInstance().getServer().getPlayer(message.getString("PLAYER"));
-        //Player target_player = PaperPhoenix.getInstance().getServer().getPlayer(message.getString("TARGET_PLAYER"));
-        //if(!target_player.isOnline()){
-         //   return;
-        //}
     }
 
     public static JSONObject getAndDelQueue(Player player){

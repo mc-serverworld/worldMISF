@@ -39,7 +39,7 @@ import java.util.*;
 
 public class PlayerCommand_Tpa implements CommandExecutor , TabCompleter {
 
-    private static Set<CommandSender> players = new HashSet<>();
+    private static ArrayList<CommandSender> players = new ArrayList<CommandSender>();
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
@@ -59,7 +59,6 @@ public class PlayerCommand_Tpa implements CommandExecutor , TabCompleter {
             sender.sendMessage(Formats.perfix() + ChatColor.RED + "找不到此玩家");//TODO: Langauge seleter
             return true;
         }
-
         if(players.contains(sender)){
             sender.sendMessage(Formats.perfix() + ChatColor.RED + "您最近已發送過請求, 請等待30秒");//TODO: Langauge seleter
             return true;
