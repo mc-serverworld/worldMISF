@@ -89,6 +89,7 @@ public class PlayerCommand_Tpaccept implements CommandExecutor {
             return true;
 
         }else if(message.get("TYPE").equals("TELEPORT_REQUEST_TPAHERE")){
+            sender.sendMessage(Formats.perfix() + "您接受了對方的傳送請求 正在將您傳送到目標伺服器");
             Bukkit.getScheduler().scheduleSyncDelayedTask(PaperPhoenix.getInstance(), () -> {
                 messagecoder messagecoder = new messagecoder();
                 messagecoder.setSender(PaperPhoenix.config.servername());
