@@ -84,6 +84,7 @@ public class Messagecoming implements Listener {
                 messagecode.setType("ACTION");
                 messagecode.setMessage(event.getMessage());
                 worldSocket.getInstance().sendmessage(messagecode.createmessage());
+                return;
             }
 
             case "TELEPORT_REQUEST_TPAHERE": {
@@ -94,6 +95,7 @@ public class Messagecoming implements Listener {
                 messagecode.setType("ACTION");
                 messagecode.setMessage(event.getMessage());
                 worldSocket.getInstance().sendmessage(messagecode.createmessage());
+                return;
             }
 
             case "TELEPORT_REQUEST_TPA_ACCEPT": {
@@ -104,6 +106,7 @@ public class Messagecoming implements Listener {
                 messagecode.setType("ACTION");
                 messagecode.setMessage(event.getMessage());
                 worldSocket.getInstance().sendmessage(messagecode.createmessage());
+                return;
             }
 
             case "TELEPORT_REQUEST_TPAHERE_ACCEPT": {
@@ -114,6 +117,7 @@ public class Messagecoming implements Listener {
                 messagecode.setType("ACTION");
                 messagecode.setMessage(event.getMessage());
                 worldSocket.getInstance().sendmessage(messagecode.createmessage());
+                return;
             }
 
             case "TELEPORT_REQUEST_DENY": {
@@ -124,6 +128,7 @@ public class Messagecoming implements Listener {
                 messagecode.setType("ACTION");
                 messagecode.setMessage(event.getMessage());
                 worldSocket.getInstance().sendmessage(messagecode.createmessage());
+                return;
             }
 
             default: return;
