@@ -20,7 +20,6 @@
 
 package com.serverworld.phoenix.paper.Listeners.queue;
 
-import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.json.JSONObject;
 
@@ -30,26 +29,18 @@ public class TpQueue {
     //private static Player players;
     public static ArrayList<JSONObject> messages = new ArrayList<JSONObject>();
 
-
     public static void addQueue(JSONObject message){
         if(messages.size()!=0){
-            for (JSONObject stuff:messages){
-                if(stuff.getString("TARGET_PLAYER").toLowerCase().equals(message.getString("TARGET_PLAYER").toLowerCase())){
-                    messages.remove(stuff);
-                }
-            }
+            messages.removeIf(stuff -> stuff.getString("TARGET_PLAYER").toLowerCase().equals(message.getString("TARGET_PLAYER").toLowerCase()));
+            //no foreach (ConcurrentModificationException)
         }
         messages.add(message);
     }
 
     public static JSONObject getAndDelQueue(Player player){
         if(messages.size()!=0){
-            for (JSONObject stuff:messages){
-                if(stuff.getString("TARGET_PLAYER").toLowerCase().equals(player.getName().toLowerCase())){
-                    messages.remove(stuff);
-                    return stuff;
-                }
-            }
+            messages.removeIf(stuff -> stuff.getString("TARGET_PLAYER").toLowerCase().equals(player.getName().toLowerCase()));
+            //no foreach (ConcurrentModificationException)
         }
         return null;
     }
