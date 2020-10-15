@@ -34,11 +34,8 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.json.JSONObject;
 
-import java.util.ArrayList;
-
 public class PlayerCommand_Tpdeny implements CommandExecutor {
 
-    private static ArrayList<CommandSender> players = new ArrayList<CommandSender>();
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
@@ -48,19 +45,10 @@ public class PlayerCommand_Tpdeny implements CommandExecutor {
             return false;
         }
 
-        if (!TpQueue.hasQueue(((Player) sender))){
+        if (!TpQueue.hasQueue(((Player) sender))) {
             sender.sendMessage(Formats.perfix() + ChatColor.RED + "您沒有待確認的傳送請求");//TODO: Langauge seleter
             return true;
         }
-
-        if(players.contains(sender)){
-            sender.sendMessage(Formats.perfix() + ChatColor.RED + "您最近已發送過請求, 請等待30秒");//TODO: Langauge seleter
-            return true;
-        }
-        players.add(sender);
-        Bukkit.getScheduler().scheduleSyncDelayedTask(PaperPhoenix.getInstance(), () -> {
-            try {players.remove(sender);}catch (Exception e){ }
-        }, 600L);
 
         JSONObject message = TpQueue.getAndDelQueue(((Player) sender));
         Bukkit.getScheduler().scheduleSyncDelayedTask(PaperPhoenix.getInstance(), () -> {
@@ -76,6 +64,7 @@ public class PlayerCommand_Tpdeny implements CommandExecutor {
             messagecoder.setMessage(json.toString());
             messager.sendmessage(messagecoder.createmessage());
         }, 0L);//send teleport status: deny
+        sender.sendMessage(Formats.perfix() + ChatColor.RED + "您拒絕了對方的傳送請求");//TODO: Langauge seleter
         return true;
     }
 }
