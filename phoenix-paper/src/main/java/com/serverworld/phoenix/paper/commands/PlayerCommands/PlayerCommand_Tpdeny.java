@@ -34,12 +34,11 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.json.JSONObject;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
 
 public class PlayerCommand_Tpdeny implements CommandExecutor {
 
-    private static Set<CommandSender> players = new HashSet<>();
+    private static ArrayList<CommandSender> players = new ArrayList<CommandSender>();
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
