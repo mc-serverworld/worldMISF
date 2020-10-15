@@ -26,21 +26,23 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 public class TpQueue {
+
     //private static Player players;
     public static ArrayList<JSONObject> messages = new ArrayList<JSONObject>();
 
     public static void addQueue(JSONObject message){
-        if(messages.size()!=0){
-            messages.removeIf(stuff -> stuff.getString("TARGET_PLAYER").toLowerCase().equals(message.getString("TARGET_PLAYER").toLowerCase()));
-            //no foreach (ConcurrentModificationException)
-        }
+        messages.removeIf(stuff -> stuff.getString("TARGET_PLAYER").toLowerCase().equals(message.getString("TARGET_PLAYER").toLowerCase()));
+        //no remove with foreach (ConcurrentModificationException)
         messages.add(message);
     }
 
     public static JSONObject getAndDelQueue(Player player){
-        if(messages.size()!=0){
-            messages.removeIf(stuff -> stuff.getString("TARGET_PLAYER").toLowerCase().equals(player.getName().toLowerCase()));
-            //no foreach (ConcurrentModificationException)
+        for (JSONObject stuff:messages) {
+            if(stuff.getString("TARGET_PLAYER").toLowerCase().equals(player.getName().toLowerCase())){
+                messages.removeIf(stuf -> stuf.getString("TARGET_PLAYER").toLowerCase().equals(player.getName().toLowerCase()));
+                //no remove with foreach (ConcurrentModificationException)
+                return stuff;
+            }
         }
         return null;
     }
