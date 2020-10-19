@@ -64,6 +64,7 @@ public class PlayerCommand_Tpdeny implements CommandExecutor {
             messagecoder.setMessage(json.toString());
             messager.sendmessage(messagecoder.createmessage());
         }, 0L);//send teleport status: deny
+        
         sender.sendMessage(Formats.perfix() + ChatColor.RED + "您拒絕了對方的傳送請求");//TODO: Langauge seleter
         return true;
     }
