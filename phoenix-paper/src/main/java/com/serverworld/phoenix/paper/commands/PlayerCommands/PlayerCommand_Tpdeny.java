@@ -59,8 +59,8 @@ public class PlayerCommand_Tpdeny implements CommandExecutor {
             messagecoder.setType("ACTION");
             JsonObject json = new JsonObject();
             json.addProperty("TYPE","TELEPORT_REQUEST_DENY");
-            json.addProperty("PLAYER",sender.getName());
-            json.addProperty("TARGET_PLAYER",message.getString("TARGET_PLAYER"));
+            json.addProperty("PLAYER",message.getString("PLAYER"));
+            json.addProperty("TARGET_PLAYER",sender.getName());
             messagecoder.setMessage(json.toString());
             messager.sendmessage(messagecoder.createmessage());
         }, 0L);//send teleport status: deny
