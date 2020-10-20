@@ -18,15 +18,15 @@
  *
  */
 
-package com.serverworld.phoenix.paper.Listeners;
+package com.serverworld.phoenix.paper.Listeners.Residence;
 
-import com.bekvon.bukkit.residence.event.ResidenceRenameEvent;
+import com.bekvon.bukkit.residence.event.ResidenceDeleteEvent;
 import org.bukkit.event.Listener;
 
-public class ResidenceRename implements Listener {
+public class ResidenceDelete implements Listener {
 
-    public void onResidenceRenameEvent(ResidenceRenameEvent event){
-        
+    public void onResidenceDeleteEvent(ResidenceDeleteEvent event){
+
     }
 
 }
