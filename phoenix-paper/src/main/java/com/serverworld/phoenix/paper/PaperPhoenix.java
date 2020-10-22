@@ -23,7 +23,7 @@ package com.serverworld.phoenix.paper;
 import com.serverworld.phoenix.paper.Listeners.Messagecoming;
 import com.serverworld.phoenix.paper.Listeners.PlayerDeath;
 import com.serverworld.phoenix.paper.Listeners.PlayerRespawn;
-import com.serverworld.phoenix.paper.Listeners.Residence.ResidenceCreation;
+import com.serverworld.phoenix.paper.Listeners.Residence.*;
 import com.serverworld.phoenix.paper.commands.LobbyCommand;
 import com.serverworld.phoenix.paper.commands.PaperPhoenixCommands;
 import com.serverworld.phoenix.paper.commands.PlayerCommands.*;
@@ -75,6 +75,11 @@ public class PaperPhoenix extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new PlayerRespawn(this), this);
 
         getServer().getPluginManager().registerEvents(new ResidenceCreation(this),this);
+        getServer().getPluginManager().registerEvents(new ResidenceDelete(this),this);
+        getServer().getPluginManager().registerEvents(new ResidenceFlagChange(this),this);
+        getServer().getPluginManager().registerEvents(new ResidenceOwnerChange(this),this);
+        getServer().getPluginManager().registerEvents(new ResidenceRename(this),this);
+        getServer().getPluginManager().registerEvents(new ResidenceSizeChange(this),this);
     }
 
     public void setuputil(){
