@@ -21,12 +21,17 @@
 package com.serverworld.phoenix.paper.Listeners.Residence;
 
 import com.bekvon.bukkit.residence.event.ResidenceFlagChangeEvent;
+import com.serverworld.phoenix.paper.PaperPhoenix;
+import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 
 public class ResidenceFlagChange implements Listener {
 
+    public ResidenceFlagChange(PaperPhoenix paperPhoenix){ }
+
+    @EventHandler
     public void onResidenceFlagChangeEvent(ResidenceFlagChangeEvent event){
-        
+
     }
 
 }

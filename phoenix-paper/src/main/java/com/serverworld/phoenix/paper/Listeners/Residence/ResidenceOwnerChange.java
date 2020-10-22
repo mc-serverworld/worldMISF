@@ -20,18 +20,18 @@
 
 package com.serverworld.phoenix.paper.Listeners.Residence;
 
-import com.bekvon.bukkit.residence.event.ResidenceRenameEvent;
+import com.bekvon.bukkit.residence.event.ResidenceOwnerChangeEvent;
 import com.serverworld.phoenix.paper.PaperPhoenix;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 
-public class ResidenceRename implements Listener {
+public class ResidenceOwnerChange implements Listener {
 
-    public ResidenceRename(PaperPhoenix paperPhoenix){ }
+    public ResidenceOwnerChange(PaperPhoenix paperPhoenix){ }
 
     @EventHandler
-    public void onResidenceRenameEvent(ResidenceRenameEvent event){
-
+    public void onResidenceOwnerChangeEvent(ResidenceOwnerChangeEvent event){
+        
     }
 
 }

@@ -21,12 +21,17 @@
 package com.serverworld.phoenix.paper.Listeners.Residence;
 
 import com.bekvon.bukkit.residence.event.ResidenceCreationEvent;
+import com.serverworld.phoenix.paper.PaperPhoenix;
+import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 
 public class ResidenceCreation implements Listener {
 
+    public ResidenceCreation(PaperPhoenix paperPhoenix){ }
+
+    @EventHandler
     public void onResidenceCreationEvent(ResidenceCreationEvent event){
-        
+
     }
 
 }

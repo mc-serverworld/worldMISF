@@ -21,10 +21,15 @@
 package com.serverworld.phoenix.paper.Listeners.Residence;
 
 import com.bekvon.bukkit.residence.event.ResidenceDeleteEvent;
+import com.serverworld.phoenix.paper.PaperPhoenix;
+import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 
 public class ResidenceDelete implements Listener {
 
+    public ResidenceDelete(PaperPhoenix paperPhoenix){ }
+
+    @EventHandler
     public void onResidenceDeleteEvent(ResidenceDeleteEvent event){
 
     }
