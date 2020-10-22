@@ -44,7 +44,7 @@
     <orderEntry type="library" scope="PROVIDED" name="Maven: io.netty:netty-transport:4.1.49.Final" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: io.netty:netty-resolver:4.1.49.Final" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: net.luckperms:api:5.0" level="project" />
-    <orderEntry type="library" name="Maven: com.bekvon:Residence:4.9.1.9" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: com.bekvon:Residence:4.9.1.9" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: com.github.PryPurity:WorldBorder:v2.1.0" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: com.mc-serverworld:worldSocket:1.1.4-release" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: com.mc-serverworld.worldMISF:worlduserdata:build-268" level="project" />
