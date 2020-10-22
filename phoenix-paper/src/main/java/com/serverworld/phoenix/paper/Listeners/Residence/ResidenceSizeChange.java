@@ -31,6 +31,8 @@ public class ResidenceSizeChange implements Listener {
 
     @EventHandler
     public void onResidenceSizeChangeEvent(ResidenceSizeChangeEvent event){
+        event.getPlayer().getPlayer().sendMessage("Hello world");
+        event.setCancelled(true);
         
     }
 
