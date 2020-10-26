@@ -26,6 +26,6 @@ import lombok.Setter;
 
 public class ServerPhoenixWorldSettingData {
 
-    @Getter(AccessLevel.PUBLIC) @Setter(AccessLevel.PUBLIC) private String Server_Residence_Max_Blocks;
-    @Getter(AccessLevel.PUBLIC) @Setter(AccessLevel.PUBLIC) private String Server_Residence_Max_Amount;
+    @Getter(AccessLevel.PUBLIC) @Setter(AccessLevel.PUBLIC) private Double Server_Residence_Max_Blocks;
+    @Getter(AccessLevel.PUBLIC) @Setter(AccessLevel.PUBLIC) private Integer Server_Residence_Max_Amount;
 }

@@ -15,37 +15,29 @@
  *  *
  *  * You should have received a copy of the GNU General Public License
  *  * along with this program. If not, see <http://www.gnu.org/licenses/>.
- *  
+ *
  */
 
-package com.serverworld.worlduserdata.paper;
+package com.serverworld.phoenix.paper.util.Player;
 
-import org.bukkit.plugin.java.JavaPlugin;
+import com.serverworld.phoenix.paper.PaperPhoenix;
+import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
 
-public class PaperworldUserData extends JavaPlugin {
-    private static PaperworldUserData paperworldUserData;
-    public static PaperworldUserDataConfig config;
+public class PlayTime {
+    public void PlayTime(){
+        Bukkit.getScheduler().scheduleSyncRepeatingTask(PaperPhoenix.getInstance(), new Runnable() {
+            @Override
+            public void run() {
+                if(PaperPhoenix.getInstance().getServer().getOnlinePlayers().isEmpty())
+                    return;
+                for (Player player:PaperPhoenix.getInstance().getServer().getOnlinePlayers()) {
+                    if(!PaperPhoenix.getEssentialsPlugin().getUser(player).isAfk())
 
-    @Override
-    public void onLoad() {
-        config = new PaperworldUserDataConfig(this);
-        config.loadDefConfig();
-        paperworldUserData = this;
-        setSQL();
+                }
+            }
+        },0L,1200L);
+
     }
 
-    @Override
-    public void onEnable() {
-        //setup
-        //setSQL();
-
-    }
-
-    public void setSQL(){
-        PaperSQLDatabase paperSQLDatabase = new PaperSQLDatabase(this);
-    }
-
-    public static PaperworldUserData getInstance(){
-        return paperworldUserData;
-    }
 }

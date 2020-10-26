@@ -25,7 +25,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 public class ServerPhoenixWorldData {
-    @Getter(AccessLevel.PUBLIC) @Setter(AccessLevel.PUBLIC) private String Server_Residence_Total_Size;
-    @Getter(AccessLevel.PUBLIC) @Setter(AccessLevel.PUBLIC) private String Server_Residence_Total_Amount;
+    @Getter(AccessLevel.PUBLIC) @Setter(AccessLevel.PUBLIC) private Double Server_Residence_Total_Size;
+    @Getter(AccessLevel.PUBLIC) @Setter(AccessLevel.PUBLIC) private Integer Server_Residence_Total_Amount;
 
 }

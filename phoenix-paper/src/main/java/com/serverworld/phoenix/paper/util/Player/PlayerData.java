@@ -43,4 +43,21 @@ public class PlayerData {
             DebugMessage.sendWarring("Some thing go wrong!");
         }
     }
+
+    public static void AddPlayTime(Player player,Double time){
+        try{
+            UserPhoenixPlayerData playerData = UserPhoenixPlayerDataMySQL.getDataClass(player.getUniqueId().toString());
+
+            playerData.setLastlocation_server(PaperPhoenix.config.servername());
+            playerData.setLastlocation_world(player.getWorld().getName());
+            playerData.setLastlocation_x(player.getLocation().getX());
+            playerData.setLastlocation_y(player.getLocation().getY());
+            playerData.setLastlocation_z(player.getLocation().getZ());
+            UserPhoenixPlayerDataMySQL.setDataClass(player.getUniqueId().toString() , playerData);
+            return;
+        }catch (Exception e){
+            e.printStackTrace();
+            DebugMessage.sendWarring("Some thing go wrong!");
+        }
+    }
 }
