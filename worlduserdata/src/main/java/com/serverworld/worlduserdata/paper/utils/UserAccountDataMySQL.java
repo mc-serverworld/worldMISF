@@ -23,11 +23,10 @@ package com.serverworld.worlduserdata.paper.utils;
 import com.google.gson.Gson;
 import com.serverworld.worlduserdata.jsondata.UserAccountData;
 import com.serverworld.worlduserdata.paper.PaperSQLDatabase;
-import com.serverworld.worlduserdata.paper.PaperworldUserData;
 
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.UUID;
 
 public class UserAccountDataMySQL {
 
@@ -129,7 +128,33 @@ public class UserAccountDataMySQL {
         }
     }
 
+    public static int getDataClassVersion(UUID UUID){
+        try {
+            Statement statement = PaperSQLDatabase.getConnection().createStatement();
+            ResultSet rs = statement.executeQuery("SELECT * FROM worlduserdata_useraccountdata WHERE PlayerUUID = '" + UUID + "';");
+            rs.next();
+            int res = rs.getInt("version");
+            statement.close();
+            return res;
+        } catch (Exception e) {
+            DebugMessage.sendWarring(e.toString());
+            return 0;
+        }
+    }
+
     public static Boolean setDataClassVersion(String UUID, int version){
+        try {
+            Statement statement = PaperSQLDatabase.getConnection().createStatement();
+            statement.execute("UPDATE worlduserdata_useraccountdata SET version = '" + version + "' WHERE PlayerUUID = " + UUID);
+            statement.close();
+            return true;
+        } catch (Exception e) {
+            DebugMessage.sendWarring(e.toString());
+            return false;
+        }
+    }
+
+    public static Boolean setDataClassVersion(UUID UUID, int version){
         try {
             Statement statement = PaperSQLDatabase.getConnection().createStatement();
             statement.execute("UPDATE worlduserdata_useraccountdata SET version = '" + version + "' WHERE PlayerUUID = " + UUID);

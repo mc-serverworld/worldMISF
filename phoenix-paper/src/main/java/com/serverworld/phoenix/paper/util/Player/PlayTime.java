@@ -33,10 +33,10 @@ public class PlayTime {
                     return;
                 for (Player player:PaperPhoenix.getInstance().getServer().getOnlinePlayers()) {
                     if(!PaperPhoenix.getEssentialsPlugin().getUser(player).isAfk())
-
+                        PlayerData.addPlayTime(player,5L);
                 }
             }
-        },0L,1200L);
+        },0L,6000L);
 
     }
 

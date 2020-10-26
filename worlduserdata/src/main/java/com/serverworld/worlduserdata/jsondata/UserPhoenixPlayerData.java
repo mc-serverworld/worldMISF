@@ -26,7 +26,7 @@ import lombok.Setter;
 
 public class UserPhoenixPlayerData {
 
-    @Getter(AccessLevel.PUBLIC) @Setter(AccessLevel.PUBLIC) private Double playtinme;
+    @Getter(AccessLevel.PUBLIC) @Setter(AccessLevel.PUBLIC) private Long playtinme;
     @Getter(AccessLevel.PUBLIC) @Setter(AccessLevel.PUBLIC) private Double residence_total_size;
     @Getter(AccessLevel.PUBLIC) @Setter(AccessLevel.PUBLIC) private Integer residence_total_amount;
     @Getter(AccessLevel.PUBLIC) @Setter(AccessLevel.PUBLIC) private Double residence_max_size;

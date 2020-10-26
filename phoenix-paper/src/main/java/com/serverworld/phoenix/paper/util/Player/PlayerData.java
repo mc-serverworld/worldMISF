@@ -28,7 +28,7 @@ import org.bukkit.Location;
 import org.bukkit.entity.Player;
 
 public class PlayerData {
-    public static void SaveCurrentLocationAsLast(Player player,Location playerLocation){
+    public static void SaveCurrentLocationAsLast(Player player, Location location){
         try{
             UserPhoenixPlayerData playerData = UserPhoenixPlayerDataMySQL.getDataClass(player.getUniqueId().toString());
             playerData.setLastlocation_server(PaperPhoenix.config.servername());
@@ -44,15 +44,10 @@ public class PlayerData {
         }
     }
 
-    public static void AddPlayTime(Player player,Double time){
+    public static void addPlayTime(Player player,long time){
         try{
             UserPhoenixPlayerData playerData = UserPhoenixPlayerDataMySQL.getDataClass(player.getUniqueId().toString());
-
-            playerData.setLastlocation_server(PaperPhoenix.config.servername());
-            playerData.setLastlocation_world(player.getWorld().getName());
-            playerData.setLastlocation_x(player.getLocation().getX());
-            playerData.setLastlocation_y(player.getLocation().getY());
-            playerData.setLastlocation_z(player.getLocation().getZ());
+            playerData.setPlaytinme((playerData.getPlaytinme()+time));
             UserPhoenixPlayerDataMySQL.setDataClass(player.getUniqueId().toString() , playerData);
             return;
         }catch (Exception e){
