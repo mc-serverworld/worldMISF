@@ -42,6 +42,7 @@ public class PaperPhoenix extends JavaPlugin {
     private static PaperPhoenix paperPhoenix;
     private static Essentials essentialsPlugin;
     public static PaperPhoenixConfig config;
+    int taskid=0;
 
     @Override
     public void onLoad() {
@@ -68,7 +69,7 @@ public class PaperPhoenix extends JavaPlugin {
             boolean bworldSocket = getServer().getPluginManager().isPluginEnabled("worldSocket");
 
             //setup
-            Bukkit.getScheduler().scheduleSyncDelayedTask(PaperPhoenix.getInstance(), () -> {
+            taskid = Bukkit.getScheduler().scheduleSyncRepeatingTask(PaperPhoenix.getInstance(), () -> {
                 if(bEssentials){DebugMessage.sendInfo(ChatColor.GREEN + "Essentials Enable");
                     if(bLuckPerms){DebugMessage.sendInfo(ChatColor.GREEN + "LuckPerms Enable");
                         if(bPlaceholderAPI){DebugMessage.sendInfo(ChatColor.GREEN + "PlaceholderAPI Enable");
@@ -93,7 +94,7 @@ public class PaperPhoenix extends JavaPlugin {
                                               setupPlayerCommands();
                                               setGetPlugin();
                                               DebugMessage.sendInfo(ChatColor.GREEN + "Startup Complete!");
-                                              return;
+                                              Bukkit.getScheduler().cancelTask(taskid);
                                           }
                                       }
                                   }
@@ -102,7 +103,7 @@ public class PaperPhoenix extends JavaPlugin {
                         }
                     }
                 }
-            }, 200L);
+            }, 200L,100L);
         }
 
     }
