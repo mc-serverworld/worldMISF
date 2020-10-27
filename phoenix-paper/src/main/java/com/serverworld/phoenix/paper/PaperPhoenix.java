@@ -28,11 +28,8 @@ import com.serverworld.phoenix.paper.Listeners.Residence.*;
 import com.serverworld.phoenix.paper.commands.LobbyCommand;
 import com.serverworld.phoenix.paper.commands.PaperPhoenixCommands;
 import com.serverworld.phoenix.paper.commands.PlayerCommands.*;
-import com.serverworld.phoenix.paper.util.BungeeParameter;
-import com.serverworld.phoenix.paper.util.DebugMessage;
+import com.serverworld.phoenix.paper.util.*;
 import com.serverworld.phoenix.paper.util.Player.PlayerTimer;
-import com.serverworld.phoenix.paper.util.worldSetup;
-import com.serverworld.phoenix.paper.util.worldSync;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -115,6 +112,7 @@ public class PaperPhoenix extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new PlayerDeath(this), this);
         getServer().getPluginManager().registerEvents(new PlayerRespawn(this), this);
 
+        //residence plugins
         getServer().getPluginManager().registerEvents(new ResidenceCreation(this),this);
         getServer().getPluginManager().registerEvents(new ResidenceDelete(this),this);
         getServer().getPluginManager().registerEvents(new ResidenceFlagChange(this),this);
@@ -126,7 +124,9 @@ public class PaperPhoenix extends JavaPlugin {
     public void setuputil(){
         worldSync worldsyncer = new worldSync(this);
         PlayerTimer playerTimer = new PlayerTimer();
+        EconomyIO economyIO = new EconomyIO();
     }
+
 
     public void setupPlayerCommands(){
         //player commands

@@ -24,6 +24,7 @@ import com.serverworld.phoenix.paper.PaperPhoenix;
 import com.serverworld.phoenix.paper.PaperPhoenixConfig;
 import com.serverworld.phoenix.paper.commands.subcommands.subCommand_set;
 import com.serverworld.phoenix.paper.util.DebugMessage;
+import com.serverworld.phoenix.paper.util.EconomyIO;
 import net.md_5.bungee.api.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -51,7 +52,7 @@ public class PaperPhoenixCommands implements CommandExecutor , TabCompleter {
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
         try {
             switch (strings[0]) {
-                case "test": DebugCommands.misf_test(commandSender , strings);
+                case "test": EconomyIO.addPlayerBalance((Player)commandSender,8763D);
                 case "info": {
                     if(!commandSender.hasPermission("misf.command.info")){
                         commandSender.sendMessage( ChatColor.RED + "no permission");
