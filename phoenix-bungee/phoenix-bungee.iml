@@ -29,8 +29,8 @@
     <orderEntry type="library" scope="PROVIDED" name="Maven: net.luckperms:api:5.0" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: com.mc-serverworld:worldSocket:1.1.4-release" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: com.google.code.gson:gson:2.8.6" level="project" />
-    <orderEntry type="library" scope="PROVIDED" name="Maven: com.mc-serverworld.worldMISF:worlduserdata:build-268" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: com.mc-serverworld.worldMISF:worlduserdata:build-373" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: org.xerial:sqlite-jdbc:3.8.11.2" level="project" />
-    <orderEntry type="library" scope="PROVIDED" name="Maven: org.json:json:20200518" level="project" />
+    <orderEntry type="library" name="Maven: org.json:json:20200518" level="project" />
   </component>
 </module>
