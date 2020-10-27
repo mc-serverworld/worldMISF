@@ -62,7 +62,7 @@ public class PaperPhoenix extends JavaPlugin {
             boolean bEssentials = getServer().getPluginManager().isPluginEnabled("Essentials");
             boolean bLuckPerms = getServer().getPluginManager().isPluginEnabled("LuckPerms");
             boolean bPlaceholderAPI = getServer().getPluginManager().isPluginEnabled("PlaceholderAPI");
-            boolean bResidence = Bukkit.getServer().getPluginManager().isPluginEnabled("Residence");
+            //boolean bResidence = Bukkit.getServer().getPluginManager().isPluginEnabled("Residence");
             boolean bVault = getServer().getPluginManager().isPluginEnabled("Vault");
             boolean bWorldBorder = getServer().getPluginManager().isPluginEnabled("WorldBorder");
             boolean bworldMISF_worlduserdata = getServer().getPluginManager().isPluginEnabled("worldMISF-worlduserdata");
@@ -73,32 +73,30 @@ public class PaperPhoenix extends JavaPlugin {
                 if(bEssentials){DebugMessage.sendInfo(ChatColor.GREEN + "Essentials Enable");
                     if(bLuckPerms){DebugMessage.sendInfo(ChatColor.GREEN + "LuckPerms Enable");
                         if(bPlaceholderAPI){DebugMessage.sendInfo(ChatColor.GREEN + "PlaceholderAPI Enable");
-                            if(bResidence){DebugMessage.sendInfo(ChatColor.GREEN + "Residence Enable");
-                              if(bVault){DebugMessage.sendInfo(ChatColor.GREEN + "Vault Enable");
-                                  if(bWorldBorder){DebugMessage.sendInfo(ChatColor.GREEN + "WorldBorder Enable");
-                                      if(bworldMISF_worlduserdata){DebugMessage.sendInfo(ChatColor.GREEN + "MISF_worlduserdata Enable");
-                                          if(bworldSocket){ DebugMessage.sendInfo(ChatColor.GREEN + "worldSocket Enable");
-                                              DebugMessage.sendInfo(ChatColor.GREEN + "All Plugin Enabled");
-                                              DebugMessage.sendInfo(ChatColor.GREEN + "Startup PaperPhoenix...");
+                            if(bVault){DebugMessage.sendInfo(ChatColor.GREEN + "Vault Enable");
+                                if(bWorldBorder){DebugMessage.sendInfo(ChatColor.GREEN + "WorldBorder Enable");
+                                    if(bworldMISF_worlduserdata){DebugMessage.sendInfo(ChatColor.GREEN + "MISF_worlduserdata Enable");
+                                        if(bworldSocket){ DebugMessage.sendInfo(ChatColor.GREEN + "worldSocket Enable");
+                                            DebugMessage.sendInfo(ChatColor.GREEN + "All Plugin Enabled");
+                                            DebugMessage.sendInfo(ChatColor.GREEN + "Startup PaperPhoenix...");
 
-                                              setupevent();
-                                              setuputil();
-                                              new worldSetup();
-                                              new BungeeParameter().SyncBungeePlayerList();
-                                              //commands
+                                            setupevent();
+                                            setuputil();
+                                            new worldSetup();
+                                            new BungeeParameter().SyncBungeePlayerList();
+                                            //commands
 
-                                              PaperPhoenixCommands PaperPhoenixCommands = new PaperPhoenixCommands(this);
-                                              this.getCommand("misf").setExecutor(PaperPhoenixCommands);
-                                              this.getCommand("misf").setTabCompleter(PaperPhoenixCommands);
+                                            PaperPhoenixCommands PaperPhoenixCommands = new PaperPhoenixCommands(this);
+                                            this.getCommand("misf").setExecutor(PaperPhoenixCommands);
+                                            this.getCommand("misf").setTabCompleter(PaperPhoenixCommands);
 
-                                              setupPlayerCommands();
-                                              setGetPlugin();
-                                              DebugMessage.sendInfo(ChatColor.GREEN + "Startup Complete!");
-                                              Bukkit.getScheduler().cancelTask(taskid);
-                                          }
-                                      }
-                                  }
-                              }
+                                            setupPlayerCommands();
+                                            setGetPlugin();
+                                            DebugMessage.sendInfo(ChatColor.GREEN + "Startup Complete!");
+                                            Bukkit.getScheduler().cancelTask(taskid);
+                                        }
+                                    }
+                                }
                             }
                         }
                     }
