@@ -62,7 +62,7 @@ public class PaperPhoenix extends JavaPlugin {
             boolean bEssentials = getServer().getPluginManager().isPluginEnabled("Essentials");
             boolean bLuckPerms = getServer().getPluginManager().isPluginEnabled("LuckPerms");
             boolean bPlaceholderAPI = getServer().getPluginManager().isPluginEnabled("PlaceholderAPI");
-            boolean bResidence = getServer().getPluginManager().isPluginEnabled("Residence");
+            boolean bResidence = Bukkit.getServer().getPluginManager().isPluginEnabled("Residence");
             boolean bVault = getServer().getPluginManager().isPluginEnabled("Vault");
             boolean bWorldBorder = getServer().getPluginManager().isPluginEnabled("WorldBorder");
             boolean bworldMISF_worlduserdata = getServer().getPluginManager().isPluginEnabled("worldMISF-worlduserdata");
