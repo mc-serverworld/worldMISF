@@ -7,3 +7,4 @@ install:
   - mvn install
 env:
   MYVAR: "custom environment variable"
+  GROUP=com.serverworld
