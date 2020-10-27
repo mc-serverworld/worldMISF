@@ -24,7 +24,10 @@ import com.serverworld.phoenix.paper.PaperPhoenix;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
-public class PlayTime {
+public class PlayerTimer {
+    public PlayerTimer(){
+        PlayTime();
+    }
     public void PlayTime(){
         Bukkit.getScheduler().scheduleSyncRepeatingTask(PaperPhoenix.getInstance(), new Runnable() {
             @Override

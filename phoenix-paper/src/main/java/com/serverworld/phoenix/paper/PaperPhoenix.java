@@ -30,7 +30,7 @@ import com.serverworld.phoenix.paper.commands.PaperPhoenixCommands;
 import com.serverworld.phoenix.paper.commands.PlayerCommands.*;
 import com.serverworld.phoenix.paper.util.BungeeParameter;
 import com.serverworld.phoenix.paper.util.DebugMessage;
-import com.serverworld.phoenix.paper.util.Player.PlayTime;
+import com.serverworld.phoenix.paper.util.Player.PlayerTimer;
 import com.serverworld.phoenix.paper.util.worldSetup;
 import com.serverworld.phoenix.paper.util.worldSync;
 import org.bukkit.Bukkit;
@@ -125,7 +125,7 @@ public class PaperPhoenix extends JavaPlugin {
 
     public void setuputil(){
         worldSync worldsyncer = new worldSync(this);
-        PlayTime playTime = new PlayTime();
+        PlayerTimer playerTimer = new PlayerTimer();
     }
 
     public void setupPlayerCommands(){
