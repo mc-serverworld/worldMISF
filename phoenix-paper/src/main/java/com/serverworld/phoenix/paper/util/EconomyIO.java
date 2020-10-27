@@ -38,10 +38,36 @@ public class EconomyIO {
         }else DebugMessage.sendWarring(ChatColor.RED + "Missing EconmyAPI!");
     }
 
-    public static void addPlayerBalance(Player player,Double bal){
+    public static Boolean addBalance(Player player,Double bal){
         EconomyResponse r = econ.depositPlayer(player, bal);
-        if (r.transactionSuccess()) {
-            player.sendMessage(ChatColor.GOLD + "You recieved $10 for killing" +  player.getDisplayName());
-        }else player.sendMessage("Failed");
+        if(r.transactionSuccess())return true;
+        player.sendMessage(ChatColor.RED + "ErrorMessage: " + r.errorMessage);
+        return false;
+    }
+    public static Boolean takeBalance(Player player,Double bal){
+        EconomyResponse r = econ.withdrawPlayer(player, bal);
+        if(r.transactionSuccess())return true;
+        player.sendMessage(ChatColor.RED + "ErrorMessage: " + r.errorMessage);
+        return false;
+    }
+    public static Boolean takeIfHasBalance(Player player,Double bal){
+        if(hasBlance(player,bal)){
+            if(takeBalance(player,bal))return true;
+            else {
+                return false;
+            }
+        }else return false;
+    }
+    public static Boolean setBalance(Player player,Double bal){
+        if(takeBalance(player,getBalance(player))){
+            if(addBalance(player,bal))return true;
+        }
+        return false;
+    }
+    public static Double getBalance(Player player){
+        return econ.getBalance(player);
+    }
+    public static Boolean hasBlance(Player player,Double bal){
+        return econ.has(player, bal);
     }
 }

@@ -52,7 +52,7 @@ public class PaperPhoenixCommands implements CommandExecutor , TabCompleter {
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
         try {
             switch (strings[0]) {
-                case "test": EconomyIO.addPlayerBalance((Player)commandSender,8763D);
+                case "test": EconomyIO.takeBalance((Player)commandSender,8763D);
                 case "info": {
                     if(!commandSender.hasPermission("misf.command.info")){
                         commandSender.sendMessage( ChatColor.RED + "no permission");
