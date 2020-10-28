@@ -34,8 +34,12 @@ public class ResidenceCreation implements Listener {
     @EventHandler
     public void onResidenceCreationEvent(ResidenceCreationEvent event){
         UserPhoenixPlayerData playerData = UserPhoenixPlayerDataMySQL.getDataClass(event.getPlayer().getUniqueId().toString());
-        UserPhoenixPlayerDataMySQL.setDataClass(player.getUniqueId().toString() , playerData);
-        if(event.getPlayer())
+        //UserPhoenixPlayerDataMySQL.setDataClass(eventplayer.getUniqueId().toString() , playerData);
+        if(playerData.getResidence_total_amount() >= playerData.getResidence_max_amount()){
+            
+        }else if(playerData.getResidence_total_size() >= playerData.getResidence_max_size()){
+
+        }
 
     }
 
