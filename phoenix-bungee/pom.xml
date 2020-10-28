@@ -37,18 +37,6 @@
     <url>https://www.mc-serverworld.com</url>
     <inceptionYear>2019</inceptionYear>
 
-    <scm>
-    <connection>scm:svn:http://127.0.0.1/dummy</connection>
-    <developerConnection>scm:svn:https://127.0.0.1/dummy</developerConnection>
-    <tag>HEAD</tag>
-    <url>http://127.0.0.1/dummy</url>
-    </scm>
-
-    <properties>
-        <maven-site-plugin.skip>true</maven-site-plugin.skip>
-        <maven.deploy.skip>false</maven.deploy.skip>
-    </properties>
-
     <organization>
         <name>mc-serverworld</name>
         <url>https://www.mc-serverworld.com</url>
@@ -79,72 +67,9 @@
         <plugins>
 
             <plugin>
-                <artifactId>maven-resources-plugin</artifactId>
-                <version>3.1.0</version>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>copy-resources</goal>
-                        </goals>
-                        <configuration>
-                            <outputDirectory>${project.parent.basedir}/output/${project.name}-${project.parent.version}.jar</outputDirectory>
-                            <resources>
-                                <resource>
-                                    <targetPath>.</targetPath>
-                                    <filtering>true</filtering>
-                                    <directory>${basedir}/src/main/resources/</directory>
-                                    <includes>
-                                        <include>*.yml</include>
-                                    </includes>
-                                </resource>
-                            </resources>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-
-            <plugin>
-                <artifactId>maven-assembly-plugin</artifactId>
-                <configuration>
-
-                    <appendAssemblyId>false</appendAssemblyId>
-                    <finalName>${project.name}-${project.parent.version}</finalName>
-                    <archive>
-                        <manifest>
-                            <mainClass>com.tang.CSVUtils</mainClass>
-                        </manifest>
-                    </archive>
-                    <descriptorRefs>
-                        <descriptorRef>
-                            jar-with-dependencies
-                        </descriptorRef>
-                    </descriptorRefs>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>make-assemble</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>single</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-
-            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
                 <version>3.1.0</version>
-                <configuration>
-                    <archive>
-                        <manifest>
-                            <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
-                        </manifest>
-                        <manifestEntries>
-                            <Implementation-Build>${buildNumber}</Implementation-Build>
-                        </manifestEntries>
-                    </archive>
-                </configuration>
             </plugin>
 
             <plugin>
@@ -161,22 +86,6 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
                 <version>3.1.0</version>
-                <configuration>
-                    <filters>
-                        <filter>
-                            <artifact>com.mc-serverworld:worldSocket:*</artifact>
-                            <excludes>
-                                <exclude>*.yml</exclude>
-                            </excludes>
-                        </filter>
-                        <filter>
-                            <artifact>com.mc-serverworld:worldMISF:worldUserProfile:*</artifact>
-                            <excludes>
-                                <exclude>*.yml</exclude>
-                            </excludes>
-                        </filter>
-                    </filters>
-                </configuration>
                 <executions>
                     <execution>
                         <phase>package</phase>
@@ -185,47 +94,9 @@
                         </goals>
                         <configuration>
                             <outputFile>${project.parent.basedir}/output/${project.name}-${project.parent.version}.jar</outputFile>
-                            <filters>
-                                <filter>
-                                    <artifact>com.mc-serverworld:worldSocket:*</artifact>
-                                    <excludes>
-                                        <exclude>*.yml</exclude>
-                                    </excludes>
-                                </filter>
-                                <filter>
-                                    <artifact>com.mc-serverworld:worldMISF:worldUserProfile:*</artifact>
-                                    <excludes>
-                                        <exclude>*.yml</exclude>
-                                    </excludes>
-                                </filter>
-                            </filters>
                         </configuration>
                     </execution>
                 </executions>
-            </plugin>
-
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>buildnumber-maven-plugin</artifactId>
-                <version>1.4</version>
-                <executions>
-                    <execution>
-                        <id>buildnumber</id>
-                        <phase>validate</phase>
-                        <goals>
-                            <goal>create</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <format>{0,number}</format>
-                    <items>
-                        <item>buildNumber</item>
-                    </items>
-                    <doCheck>false</doCheck>
-                    <doUpdate>true</doUpdate>
-                    <revisionOnScmFailure>unknownbuild</revisionOnScmFailure>
-                </configuration>
             </plugin>
 
         </plugins>
