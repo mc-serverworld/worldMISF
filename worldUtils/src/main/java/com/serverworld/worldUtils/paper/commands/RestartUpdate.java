@@ -20,6 +20,7 @@
 
 package com.serverworld.worldUtils.paper.commands;
 
+import com.serverworld.worldUtils.paper.PaperworldUtils;
 import com.serverworld.worldUtils.paper.util.Network;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpGet;
@@ -59,8 +60,9 @@ public class RestartUpdate implements CommandExecutor {
                 if(!assets.getString("name").contains("bungee")){
                     if(!assets.getString("name").contains("worldUtil")) {
                         if(Bukkit.getServer().getPluginManager().getPlugin("worldMISF-phoenix-paper").isEnabled()){
-                            File file = new File(Bukkit.getWorldContainer().getPath() + "/plugins/worldMISF-phoenix-paper-"+ message.getString("name") +".jar");
+                            File file = new File(Bukkit.getWorldContainer().getPath() + "/plugins/worldMISF-phoenix-paper-"+ Bukkit.getPluginManager().getPlugin("worldMISF-phoenix-paper").getDescription().getVersion() +".jar");
                             sender.sendMessage(file.getPath());
+                            PaperworldUtils.getInstance().getServer().getPluginManager().disablePlugin(PaperworldUtils.getInstance().getServer().getPluginManager().getPlugin("worldMISF-phoenix-paper"));
                             //System.out.println(file.delete());
                         }
                         Network.downloadNet(assets.getString("browser_download_url"), assets.getString("name"));

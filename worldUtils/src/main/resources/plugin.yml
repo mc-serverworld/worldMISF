@@ -1,4 +1,4 @@
-main: com.serverworld.
+main: com.serverworld.worldUtils.paper.PaperworldUtils
 name: ${project.name}
 version: ${project.version}
 author: mc-serverworld
