@@ -33,7 +33,8 @@ public class PaperworldUtils extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        this.getCommand("restartupdate").setExecutor(new RestartUpdate());
+        RestartUpdate restartUpdate = new RestartUpdate();
+        this.getCommand("restartupdate").setExecutor(restartUpdate);
     }
 
     public static PaperworldUtils getInstance(){
