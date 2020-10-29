@@ -29,13 +29,6 @@ import java.net.URL;
 import java.net.URLConnection;
 
 public class Network {
-    public static void main(String[] args){
-
-
-
-
-        System.out.println("Hello world");
-    }
     public static void downloadNet(String surl,String filename) throws MalformedURLException {
         int bytesum = 0;
         int byteread = 0;
