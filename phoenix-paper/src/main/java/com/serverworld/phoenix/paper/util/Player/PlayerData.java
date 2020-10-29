@@ -47,7 +47,8 @@ public class PlayerData {
     public static void addPlayTime(Player player,long time){
         try{
             UserPhoenixPlayerData playerData = UserPhoenixPlayerDataMySQL.getDataClass(player.getUniqueId().toString());
-            playerData.setPlaytinme((playerData.getPlaytinme()+time));
+            playerData.setPlaytinme(Long.valueOf(playerData.getPlaytinme()+time));
+            if(playerData.getPlaytinme()>1000)
             UserPhoenixPlayerDataMySQL.setDataClass(player.getUniqueId().toString() , playerData);
             return;
         }catch (Exception e){

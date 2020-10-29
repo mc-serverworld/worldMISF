@@ -5,6 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/phoenix-bungee/phoenix-bungee.iml" filepath="$PROJECT_DIR$/phoenix-bungee/phoenix-bungee.iml" />
       <module fileurl="file://$PROJECT_DIR$/phoenix-paper/phoenix-paper.iml" filepath="$PROJECT_DIR$/phoenix-paper/phoenix-paper.iml" />
       <module fileurl="file://$PROJECT_DIR$/worldMISF.iml" filepath="$PROJECT_DIR$/worldMISF.iml" />
+      <module fileurl="file://$PROJECT_DIR$/worldUtils/worldUtils.iml" filepath="$PROJECT_DIR$/worldUtils/worldUtils.iml" />
       <module fileurl="file://$PROJECT_DIR$/worlduserdata/worlduserdata.iml" filepath="$PROJECT_DIR$/worlduserdata/worlduserdata.iml" />
     </modules>
   </component>

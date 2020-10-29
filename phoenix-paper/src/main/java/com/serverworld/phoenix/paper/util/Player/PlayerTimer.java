@@ -24,7 +24,10 @@ import com.serverworld.phoenix.paper.PaperPhoenix;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
-public class PlayTime {
+public class PlayerTimer {
+    public PlayerTimer(){
+        PlayTime();
+    }
     public void PlayTime(){
         Bukkit.getScheduler().scheduleSyncRepeatingTask(PaperPhoenix.getInstance(), new Runnable() {
             @Override
@@ -33,10 +36,10 @@ public class PlayTime {
                     return;
                 for (Player player:PaperPhoenix.getInstance().getServer().getOnlinePlayers()) {
                     if(!PaperPhoenix.getEssentialsPlugin().getUser(player).isAfk())
-                        PlayerData.addPlayTime(player,5L);
+                        PlayerData.addPlayTime(player,60L);
                 }
             }
-        },0L,6000L);
+        },0L,1200L);
 
     }
 

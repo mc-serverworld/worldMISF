@@ -28,11 +28,8 @@ import com.serverworld.phoenix.paper.Listeners.Residence.*;
 import com.serverworld.phoenix.paper.commands.LobbyCommand;
 import com.serverworld.phoenix.paper.commands.PaperPhoenixCommands;
 import com.serverworld.phoenix.paper.commands.PlayerCommands.*;
-import com.serverworld.phoenix.paper.util.BungeeParameter;
-import com.serverworld.phoenix.paper.util.DebugMessage;
-import com.serverworld.phoenix.paper.util.Player.PlayTime;
-import com.serverworld.phoenix.paper.util.worldSetup;
-import com.serverworld.phoenix.paper.util.worldSync;
+import com.serverworld.phoenix.paper.util.*;
+import com.serverworld.phoenix.paper.util.Player.PlayerTimer;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -42,6 +39,7 @@ public class PaperPhoenix extends JavaPlugin {
     private static PaperPhoenix paperPhoenix;
     private static Essentials essentialsPlugin;
     public static PaperPhoenixConfig config;
+    int taskid=0;
 
     @Override
     public void onLoad() {
@@ -61,48 +59,46 @@ public class PaperPhoenix extends JavaPlugin {
             boolean bEssentials = getServer().getPluginManager().isPluginEnabled("Essentials");
             boolean bLuckPerms = getServer().getPluginManager().isPluginEnabled("LuckPerms");
             boolean bPlaceholderAPI = getServer().getPluginManager().isPluginEnabled("PlaceholderAPI");
-            boolean bResidence = getServer().getPluginManager().isPluginEnabled("Residence");
+            //boolean bResidence = Bukkit.getServer().getPluginManager().isPluginEnabled("Residence");
             boolean bVault = getServer().getPluginManager().isPluginEnabled("Vault");
             boolean bWorldBorder = getServer().getPluginManager().isPluginEnabled("WorldBorder");
             boolean bworldMISF_worlduserdata = getServer().getPluginManager().isPluginEnabled("worldMISF-worlduserdata");
             boolean bworldSocket = getServer().getPluginManager().isPluginEnabled("worldSocket");
 
             //setup
-            Bukkit.getScheduler().scheduleSyncDelayedTask(PaperPhoenix.getInstance(), () -> {
+            taskid = Bukkit.getScheduler().scheduleSyncRepeatingTask(PaperPhoenix.getInstance(), () -> {
                 if(bEssentials){DebugMessage.sendInfo(ChatColor.GREEN + "Essentials Enable");
                     if(bLuckPerms){DebugMessage.sendInfo(ChatColor.GREEN + "LuckPerms Enable");
                         if(bPlaceholderAPI){DebugMessage.sendInfo(ChatColor.GREEN + "PlaceholderAPI Enable");
-                            if(bResidence){DebugMessage.sendInfo(ChatColor.GREEN + "Residence Enable");
-                              if(bVault){DebugMessage.sendInfo(ChatColor.GREEN + "Vault Enable");
-                                  if(bWorldBorder){DebugMessage.sendInfo(ChatColor.GREEN + "WorldBorder Enable");
-                                      if(bworldMISF_worlduserdata){DebugMessage.sendInfo(ChatColor.GREEN + "MISF_worlduserdata Enable");
-                                          if(bworldSocket){ DebugMessage.sendInfo(ChatColor.GREEN + "worldSocket Enable");
-                                              DebugMessage.sendInfo(ChatColor.GREEN + "All Plugin Enabled");
-                                              DebugMessage.sendInfo(ChatColor.GREEN + "Startup PaperPhoenix...");
+                            if(bVault){DebugMessage.sendInfo(ChatColor.GREEN + "Vault Enable");
+                                if(bWorldBorder){DebugMessage.sendInfo(ChatColor.GREEN + "WorldBorder Enable");
+                                    if(bworldMISF_worlduserdata){DebugMessage.sendInfo(ChatColor.GREEN + "MISF_worlduserdata Enable");
+                                        if(bworldSocket){ DebugMessage.sendInfo(ChatColor.GREEN + "worldSocket Enable");
+                                            DebugMessage.sendInfo(ChatColor.GREEN + "All Plugin Enabled");
+                                            DebugMessage.sendInfo(ChatColor.GREEN + "Startup PaperPhoenix...");
 
-                                              setupevent();
-                                              setuputil();
-                                              new worldSetup();
-                                              new BungeeParameter().SyncBungeePlayerList();
-                                              //commands
+                                            setupevent();
+                                            setuputil();
+                                            new worldSetup();
+                                            new BungeeParameter().SyncBungeePlayerList();
+                                            //commands
 
-                                              PaperPhoenixCommands PaperPhoenixCommands = new PaperPhoenixCommands(this);
-                                              this.getCommand("misf").setExecutor(PaperPhoenixCommands);
-                                              this.getCommand("misf").setTabCompleter(PaperPhoenixCommands);
+                                            PaperPhoenixCommands PaperPhoenixCommands = new PaperPhoenixCommands(this);
+                                            this.getCommand("misf").setExecutor(PaperPhoenixCommands);
+                                            this.getCommand("misf").setTabCompleter(PaperPhoenixCommands);
 
-                                              setupPlayerCommands();
-                                              setGetPlugin();
-                                              DebugMessage.sendInfo(ChatColor.GREEN + "Startup Complete!");
-                                              return;
-                                          }
-                                      }
-                                  }
-                              }
+                                            setupPlayerCommands();
+                                            setGetPlugin();
+                                            DebugMessage.sendInfo(ChatColor.GREEN + "Startup Complete!");
+                                            Bukkit.getScheduler().cancelTask(taskid);
+                                        }
+                                    }
+                                }
                             }
                         }
                     }
                 }
-            }, 200L);
+            }, 200L,100L);
         }
 
     }
@@ -116,6 +112,7 @@ public class PaperPhoenix extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new PlayerDeath(this), this);
         getServer().getPluginManager().registerEvents(new PlayerRespawn(this), this);
 
+        //residence plugins
         getServer().getPluginManager().registerEvents(new ResidenceCreation(this),this);
         getServer().getPluginManager().registerEvents(new ResidenceDelete(this),this);
         getServer().getPluginManager().registerEvents(new ResidenceFlagChange(this),this);
@@ -126,8 +123,10 @@ public class PaperPhoenix extends JavaPlugin {
 
     public void setuputil(){
         worldSync worldsyncer = new worldSync(this);
-        PlayTime playTime = new PlayTime();
+        PlayerTimer playerTimer = new PlayerTimer();
+        EconomyIO economyIO = new EconomyIO();
     }
+
 
     public void setupPlayerCommands(){
         //player commands

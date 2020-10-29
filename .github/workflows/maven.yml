@@ -29,15 +29,13 @@ jobs:
     - name: Display structure of downloaded files
       run: ls -R
     - name: Deploy Github Package
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
           mkdir -p ~/.m2
-          echo "<settings><servers><server><id>gh</id><username>$(echo "$GITHUB_REPOSITORY" | awk -F / '{print $1}')</username><password>\${env.GITHUB_TOKEN}</password></server></servers></settings>" > ~/.m2/settings.xml
-          REPO="gh::default::https://maven.pkg.github.com/${GITHUB_REPOSITORY}"
+          echo "<settings><servers><server><id>gh</id><username>$(echo "$GITHUB_REPOSITORY" | awk -F / '{print $1}')</username><password>\${{ secrets.GITHUB_TOKEN }}</password></server></servers></settings>" > ~/.m2/settings.xml
           mvn install:install-file -Dfile=phoenix-paper/src/main/resources/Residence4.9.1.9.zip -DgroupId=com.bekvon -DartifactId=Residence -Dversion=4.9.1.9 -Dpackaging=jar
-          mvn versions:set -DnewVersion=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)-build-${{ github.run_number }} -DprocessAllModules -DgenerateBackupPoms=false versions:commit
-          mvn deploy -DaltReleaseDeploymentRepository="${REPO}" -DaltSnapshotDeploymentRepository="${REPO}"
+          mvn versions:set -DnewVersion=build-${{ github.run_number }} -DprocessAllModules -DgenerateBackupPoms=false versions:commit
+          mvn install
+      #$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)-
     - name: Display structure of downloaded files
       run: ls -R
       working-directory: /home/runner/work/worldMISF/worldMISF
@@ -52,7 +50,7 @@ jobs:
       with:
         repo_token: "${{ secrets.GITHUB_TOKEN }}"
         automatic_release_tag: build-${{ github.run_number }}
-        prerelease: true
+        prerelease: false
         title: build-${{ github.run_number }}
         files: staging/*.jar
 

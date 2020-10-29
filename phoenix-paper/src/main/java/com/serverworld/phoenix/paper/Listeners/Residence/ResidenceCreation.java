@@ -22,6 +22,8 @@ package com.serverworld.phoenix.paper.Listeners.Residence;
 
 import com.bekvon.bukkit.residence.event.ResidenceCreationEvent;
 import com.serverworld.phoenix.paper.PaperPhoenix;
+import com.serverworld.worlduserdata.jsondata.UserPhoenixPlayerData;
+import com.serverworld.worlduserdata.paper.utils.UserPhoenixPlayerDataMySQL;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 
@@ -31,6 +33,13 @@ public class ResidenceCreation implements Listener {
 
     @EventHandler
     public void onResidenceCreationEvent(ResidenceCreationEvent event){
+        UserPhoenixPlayerData playerData = UserPhoenixPlayerDataMySQL.getDataClass(event.getPlayer().getUniqueId().toString());
+        //UserPhoenixPlayerDataMySQL.setDataClass(eventplayer.getUniqueId().toString() , playerData);
+        if(playerData.getResidence_total_amount() >= playerData.getResidence_max_amount()){
+            
+        }else if(playerData.getResidence_total_size() >= playerData.getResidence_max_size()){
+
+        }
 
     }
 
