@@ -8,6 +8,7 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="worldUtils" />
         <module name="phoenix-bungee" />
         <module name="phoenix-paper" />
         <module name="worlduserdata" />
@@ -23,6 +24,7 @@
       <module name="worldProfile" target="1.8" />
       <module name="worldRetard" target="1.8" />
       <module name="worlduserdata" target="1.8" />
+      <module name="worldUtils" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

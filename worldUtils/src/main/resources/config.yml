@@ -1,0 +1,7 @@
+# ${project.name}
+# Version: ${project.version}
+# Gitgub: https://github.com/mc-serverworld/worldMISF
+
+configinfo:
+  api-version: 1
+  debug: false

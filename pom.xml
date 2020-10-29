@@ -50,6 +50,7 @@
         <module>phoenix-paper</module>
         <module>phoenix-bungee</module>
         <module>worlduserdata</module>
+        <module>worldUtils</module>
     </modules>
 
     <properties>
