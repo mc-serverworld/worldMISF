@@ -65,7 +65,7 @@ public class RestartUpdate implements CommandExecutor {
 
                         if(Bukkit.getServer().getPluginManager().getPlugin(phoenix_paper).isEnabled()){
                             sender.sendMessage("Updating :" +phoenix_paper);
-                            File file = new File(Bukkit.getWorldContainer().getAbsolutePath() + "plugins/" + phoenix_paper + "-" + Bukkit.getPluginManager().getPlugin(phoenix_paper).getDescription().getVersion() +".jar");
+                            File file = new File(PaperworldUtils.getInstance().getDataFolder().getParentFile().getParentFile() + "plugins/" + phoenix_paper + "-" + Bukkit.getPluginManager().getPlugin(phoenix_paper).getDescription().getVersion() +".jar");
                             sender.sendMessage(file.getPath());
                            /* if(PluginUtil.unload(PaperworldUtils.getInstance().getServer().getPluginManager().getPlugin(phoenix_paper))){
 
