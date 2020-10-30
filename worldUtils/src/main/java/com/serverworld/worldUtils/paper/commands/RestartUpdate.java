@@ -92,7 +92,7 @@ public class RestartUpdate implements CommandExecutor {
 
     private static Boolean deleteold(String plugin_name){
         if(Bukkit.getServer().getPluginManager().getPlugin(plugin_name).isEnabled()){
-            File file = new File(Bukkit.getWorldContainer().getPath() + "/plugins/" + plugin_name + "-" + Bukkit.getPluginManager().getPlugin(plugin_name).getDescription().getVersion() +".jar");
+            File file = new File(Bukkit.getWorldContainer().getPath() + "plugins/" + plugin_name + "-" + Bukkit.getPluginManager().getPlugin(plugin_name).getDescription().getVersion() +".jar");
             if(PluginUtil.unload(PaperworldUtils.getInstance().getServer().getPluginManager().getPlugin(plugin_name)))
                 return file.delete();
             //System.out.println(file.delete());
