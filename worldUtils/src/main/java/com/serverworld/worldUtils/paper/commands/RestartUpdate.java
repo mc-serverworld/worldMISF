@@ -61,25 +61,41 @@ public class RestartUpdate implements CommandExecutor {
                 if(!assets.getString("name").contains("bungee")){
                     if(!assets.getString("name").contains("worldUtil")) {
                         String phoenix_paper = "worldMISF-phoenix-paper";
+                        String worlduserdata = "worldMISF-worlduserdata";
 
                         if(Bukkit.getServer().getPluginManager().getPlugin(phoenix_paper).isEnabled()){
                             sender.sendMessage("Updating :" +phoenix_paper);
-                            File file = new File(Bukkit.getWorldContainer().getPath() + "/plugins/" + phoenix_paper + "-" + Bukkit.getPluginManager().getPlugin(phoenix_paper).getDescription().getVersion() +".jar");
+                            File file = new File(Bukkit.getWorldContainer().getAbsoluteFile().getPath() + "/plugins/" + phoenix_paper + "-" + Bukkit.getPluginManager().getPlugin(phoenix_paper).getDescription().getVersion() +".jar");
                             sender.sendMessage(file.getPath());
-                            if(PluginUtil.unload(PaperworldUtils.getInstance().getServer().getPluginManager().getPlugin(phoenix_paper))){
-                                Network.downloadNet(assets.getString("browser_download_url"), assets.getString("name"));
-                                System.out.println(assets.getString("browser_download_url"));
+                           /* if(PluginUtil.unload(PaperworldUtils.getInstance().getServer().getPluginManager().getPlugin(phoenix_paper))){
+
                             }else {
-                                sender.sendMessage("update failed");
+                                sender.sendMessage(ChatColor.RED + "update failed");
+                                return true;
                             }
-                            //System.out.println(file.delete());
+                            //System.out.println(file.delete());*/
                         }
+
+                        Network.downloadNet(assets.getString("browser_download_url"), assets.getString("name"));
+                        System.out.println(assets.getString("browser_download_url"));
+                        //Bukkit.getServer().spigot().restart();
+                            // return true;
                     }
                 }
             }
             return true;
         } catch (IOException ex) {
+            ex.printStackTrace();
+            return true;
+        }
+    }
 
+    private static Boolean deleteold(String plugin_name){
+        if(Bukkit.getServer().getPluginManager().getPlugin(plugin_name).isEnabled()){
+            File file = new File(Bukkit.getWorldContainer().getPath() + "/plugins/" + plugin_name + "-" + Bukkit.getPluginManager().getPlugin(plugin_name).getDescription().getVersion() +".jar");
+            if(PluginUtil.unload(PaperworldUtils.getInstance().getServer().getPluginManager().getPlugin(plugin_name)))
+                return file.delete();
+            //System.out.println(file.delete());
         }
         return false;
     }
