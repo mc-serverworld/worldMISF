@@ -22,6 +22,7 @@ package com.serverworld.worldUtils.paper.commands;
 
 import com.serverworld.worldUtils.paper.PaperworldUtils;
 import com.serverworld.worldUtils.paper.util.Network;
+import com.serverworld.worldUtils.paper.util.PluginUtil;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -59,14 +60,20 @@ public class RestartUpdate implements CommandExecutor {
                 assets = new JSONObject(assets.toString(i));
                 if(!assets.getString("name").contains("bungee")){
                     if(!assets.getString("name").contains("worldUtil")) {
-                        if(Bukkit.getServer().getPluginManager().getPlugin("worldMISF-phoenix-paper").isEnabled()){
-                            File file = new File(Bukkit.getWorldContainer().getPath() + "/plugins/worldMISF-phoenix-paper-"+ Bukkit.getPluginManager().getPlugin("worldMISF-phoenix-paper").getDescription().getVersion() +".jar");
+                        String phoenix_paper = "worldMISF-phoenix-paper";
+
+                        if(Bukkit.getServer().getPluginManager().getPlugin(phoenix_paper).isEnabled()){
+                            sender.sendMessage("Updating :" +phoenix_paper);
+                            File file = new File(Bukkit.getWorldContainer().getPath() + "/plugins/" + phoenix_paper + "-" + Bukkit.getPluginManager().getPlugin(phoenix_paper).getDescription().getVersion() +".jar");
                             sender.sendMessage(file.getPath());
-                            PaperworldUtils.getInstance().getServer().getPluginManager().disablePlugin(PaperworldUtils.getInstance().getServer().getPluginManager().getPlugin("worldMISF-phoenix-paper"));
+                            if(PluginUtil.unload(PaperworldUtils.getInstance().getServer().getPluginManager().getPlugin(phoenix_paper))){
+                                Network.downloadNet(assets.getString("browser_download_url"), assets.getString("name"));
+                                System.out.println(assets.getString("browser_download_url"));
+                            }else {
+                                sender.sendMessage("update failed");
+                            }
                             //System.out.println(file.delete());
                         }
-                        Network.downloadNet(assets.getString("browser_download_url"), assets.getString("name"));
-                        System.out.println(assets.getString("browser_download_url"));
                     }
                 }
             }

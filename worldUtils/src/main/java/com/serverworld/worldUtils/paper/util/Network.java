@@ -20,6 +20,8 @@
 
 package com.serverworld.worldUtils.paper.util;
 
+import org.bukkit.Bukkit;
+
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -36,7 +38,7 @@ public class Network {
         try {
             URLConnection conn = url.openConnection();
             InputStream inStream = conn.getInputStream();
-            FileOutputStream fs = new FileOutputStream("D:/" +filename);
+            FileOutputStream fs = new FileOutputStream(Bukkit.getWorldContainer().getPath()+"/plugins/"+filename);
             byte[] buffer = new byte[102400];
             int length;
             while ((byteread = inStream.read(buffer)) != -1) {
