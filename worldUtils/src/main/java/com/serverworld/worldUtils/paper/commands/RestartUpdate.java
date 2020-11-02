@@ -23,7 +23,6 @@ package com.serverworld.worldUtils.paper.commands;
 import com.serverworld.worldUtils.paper.PaperworldUtils;
 import com.serverworld.worldUtils.paper.util.Network;
 import com.serverworld.worldUtils.paper.util.PluginUtil;
-import net.md_5.bungee.api.ChatColor;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -59,39 +58,20 @@ public class RestartUpdate implements CommandExecutor {
                 assets = new JSONObject(assets.toString(i));
                 if(!assets.getString("name").contains("bungee")){
                     if(!assets.getString("name").contains("worldUtil")) {
-                        Network.downloadNet(assets.getString("browser_download_url"), assets.getString("name"));
+                        if(Network.downloadNet(assets.getString("browser_download_url"), assets.getString("name")))
+                            sender.sendMessage("download " + assets.getString("name"));
                         String phoenix_paper = "worldMISF-phoenix-paper";
                         String worlduserdata = "worldMISF-worlduserdata";
 
-                        if(Bukkit.getServer().getPluginManager().getPlugin(phoenix_paper).isEnabled()){
-                            sender.sendMessage("Updating :" +phoenix_paper);
-                            File file = new File(Bukkit.getServer().getPluginManager().getPlugin("Vault").getDataFolder().getParentFile().getAbsolutePath() + "/" + phoenix_paper + "-" + Bukkit.getPluginManager().getPlugin(phoenix_paper).getDescription().getVersion() +".jar");
-                            sender.sendMessage(file.getPath());
-                            if(PluginUtil.unload(PaperworldUtils.getInstance().getServer().getPluginManager().getPlugin(phoenix_paper))){
+                        deleteold(phoenix_paper);
+                        deleteold(worlduserdata);
 
-                            }else {
-                                sender.sendMessage(ChatColor.RED + "update failed");
-                                return true;
-                            }
-                            sender.sendMessage(phoenix_paper + " ststus: " + file.delete());
-                        }
-
-                        if(Bukkit.getServer().getPluginManager().getPlugin(worlduserdata).isEnabled()){
-                            sender.sendMessage("Updating :" +worlduserdata);
-                            File file = new File(Bukkit.getServer().getPluginManager().getPlugin("Vault").getDataFolder().getParentFile().getAbsolutePath() + "/" + worlduserdata + "-" + Bukkit.getPluginManager().getPlugin(worlduserdata).getDescription().getVersion() +".jar");
-                            sender.sendMessage(file.getPath());
-                            if(PluginUtil.unload(PaperworldUtils.getInstance().getServer().getPluginManager().getPlugin(worlduserdata))){
-
-                            }else {
-                                sender.sendMessage(ChatColor.RED + "update failed");
-                                return true;
-                            }
-                            sender.sendMessage(worlduserdata + " ststus: " + file.delete());
-                        }
-                        Bukkit.getServer().spigot().restart();
                     }
                 }
             }
+            Bukkit.getScheduler().scheduleSyncDelayedTask(PaperworldUtils.getInstance(), () -> {
+                Bukkit.getServer().spigot().restart();
+            }, 40L);
             return true;
         } catch (IOException ex) {
             ex.printStackTrace();
@@ -101,10 +81,9 @@ public class RestartUpdate implements CommandExecutor {
 
     private static Boolean deleteold(String plugin_name){
         if(Bukkit.getServer().getPluginManager().getPlugin(plugin_name).isEnabled()){
-            File file = new File(Bukkit.getWorldContainer().getPath() + "plugins/" + plugin_name + "-" + Bukkit.getPluginManager().getPlugin(plugin_name).getDescription().getVersion() +".jar");
+            File file = new File(Bukkit.getServer().getPluginManager().getPlugin("Vault").getDataFolder().getParentFile().getAbsolutePath() + "/" + plugin_name + "-" + Bukkit.getPluginManager().getPlugin(plugin_name).getDescription().getVersion() +".jar");
             if(PluginUtil.unload(PaperworldUtils.getInstance().getServer().getPluginManager().getPlugin(plugin_name)))
                 return file.delete();
-            //System.out.println(file.delete());
         }
         return false;
     }

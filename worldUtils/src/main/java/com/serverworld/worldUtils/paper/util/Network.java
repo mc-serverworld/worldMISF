@@ -31,7 +31,7 @@ import java.net.URL;
 import java.net.URLConnection;
 
 public class Network {
-    public static void downloadNet(String surl,String filename) throws MalformedURLException {
+    public static boolean downloadNet(String surl,String filename) throws MalformedURLException {
         int bytesum = 0;
         int byteread = 0;
         URL url = new URL(surl);
@@ -50,5 +50,6 @@ public class Network {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return true;
     }
 }
