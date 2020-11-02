@@ -27,6 +27,8 @@ import com.serverworld.worlduserdata.paper.utils.UserPhoenixPlayerDataMySQL;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 
+import java.util.UUID;
+
 public class PlayerData {
     public static void SaveCurrentLocationAsLast(Player player, Location location){
         try{
@@ -48,12 +50,33 @@ public class PlayerData {
         try{
             UserPhoenixPlayerData playerData = UserPhoenixPlayerDataMySQL.getDataClass(player.getUniqueId().toString());
             playerData.setPlaytinme(Long.valueOf(playerData.getPlaytinme()+time));
-            if(playerData.getPlaytinme()>1000)
+
+            if(playerData.getResidence_max_size()<=250000)
+                playerData.setResidence_max_size(playerData.getResidence_max_size()+200);
+            if(playerData.getResidence_max_size()<=500000)
+                playerData.setResidence_max_size(playerData.getResidence_max_size()+50);
+            if(playerData.getResidence_max_size()<=1000000)
+                playerData.setResidence_max_size(playerData.getResidence_max_size()+25);
+
             UserPhoenixPlayerDataMySQL.setDataClass(player.getUniqueId().toString() , playerData);
             return;
         }catch (Exception e){
             e.printStackTrace();
             DebugMessage.sendWarring("Some thing go wrong!");
         }
+    }
+    
+    public static void checkResidenceLimit(Player player){
+        UserPhoenixPlayerData playerData = UserPhoenixPlayerDataMySQL.getDataClass(player.getUniqueId().toString());
+        if(playerData.getPlaytinme()==0)
+            return;
+    }
+    public static void checkResidenceLimit(UUID uuid){
+        UserPhoenixPlayerData playerData = UserPhoenixPlayerDataMySQL.getDataClass(uuid.toString());
+
+    }
+    public static void checkResidenceLimit(String uuid){
+        UserPhoenixPlayerData playerData = UserPhoenixPlayerDataMySQL.getDataClass(uuid);
+
     }
 }
