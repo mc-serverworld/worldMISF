@@ -98,7 +98,7 @@ public class PaperPhoenix extends JavaPlugin {
                         }
                     }
                 }
-            }, 200L,100L);
+            }, 100L,40L);
         }
 
     }
