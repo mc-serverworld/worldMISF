@@ -49,14 +49,15 @@ public class PlayerData {
     public static void addPlayTime(Player player,long time){
         try{
             UserPhoenixPlayerData playerData = UserPhoenixPlayerDataMySQL.getDataClass(player.getUniqueId().toString());
-            playerData.setPlaytinme(Long.valueOf(playerData.getPlaytinme()+time));
+            playerData.setPlaytinme(playerData.getPlaytinme() + time);
 
             if(playerData.getResidence_max_size()<=250000)
-                playerData.setResidence_max_size(playerData.getResidence_max_size()+200);
+                playerData.setResidence_max_size(playerData.getResidence_max_size()+100);
             if(playerData.getResidence_max_size()<=500000)
                 playerData.setResidence_max_size(playerData.getResidence_max_size()+50);
             if(playerData.getResidence_max_size()<=1000000)
                 playerData.setResidence_max_size(playerData.getResidence_max_size()+25);
+
 
             UserPhoenixPlayerDataMySQL.setDataClass(player.getUniqueId().toString() , playerData);
             return;
