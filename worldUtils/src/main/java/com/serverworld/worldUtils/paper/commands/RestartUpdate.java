@@ -89,7 +89,6 @@ public class RestartUpdate implements CommandExecutor {
                             sender.sendMessage(worlduserdata + " ststus: " + file.delete());
                         }
                         Bukkit.getServer().spigot().restart();
-                        return true;
                     }
                 }
             }
