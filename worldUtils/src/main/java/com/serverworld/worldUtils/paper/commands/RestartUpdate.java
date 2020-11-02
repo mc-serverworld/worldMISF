@@ -23,6 +23,7 @@ package com.serverworld.worldUtils.paper.commands;
 import com.serverworld.worldUtils.paper.PaperworldUtils;
 import com.serverworld.worldUtils.paper.util.Network;
 import com.serverworld.worldUtils.paper.util.PluginUtil;
+import net.md_5.bungee.api.ChatColor;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -40,10 +41,8 @@ import java.io.IOException;
 
 public class RestartUpdate implements CommandExecutor {
 
-    // This method is called, when somebody uses our command
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-      sender.sendMessage("測試");
         String url = "https://api.github.com/repos/mc-serverworld/worldMISF/releases/latest";
 
         try {
@@ -67,19 +66,31 @@ public class RestartUpdate implements CommandExecutor {
                             sender.sendMessage("Updating :" +phoenix_paper);
                             File file = new File(Bukkit.getServer().getPluginManager().getPlugin("Vault").getDataFolder().getParentFile().getAbsolutePath() + "/" + phoenix_paper + "-" + Bukkit.getPluginManager().getPlugin(phoenix_paper).getDescription().getVersion() +".jar");
                             sender.sendMessage(file.getPath());
-                           /* if(PluginUtil.unload(PaperworldUtils.getInstance().getServer().getPluginManager().getPlugin(phoenix_paper))){
+                            if(PluginUtil.unload(PaperworldUtils.getInstance().getServer().getPluginManager().getPlugin(phoenix_paper))){
 
                             }else {
                                 sender.sendMessage(ChatColor.RED + "update failed");
                                 return true;
                             }
-                            //System.out.println(file.delete());*/
+                            sender.sendMessage(phoenix_paper + file.delete());
+                        }
+
+                        if(Bukkit.getServer().getPluginManager().getPlugin(worlduserdata).isEnabled()){
+                            sender.sendMessage("Updating :" +worlduserdata);
+                            File file = new File(Bukkit.getServer().getPluginManager().getPlugin("Vault").getDataFolder().getParentFile().getAbsolutePath() + "/" + worlduserdata + "-" + Bukkit.getPluginManager().getPlugin(worlduserdata).getDescription().getVersion() +".jar");
+                            sender.sendMessage(file.getPath());
+                            if(PluginUtil.unload(PaperworldUtils.getInstance().getServer().getPluginManager().getPlugin(worlduserdata))){
+
+                            }else {
+                                sender.sendMessage(ChatColor.RED + "update failed");
+                                return true;
+                            }
+                            sender.sendMessage(worlduserdata + file.delete());
                         }
 
                         Network.downloadNet(assets.getString("browser_download_url"), assets.getString("name"));
-                        System.out.println(assets.getString("browser_download_url"));
                         //Bukkit.getServer().spigot().restart();
-                            // return true;
+                        return true;
                     }
                 }
             }

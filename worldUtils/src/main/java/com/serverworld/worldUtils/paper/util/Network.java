@@ -38,12 +38,11 @@ public class Network {
         try {
             URLConnection conn = url.openConnection();
             InputStream inStream = conn.getInputStream();
-            FileOutputStream fs = new FileOutputStream(Bukkit.getWorldContainer().getPath()+"/plugins/"+filename);
-            byte[] buffer = new byte[102400];
+            FileOutputStream fs = new FileOutputStream(Bukkit.getServer().getPluginManager().getPlugin("Vault").getDataFolder().getParentFile().getAbsolutePath()+"/"+filename);
+            byte[] buffer = new byte[4096];
             int length;
             while ((byteread = inStream.read(buffer)) != -1) {
                 bytesum  = byteread;
-                System.out.println(bytesum);
                 fs.write(buffer, 0, byteread);
             }
         } catch (FileNotFoundException e) {
