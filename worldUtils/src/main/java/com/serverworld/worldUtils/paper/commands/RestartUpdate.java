@@ -59,6 +59,7 @@ public class RestartUpdate implements CommandExecutor {
                 assets = new JSONObject(assets.toString(i));
                 if(!assets.getString("name").contains("bungee")){
                     if(!assets.getString("name").contains("worldUtil")) {
+                        Network.downloadNet(assets.getString("browser_download_url"), assets.getString("name"));
                         String phoenix_paper = "worldMISF-phoenix-paper";
                         String worlduserdata = "worldMISF-worlduserdata";
 
@@ -87,8 +88,6 @@ public class RestartUpdate implements CommandExecutor {
                             }
                             sender.sendMessage(worlduserdata + " ststus: " + file.delete());
                         }
-
-                        Network.downloadNet(assets.getString("browser_download_url"), assets.getString("name"));
                         Bukkit.getServer().spigot().restart();
                         return true;
                     }
