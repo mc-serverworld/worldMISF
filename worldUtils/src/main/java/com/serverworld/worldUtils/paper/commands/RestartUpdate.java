@@ -72,7 +72,7 @@ public class RestartUpdate implements CommandExecutor {
                                 sender.sendMessage(ChatColor.RED + "update failed");
                                 return true;
                             }
-                            sender.sendMessage(phoenix_paper + file.delete());
+                            sender.sendMessage(phoenix_paper + " ststus: " + file.delete());
                         }
 
                         if(Bukkit.getServer().getPluginManager().getPlugin(worlduserdata).isEnabled()){
@@ -85,11 +85,11 @@ public class RestartUpdate implements CommandExecutor {
                                 sender.sendMessage(ChatColor.RED + "update failed");
                                 return true;
                             }
-                            sender.sendMessage(worlduserdata + file.delete());
+                            sender.sendMessage(worlduserdata + " ststus: " + file.delete());
                         }
 
                         Network.downloadNet(assets.getString("browser_download_url"), assets.getString("name"));
-                        //Bukkit.getServer().spigot().restart();
+                        Bukkit.getServer().spigot().restart();
                         return true;
                     }
                 }
