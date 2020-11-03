@@ -40,7 +40,7 @@ public class ResidenceCreation implements Listener {
         UserPhoenixPlayerData playerData = UserPhoenixPlayerDataMySQL.getDataClass(event.getPlayer().getUniqueId().toString());
         //UserPhoenixPlayerDataMySQL.setDataClass(eventplayer.getUniqueId().toString() , playerData);
         if(playerData.getResidence_total_amount() >= playerData.getResidence_max_amount()){
-            event.getPlayer().sendMessage(ChatColor.RED "超過您可持有的保護區上限");//TODO: Langauge seleter
+            event.getPlayer().sendMessage(ChatColor.RED + "超過您可持有的保護區上限");//TODO: Langauge seleter
             event.setCancelled(true);
             return;
         }else if(playerData.getResidence_total_size()+event.getResidence().getXZSize() >= playerData.getResidence_max_size()){
@@ -53,7 +53,9 @@ public class ResidenceCreation implements Listener {
 
         }else if(10000 - playerData.getResidence_total_size() > 0){
 
-        }else if()
+        }else{
+
+        }
 
     }
 
