@@ -24,6 +24,7 @@ import com.bekvon.bukkit.residence.event.ResidenceCreationEvent;
 import com.serverworld.phoenix.paper.PaperPhoenix;
 import com.serverworld.worlduserdata.jsondata.UserPhoenixPlayerData;
 import com.serverworld.worlduserdata.paper.utils.UserPhoenixPlayerDataMySQL;
+import net.md_5.bungee.api.ChatColor;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 
@@ -39,10 +40,20 @@ public class ResidenceCreation implements Listener {
         UserPhoenixPlayerData playerData = UserPhoenixPlayerDataMySQL.getDataClass(event.getPlayer().getUniqueId().toString());
         //UserPhoenixPlayerDataMySQL.setDataClass(eventplayer.getUniqueId().toString() , playerData);
         if(playerData.getResidence_total_amount() >= playerData.getResidence_max_amount()){
-
-        }else if(playerData.getResidence_total_size() >= playerData.getResidence_max_size()){
-
+            event.getPlayer().sendMessage(ChatColor.RED "超過您可持有的保護區上限");//TODO: Langauge seleter
+            event.setCancelled(true);
+            return;
+        }else if(playerData.getResidence_total_size()+event.getResidence().getXZSize() >= playerData.getResidence_max_size()){
+            event.getPlayer().sendMessage(ChatColor.RED + "超過您的保護區格數上限");//TODO: Langauge seleter
+            event.setCancelled(true);
+            return;
         }
+
+        if(playerData.getResidence_total_size()+event.getResidence().getXZSize()<=10000){
+
+        }else if(10000 - playerData.getResidence_total_size() > 0){
+
+        }else if()
 
     }
 
