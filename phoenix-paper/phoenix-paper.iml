@@ -39,7 +39,7 @@
     <orderEntry type="library" scope="PROVIDED" name="Maven: io.netty:netty-transport:4.1.53.Final" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: io.netty:netty-resolver:4.1.53.Final" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: net.luckperms:api:5.0" level="project" />
-    <orderEntry type="library" scope="PROVIDED" name="Maven: com.bekvon:Residence:4.9.1.9" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: com.bekvon:Residence:4.9.2.0" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: com.github.PryPurity:WorldBorder:v2.1.0" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: net.ess3:EssentialsX:2.18.1" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: io.papermc:paperlib:1.0.6-SNAPSHOT" level="project" />

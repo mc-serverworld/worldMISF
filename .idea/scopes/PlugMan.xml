@@ -1,0 +1,3 @@
+<component name="DependencyValidationManager">
+  <scope name="PlugMan" pattern="!src[worldUtils]:com.serverworld.worldUtils.paper.util.PluginUtil" />
+</component>

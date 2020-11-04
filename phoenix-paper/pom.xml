@@ -172,7 +172,7 @@
         <dependency>
             <groupId>com.bekvon</groupId>
             <artifactId>Residence</artifactId>
-            <version>4.9.1.9</version>
+            <version>4.9.2.0</version>
             <scope>provided</scope>
         </dependency>
 
