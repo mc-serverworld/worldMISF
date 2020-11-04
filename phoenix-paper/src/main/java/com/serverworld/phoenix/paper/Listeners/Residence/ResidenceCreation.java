@@ -22,6 +22,7 @@ package com.serverworld.phoenix.paper.Listeners.Residence;
 
 import com.bekvon.bukkit.residence.event.ResidenceCreationEvent;
 import com.serverworld.phoenix.paper.PaperPhoenix;
+import com.serverworld.phoenix.paper.util.EconomyIO;
 import com.serverworld.worlduserdata.jsondata.UserPhoenixPlayerData;
 import com.serverworld.worlduserdata.paper.utils.UserPhoenixPlayerDataMySQL;
 import net.md_5.bungee.api.ChatColor;
@@ -50,11 +51,23 @@ public class ResidenceCreation implements Listener {
         }
 
         if(playerData.getResidence_total_size()+event.getResidence().getXZSize()<=10000){
-
+            playerData.setResidence_total_size(playerData.getResidence_total_size()+event.getResidence().getXZSize());
+            return;
         }else if(10000 - playerData.getResidence_total_size() > 0){
+            Double overSize = (playerData.getResidence_total_size()+event.getResidence().getXZSize()-10000);
+            if(EconomyIO.hasBlance(event.getPlayer(),overSize)){
+                playerData.setResidence_total_size(playerData.getResidence_total_size() + overSize);
+            }else {
+
+            }
+
 
         }else{
+            if(EconomyIO.hasBlance(event.getPlayer(), (double) event.getResidence().getXZSize())){
+                playerData.setResidence_total_size(playerData.getResidence_total_size() + event.getResidence().getXZSize());
+            }else {
 
+            }
         }
 
     }
