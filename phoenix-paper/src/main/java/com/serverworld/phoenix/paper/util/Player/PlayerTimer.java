@@ -35,8 +35,8 @@ public class PlayerTimer {
                 if(PaperPhoenix.getInstance().getServer().getOnlinePlayers().isEmpty())
                     return;
                 for (Player player:PaperPhoenix.getInstance().getServer().getOnlinePlayers()) {
-                    if(!PaperPhoenix.getEssentialsPlugin().getUser(player).isAfk())
-                        PlayerData.addPlayTime(player,60L);
+                    //if(!PaperPhoenix.getEssentialsPlugin().getUser(player).isAfk())
+                        //PlayerData.addPlayTime(player,60L);
                 }
             }
         },0L,1200L);

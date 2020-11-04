@@ -55,21 +55,22 @@ public class ResidenceCreation implements Listener {
             return;
         }else if(10000 - playerData.getResidence_total_size() > 0){
             Double overSize = (playerData.getResidence_total_size()+event.getResidence().getXZSize()-10000);
-            if(EconomyIO.hasBlance(event.getPlayer(),overSize)){
+            if(EconomyIO.takeIfHasBalance(event.getPlayer(),overSize)){
                 playerData.setResidence_total_size(playerData.getResidence_total_size() + overSize);
-            }else {
-
+                double left =playerData.getResidence_max_size() - playerData.getResidence_total_size();
+                event.getPlayer().sendMessage(ChatColor.GREEN+ "保護區創建成功");//TODO: Langauge seleter
+                event.getPlayer().sendMessage(ChatColor.YELLOW + "您還有 " + left);
+                return;
             }
-
-
+            event.getPlayer().sendMessage(ChatColor.RED + "餘額不足");//TODO: Langauge seleter
         }else{
-            if(EconomyIO.hasBlance(event.getPlayer(), (double) event.getResidence().getXZSize())){
+            if(EconomyIO.takeIfHasBalance(event.getPlayer(), (double) event.getResidence().getXZSize())) {
                 playerData.setResidence_total_size(playerData.getResidence_total_size() + event.getResidence().getXZSize());
-            }else {
-
+                event.getPlayer().sendMessage(ChatColor.RED + "餘額不足");//TODO: Langauge seleter
+                return;
             }
-        }
 
+        }
     }
 
 }
