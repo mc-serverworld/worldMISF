@@ -31,47 +31,59 @@ import org.bukkit.event.Listener;
 
 public class ResidenceCreation implements Listener {
 
-    public ResidenceCreation(PaperPhoenix paperPhoenix){ }
+    public ResidenceCreation(PaperPhoenix paperPhoenix) {
+    }
 
     @EventHandler
-    public void onResidenceCreationEvent(ResidenceCreationEvent event){
-        event.getPlayer().sendMessage("Even triggered");
-        if(event.isCancelled())
+    public void onResidenceCreationEvent(ResidenceCreationEvent event) {
+        event.getPlayer().sendMessage("Event triggered");
+        if (event.isCancelled())
             return;
-        event.getPlayer().sendMessage("Even triggered2");
         UserPhoenixPlayerData playerData = UserPhoenixPlayerDataMySQL.getDataClass(event.getPlayer().getUniqueId().toString());
         //UserPhoenixPlayerDataMySQL.setDataClass(eventplayer.getUniqueId().toString() , playerData);
-        if(playerData.getResidence_total_amount() >= playerData.getResidence_max_amount()){
+        if (playerData.getResidence_total_amount() >= playerData.getResidence_max_amount()) {
             event.getPlayer().sendMessage(ChatColor.RED + "超過您可持有的保護區上限");//TODO: Langauge seleter
             event.setCancelled(true);
             return;
-        }else if(playerData.getResidence_total_size()+event.getResidence().getXZSize() >= playerData.getResidence_max_size()){
+        } else if (playerData.getResidence_total_size() + event.getResidence().getXZSize() >= playerData.getResidence_max_size()) {
             event.getPlayer().sendMessage(ChatColor.RED + "超過您的保護區格數上限");//TODO: Langauge seleter
             event.setCancelled(true);
             return;
         }
 
-        if(playerData.getResidence_total_size()+event.getResidence().getXZSize()<=10000){
-            playerData.setResidence_total_size(playerData.getResidence_total_size()+event.getResidence().getXZSize());
+        if (playerData.getResidence_total_size() + event.getResidence().getXZSize() <= 10000) {
+            playerData.setResidence_total_size(playerData.getResidence_total_size() + event.getResidence().getXZSize());
+            UserPhoenixPlayerDataMySQL.setDataClass(event.getPlayer().getUniqueId().toString(), playerData);
+            double letfFreeSize = (10000 - playerData.getResidence_total_size() - event.getResidence().getXZSize());
+            event.getPlayer().sendMessage(ChatColor.GREEN + "保護區創建成功");//TODO: Langauge seleter
+            event.getPlayer().sendMessage(ChatColor.YELLOW + "您還有 " + letfFreeSize + "格免費領地");
             return;
-        }else if(10000 - playerData.getResidence_total_size() > 0){
-            Double overSize = (playerData.getResidence_total_size()+event.getResidence().getXZSize()-10000);
-            if(EconomyIO.takeIfHasBalance(event.getPlayer(),overSize)){
-                playerData.setResidence_total_size(playerData.getResidence_total_size() + overSize);
-                double left =playerData.getResidence_max_size() - playerData.getResidence_total_size();
-                event.getPlayer().sendMessage(ChatColor.GREEN+ "保護區創建成功");//TODO: Langauge seleter
-                event.getPlayer().sendMessage(ChatColor.YELLOW + "您還有 " + left);
-                return;
-            }
-            event.getPlayer().sendMessage(ChatColor.RED + "餘額不足");//TODO: Langauge seleter
-        }else{
-            if(EconomyIO.takeIfHasBalance(event.getPlayer(), (double) event.getResidence().getXZSize())) {
-                playerData.setResidence_total_size(playerData.getResidence_total_size() + event.getResidence().getXZSize());
-                event.getPlayer().sendMessage(ChatColor.RED + "餘額不足");//TODO: Langauge seleter
-                return;
-            }
-
         }
+
+        if (10000 - playerData.getResidence_total_size() > 0) {
+            Double overSize = (playerData.getResidence_total_size() + event.getResidence().getXZSize() - 10000);
+            if (EconomyIO.takeIfHasBalance(event.getPlayer(), overSize)) {
+                playerData.setResidence_total_size(playerData.getResidence_total_size() + overSize);
+                double leftSize = playerData.getResidence_max_size() - playerData.getResidence_total_size();
+                event.getPlayer().sendMessage(ChatColor.GREEN + "保護區創建成功");//TODO: Langauge seleter
+                event.getPlayer().sendMessage(ChatColor.YELLOW + "您還有 " + EconomyIO.getBalance(event.getPlayer()) + "$");
+                event.getPlayer().sendMessage(ChatColor.YELLOW + "與 " + leftSize + "格領地額度");
+                UserPhoenixPlayerDataMySQL.setDataClass(event.getPlayer().getUniqueId().toString(), playerData);
+                return;
+            }
+        }
+
+        if (EconomyIO.takeIfHasBalance(event.getPlayer(), (double) event.getResidence().getXZSize())) {
+            playerData.setResidence_total_size(playerData.getResidence_total_size() + event.getResidence().getXZSize());
+            double leftSize = playerData.getResidence_max_size() - playerData.getResidence_total_size();
+            event.getPlayer().sendMessage(ChatColor.GREEN + "保護區創建成功");//TODO: Langauge seleter
+            event.getPlayer().sendMessage(ChatColor.YELLOW + "您還有 " + EconomyIO.getBalance(event.getPlayer()) + "$");
+            event.getPlayer().sendMessage(ChatColor.YELLOW + "與 " + leftSize + "格領地額度");
+            UserPhoenixPlayerDataMySQL.setDataClass(event.getPlayer().getUniqueId().toString(), playerData);
+            return;
+        }
+
+        event.getPlayer().sendMessage(ChatColor.RED + "餘額不足");//TODO: Langauge seleter
     }
 
 }
