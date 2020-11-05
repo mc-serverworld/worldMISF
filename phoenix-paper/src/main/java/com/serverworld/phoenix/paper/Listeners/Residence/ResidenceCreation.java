@@ -53,10 +53,10 @@ public class ResidenceCreation implements Listener {
 
         if (playerData.getResidence_total_size() + event.getResidence().getXZSize() <= 10000) {
             playerData.setResidence_total_size(playerData.getResidence_total_size() + event.getResidence().getXZSize());
-            UserPhoenixPlayerDataMySQL.setDataClass(event.getPlayer().getUniqueId().toString(), playerData);
-            double letfFreeSize = (10000 - playerData.getResidence_total_size() - event.getResidence().getXZSize());
+            double letfFreeSize = (10000 - playerData.getResidence_total_size());
             event.getPlayer().sendMessage(ChatColor.GREEN + "保護區創建成功");//TODO: Langauge seleter
             event.getPlayer().sendMessage(ChatColor.YELLOW + "您還有 " + letfFreeSize + "格免費領地");
+            UserPhoenixPlayerDataMySQL.setDataClass(event.getPlayer().getUniqueId().toString(), playerData);
             return;
         }
 
