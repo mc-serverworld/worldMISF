@@ -56,6 +56,7 @@ public class ResidenceCreation implements Listener {
             double letfFreeSize = (10000 - playerData.getResidence_total_size());
             event.getPlayer().sendMessage(ChatColor.GREEN + "保護區創建成功");//TODO: Langauge seleter
             event.getPlayer().sendMessage(ChatColor.YELLOW + "您還有 " + letfFreeSize + "格免費領地");
+            playerData.setResidence_total_amount(playerData.getResidence_total_amount()+1);
             UserPhoenixPlayerDataMySQL.setDataClass(event.getPlayer().getUniqueId().toString(), playerData);
             return;
         }
@@ -68,6 +69,7 @@ public class ResidenceCreation implements Listener {
                 event.getPlayer().sendMessage(ChatColor.GREEN + "保護區創建成功");//TODO: Langauge seleter
                 event.getPlayer().sendMessage(ChatColor.YELLOW + "您還有 " + EconomyIO.getBalance(event.getPlayer()) + "$");
                 event.getPlayer().sendMessage(ChatColor.YELLOW + "與 " + leftSize + "格領地額度");
+                playerData.setResidence_total_amount(playerData.getResidence_total_amount()+1);
                 UserPhoenixPlayerDataMySQL.setDataClass(event.getPlayer().getUniqueId().toString(), playerData);
                 return;
             }
@@ -79,11 +81,13 @@ public class ResidenceCreation implements Listener {
             event.getPlayer().sendMessage(ChatColor.GREEN + "保護區創建成功");//TODO: Langauge seleter
             event.getPlayer().sendMessage(ChatColor.YELLOW + "您還有 " + EconomyIO.getBalance(event.getPlayer()) + "$");
             event.getPlayer().sendMessage(ChatColor.YELLOW + "與 " + leftSize + "格領地額度");
+            playerData.setResidence_total_amount(playerData.getResidence_total_amount()+1);
             UserPhoenixPlayerDataMySQL.setDataClass(event.getPlayer().getUniqueId().toString(), playerData);
             return;
         }
 
         event.getPlayer().sendMessage(ChatColor.RED + "餘額不足");//TODO: Langauge seleter
+        event.setCancelled(true);
     }
 
 }
