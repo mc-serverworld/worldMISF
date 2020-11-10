@@ -8,26 +8,33 @@ major integration server framework ~~(i dont even know how it work)~~
 
 
 # License info
-One of the project module (utils) used other libraries.
+Our project used other libraries.
 The licenses can found under this line.
+
+
+EssentialsX
+```
+START OF LICENSE
+----------------------
+GNU GENERAL PUBLIC LICENSE Version 3 https://github.com/EssentialsX/Essentials/blob/2.x/LICENSE
+----------------------
+END OF LICENSE
+```
 
 GSON 
 ```
 START OF LICENSE
 ----------------------
-Copyright 2008 Google Inc.
+Apache License Version 2.0 https://github.com/google/gson/blob/master/LICENSE
+----------------------
+END OF LICENSE
+```
 
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
+HttpClient
+```
+START OF LICENSE
+----------------------
+Apache License Version 2.0 http://www.apache.org/licenses/LICENSE-2.0.txt
 ----------------------
 END OF LICENSE
 ```
@@ -36,15 +43,25 @@ JSON
 ```
 START OF LICENSE
 ----------------------
-Copyright (c) 2002 JSON.org
+The JSON License https://www.json.org/license.html
+----------------------
+END OF LICENSE
+```
 
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+lombok
+```
+START OF LICENSE
+----------------------
+MIT License https://github.com/rzwitserloot/lombok/blob/master/LICENSE
+----------------------
+END OF LICENSE
+```
 
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-The Software shall be used for Good, not Evil.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+Residence
+```
+START OF LICENSE
+----------------------
+GNU GENERAL PUBLIC LICENSE Version 3 https://github.com/Zrips/Residence/blob/master/src/LICENSE
 ----------------------
 END OF LICENSE
 ```
@@ -53,8 +70,8 @@ Servlet API
 ```
 START OF LICENSE
 ----------------------
-http://www.apache.org/licenses/LICENSE-2.0
-http://www.eclipse.org/org/documents/epl-v10.php
+Apache License Version 2.0 http://www.apache.org/licenses/LICENSE-2.0
+Eclipse Public License v1.0 http://www.eclipse.org/org/documents/epl-v10.php
 ----------------------
 END OF LICENSE
 ```
@@ -63,12 +80,20 @@ sqlite-jdbc
 ```
 START OF LICENSE
 ----------------------
-https://github.com/xerial/sqlite-jdbc/blob/master/LICENSE
+Apache License Version 2.0 https://github.com/xerial/sqlite-jdbc/blob/master/LICENSE
 https://github.com/xerial/sqlite-jdbc/blob/master/LICENSE.zentus
 ----------------------
 END OF LICENSE
 ```
 
+VaultAPI
+```
+START OF LICENSE
+----------------------
+GNU GENERAL PUBLIC LICENSE Version 3 https://github.com/MilkBowl/VaultAPI/blob/master/license.txt
+----------------------
+END OF LICENSE
+```
 
 
 
