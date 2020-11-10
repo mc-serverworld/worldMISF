@@ -95,6 +95,15 @@ GNU GENERAL PUBLIC LICENSE Version 3 https://github.com/MilkBowl/VaultAPI/blob/m
 END OF LICENSE
 ```
 
+WorldBorder
+```
+START OF LICENSE
+----------------------
+BSD 2-Clause "Simplified" https://github.com/PryPurity/WorldBorder/blob/master/LICENSE
+----------------------
+END OF LICENSE
+```
+
 
 
 
