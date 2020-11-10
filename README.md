@@ -49,6 +49,28 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 END OF LICENSE
 ```
 
+Servlet API
+```
+START OF LICENSE
+----------------------
+http://www.apache.org/licenses/LICENSE-2.0
+http://www.eclipse.org/org/documents/epl-v10.php
+----------------------
+END OF LICENSE
+```
+
+sqlite-jdbc
+```
+START OF LICENSE
+----------------------
+https://github.com/xerial/sqlite-jdbc/blob/master/LICENSE
+https://github.com/xerial/sqlite-jdbc/blob/master/LICENSE.zentus
+----------------------
+END OF LICENSE
+```
+
+
+
 
 
 
