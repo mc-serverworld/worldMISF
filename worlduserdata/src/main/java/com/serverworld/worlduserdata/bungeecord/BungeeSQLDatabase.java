@@ -66,8 +66,8 @@ public class BungeeSQLDatabase {
             statement.executeUpdate("CREATE TABLE IF NOT EXISTS `worlduserdata_useraccountdata` (`PlayerUUID` char(36), `version` INT, `accountdata` TEXT, `signed` BOOLEAN, PRIMARY KEY(PlayerUUID))");
             //userphoenixdata
             statement.executeUpdate("CREATE TABLE IF NOT EXISTS `worlduserdata_userphoenixplayerdata` (`PlayerUUID` char(36), `version` INT, `playerdata` TEXT, PRIMARY KEY(PlayerUUID))");
-            //notuse
-            //statement.executeUpdate("CREATE TABLE IF NOT EXISTS `worlduserdata_userlastlocation` (`PlayerUUID` char(36), `Server` varchar(8), PRIMARY KEY(PlayerUUID),INDEX (Lang))");
+
+            statement.executeUpdate("CREATE TABLE IF NOT EXISTS `worlduserdata_ServerResidenceData` ( `id` BIGINT NOT NULL AUTO_INCREMENT , `ResidenceName` TEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL , `CreateTime` BIGINT NOT NULL , `ResidenceData` TEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL , `OwnerUUID` VARCHAR(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL , `Version` INT NOT NULL , PRIMARY KEY (`id`), INDEX (`ResidenceName`), INDEX (`CreateTime`), INDEX (`OwnerUUID`)) ENGINE = InnoDB;");
 
 
         }catch (Exception e){
@@ -96,5 +96,21 @@ public class BungeeSQLDatabase {
             Class.forName("com.mysql.jdbc.Driver");
             connection = DriverManager.getConnection("jdbc:mysql://" + this.host + ":" + this.port + "/" + this.database+"?autoReconnect=true&characterEncoding=utf-8", this.username, this.password);
         }
+    }
+
+    public static Connection getConnection(){
+        try {
+            if (connection != null && !connection.isClosed()) {
+                return connection;
+            }
+            Class.forName("com.mysql.jdbc.Driver");
+            BungeeworldUserDataConfig config = BungeeworldUserData.config;
+            connection = DriverManager.getConnection("jdbc:mysql://" + config.host() + ":" + "/" + config.database()+"?autoReconnect=true&characterEncoding=utf-8", config.username(), config.password());
+            return connection;
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
+
     }
 }

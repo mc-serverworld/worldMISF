@@ -67,7 +67,7 @@ public class PaperSQLDatabase {
             //userphoenixdata
             statement.executeUpdate("CREATE TABLE IF NOT EXISTS `worlduserdata_userphoenixplayerdata` (`PlayerUUID` char(36), `version` INT, `playerdata` TEXT, PRIMARY KEY(PlayerUUID))");
 
-            //statement.executeUpdate("CREATE TABLE IF NOT EXISTS `worlduserdata_userphoenixplayerdata` (`PlayerUUID` char(36), `version` INT, `lastlocation` TEXT, `logoutlocation` TEXT, `homes` TEXT, PRIMARY KEY(PlayerUUID))");
+            statement.executeUpdate("CREATE TABLE IF NOT EXISTS `worlduserdata_ServerResidenceData` ( `id` BIGINT NOT NULL AUTO_INCREMENT , `ResidenceName` TEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL , `CreateTime` BIGINT NOT NULL , `ResidenceData` TEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL , `OwnerUUID` VARCHAR(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL , `Version` INT NOT NULL , PRIMARY KEY (`id`), INDEX (`ResidenceName`), INDEX (`CreateTime`), INDEX (`OwnerUUID`)) ENGINE = InnoDB;");
 
             //statement.executeUpdate("CREATE TABLE IF NOT EXISTS `worldprofile_userlastlocation` (`PlayerUUID` char(36), `Server` varchar(8), PRIMARY KEY(PlayerUUID),INDEX (Lang))");
 
@@ -100,11 +100,17 @@ public class PaperSQLDatabase {
         }
     }
 
-    public static Connection getConnection() throws SQLException, ClassNotFoundException {
-        if (connection != null && !connection.isClosed()) {
+    public static Connection getConnection(){
+        try{
+            if (connection != null && !connection.isClosed()) {
+                return connection;
+            }
+            connection = DriverManager.getConnection("jdbc:mysql://" + host + ":" + port + "/" + database+"?autoReconnect=true&characterEncoding=utf-8", username, password);
             return connection;
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
         }
-        connection = DriverManager.getConnection("jdbc:mysql://" + host + ":" + port + "/" + database+"?autoReconnect=true&characterEncoding=utf-8", username, password);
-        return connection;
+
     }
 }

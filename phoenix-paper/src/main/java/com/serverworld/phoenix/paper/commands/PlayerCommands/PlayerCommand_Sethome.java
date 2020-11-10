@@ -40,7 +40,6 @@ public class PlayerCommand_Sethome implements CommandExecutor {
             return false;
         }
         Player player = (Player) sender;
-        UserPhoenixPlayerData playerdata = UserPhoenixPlayerDataMySQL.getDataClass(((Player) sender).getPlayer().getUniqueId().toString());//get player data
         UserPhoenixPlayerData playerData = UserPhoenixPlayerDataMySQL.getDataClass(player.getUniqueId().toString());
         playerData.setHome_server(PaperPhoenix.config.servername());
         playerData.setHome_world(player.getWorld().getName());
