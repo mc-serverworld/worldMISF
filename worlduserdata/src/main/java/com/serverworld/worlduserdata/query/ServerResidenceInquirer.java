@@ -34,7 +34,7 @@ public class ServerResidenceInquirer {
         this.connection = connection;
     }
 
-    public static boolean isExist(String residenceName, Connection connection){
+    public static boolean isExist(String residenceName){
         try {
             Statement statement = connection.createStatement();
             String executeString = "SELECT * FROM worlduserdata_ServerResidenceData WHERE ResidenceName = '%ResidenceName%';";
@@ -49,7 +49,7 @@ public class ServerResidenceInquirer {
             return false;
         }
     }
-    public static ServerResidenceData getDataClass(String residenceName, Connection connection){
+    public static ServerResidenceData getDataClass(String residenceName){
         try {
             Statement statement = connection.createStatement();
             String executeString = "SELECT * FROM worlduserdata_ServerResidenceData WHERE ResidenceName = '%ResidenceName%';";
@@ -66,7 +66,7 @@ public class ServerResidenceInquirer {
         }
     }
 
-    public static Boolean setDataClass(String residenceName, ServerResidenceData serverResidenceData, Connection connection){
+    public static Boolean setDataClass(String residenceName, ServerResidenceData serverResidenceData){
         try {
             Statement statement = connection.createStatement();
             String executeString = "UPDATE worlduserdata_ServerResidenceData SET ResidenceData = '%ResidenceData%' WHERE ResidenceName = '%ResidenceName%';";
@@ -82,7 +82,7 @@ public class ServerResidenceInquirer {
             return false;
         }
     }
-    public static int getDataClassVersion(String residenceName, Connection connection){
+    public static int getDataClassVersion(String residenceName){
         try {
             Statement statement = connection.createStatement();
             String executeString = "SELECT * FROM worlduserdata_ServerResidenceData WHERE ResidenceName = '%ResidenceName%';";
@@ -99,7 +99,7 @@ public class ServerResidenceInquirer {
         }
     }
 
-    public static Boolean setDataClassVersion(String residenceName, int version, Connection connection){
+    public static Boolean setDataClassVersion(String residenceName, int version){
         try {
             Statement statement = connection.createStatement();
             String executeString = "UPDATE worlduserdata_ServerResidenceData SET version = '%Version%' WHERE ResidenceName = '%ResidenceName%';";
