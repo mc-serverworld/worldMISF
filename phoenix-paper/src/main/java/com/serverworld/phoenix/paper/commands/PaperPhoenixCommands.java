@@ -24,7 +24,7 @@ import com.serverworld.phoenix.paper.PaperPhoenix;
 import com.serverworld.phoenix.paper.PaperPhoenixConfig;
 import com.serverworld.phoenix.paper.commands.subcommands.subCommand_set;
 import com.serverworld.phoenix.paper.util.DebugMessage;
-import com.serverworld.phoenix.paper.util.EconomyIO;
+import com.serverworld.worlduserdata.jsondata.ServerResidenceData;
 import net.md_5.bungee.api.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -33,10 +33,7 @@ import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
 import org.bukkit.util.StringUtil;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 public class PaperPhoenixCommands implements CommandExecutor , TabCompleter {
     private PaperPhoenix paperPhoenix;
@@ -52,7 +49,14 @@ public class PaperPhoenixCommands implements CommandExecutor , TabCompleter {
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
         try {
             switch (strings[0]) {
-                case "test": EconomyIO.takeBalance((Player)commandSender,8763D);
+                case "test":{
+                    ServerResidenceData residenceData = new ServerResidenceData();
+                    residenceData.setServer(config.servername());
+                    residenceData.setWorld("world");
+                    residenceData.setOwnerName("test");
+                    residenceData.setOwnerUUID(UUID.fromString("testuuid"));
+                    residenceData.setXYSize(500L);
+                }
                 case "info": {
                     if(!commandSender.hasPermission("misf.command.info")){
                         commandSender.sendMessage( ChatColor.RED + "no permission");

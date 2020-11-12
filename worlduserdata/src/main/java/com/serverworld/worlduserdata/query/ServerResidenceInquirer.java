@@ -28,11 +28,9 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 
 public class ServerResidenceInquirer {
-    private static Connection connection;
+    public static Connection connection;
 
-    public void setConnection(Connection connection){
-        this.connection = connection;
-    }
+    //static void setConnection(Connection connection){this.connection = connection;}
 
     public static boolean isExist(String residenceName){
         try {

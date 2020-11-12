@@ -207,7 +207,7 @@
         <dependency>
             <groupId>com.mc-serverworld.worldMISF</groupId>
             <artifactId>worlduserdata</artifactId>
-            <version>build-373</version>
+            <version>build-434</version>
             <scope>provided</scope>
         </dependency>
 
