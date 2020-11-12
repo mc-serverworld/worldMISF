@@ -47,6 +47,24 @@ public class ServerResidenceInquirer {
             return false;
         }
     }
+
+    public static ServerResidenceData addDataClass(ServerResidenceData residenceData,int version){
+        try {
+            Statement statement = connection.createStatement();
+            String executeString = "SELECT * FROM worlduserdata_ServerResidenceData WHERE ResidenceName = '%ResidenceName%';";
+            executeString = executeString.replace("%ResidenceName%",residenceName);
+            ResultSet rs = statement.executeQuery(executeString);
+            rs.next();
+            Gson gson= new Gson();
+            ServerResidenceData serverResidenceData = gson.fromJson(rs.getString("ResidenceData"), ServerResidenceData.class);
+            statement.close();
+            return serverResidenceData;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
     public static ServerResidenceData getDataClass(String residenceName){
         try {
             Statement statement = connection.createStatement();
