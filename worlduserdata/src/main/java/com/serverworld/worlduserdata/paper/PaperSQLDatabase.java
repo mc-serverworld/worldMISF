@@ -121,6 +121,6 @@ public class PaperSQLDatabase {
                 ServerResidenceInquirer.connection = getConnection();
                 ServerResidenceInquirer.isExist("check connection");
             }
-        }, 0L, 300*20);
+        }, 60L, 300*20);
     }
 }
