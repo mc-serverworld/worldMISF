@@ -101,6 +101,7 @@ public class ResidenceCreation implements Listener {
 
     public void addResidence(ResidenceCreationEvent event){
         ServerResidenceData residenceData = new ServerResidenceData();
+        residenceData.setResidenceName(event.getResidenceName());
         residenceData.setXYSize(event.getResidence().getXZSize());
         residenceData.setOwnerUUID(event.getPlayer().getUniqueId());
         residenceData.setOwnerName(event.getPlayer().getName());
