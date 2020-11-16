@@ -119,6 +119,7 @@ public class PaperSQLDatabase {
             @Override
             public void run() {
                 ServerResidenceInquirer.connection = getConnection();
+                ServerResidenceInquirer.isExist("check connection");
             }
         }, 0L, 300*20);
     }

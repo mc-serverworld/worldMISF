@@ -21,12 +21,14 @@
 package com.serverworld.worlduserdata.bungeecord;
 
 import com.serverworld.worlduserdata.bungeecord.uitls.DebugMessage;
+import com.serverworld.worlduserdata.query.ServerResidenceInquirer;
 import net.md_5.bungee.api.ChatColor;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.concurrent.TimeUnit;
 
 public class BungeeSQLDatabase {
     private BungeeworldUserData bungeeworldUserData;
@@ -69,7 +71,7 @@ public class BungeeSQLDatabase {
 
             statement.executeUpdate("CREATE TABLE IF NOT EXISTS `worlduserdata_ServerResidenceData` ( `id` BIGINT NOT NULL AUTO_INCREMENT , `ResidenceName` TEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL , `CreateTime` BIGINT NOT NULL , `ResidenceData` TEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL , `OwnerUUID` VARCHAR(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL , `Version` INT NOT NULL , PRIMARY KEY (`id`), INDEX (`ResidenceName`), INDEX (`CreateTime`), INDEX (`OwnerUUID`)) ENGINE = InnoDB;");
 
-
+            syncConnection();
         }catch (Exception e){
             e.printStackTrace();
             DebugMessage.sendWarring(ChatColor.RED + "Error while connection to database");
@@ -112,5 +114,15 @@ public class BungeeSQLDatabase {
             return null;
         }
 
+    }
+
+    public void syncConnection() {
+        BungeeworldUserData.getInstance().getProxy().getScheduler().schedule(BungeeworldUserData.getInstance(), new Runnable() {
+            @Override
+            public void run() {
+                ServerResidenceInquirer.connection = getConnection();
+                ServerResidenceInquirer.isExist("check connection");
+            }
+        }, 1, 5, TimeUnit.MINUTES);
     }
 }

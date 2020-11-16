@@ -48,17 +48,22 @@ public class ServerResidenceInquirer {
         }
     }
 
-    public static ServerResidenceData addDataClass(ServerResidenceData residenceData,int version){
+    public static Boolean addDataClass(ServerResidenceData residenceData,int version){
         try {
+            if(isExist(residenceData.getResidenceName()))
+                return null;
             Statement statement = connection.createStatement();
-            String executeString = "SELECT * FROM worlduserdata_ServerResidenceData WHERE ResidenceName = '%ResidenceName%';";
-            executeString = executeString.replace("%ResidenceName%",residenceName);
-            ResultSet rs = statement.executeQuery(executeString);
-            rs.next();
-            Gson gson= new Gson();
-            ServerResidenceData serverResidenceData = gson.fromJson(rs.getString("ResidenceData"), ServerResidenceData.class);
+            String executeString = "INSERT INTO `worlduserdata_serverresidencedata` (`id`, `ResidenceName`, `CreateTime`, `ResidenceData`, `OwnerUUID`, `Version`) VALUES (NULL, '%ResidenceName%', '%CreateTime%', '%ResidenceData%', '%OwnerUUID%', '%Version%');";
+            Gson gson = new Gson();
+            String stg = gson.toJson(residenceData,ServerResidenceData.class);
+            executeString = executeString.replace("%ResidenceName%",residenceData.getResidenceName());
+            executeString = executeString.replace("%CreateTime%",residenceData.getCreateTime().toString());
+            executeString = executeString.replace("%ResidenceData%",stg);
+            executeString = executeString.replace("%OwnerUUID%",residenceData.getOwnerUUID().toString());
+            executeString = executeString.replace("%Version%",String.valueOf(version));
+            statement.execute(executeString);
             statement.close();
-            return serverResidenceData;
+            return true;
         } catch (Exception e) {
             e.printStackTrace();
             return null;

@@ -31,6 +31,7 @@ public class ServerResidenceData {
     @Getter(AccessLevel.PUBLIC) @Setter(AccessLevel.PUBLIC) private String Server;
     @Getter(AccessLevel.PUBLIC) @Setter(AccessLevel.PUBLIC) private String World;
     @Getter(AccessLevel.PUBLIC) @Setter(AccessLevel.PUBLIC) private String ResidenceName;
+    @Getter(AccessLevel.PUBLIC) @Setter(AccessLevel.PUBLIC) private Long CreateTime;
     @Getter(AccessLevel.PUBLIC) @Setter(AccessLevel.PUBLIC) private Long XYSize;
     @Getter(AccessLevel.PUBLIC) @Setter(AccessLevel.PUBLIC) private Boolean AllowGlobalTeleport;
 
