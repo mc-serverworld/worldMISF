@@ -31,6 +31,8 @@ import net.md_5.bungee.api.ChatColor;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 
+import java.util.Date;
+
 public class ResidenceCreation implements Listener {
 
     public ResidenceCreation(PaperPhoenix paperPhoenix) {
@@ -100,11 +102,12 @@ public class ResidenceCreation implements Listener {
     }
 
     public void addResidence(ResidenceCreationEvent event){
+        Date date = new Date();
         ServerResidenceData residenceData = new ServerResidenceData();
         residenceData.setServer(PaperPhoenix.config.servername());
         residenceData.setWorld(event.getResidence().getWorld());
         residenceData.setResidenceName(event.getResidenceName());
-        residenceData.setCreateTime(event.getResidence().getCreateTime());
+        residenceData.setCreateTime(date.getTime());
         residenceData.setXYSize(event.getResidence().getXZSize());
         residenceData.setAllowGlobalTeleport(false);
 
