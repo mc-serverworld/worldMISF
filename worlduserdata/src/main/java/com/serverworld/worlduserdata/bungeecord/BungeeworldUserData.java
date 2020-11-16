@@ -22,6 +22,8 @@ package com.serverworld.worlduserdata.bungeecord;
 
 import com.serverworld.worlduserdata.bungeecord.Listeners.PlayerLogin;
 import com.serverworld.worlduserdata.bungeecord.commands.SignCommand;
+import com.serverworld.worlduserdata.query.ConnectionManager;
+import com.serverworld.worlduserdata.query.ServerResidenceInquirer;
 import net.md_5.bungee.api.plugin.Plugin;
 import net.md_5.bungee.config.Configuration;
 import net.md_5.bungee.config.ConfigurationProvider;
@@ -32,6 +34,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
 import java.sql.Connection;
+import java.util.concurrent.TimeUnit;
 
 public class BungeeworldUserData extends Plugin {
 
@@ -52,6 +55,7 @@ public class BungeeworldUserData extends Plugin {
         getLogger().info("Helloworld");
 
         getProxy().getPluginManager().registerCommand(this,new SignCommand(this));
+        syncConnection();
     }
 
     public void setupconfig(){
@@ -73,6 +77,17 @@ public class BungeeworldUserData extends Plugin {
             e.printStackTrace();
         }
         config = new BungeeworldUserDataConfig(this);
+    }
+
+    public void syncConnection() {
+        BungeeworldUserData.getInstance().getProxy().getScheduler().schedule(BungeeworldUserData.getInstance(), new Runnable() {
+            @Override
+            public void run() {
+                ConnectionManager.setConnection(BungeeSQLDatabase.getConnection());
+
+                ServerResidenceInquirer.isExist("check connection");
+            }
+        }, 1, 5, TimeUnit.MINUTES);
     }
 
     public static BungeeworldUserData getInstance(){
