@@ -20,6 +20,7 @@
 
 package com.serverworld.worlduserdata.paper;
 
+import com.serverworld.worlduserdata.query.ServerResidenceInquirer;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class PaperworldUserData extends JavaPlugin {
@@ -36,6 +37,7 @@ public class PaperworldUserData extends JavaPlugin {
 
     @Override
     public void onEnable() {
+        syncConnection();
         //setup
         //setSQL();
 
@@ -43,6 +45,16 @@ public class PaperworldUserData extends JavaPlugin {
 
     public void setSQL(){
         PaperSQLDatabase paperSQLDatabase = new PaperSQLDatabase(this);
+    }
+
+    public void syncConnection() {
+        PaperworldUserData.getInstance().getServer().getScheduler().scheduleSyncRepeatingTask(PaperworldUserData.getInstance(), new Runnable() {
+            @Override
+            public void run() {
+                ServerResidenceInquirer.connection = PaperSQLDatabase.getConnection();
+                ServerResidenceInquirer.isExist("check connection");
+            }
+        }, 60L, 300*20);
     }
 
     public static PaperworldUserData getInstance(){

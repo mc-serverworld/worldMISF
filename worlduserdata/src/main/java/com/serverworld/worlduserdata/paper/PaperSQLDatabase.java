@@ -21,7 +21,6 @@
 package com.serverworld.worlduserdata.paper;
 
 import com.serverworld.worlduserdata.paper.utils.DebugMessage;
-import com.serverworld.worlduserdata.query.ServerResidenceInquirer;
 import net.md_5.bungee.api.ChatColor;
 
 import java.sql.Connection;
@@ -71,7 +70,6 @@ public class PaperSQLDatabase {
             statement.executeUpdate("CREATE TABLE IF NOT EXISTS `worlduserdata_ServerResidenceData` ( `id` BIGINT NOT NULL AUTO_INCREMENT , `ResidenceName` TEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL , `CreateTime` BIGINT NOT NULL , `ResidenceData` TEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL , `OwnerUUID` VARCHAR(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL , `Version` INT NOT NULL , PRIMARY KEY (`id`), INDEX (`ResidenceName`), INDEX (`CreateTime`), INDEX (`OwnerUUID`)) ENGINE = InnoDB;");
 
             //statement.executeUpdate("CREATE TABLE IF NOT EXISTS `worldprofile_userlastlocation` (`PlayerUUID` char(36), `Server` varchar(8), PRIMARY KEY(PlayerUUID),INDEX (Lang))");
-            syncConnection();
         }catch (Exception e){
             e.printStackTrace();
             DebugMessage.sendWarring(ChatColor.RED + "Error while connection to database");
@@ -112,15 +110,5 @@ public class PaperSQLDatabase {
             return null;
         }
 
-    }
-
-    public void syncConnection() {
-        PaperworldUserData.getInstance().getServer().getScheduler().scheduleSyncRepeatingTask(PaperworldUserData.getInstance(), new Runnable() {
-            @Override
-            public void run() {
-                ServerResidenceInquirer.connection = getConnection();
-                ServerResidenceInquirer.isExist("check connection");
-            }
-        }, 60L, 300*20);
     }
 }
