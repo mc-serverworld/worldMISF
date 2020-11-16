@@ -151,6 +151,7 @@ public class PaperPhoenix extends JavaPlugin {
 
         PlayerCommand_Tpahere PlayerCommand_Tpahere = new PlayerCommand_Tpahere();
         this.getCommand("tpahere").setExecutor(PlayerCommand_Tpahere);
+        this.getCommand("tpahere").setTabCompleter(PlayerCommand_Tpahere);
 
         PlayerCommand_Tpdeny PlayerCommand_Tpdeny = new PlayerCommand_Tpdeny();
         this.getCommand("tpdeny").setExecutor(PlayerCommand_Tpdeny);
