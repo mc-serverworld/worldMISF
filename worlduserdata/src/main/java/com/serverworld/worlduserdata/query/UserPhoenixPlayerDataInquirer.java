@@ -121,7 +121,7 @@ public class UserPhoenixPlayerDataInquirer {
         }
     }
 
-    public static int getDataClassVersion(UUID uuid){//TODO
+    public static int getDataClassVersion(UUID uuid){
         try {
             Statement statement = ConnectionManager.getConnection().createStatement();
             String executeString = "SELECT * FROM worlduserdata_userphoenixplayerdata WHERE PlayerUUID = '%PlayerUUID%';";
@@ -137,7 +137,7 @@ public class UserPhoenixPlayerDataInquirer {
         }
     }
 
-    public static Boolean setDataClassVersion(UUID uuid, int version){//TODO
+    public static Boolean setDataClassVersion(UUID uuid, int version){
         try {
             Statement statement = ConnectionManager.getConnection().createStatement();
             String executeString = "UPDATE worlduserdata_userphoenixplayerdata SET version = %Version%'' WHERE PlayerUUID = '%PlayerUUID%';";
