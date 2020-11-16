@@ -32,7 +32,7 @@ public class ServerResidenceInquirer {
 
     public static boolean isExist(String residenceName){
         try {
-            Statement statement = ConnectionManager.connection.createStatement();
+            Statement statement = ConnectionManager.getConnection().createStatement();
             String executeString = "SELECT * FROM worlduserdata_ServerResidenceData WHERE ResidenceName = '%ResidenceName%';";
             executeString = executeString.replace("%ResidenceName%",residenceName);
             ResultSet rs = statement.executeQuery(executeString);
@@ -50,7 +50,7 @@ public class ServerResidenceInquirer {
         try {
             if(isExist(residenceData.getResidenceName()))
                 return null;
-            Statement statement = ConnectionManager.connection.createStatement();
+            Statement statement = ConnectionManager.getConnection().createStatement();
             String executeString = "INSERT INTO `worlduserdata_serverresidencedata` (`id`, `ResidenceName`, `CreateTime`, `ResidenceData`, `OwnerUUID`, `Version`) VALUES (NULL, '%ResidenceName%', '%CreateTime%', '%ResidenceData%', '%OwnerUUID%', '%Version%');";
             Gson gson = new Gson();
             String stg = gson.toJson(residenceData,ServerResidenceData.class);
@@ -70,7 +70,7 @@ public class ServerResidenceInquirer {
 
     public static ServerResidenceData getDataClass(String residenceName){
         try {
-            Statement statement = ConnectionManager.connection.createStatement();
+            Statement statement = ConnectionManager.getConnection().createStatement();
             String executeString = "SELECT * FROM worlduserdata_ServerResidenceData WHERE ResidenceName = '%ResidenceName%';";
             executeString = executeString.replace("%ResidenceName%",residenceName);
             ResultSet rs = statement.executeQuery(executeString);
@@ -87,7 +87,7 @@ public class ServerResidenceInquirer {
 
     public static Boolean setDataClass(String residenceName, ServerResidenceData serverResidenceData){
         try {
-            Statement statement = ConnectionManager.connection.createStatement();
+            Statement statement = ConnectionManager.getConnection().createStatement();
             String executeString = "UPDATE worlduserdata_ServerResidenceData SET ResidenceData = '%ResidenceData%' WHERE ResidenceName = '%ResidenceName%';";
             Gson gson = new Gson();
             String stg = gson.toJson(serverResidenceData,ServerResidenceData.class);
@@ -103,7 +103,7 @@ public class ServerResidenceInquirer {
     }
     public static int getDataClassVersion(String residenceName){
         try {
-            Statement statement = ConnectionManager.connection.createStatement();
+            Statement statement = ConnectionManager.getConnection().createStatement();
             String executeString = "SELECT * FROM worlduserdata_ServerResidenceData WHERE ResidenceName = '%ResidenceName%';";
             executeString = executeString.replace("%ResidenceName%",residenceName);
             statement.execute(executeString);
@@ -120,7 +120,7 @@ public class ServerResidenceInquirer {
 
     public static Boolean setDataClassVersion(String residenceName, int version){
         try {
-            Statement statement = ConnectionManager.connection.createStatement();
+            Statement statement = ConnectionManager.getConnection().createStatement();
             String executeString = "UPDATE worlduserdata_ServerResidenceData SET version = '%Version%' WHERE ResidenceName = '%ResidenceName%';";
             executeString = executeString.replace("%ResidenceName%",residenceName);
             executeString = executeString.replace("%Version%", String.valueOf(version));

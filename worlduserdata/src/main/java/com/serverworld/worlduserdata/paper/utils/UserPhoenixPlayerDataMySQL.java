@@ -26,7 +26,7 @@ import com.serverworld.worlduserdata.paper.PaperSQLDatabase;
 
 import java.sql.ResultSet;
 import java.sql.Statement;
-
+@Deprecated
 public class UserPhoenixPlayerDataMySQL {
 
     public static String Adder(Object object){

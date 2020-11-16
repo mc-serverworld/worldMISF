@@ -27,7 +27,7 @@ import com.serverworld.worlduserdata.bungeecord.BungeeworldUserData;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-
+@Deprecated
 public class UserPhoenixPlayerDataMySQL {
 
     public static String Adder(Object object){
