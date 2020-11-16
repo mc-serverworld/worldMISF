@@ -101,13 +101,15 @@ public class ResidenceCreation implements Listener {
 
     public void addResidence(ResidenceCreationEvent event){
         ServerResidenceData residenceData = new ServerResidenceData();
-        residenceData.setResidenceName(event.getResidenceName());
-        residenceData.setXYSize(event.getResidence().getXZSize());
-        residenceData.setOwnerUUID(event.getPlayer().getUniqueId());
-        residenceData.setOwnerName(event.getPlayer().getName());
-        residenceData.setWorld(event.getResidence().getWorld());
         residenceData.setServer(PaperPhoenix.config.servername());
+        residenceData.setWorld(event.getResidence().getWorld());
+        residenceData.setResidenceName(event.getResidenceName());
+        residenceData.setCreateTime(event.getResidence().getCreateTime());
+        residenceData.setXYSize(event.getResidence().getXZSize());
         residenceData.setAllowGlobalTeleport(false);
+
+        residenceData.setOwnerName(event.getPlayer().getName());
+        residenceData.setOwnerUUID(event.getPlayer().getUniqueId());
         residenceData.setTeleportLocation_x(event.getResidence().getTeleportLocation(event.getPlayer()).getX());
         residenceData.setTeleportLocation_y(event.getResidence().getTeleportLocation(event.getPlayer()).getY());
         residenceData.setTeleportLocation_z(event.getResidence().getTeleportLocation(event.getPlayer()).getZ());
