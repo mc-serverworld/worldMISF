@@ -38,7 +38,6 @@ public class ResidenceCreation implements Listener {
 
     @EventHandler
     public void onResidenceCreationEvent(ResidenceCreationEvent event) {
-        event.getPlayer().sendMessage("Event triggered");
         if (event.isCancelled())
             return;
         UserPhoenixPlayerData playerData = UserPhoenixPlayerDataInquirer.getDataClass(event.getPlayer().getUniqueId());
@@ -74,8 +73,9 @@ public class ResidenceCreation implements Listener {
                 playerData.setResidence_total_size(playerData.getResidence_total_size() + overSize);
                 double leftSize = playerData.getResidence_max_size() - playerData.getResidence_total_size();
                 event.getPlayer().sendMessage(ChatColor.GREEN + "保護區創建成功");//TODO: Langauge seleter
-                event.getPlayer().sendMessage(ChatColor.YELLOW + "您還有 " + EconomyIO.getBalance(event.getPlayer()) + "$");
-                event.getPlayer().sendMessage(ChatColor.YELLOW + "與 " + leftSize + "格領地額度");
+                event.getPlayer().sendMessage(ChatColor.YELLOW + "您還有");
+                event.getPlayer().sendMessage(ChatColor.YELLOW + "" + EconomyIO.getBalance(event.getPlayer()) + "$");
+                event.getPlayer().sendMessage(ChatColor.YELLOW + "" + leftSize + "格領地額度");
                 playerData.setResidence_total_amount(playerData.getResidence_total_amount()+1);
                 addResidence(event);
                 UserPhoenixPlayerDataInquirer.setDataClass(event.getPlayer().getUniqueId(), playerData);
@@ -87,8 +87,9 @@ public class ResidenceCreation implements Listener {
             playerData.setResidence_total_size(playerData.getResidence_total_size() + event.getResidence().getXZSize());
             double leftSize = playerData.getResidence_max_size() - playerData.getResidence_total_size();
             event.getPlayer().sendMessage(ChatColor.GREEN + "保護區創建成功");//TODO: Langauge seleter
-            event.getPlayer().sendMessage(ChatColor.YELLOW + "您還有 " + EconomyIO.getBalance(event.getPlayer()) + "$");
-            event.getPlayer().sendMessage(ChatColor.YELLOW + "與 " + leftSize + "格領地額度");
+            event.getPlayer().sendMessage(ChatColor.YELLOW + "您還有");
+            event.getPlayer().sendMessage(ChatColor.YELLOW + "" + EconomyIO.getBalance(event.getPlayer()) + "$");
+            event.getPlayer().sendMessage(ChatColor.YELLOW + "" + leftSize + "格領地額度");
             playerData.setResidence_total_amount(playerData.getResidence_total_amount()+1);
             addResidence(event);
             UserPhoenixPlayerDataInquirer.setDataClass(event.getPlayer().getUniqueId(), playerData);
