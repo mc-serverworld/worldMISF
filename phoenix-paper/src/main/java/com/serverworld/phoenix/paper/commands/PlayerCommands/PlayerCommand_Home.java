@@ -26,7 +26,7 @@ import com.serverworld.phoenix.paper.util.Formats;
 import com.serverworld.worldSocket.paperspigot.util.messagecoder;
 import com.serverworld.worldSocket.paperspigot.util.messager;
 import com.serverworld.worlduserdata.jsondata.UserPhoenixPlayerData;
-import com.serverworld.worlduserdata.paper.utils.UserPhoenixPlayerDataMySQL;
+import com.serverworld.worlduserdata.query.UserPhoenixPlayerDataInquirer;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -43,14 +43,14 @@ public class PlayerCommand_Home implements CommandExecutor {
             return false;
         }
         Player player = (Player) sender;
-        UserPhoenixPlayerData playerdata = UserPhoenixPlayerDataMySQL.getDataClass(((Player) sender).getPlayer().getUniqueId().toString());//get player data
-        UserPhoenixPlayerData playerData = UserPhoenixPlayerDataMySQL.getDataClass(player.getUniqueId().toString());
+        UserPhoenixPlayerData playerdata = UserPhoenixPlayerDataInquirer.getDataClass(((Player) sender).getPlayer().getUniqueId());//get player data
+        UserPhoenixPlayerData playerData = UserPhoenixPlayerDataInquirer.getDataClass(player.getUniqueId());
         playerData.setLastlocation_server(PaperPhoenix.config.servername());
         playerData.setLastlocation_world(player.getWorld().getName());
         playerData.setLastlocation_x(player.getLocation().getX());
         playerData.setLastlocation_y(player.getLocation().getY());
         playerData.setLastlocation_z(player.getLocation().getZ());
-        UserPhoenixPlayerDataMySQL.setDataClass(player.getUniqueId().toString() , playerData);//save dead pos to database
+        UserPhoenixPlayerDataInquirer.setDataClass(player.getUniqueId() , playerData);//save dead pos to database
 
         player.sendMessage(Formats.perfix() + ChatColor.GREEN + "將您傳送至家");//TODO: Langauge seleter
 
