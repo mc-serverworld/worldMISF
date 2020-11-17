@@ -91,10 +91,12 @@ public class UserAccountDataInquirer {
         }
     }
 
-    public static UserAccountData getDataClass(String UUID){
+    public static UserAccountData getDataClass(UUID uuid){
         try {
-            Statement statement = PaperSQLDatabase.getConnection().createStatement();
-            ResultSet rs = statement.executeQuery("SELECT * FROM worlduserdata_useraccountdata WHERE PlayerUUID = '" + UUID + "';");
+            Statement statement = ConnectionManager.getConnection().createStatement();
+            String executeString ="SELECT * FROM worlduserdata_useraccountdata WHERE PlayerUUID = '%UUID%';";
+            executeString = executeString.replace("%UUID%",uuid.toString());
+            ResultSet rs = statement.executeQuery(executeString);
             rs.next();
             Gson gson= new Gson();
             UserAccountData data = gson.fromJson(rs.getString("accountdata"), UserAccountData.class);
@@ -106,12 +108,16 @@ public class UserAccountDataInquirer {
         }
     }
 
-    public static boolean setDataClass(String UUID, UserAccountData userAccountData){
+    public static boolean setDataClass(UUID uuid, UserAccountData userAccountData){
         try {
-            Statement statement = PaperSQLDatabase.getConnection().createStatement();
+            Statement statement = ConnectionManager.getConnection().createStatement();
             Gson gson = new Gson();
             String stg = gson.toJson(userAccountData,UserAccountData.class);
-            statement.execute("UPDATE worlduserdata_useraccountdata SET accountdata = '" + stg + "' WHERE PlayerUUID = '" + UUID + "'");
+            String executeString ="UPDATE worlduserdata_useraccountdata SET accountdata = '%UserAccountData%' WHERE PlayerUUID = '%UUID%'";
+            executeString = executeString.replace("%UUID%",uuid.toString());
+            executeString = executeString.replace("%UserAccountData%",stg);
+            statement.execute(executeString);
+            statement.close();
             return true;
         } catch (Exception e) {
             e.printStackTrace();
@@ -119,10 +125,12 @@ public class UserAccountDataInquirer {
         }
     }
 
-    public static int getDataClassVersion(String UUID){
+    public static int getDataClassVersion(UUID uuid){
         try {
-            Statement statement = PaperSQLDatabase.getConnection().createStatement();
-            ResultSet rs = statement.executeQuery("SELECT * FROM worlduserdata_useraccountdata WHERE PlayerUUID = '" + UUID + "';");
+            Statement statement = ConnectionManager.getConnection().createStatement();
+            String executeString ="SELECT * FROM worlduserdata_useraccountdata WHERE PlayerUUID = '%UUID%';";
+            executeString = executeString.replace("%UUID%",uuid.toString());
+            ResultSet rs = statement.executeQuery(executeString);
             rs.next();
             int res = rs.getInt("version");
             statement.close();
@@ -133,36 +141,13 @@ public class UserAccountDataInquirer {
         }
     }
 
-    public static int getDataClassVersion(UUID UUID){
+    public static boolean setDataClassVersion(UUID uuid, int version){
         try {
-            Statement statement = PaperSQLDatabase.getConnection().createStatement();
-            ResultSet rs = statement.executeQuery("SELECT * FROM worlduserdata_useraccountdata WHERE PlayerUUID = '" + UUID + "';");
-            rs.next();
-            int res = rs.getInt("version");
-            statement.close();
-            return res;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return 0;
-        }
-    }
-
-    public static boolean setDataClassVersion(String UUID, int version){
-        try {
-            Statement statement = PaperSQLDatabase.getConnection().createStatement();
-            statement.execute("UPDATE worlduserdata_useraccountdata SET version = '" + version + "' WHERE PlayerUUID = " + UUID);
-            statement.close();
-            return true;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return false;
-        }
-    }
-
-    public static boolean setDataClassVersion(UUID UUID, int version){
-        try {
-            Statement statement = PaperSQLDatabase.getConnection().createStatement();
-            statement.execute("UPDATE worlduserdata_useraccountdata SET version = '" + version + "' WHERE PlayerUUID = " + UUID);
+            Statement statement = ConnectionManager.getConnection().createStatement();
+            String executeString ="UPDATE worlduserdata_useraccountdata SET version = '%VERSION%' WHERE PlayerUUID = '%UUID%'";
+            executeString = executeString.replace("%UUID%",uuid.toString());
+            executeString = executeString.replace("%VERSION%",String.valueOf(version));
+            statement.execute(executeString);
             statement.close();
             return true;
         } catch (Exception e) {
