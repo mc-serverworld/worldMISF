@@ -25,6 +25,7 @@ import com.serverworld.phoenix.paper.util.DebugMessage;
 import com.serverworld.phoenix.paper.util.Formats;
 import com.serverworld.worlduserdata.jsondata.UserPhoenixPlayerData;
 import com.serverworld.worlduserdata.paper.utils.UserPhoenixPlayerDataMySQL;
+import com.serverworld.worlduserdata.query.UserPhoenixPlayerDataInquirer;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -40,13 +41,13 @@ public class PlayerCommand_Sethome implements CommandExecutor {
             return false;
         }
         Player player = (Player) sender;
-        UserPhoenixPlayerData playerData = UserPhoenixPlayerDataMySQL.getDataClass(player.getUniqueId().toString());
+        UserPhoenixPlayerData playerData = UserPhoenixPlayerDataInquirer.getDataClass(player.getUniqueId());
         playerData.setHome_server(PaperPhoenix.config.servername());
         playerData.setHome_world(player.getWorld().getName());
         playerData.setHome_x(player.getLocation().getX());
         playerData.setHome_y(player.getLocation().getY());
         playerData.setHome_z(player.getLocation().getZ());
-        UserPhoenixPlayerDataMySQL.setDataClass(player.getUniqueId().toString() , playerData);//save dead pos to database
+        UserPhoenixPlayerDataInquirer.setDataClass(player.getUniqueId() , playerData);//save dead pos to database
 
         player.sendMessage(Formats.perfix() + ChatColor.GREEN + "設定您的家於此");//TODO: Langauge seleter
         DebugMessage.sendIfHasPermission(sender,Formats.debug_perfix() + "Server: " + PaperPhoenix.config.servername() + " World: " + player.getWorld().getName());
