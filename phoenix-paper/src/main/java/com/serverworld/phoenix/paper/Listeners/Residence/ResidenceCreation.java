@@ -25,13 +25,11 @@ import com.serverworld.phoenix.paper.PaperPhoenix;
 import com.serverworld.phoenix.paper.util.EconomyIO;
 import com.serverworld.worlduserdata.jsondata.ServerResidenceData;
 import com.serverworld.worlduserdata.jsondata.UserPhoenixPlayerData;
-import com.serverworld.worlduserdata.paper.utils.UserPhoenixPlayerDataMySQL;
 import com.serverworld.worlduserdata.query.ServerResidenceInquirer;
+import com.serverworld.worlduserdata.query.UserPhoenixPlayerDataInquirer;
 import net.md_5.bungee.api.ChatColor;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-
-import java.util.Date;
 
 public class ResidenceCreation implements Listener {
 
@@ -43,7 +41,7 @@ public class ResidenceCreation implements Listener {
         event.getPlayer().sendMessage("Event triggered");
         if (event.isCancelled())
             return;
-        UserPhoenixPlayerData playerData = UserPhoenixPlayerDataMySQL.getDataClass(event.getPlayer().getUniqueId().toString());
+        UserPhoenixPlayerData playerData = UserPhoenixPlayerDataInquirer.getDataClass(event.getPlayer().getUniqueId());
         //UserPhoenixPlayerDataMySQL.setDataClass(eventplayer.getUniqueId().toString() , playerData);
         if (playerData.getResidence_total_amount() >= playerData.getResidence_max_amount()) {
             event.getPlayer().sendMessage(ChatColor.RED + "超過您可持有的保護區上限");//TODO: Langauge seleter
@@ -66,7 +64,7 @@ public class ResidenceCreation implements Listener {
             event.getPlayer().sendMessage(ChatColor.YELLOW + "您還有 " + letfFreeSize + "格免費領地");
             playerData.setResidence_total_amount(playerData.getResidence_total_amount()+1);
             addResidence(event);
-            UserPhoenixPlayerDataMySQL.setDataClass(event.getPlayer().getUniqueId().toString(), playerData);
+            UserPhoenixPlayerDataInquirer.setDataClass(event.getPlayer().getUniqueId(), playerData);
             return;
         }
 
@@ -80,7 +78,7 @@ public class ResidenceCreation implements Listener {
                 event.getPlayer().sendMessage(ChatColor.YELLOW + "與 " + leftSize + "格領地額度");
                 playerData.setResidence_total_amount(playerData.getResidence_total_amount()+1);
                 addResidence(event);
-                UserPhoenixPlayerDataMySQL.setDataClass(event.getPlayer().getUniqueId().toString(), playerData);
+                UserPhoenixPlayerDataInquirer.setDataClass(event.getPlayer().getUniqueId(), playerData);
                 return;
             }
         }
@@ -93,7 +91,7 @@ public class ResidenceCreation implements Listener {
             event.getPlayer().sendMessage(ChatColor.YELLOW + "與 " + leftSize + "格領地額度");
             playerData.setResidence_total_amount(playerData.getResidence_total_amount()+1);
             addResidence(event);
-            UserPhoenixPlayerDataMySQL.setDataClass(event.getPlayer().getUniqueId().toString(), playerData);
+            UserPhoenixPlayerDataInquirer.setDataClass(event.getPlayer().getUniqueId(), playerData);
             return;
         }
 
@@ -102,12 +100,11 @@ public class ResidenceCreation implements Listener {
     }
 
     public void addResidence(ResidenceCreationEvent event){
-        Date date = new Date();
         ServerResidenceData residenceData = new ServerResidenceData();
         residenceData.setServer(PaperPhoenix.config.servername());
         residenceData.setWorld(event.getResidence().getWorld());
         residenceData.setResidenceName(event.getResidenceName());
-        residenceData.setCreateTime(date.getTime());
+        residenceData.setCreateTime(event.getResidence().getCreateTime());
         residenceData.setXYSize(event.getResidence().getXZSize());
         residenceData.setAllowGlobalTeleport(false);
 
