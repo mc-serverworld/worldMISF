@@ -22,7 +22,6 @@ package com.serverworld.worlduserdata.query;
 
 import com.google.gson.Gson;
 import com.serverworld.worlduserdata.jsondata.UserPhoenixPlayerData;
-import com.serverworld.worlduserdata.paper.utils.DebugMessage;
 
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -66,7 +65,7 @@ public class UserPhoenixPlayerDataInquirer {
             statement.close();
             return true;
         } catch (Exception e) {
-            DebugMessage.sendWarring(e.toString());
+            e.printStackTrace();
             return false;
         }
     }
@@ -82,7 +81,7 @@ public class UserPhoenixPlayerDataInquirer {
             statement.close();
             return exist;
         } catch (Exception e) {
-            DebugMessage.sendWarring(e.toString());
+            e.printStackTrace();
             return false;
         }
     }
@@ -99,7 +98,7 @@ public class UserPhoenixPlayerDataInquirer {
             statement.close();
             return playerdataclass;
         } catch (Exception e) {
-            DebugMessage.sendWarring(e.toString());
+            e.printStackTrace();
             return null;
         }
     }
@@ -116,7 +115,7 @@ public class UserPhoenixPlayerDataInquirer {
             statement.close();
             return true;
         } catch (Exception e) {
-            DebugMessage.sendWarring(e.toString());
+            e.printStackTrace();
             return false;
         }
     }
@@ -132,7 +131,7 @@ public class UserPhoenixPlayerDataInquirer {
             statement.close();
             return ver;
         } catch (Exception e) {
-            DebugMessage.sendWarring(e.toString());
+            e.printStackTrace();
             return 0;
         }
     }
@@ -147,7 +146,7 @@ public class UserPhoenixPlayerDataInquirer {
             statement.close();
             return true;
         } catch (Exception e) {
-            DebugMessage.sendWarring(e.toString());
+            e.printStackTrace();
             return false;
         }
     }

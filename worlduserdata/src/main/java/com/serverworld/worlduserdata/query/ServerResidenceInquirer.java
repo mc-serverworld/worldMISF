@@ -46,10 +46,10 @@ public class ServerResidenceInquirer {
         }
     }
 
-    public static Boolean addDataClass(ServerResidenceData residenceData,int version){
+    public static boolean addDataClass(ServerResidenceData residenceData,int version){
         try {
             if(isExist(residenceData.getResidenceName()))
-                return null;
+                return false;
             Statement statement = ConnectionManager.getConnection().createStatement();
             String executeString = "INSERT INTO `worlduserdata_serverresidencedata` (`id`, `ResidenceName`, `CreateTime`, `ResidenceData`, `OwnerUUID`, `Version`) VALUES (NULL, '%ResidenceName%', '%CreateTime%', '%ResidenceData%', '%OwnerUUID%', '%Version%');";
             Gson gson = new Gson();
@@ -64,7 +64,7 @@ public class ServerResidenceInquirer {
             return true;
         } catch (Exception e) {
             e.printStackTrace();
-            return null;
+            return false;
         }
     }
 
@@ -118,7 +118,7 @@ public class ServerResidenceInquirer {
         }
     }
 
-    public static Boolean setDataClassVersion(String residenceName, int version){
+    public static boolean setDataClassVersion(String residenceName, int version){
         try {
             Statement statement = ConnectionManager.getConnection().createStatement();
             String executeString = "UPDATE worlduserdata_ServerResidenceData SET version = '%Version%' WHERE ResidenceName = '%ResidenceName%';";
