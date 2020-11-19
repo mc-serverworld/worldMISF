@@ -23,7 +23,7 @@ package com.serverworld.phoenix.paper.util.Player;
 import com.serverworld.phoenix.paper.PaperPhoenix;
 import com.serverworld.phoenix.paper.util.DebugMessage;
 import com.serverworld.worlduserdata.jsondata.UserPhoenixPlayerData;
-import com.serverworld.worlduserdata.paper.utils.UserPhoenixPlayerDataMySQL;
+import com.serverworld.worlduserdata.query.UserPhoenixPlayerDataInquirer;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 
@@ -32,13 +32,13 @@ import java.util.UUID;
 public class PlayerData {
     public static void SaveCurrentLocationAsLast(Player player, Location location){
         try{
-            UserPhoenixPlayerData playerData = UserPhoenixPlayerDataMySQL.getDataClass(player.getUniqueId().toString());
+            UserPhoenixPlayerData playerData = UserPhoenixPlayerDataInquirer.getDataClass(player.getUniqueId());
             playerData.setLastlocation_server(PaperPhoenix.config.servername());
             playerData.setLastlocation_world(player.getWorld().getName());
             playerData.setLastlocation_x(player.getLocation().getX());
             playerData.setLastlocation_y(player.getLocation().getY());
             playerData.setLastlocation_z(player.getLocation().getZ());
-            UserPhoenixPlayerDataMySQL.setDataClass(player.getUniqueId().toString() , playerData);
+            UserPhoenixPlayerDataInquirer.setDataClass(player.getUniqueId() , playerData);
             return;
         }catch (Exception e){
             e.printStackTrace();
@@ -48,7 +48,7 @@ public class PlayerData {
 
     public static void addPlayTime(Player player,long time){
         try{
-            UserPhoenixPlayerData playerData = UserPhoenixPlayerDataMySQL.getDataClass(player.getUniqueId().toString());
+            UserPhoenixPlayerData playerData = UserPhoenixPlayerDataInquirer.getDataClass(player.getUniqueId());
             playerData.setPlaytinme(playerData.getPlaytinme() + time);
 
             if(playerData.getResidence_max_size()<=250000)
@@ -59,7 +59,7 @@ public class PlayerData {
                 playerData.setResidence_max_size(playerData.getResidence_max_size()+25);
 
 
-            UserPhoenixPlayerDataMySQL.setDataClass(player.getUniqueId().toString() , playerData);
+            UserPhoenixPlayerDataInquirer.setDataClass(player.getUniqueId() , playerData);
             return;
         }catch (Exception e){
             e.printStackTrace();
@@ -68,16 +68,16 @@ public class PlayerData {
     }
     
     public static void checkResidenceLimit(Player player){
-        UserPhoenixPlayerData playerData = UserPhoenixPlayerDataMySQL.getDataClass(player.getUniqueId().toString());
+        UserPhoenixPlayerData playerData = UserPhoenixPlayerDataInquirer.getDataClass(player.getUniqueId());
         if(playerData.getPlaytinme()==0)
             return;
     }
     public static void checkResidenceLimit(UUID uuid){
-        UserPhoenixPlayerData playerData = UserPhoenixPlayerDataMySQL.getDataClass(uuid.toString());
+        UserPhoenixPlayerData playerData = UserPhoenixPlayerDataInquirer.getDataClass(uuid);
 
     }
     public static void checkResidenceLimit(String uuid){
-        UserPhoenixPlayerData playerData = UserPhoenixPlayerDataMySQL.getDataClass(uuid);
+        UserPhoenixPlayerData playerData = UserPhoenixPlayerDataInquirer.getDataClass(UUID.fromString(uuid));
 
     }
 }

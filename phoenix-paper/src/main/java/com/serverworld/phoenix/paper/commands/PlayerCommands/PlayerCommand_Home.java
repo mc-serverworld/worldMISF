@@ -68,6 +68,7 @@ public class PlayerCommand_Home implements CommandExecutor {
             messager.sendmessage(messagecoder.createmessage());
         }
 
+
         Bukkit.getScheduler().scheduleSyncDelayedTask(PaperPhoenix.getInstance(), () -> {
             messagecoder Messagecoder = new messagecoder();
             Messagecoder.setSender(PaperPhoenix.config.servername());
