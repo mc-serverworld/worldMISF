@@ -35,7 +35,8 @@ public class UserPhoenixPlayerDataInquirer {
             if(joinbefore(uuid)) {
                 if(getDataClassVersion(uuid)<2){
                     setDataClassVersion(uuid,2);
-                    return false
+                    System.out.println("Updated PhoenixPlayerData " + uuid + " to version 2");
+                    return false;
                 }
 
             }

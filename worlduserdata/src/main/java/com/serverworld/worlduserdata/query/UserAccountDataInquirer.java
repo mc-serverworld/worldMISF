@@ -45,7 +45,7 @@ public class UserAccountDataInquirer {
 
                     setDataClass(uuid,oldData);
                     setDataClassVersion(uuid,2);
-                    System.out.println("Updated " + uuid + " to version 2 (signed)");
+                    System.out.println("Updated AccountData " + uuid + " to version 2 (signed)");
                     return false;
                 }
             }
