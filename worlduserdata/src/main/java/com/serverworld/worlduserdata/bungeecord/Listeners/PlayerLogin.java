@@ -20,13 +20,13 @@
 
 package com.serverworld.worlduserdata.bungeecord.Listeners;
 
-import com.serverworld.worlduserdata.bungeecord.uitls.DebugMessage;
-import com.serverworld.worlduserdata.bungeecord.uitls.UserAccountDataMySQL;
-import com.serverworld.worlduserdata.bungeecord.uitls.UserPhoenixPlayerDataMySQL;
-import com.serverworld.worlduserdata.jsondata.UserAccountData;
-import com.serverworld.worlduserdata.utils.IPAPI;
 import com.serverworld.worldIdiot.api.BanQueryAPI;
 import com.serverworld.worlduserdata.bungeecord.BungeeworldUserData;
+import com.serverworld.worlduserdata.bungeecord.uitls.DebugMessage;
+import com.serverworld.worlduserdata.jsondata.UserAccountData;
+import com.serverworld.worlduserdata.query.UserAccountDataInquirer;
+import com.serverworld.worlduserdata.query.UserPhoenixPlayerDataInquirer;
+import com.serverworld.worlduserdata.utils.IPAPI;
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.chat.ComponentBuilder;
@@ -43,7 +43,7 @@ import java.util.concurrent.TimeUnit;
 
 
 public class PlayerLogin implements Listener {
-    private BungeeworldUserData bungeeworldUserData;
+    private final BungeeworldUserData bungeeworldUserData;
     public PlayerLogin(Plugin plugin, BungeeworldUserData bungeeworldUserData) {
         ProxyServer.getInstance().getPluginManager().registerListener(plugin, this);
         this.bungeeworldUserData = bungeeworldUserData;
@@ -54,37 +54,40 @@ public class PlayerLogin implements Listener {
         if(BanQueryAPI.isBanned(event.getPlayer().getUniqueId().toString()))
             return;
         JSONObject jsonObject = IPAPI.getJSON(event.getPlayer().getAddress().getAddress().toString());
-        if(!UserAccountDataMySQL.Joinbefore(event.getPlayer().getUniqueId().toString()))
-            UserAccountDataMySQL.SetUp(event.getPlayer().getUniqueId().toString());
-        if(!UserPhoenixPlayerDataMySQL.Joinbefore(event.getPlayer().getUniqueId().toString()))
-            UserPhoenixPlayerDataMySQL.SetUp(event.getPlayer().getUniqueId().toString());
+
+        if(UserAccountDataInquirer.setUp(event.getPlayer().getUniqueId()))
+            event.getPlayer().disconnect(ChatColor.YELLOW + "We are updating your data\nplease login again\n\n" + ChatColor.RED + "if this keep happen please contact admin");
+        if(UserPhoenixPlayerDataInquirer.setUp(event.getPlayer().getUniqueId()))
+            event.getPlayer().disconnect(ChatColor.YELLOW + "We are updating your data\nplease login again\n\n" + ChatColor.RED + "if this keep happen please contact admin");
+
+
         if (jsonObject.getString("status").equals("fail")){
             DebugMessage.sendWarring(ChatColor.RED + "Fail to get country!");
-            if(UserAccountDataMySQL.getSigned(event.getPlayer().getUniqueId().toString())){
-                UserAccountData userAccountData = UserAccountDataMySQL.getDataClass(event.getPlayer().getUniqueId().toString());
+            if(UserAccountDataInquirer.getSigned(event.getPlayer().getUniqueId())){
+                UserAccountData userAccountData = UserAccountDataInquirer.getDataClass(event.getPlayer().getUniqueId());
                 Date date = new Date();
                 userAccountData.setCity("none");
                 userAccountData.setContinent("none");
                 userAccountData.setCountry("none");
-                userAccountData.setIP(event.getPlayer().getAddress().toString());
-                userAccountData.setISP("none");
-                userAccountData.setLastLogin(date.getTime());
+                userAccountData.setIp(event.getPlayer().getAddress().toString());
+                userAccountData.setIsp("none");
+                userAccountData.setLastlogin(date.getTime());
                 userAccountData.setPlayername(event.getPlayer().getName());
-                UserAccountDataMySQL.setDataClass(event.getPlayer().getUniqueId().toString(), userAccountData);
+                UserAccountDataInquirer.setDataClass(event.getPlayer().getUniqueId(), userAccountData);
             }
         }else {
             DebugMessage.sendInfo("Player " + event.getPlayer().getName() + " from " + jsonObject.getString("country"));
-            if (UserAccountDataMySQL.getSigned(event.getPlayer().getUniqueId().toString())) {
-                UserAccountData userAccountData = UserAccountDataMySQL.getDataClass(event.getPlayer().getUniqueId().toString());
+            if (UserAccountDataInquirer.getSigned(event.getPlayer().getUniqueId())) {
+                UserAccountData userAccountData = UserAccountDataInquirer.getDataClass(event.getPlayer().getUniqueId());
                 Date date = new Date();
                 userAccountData.setCity(jsonObject.getString("city"));
                 userAccountData.setContinent(jsonObject.getString("continent"));
                 userAccountData.setCountry(jsonObject.getString("country"));
-                userAccountData.setIP(event.getPlayer().getAddress().toString());
-                userAccountData.setISP(jsonObject.getString("org"));
-                userAccountData.setLastLogin(date.getTime());
+                userAccountData.setIp(event.getPlayer().getAddress().toString());
+                userAccountData.setIsp(jsonObject.getString("org"));
+                userAccountData.setLastlogin(date.getTime());
                 userAccountData.setPlayername(event.getPlayer().getName());
-                UserAccountDataMySQL.setDataClass(event.getPlayer().getUniqueId().toString(), userAccountData);
+                UserAccountDataInquirer.setDataClass(event.getPlayer().getUniqueId(), userAccountData);
             }
         }
             List<String> support_country_list = new ArrayList();
@@ -96,7 +99,7 @@ public class PlayerLogin implements Listener {
             ProxyServer.getInstance().createTitle()
                     .reset()
                     .send(event.getPlayer());
-            if(!UserAccountDataMySQL.getSigned(event.getPlayer().getUniqueId().toString())){
+            if(!UserAccountDataInquirer.getSigned(event.getPlayer().getUniqueId())){
                 try {
                     if(support_country_list.contains(jsonObject.getString("country").toLowerCase())){
                         //support

@@ -20,11 +20,11 @@
 
 package com.serverworld.worlduserdata.bungeecord.commands;
 
-import com.serverworld.worlduserdata.bungeecord.uitls.DebugMessage;
-import com.serverworld.worlduserdata.bungeecord.uitls.UserAccountDataMySQL;
-import com.serverworld.worlduserdata.jsondata.UserAccountData;
-import com.serverworld.worlduserdata.utils.IPAPI;
 import com.serverworld.worlduserdata.bungeecord.BungeeworldUserData;
+import com.serverworld.worlduserdata.bungeecord.uitls.DebugMessage;
+import com.serverworld.worlduserdata.jsondata.UserAccountData;
+import com.serverworld.worlduserdata.query.UserAccountDataInquirer;
+import com.serverworld.worlduserdata.utils.IPAPI;
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.CommandSender;
 import net.md_5.bungee.api.chat.ClickEvent;
@@ -54,7 +54,7 @@ public class SignCommand extends Command {
             if(commandSender.getName().toLowerCase().equals("console"))
                 return;
             ProxiedPlayer player = (ProxiedPlayer)commandSender;
-            if(UserAccountDataMySQL.getSigned(player.getUniqueId().toString())){
+            if(UserAccountDataInquirer.getSigned(player.getUniqueId())){
                 commandSender.sendMessage(ChatColor.YELLOW + "You already signed agreement");
             }else if(players.contains(commandSender)){
                 if(strings[0].equals("confirm")) {
@@ -69,18 +69,18 @@ public class SignCommand extends Command {
                                 ((ProxiedPlayer) commandSender).disconnect(ChatColor.RED + "\nFain while saving data, please concat server admin.");
                                 return;
                             }
-                            UserAccountDataMySQL.setSigned(player.getUniqueId().toString(),true);
+                            UserAccountDataInquirer.setSigned(player.getUniqueId(),true);
                             userAccountData.setCity(json.getString("city"));
                             userAccountData.setContinent("continent");
                             userAccountData.setCountry("country");
-                            userAccountData.setIP(player.getAddress().toString());
-                            userAccountData.setISP("org");
-                            userAccountData.setLastLogin(date.getTime());
-                            userAccountData.setPlayedTime(0L);
+                            userAccountData.setIp(player.getAddress().toString());
+                            userAccountData.setIsp("org");
+                            userAccountData.setLastlogin(date.getTime());
+                            userAccountData.setPlayedtime(0L);
                             userAccountData.setPlayername(player.getName());
-                            userAccountData.setSignData(date.getTime());
-                            userAccountData.setworldCoin(0);
-                            UserAccountDataMySQL.setDataClass(player.getUniqueId().toString(), userAccountData);
+                            userAccountData.setSigneddata(date.getTime());
+                            userAccountData.setWorldcoin(0);
+                            UserAccountDataInquirer.setDataClass(player.getUniqueId(), userAccountData);
                             ((ProxiedPlayer) commandSender).disconnect(ChatColor.GREEN + "\nYou has signed the agreeement\n\n" + ChatColor.AQUA + "Please Rejoin the server");
                         }
                     }

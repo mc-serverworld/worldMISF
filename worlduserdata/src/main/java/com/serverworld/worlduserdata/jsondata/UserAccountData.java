@@ -20,95 +20,19 @@
 
 package com.serverworld.worlduserdata.jsondata;
 
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.Setter;
+
 public class UserAccountData {
-    private String playername;
-    private long signeddata;
-    private long lastlogin;
-    private long playedtime;
-    private int worldcoin;
-    private String ip;
-    private String continent;
-    private String country;
-    private String city;
-    private String isp;
-
-    public void setPlayername(String playerName){
-        this.playername = playerName;
-    }
-
-    public String getPlayername(){
-        return playername;
-    }
-
-    public void setSignData(long signData){
-        this.signeddata =  signData;
-    }
-
-    public long getSignData(){
-        return signeddata;
-    }
-
-    public void setLastLogin(long lastLogin){
-        this.lastlogin = lastLogin;
-    }
-
-    public long getLastLogin(){
-        return lastlogin;
-    }
-
-    public void setPlayedTime(long playedtime){
-        this.playedtime = playedtime;
-    }
-
-    public long getPlayedTime(){
-        return playedtime;
-    }
-
-    public void setworldCoin(int worldcoin){
-        this.worldcoin = worldcoin;
-    }
-
-    public int getworldCoin(){
-        return worldcoin;
-    }
-
-    public void setIP(String IP){
-        this.ip = IP;
-    }
-
-    public String getIP(){
-        return ip;
-    }
-
-    public void setContinent(String continent){
-        this.continent = continent;
-    }
-
-    public String getContinent(){
-        return continent;
-    }
-
-    public void setCountry(String country){
-        this.country = country;
-    }
-
-    public String getCountry(){
-        return country;
-    }
-
-    public void setCity(String city){
-        this.city = city;
-    }
-
-    public String getCity(){
-        return city;
-    }
-
-    public void setISP(String isp){
-        this.isp = isp;
-    }
-
-    public String getISP(){
-        return isp;
-    }
+    @Getter(AccessLevel.PUBLIC) @Setter(AccessLevel.PUBLIC) private String playername;
+    @Getter(AccessLevel.PUBLIC) @Setter(AccessLevel.PUBLIC) private long signeddata;
+    @Getter(AccessLevel.PUBLIC) @Setter(AccessLevel.PUBLIC) private long lastlogin;
+    @Getter(AccessLevel.PUBLIC) @Setter(AccessLevel.PUBLIC) private long playedtime;
+    @Getter(AccessLevel.PUBLIC) @Setter(AccessLevel.PUBLIC) private int worldcoin;
+    @Getter(AccessLevel.PUBLIC) @Setter(AccessLevel.PUBLIC) private String ip;
+    @Getter(AccessLevel.PUBLIC) @Setter(AccessLevel.PUBLIC) private String continent;
+    @Getter(AccessLevel.PUBLIC) @Setter(AccessLevel.PUBLIC) private String country;
+    @Getter(AccessLevel.PUBLIC) @Setter(AccessLevel.PUBLIC) private String city;
+    @Getter(AccessLevel.PUBLIC) @Setter(AccessLevel.PUBLIC) private String isp;
 }

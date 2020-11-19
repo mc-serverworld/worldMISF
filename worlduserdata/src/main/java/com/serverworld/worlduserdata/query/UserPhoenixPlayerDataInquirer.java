@@ -21,6 +21,7 @@
 package com.serverworld.worlduserdata.query;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.serverworld.worlduserdata.jsondata.UserPhoenixPlayerData;
 
 import java.sql.ResultSet;
@@ -29,10 +30,15 @@ import java.util.UUID;
 
 public class UserPhoenixPlayerDataInquirer {
 
-    public static boolean SetUp(UUID uuid){
+    public static boolean setUp(UUID uuid){
         try {
-            if(joinbefore(uuid))return true;
+            if(joinbefore(uuid)) {
+                if(getDataClassVersion(uuid)<2){
+                    setDataClassVersion(uuid,2);
+                    return false
+                }
 
+            }
             UserPhoenixPlayerData userPhoenixPlayerData = new UserPhoenixPlayerData();
             userPhoenixPlayerData.setPlaytinme(0L);
             userPhoenixPlayerData.setResidence_total_size(0D);
@@ -54,11 +60,11 @@ public class UserPhoenixPlayerDataInquirer {
             userPhoenixPlayerData.setLogoutlocation_x(0d);
             userPhoenixPlayerData.setLogoutlocation_y(0d);
             userPhoenixPlayerData.setLogoutlocation_z(0d);
-            Gson gson = new Gson();
+            Gson gson = new GsonBuilder().serializeNulls().create();
             String stg = gson.toJson(userPhoenixPlayerData,UserPhoenixPlayerData.class);
 
             Statement statement = ConnectionManager.getConnection().createStatement();
-            String executeString = "INSERT INTO worlduserdata_userphoenixplayerdata (PlayerUUID, version, playerdata) VALUES ('%PlayerUUID%', '1', '%PlayerData%');";
+            String executeString = "INSERT INTO worlduserdata_userphoenixplayerdata (PlayerUUID, version, playerdata) VALUES ('%PlayerUUID%', '2', '%PlayerData%');";
             executeString = executeString.replace("%PlayerUUID%",uuid.toString());
             executeString = executeString.replace("%PlayerData%",stg);
             statement.execute(executeString);
@@ -93,7 +99,7 @@ public class UserPhoenixPlayerDataInquirer {
             executeString = executeString.replace("%PlayerUUID%",uuid.toString());
             ResultSet rs = statement.executeQuery(executeString);
             rs.next();
-            Gson gson= new Gson();
+            Gson gson = new GsonBuilder().serializeNulls().create();
             UserPhoenixPlayerData playerdataclass = gson.fromJson(rs.getString("playerdata"), UserPhoenixPlayerData.class);
             statement.close();
             return playerdataclass;
@@ -107,7 +113,7 @@ public class UserPhoenixPlayerDataInquirer {
         try {
             Statement statement = ConnectionManager.getConnection().createStatement();
             String executeString = "UPDATE worlduserdata_userphoenixplayerdata SET playerdata = '%PlayerData%' WHERE PlayerUUID = '%PlayerUUID%';";
-            Gson gson = new Gson();
+            Gson gson = new GsonBuilder().serializeNulls().create();
             String stg = gson.toJson(userPhoenixPlayerData,UserPhoenixPlayerData.class);
             executeString = executeString.replace("%PlayerData%",stg);
             executeString = executeString.replace("%PlayerUUID%",uuid.toString());

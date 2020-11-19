@@ -21,19 +21,46 @@
 package com.serverworld.worlduserdata.query;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.serverworld.worlduserdata.jsondata.UserAccountData;
 
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.Date;
 import java.util.UUID;
 
 
 public class UserAccountDataInquirer {
 
-    public static boolean SetUp(UUID uuid){
+    public static boolean setUp(UUID uuid){
         try {
+            if(getSigned(uuid)){
+                //update ver1 data to ver2
+                if(getDataClassVersion(uuid)<2){
+                    Date d = new Date();
+                    UserAccountData oldData = getDataClass(uuid);
+                    oldData.setIp("none");
+                    oldData.setIsp("none");
+                    oldData.setLastlogin(d.getTime());
+
+                    setDataClass(uuid,oldData);
+                    setDataClassVersion(uuid,2);
+                    System.out.println("Updated " + uuid + " to version 2 (signed)");
+                    return false;
+                }
+            }
+
+            if(joinBefore(uuid)){
+                if(getDataClassVersion(uuid)<2){
+                    setDataClassVersion(uuid,2);
+                    System.out.println("Updated " + uuid + " to version 2 (unsign)");
+                    return false;
+                }
+                return true;
+            }
+
             Statement statement = ConnectionManager.getConnection().createStatement();
-            String executeString = "INSERT INTO worlduserdata_useraccountdata (PlayerUUID, version, accountdata, signed) VALUES ('%UUID%', '1', 'notsign', '0');";
+            String executeString = "INSERT INTO worlduserdata_useraccountdata (PlayerUUID, version, accountdata, signed) VALUES ('%UUID%', '2', 'notsign', '0');";
             executeString = executeString.replace("%UUID%",uuid.toString());
             statement.execute(executeString);
             statement.close();
@@ -44,7 +71,7 @@ public class UserAccountDataInquirer {
         }
     }
 
-    public static boolean Joinbefore(UUID uuid){
+    public static boolean joinBefore(UUID uuid){
         try {
             Statement statement = ConnectionManager.getConnection().createStatement();
             String executeString = "SELECT * FROM worlduserdata_useraccountdata WHERE PlayerUUID = '%UUID%';";
@@ -98,7 +125,7 @@ public class UserAccountDataInquirer {
             executeString = executeString.replace("%UUID%",uuid.toString());
             ResultSet rs = statement.executeQuery(executeString);
             rs.next();
-            Gson gson= new Gson();
+            Gson gson = new GsonBuilder().serializeNulls().create();
             UserAccountData data = gson.fromJson(rs.getString("accountdata"), UserAccountData.class);
             statement.close();
             return data;
@@ -111,7 +138,7 @@ public class UserAccountDataInquirer {
     public static boolean setDataClass(UUID uuid, UserAccountData userAccountData){
         try {
             Statement statement = ConnectionManager.getConnection().createStatement();
-            Gson gson = new Gson();
+            Gson gson = new GsonBuilder().serializeNulls().create();
             String stg = gson.toJson(userAccountData,UserAccountData.class);
             String executeString ="UPDATE worlduserdata_useraccountdata SET accountdata = '%UserAccountData%' WHERE PlayerUUID = '%UUID%'";
             executeString = executeString.replace("%UUID%",uuid.toString());
