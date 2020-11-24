@@ -35,7 +35,7 @@ public class UserPhoenixPlayerDataInquirer {
             if(joinbefore(uuid)) {
                 if(getDataClassVersion(uuid)<2){
                     setDataClassVersion(uuid,2);
-                    return false
+                    return false;
                 }
 
             }
