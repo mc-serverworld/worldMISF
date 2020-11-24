@@ -55,9 +55,9 @@ public class PlayerLogin implements Listener {
             return;
         JSONObject jsonObject = IPAPI.getJSON(event.getPlayer().getAddress().getAddress().toString());
 
-        if(UserAccountDataInquirer.setUp(event.getPlayer().getUniqueId()))
+        if(!UserAccountDataInquirer.setUp(event.getPlayer().getUniqueId()))
             event.getPlayer().disconnect(ChatColor.YELLOW + "We are updating your data\nplease login again\n\n" + ChatColor.RED + "if this keep happen please contact admin");
-        if(UserPhoenixPlayerDataInquirer.setUp(event.getPlayer().getUniqueId()))
+        if(!UserPhoenixPlayerDataInquirer.setUp(event.getPlayer().getUniqueId()))
             event.getPlayer().disconnect(ChatColor.YELLOW + "We are updating your data\nplease login again\n\n" + ChatColor.RED + "if this keep happen please contact admin");
 
 

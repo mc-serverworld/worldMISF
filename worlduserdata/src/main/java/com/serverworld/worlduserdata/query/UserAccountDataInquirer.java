@@ -108,7 +108,7 @@ public class UserAccountDataInquirer {
             Statement statement = ConnectionManager.getConnection().createStatement();
             String executeString ="UPDATE worlduserdata_useraccountdata SET signed = '%STATUS%' WHERE PlayerUUID = '%UUID%';";
             executeString = executeString.replace("%UUID%",uuid.toString());
-            executeString = executeString.replace("%STATUS%",String.valueOf(status));
+            executeString = executeString.replace("%STATUS%",String.valueOf(status.compareTo(false)));
             statement.execute(executeString);
             statement.close();
             return true;

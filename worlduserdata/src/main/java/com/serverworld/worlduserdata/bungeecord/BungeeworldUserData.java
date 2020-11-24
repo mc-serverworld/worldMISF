@@ -87,7 +87,7 @@ public class BungeeworldUserData extends Plugin {
 
                 ServerResidenceInquirer.isExist("check connection");
             }
-        }, 1, 5, TimeUnit.MINUTES);
+        }, 0, 5, TimeUnit.MINUTES);
     }
 
     public static BungeeworldUserData getInstance(){
