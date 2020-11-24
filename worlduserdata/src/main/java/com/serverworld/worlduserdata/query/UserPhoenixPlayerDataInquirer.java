@@ -37,7 +37,7 @@ public class UserPhoenixPlayerDataInquirer {
                     setDataClassVersion(uuid,2);
                     return false;
                 }
-
+                return true;
             }
             UserPhoenixPlayerData userPhoenixPlayerData = new UserPhoenixPlayerData();
             userPhoenixPlayerData.setPlaytinme(0L);
