@@ -38,8 +38,9 @@ public class ServerResidenceData {
     @Getter(AccessLevel.PUBLIC) @Setter(AccessLevel.PUBLIC) private String OwnerName;
     @Getter(AccessLevel.PUBLIC) @Setter(AccessLevel.PUBLIC) private UUID OwnerUUID;
     @Getter(AccessLevel.PUBLIC) @Setter(AccessLevel.PUBLIC) private ArrayList<UUID> AllowedTpPlayers;
-    @Getter(AccessLevel.PUBLIC) @Setter(AccessLevel.PUBLIC) private Double TeleportLocation_x;
-    @Getter(AccessLevel.PUBLIC) @Setter(AccessLevel.PUBLIC) private Double TeleportLocation_y;
-    @Getter(AccessLevel.PUBLIC) @Setter(AccessLevel.PUBLIC) private Double TeleportLocation_z;
+    @Getter(AccessLevel.PUBLIC) @Setter(AccessLevel.PUBLIC) private Double TeleportLocation_X;
+    @Getter(AccessLevel.PUBLIC) @Setter(AccessLevel.PUBLIC) private Double TeleportLocation_Y;
+    @Getter(AccessLevel.PUBLIC) @Setter(AccessLevel.PUBLIC) private Double TeleportLocation_Z;
+    @Getter(AccessLevel.PUBLIC) @Setter(AccessLevel.PUBLIC) private Double TeleportLocation_Yaw;
 
 }

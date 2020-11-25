@@ -26,28 +26,24 @@ import lombok.Setter;
 
 public class UserPhoenixPlayerData {
 
-    @Getter(AccessLevel.PUBLIC) @Setter(AccessLevel.PUBLIC) private Long playtinme;
-    @Getter(AccessLevel.PUBLIC) @Setter(AccessLevel.PUBLIC) private Double residence_total_size;
-    @Getter(AccessLevel.PUBLIC) @Setter(AccessLevel.PUBLIC) private Integer residence_total_amount;
-    @Getter(AccessLevel.PUBLIC) @Setter(AccessLevel.PUBLIC) private Double residence_max_size;
-    @Getter(AccessLevel.PUBLIC) @Setter(AccessLevel.PUBLIC) private Integer residence_max_amount;
+    @Getter(AccessLevel.PUBLIC) @Setter(AccessLevel.PUBLIC) private Long PlayTime;
+    @Getter(AccessLevel.PUBLIC) @Setter(AccessLevel.PUBLIC) private Double Residence_Total_Size;
+    @Getter(AccessLevel.PUBLIC) @Setter(AccessLevel.PUBLIC) private Integer Residence_Total_Amount;
+    @Getter(AccessLevel.PUBLIC) @Setter(AccessLevel.PUBLIC) private Double Residence_Max_Size;
+    @Getter(AccessLevel.PUBLIC) @Setter(AccessLevel.PUBLIC) private Integer Residence_Max_Amount;
 
-    @Getter(AccessLevel.PUBLIC) @Setter(AccessLevel.PUBLIC) private String home_server;
-    @Getter(AccessLevel.PUBLIC) @Setter(AccessLevel.PUBLIC) private String home_world;
-    @Getter(AccessLevel.PUBLIC) @Setter(AccessLevel.PUBLIC) private Double home_x;
-    @Getter(AccessLevel.PUBLIC) @Setter(AccessLevel.PUBLIC) private Double home_y;
-    @Getter(AccessLevel.PUBLIC) @Setter(AccessLevel.PUBLIC) private Double home_z;
+    @Getter(AccessLevel.PUBLIC) @Setter(AccessLevel.PUBLIC) private String LastLocation_Server;
+    @Getter(AccessLevel.PUBLIC) @Setter(AccessLevel.PUBLIC) private String LastLocation_World;
+    @Getter(AccessLevel.PUBLIC) @Setter(AccessLevel.PUBLIC) private Double LastLocation_X;
+    @Getter(AccessLevel.PUBLIC) @Setter(AccessLevel.PUBLIC) private Double LastLocation_Y;
+    @Getter(AccessLevel.PUBLIC) @Setter(AccessLevel.PUBLIC) private Double LastLocation_Z;
+    @Getter(AccessLevel.PUBLIC) @Setter(AccessLevel.PUBLIC) private Double LastLocation_Yaw;
 
-    @Getter(AccessLevel.PUBLIC) @Setter(AccessLevel.PUBLIC) private String lastlocation_server;
-    @Getter(AccessLevel.PUBLIC) @Setter(AccessLevel.PUBLIC) private String lastlocation_world;
-    @Getter(AccessLevel.PUBLIC) @Setter(AccessLevel.PUBLIC) private Double lastlocation_x;
-    @Getter(AccessLevel.PUBLIC) @Setter(AccessLevel.PUBLIC) private Double lastlocation_y;
-    @Getter(AccessLevel.PUBLIC) @Setter(AccessLevel.PUBLIC) private Double lastlocation_z;
-
-    @Getter(AccessLevel.PUBLIC) @Setter(AccessLevel.PUBLIC) private String logoutlocation_server;
-    @Getter(AccessLevel.PUBLIC) @Setter(AccessLevel.PUBLIC) private String logoutlocation_world;
-    @Getter(AccessLevel.PUBLIC) @Setter(AccessLevel.PUBLIC) private Double logoutlocation_x;
-    @Getter(AccessLevel.PUBLIC) @Setter(AccessLevel.PUBLIC) private Double logoutlocation_y;
-    @Getter(AccessLevel.PUBLIC) @Setter(AccessLevel.PUBLIC) private Double logoutlocation_z;
+    @Getter(AccessLevel.PUBLIC) @Setter(AccessLevel.PUBLIC) private String LogoutLocation_Server;
+    @Getter(AccessLevel.PUBLIC) @Setter(AccessLevel.PUBLIC) private String LogoutLocation_World;
+    @Getter(AccessLevel.PUBLIC) @Setter(AccessLevel.PUBLIC) private Double LogoutLocation_X;
+    @Getter(AccessLevel.PUBLIC) @Setter(AccessLevel.PUBLIC) private Double LogoutLocation_Y;
+    @Getter(AccessLevel.PUBLIC) @Setter(AccessLevel.PUBLIC) private Double LogoutLocation_Z;
+    @Getter(AccessLevel.PUBLIC) @Setter(AccessLevel.PUBLIC) private Double LogoutLocation_Yaw;
 
 }

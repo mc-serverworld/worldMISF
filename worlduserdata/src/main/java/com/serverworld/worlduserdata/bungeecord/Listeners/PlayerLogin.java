@@ -71,8 +71,8 @@ public class PlayerLogin implements Listener {
                 userAccountData.setCountry("none");
                 userAccountData.setIp(event.getPlayer().getAddress().toString());
                 userAccountData.setIsp("none");
-                userAccountData.setLastlogin(date.getTime());
-                userAccountData.setPlayername(event.getPlayer().getName());
+                userAccountData.setLastLogin(date.getTime());
+                userAccountData.setPlayerName(event.getPlayer().getName());
                 UserAccountDataInquirer.setDataClass(event.getPlayer().getUniqueId(), userAccountData);
             }
         }else {
@@ -85,8 +85,8 @@ public class PlayerLogin implements Listener {
                 userAccountData.setCountry(jsonObject.getString("country"));
                 userAccountData.setIp(event.getPlayer().getAddress().toString());
                 userAccountData.setIsp(jsonObject.getString("org"));
-                userAccountData.setLastlogin(date.getTime());
-                userAccountData.setPlayername(event.getPlayer().getName());
+                userAccountData.setLastLogin(date.getTime());
+                userAccountData.setPlayerName(event.getPlayer().getName());
                 UserAccountDataInquirer.setDataClass(event.getPlayer().getUniqueId(), userAccountData);
             }
         }

@@ -41,7 +41,7 @@ public class UserAccountDataInquirer {
                     UserAccountData oldData = getDataClass(uuid);
                     oldData.setIp("none");
                     oldData.setIsp("none");
-                    oldData.setLastlogin(d.getTime());
+                    oldData.setLastLogin(d.getTime());
 
                     setDataClass(uuid,oldData);
                     setDataClassVersion(uuid,2);

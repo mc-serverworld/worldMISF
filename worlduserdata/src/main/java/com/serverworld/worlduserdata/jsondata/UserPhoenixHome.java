@@ -15,7 +15,7 @@
  *  *
  *  * You should have received a copy of the GNU General Public License
  *  * along with this program. If not, see <http://www.gnu.org/licenses/>.
- *  
+ *
  */
 
 package com.serverworld.worlduserdata.jsondata;
@@ -24,15 +24,12 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
 
-public class UserAccountData {
-    @Getter(AccessLevel.PUBLIC) @Setter(AccessLevel.PUBLIC) private String PlayerName;
-    @Getter(AccessLevel.PUBLIC) @Setter(AccessLevel.PUBLIC) private long SignedData;
-    @Getter(AccessLevel.PUBLIC) @Setter(AccessLevel.PUBLIC) private long LastLogin;
-    @Getter(AccessLevel.PUBLIC) @Setter(AccessLevel.PUBLIC) private long PlayedTime;
-    @Getter(AccessLevel.PUBLIC) @Setter(AccessLevel.PUBLIC) private int WorldCoin;
-    @Getter(AccessLevel.PUBLIC) @Setter(AccessLevel.PUBLIC) private String Ip;
-    @Getter(AccessLevel.PUBLIC) @Setter(AccessLevel.PUBLIC) private String Continent;
-    @Getter(AccessLevel.PUBLIC) @Setter(AccessLevel.PUBLIC) private String Country;
-    @Getter(AccessLevel.PUBLIC) @Setter(AccessLevel.PUBLIC) private String City;
-    @Getter(AccessLevel.PUBLIC) @Setter(AccessLevel.PUBLIC) private String Isp;
+public class UserPhoenixHome {
+    @Getter(AccessLevel.PUBLIC) @Setter(AccessLevel.PUBLIC) private String Home_Name;
+    @Getter(AccessLevel.PUBLIC) @Setter(AccessLevel.PUBLIC) private String Home_Server;
+    @Getter(AccessLevel.PUBLIC) @Setter(AccessLevel.PUBLIC) private String Home_World;
+    @Getter(AccessLevel.PUBLIC) @Setter(AccessLevel.PUBLIC) private Double Home_X;
+    @Getter(AccessLevel.PUBLIC) @Setter(AccessLevel.PUBLIC) private Double Home_Y;
+    @Getter(AccessLevel.PUBLIC) @Setter(AccessLevel.PUBLIC) private Double Home_Z;
+    @Getter(AccessLevel.PUBLIC) @Setter(AccessLevel.PUBLIC) private Double Home_Yaw;
 }

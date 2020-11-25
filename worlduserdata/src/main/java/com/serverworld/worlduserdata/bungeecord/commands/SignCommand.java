@@ -75,11 +75,11 @@ public class SignCommand extends Command {
                             userAccountData.setCountry("country");
                             userAccountData.setIp(player.getAddress().toString());
                             userAccountData.setIsp("org");
-                            userAccountData.setLastlogin(date.getTime());
-                            userAccountData.setPlayedtime(0L);
-                            userAccountData.setPlayername(player.getName());
-                            userAccountData.setSigneddata(date.getTime());
-                            userAccountData.setWorldcoin(0);
+                            userAccountData.setLastLogin(date.getTime());
+                            userAccountData.setPlayedTime(0L);
+                            userAccountData.setPlayerName(player.getName());
+                            userAccountData.setSignedData(date.getTime());
+                            userAccountData.setWorldCoin(0);
                             UserAccountDataInquirer.setDataClass(player.getUniqueId(), userAccountData);
                             ((ProxiedPlayer) commandSender).disconnect(ChatColor.GREEN + "\nYou has signed the agreeement\n\n" + ChatColor.AQUA + "Please Rejoin the server");
                         }
