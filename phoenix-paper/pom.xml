@@ -90,6 +90,13 @@
                             <goal>shade</goal>
                         </goals>
                         <configuration>
+                            <dependencyReducedPomLocation>${project.build.directory}/dependency-reduced-pom.xml</dependencyReducedPomLocation>
+                            <relocations>
+                                <relocation>
+                                    <pattern>com.github.stefvanschie.inventoryframework</pattern>
+                                    <shadedPattern>com.serverworld.phoenix.paper.api.inventoryframework</shadedPattern>
+                                </relocation>
+                            </relocations>
                             <outputFile>${project.parent.basedir}/output/${project.name}-${project.parent.version}.jar</outputFile>
                         </configuration>
                     </execution>
@@ -195,6 +202,12 @@
             <artifactId>VaultAPI</artifactId>
             <version>1.7</version>
             <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.github.stefvanschie.inventoryframework</groupId>
+            <artifactId>IF</artifactId>
+            <version>0.8.0</version>
         </dependency>
 
         <dependency>

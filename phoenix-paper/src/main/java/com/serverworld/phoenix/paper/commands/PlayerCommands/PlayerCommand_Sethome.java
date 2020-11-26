@@ -24,7 +24,6 @@ import com.serverworld.phoenix.paper.PaperPhoenix;
 import com.serverworld.phoenix.paper.util.DebugMessage;
 import com.serverworld.phoenix.paper.util.Formats;
 import com.serverworld.worlduserdata.jsondata.UserPhoenixPlayerData;
-import com.serverworld.worlduserdata.paper.utils.UserPhoenixPlayerDataMySQL;
 import com.serverworld.worlduserdata.query.UserPhoenixPlayerDataInquirer;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -39,6 +38,9 @@ public class PlayerCommand_Sethome implements CommandExecutor {
         if(!(sender instanceof Player)){
             sender.sendMessage(ChatColor.RED + "Only player can use this command!");
             return false;
+        }
+        if(label.isEmpty()){
+            sender.sendMessage(ChatColor.RED + "請輸入家的名稱");//TODO: Langauge seleter
         }
         Player player = (Player) sender;
         UserPhoenixPlayerData playerData = UserPhoenixPlayerDataInquirer.getDataClass(player.getUniqueId());

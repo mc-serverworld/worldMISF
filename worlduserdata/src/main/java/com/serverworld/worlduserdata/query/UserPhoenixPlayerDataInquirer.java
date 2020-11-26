@@ -234,7 +234,7 @@ public class UserPhoenixPlayerDataInquirer {
             return true;
         }
     }
-    
+
     public static int getDataClassVersion(UUID uuid){
         try {
             Statement statement = ConnectionManager.getConnection().createStatement();
