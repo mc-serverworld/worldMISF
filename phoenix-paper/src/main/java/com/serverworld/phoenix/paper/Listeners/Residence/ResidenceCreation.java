@@ -42,11 +42,11 @@ public class ResidenceCreation implements Listener {
             return;
         UserPhoenixPlayerData playerData = UserPhoenixPlayerDataInquirer.getDataClass(event.getPlayer().getUniqueId());
         //UserPhoenixPlayerDataMySQL.setDataClass(eventplayer.getUniqueId().toString() , playerData);
-        if (playerData.getResidence_total_amount() >= playerData.getResidence_max_amount()) {
+        if (playerData.getResidence_Total_Amount() >= playerData.getResidence_Max_Amount()) {
             event.getPlayer().sendMessage(ChatColor.RED + "超過您可持有的保護區上限");//TODO: Langauge seleter
             event.setCancelled(true);
             return;
-        } else if (playerData.getResidence_total_size() + event.getResidence().getXZSize() >= playerData.getResidence_max_size()) {
+        } else if (playerData.getResidence_Total_Size() + event.getResidence().getXZSize() >= playerData.getResidence_Max_Size()) {
             event.getPlayer().sendMessage(ChatColor.RED + "超過您的保護區格數上限");//TODO: Langauge seleter
             event.setCancelled(true);
             return;
@@ -56,27 +56,27 @@ public class ResidenceCreation implements Listener {
             return;
         }
 
-        if (playerData.getResidence_total_size() + event.getResidence().getXZSize() <= 10000) {
-            playerData.setResidence_total_size(playerData.getResidence_total_size() + event.getResidence().getXZSize());
-            double letfFreeSize = (10000 - playerData.getResidence_total_size());
+        if (playerData.getResidence_Total_Size() + event.getResidence().getXZSize() <= 10000) {
+            playerData.setResidence_Total_Size(playerData.getResidence_Total_Size() + event.getResidence().getXZSize());
+            double letfFreeSize = (10000 - playerData.getResidence_Total_Size());
             event.getPlayer().sendMessage(ChatColor.GREEN + "保護區創建成功");//TODO: Langauge seleter
             event.getPlayer().sendMessage(ChatColor.YELLOW + "您還有 " + letfFreeSize + "格免費領地");
-            playerData.setResidence_total_amount(playerData.getResidence_total_amount()+1);
+            playerData.setResidence_Total_Amount(playerData.getResidence_Total_Amount()+1);
             addResidence(event);
             UserPhoenixPlayerDataInquirer.setDataClass(event.getPlayer().getUniqueId(), playerData);
             return;
         }
 
-        if (10000 - playerData.getResidence_total_size() > 0) {
-            Double overSize = (playerData.getResidence_total_size() + event.getResidence().getXZSize() - 10000);
+        if (10000 - playerData.getResidence_Total_Size() > 0) {
+            Double overSize = (playerData.getResidence_Total_Size() + event.getResidence().getXZSize() - 10000);
             if (EconomyIO.takeIfHasBalance(event.getPlayer(), overSize)) {
-                playerData.setResidence_total_size(playerData.getResidence_total_size() + overSize);
-                double leftSize = playerData.getResidence_max_size() - playerData.getResidence_total_size();
+                playerData.setResidence_Total_Size(playerData.getResidence_Total_Size() + overSize);
+                double leftSize = playerData.getResidence_Max_Size() - playerData.getResidence_Total_Size();
                 event.getPlayer().sendMessage(ChatColor.GREEN + "保護區創建成功");//TODO: Langauge seleter
                 event.getPlayer().sendMessage(ChatColor.YELLOW + "您還有");
                 event.getPlayer().sendMessage(ChatColor.YELLOW + "" + EconomyIO.getBalance(event.getPlayer()) + "$");
                 event.getPlayer().sendMessage(ChatColor.YELLOW + "" + leftSize + "格領地額度");
-                playerData.setResidence_total_amount(playerData.getResidence_total_amount()+1);
+                playerData.setResidence_Total_Amount(playerData.getResidence_Total_Amount()+1);
                 addResidence(event);
                 UserPhoenixPlayerDataInquirer.setDataClass(event.getPlayer().getUniqueId(), playerData);
                 return;
@@ -84,13 +84,13 @@ public class ResidenceCreation implements Listener {
         }
 
         if (EconomyIO.takeIfHasBalance(event.getPlayer(), (double) event.getResidence().getXZSize())) {
-            playerData.setResidence_total_size(playerData.getResidence_total_size() + event.getResidence().getXZSize());
-            double leftSize = playerData.getResidence_max_size() - playerData.getResidence_total_size();
+            playerData.setResidence_Total_Size(playerData.getResidence_Total_Size() + event.getResidence().getXZSize());
+            double leftSize = playerData.getResidence_Max_Size() - playerData.getResidence_Total_Size();
             event.getPlayer().sendMessage(ChatColor.GREEN + "保護區創建成功");//TODO: Langauge seleter
             event.getPlayer().sendMessage(ChatColor.YELLOW + "您還有");
             event.getPlayer().sendMessage(ChatColor.YELLOW + "" + EconomyIO.getBalance(event.getPlayer()) + "$");
             event.getPlayer().sendMessage(ChatColor.YELLOW + "" + leftSize + "格領地額度");
-            playerData.setResidence_total_amount(playerData.getResidence_total_amount()+1);
+            playerData.setResidence_Total_Amount(playerData.getResidence_Total_Amount()+1);
             addResidence(event);
             UserPhoenixPlayerDataInquirer.setDataClass(event.getPlayer().getUniqueId(), playerData);
             return;
@@ -111,9 +111,10 @@ public class ResidenceCreation implements Listener {
 
         residenceData.setOwnerName(event.getPlayer().getName());
         residenceData.setOwnerUUID(event.getPlayer().getUniqueId());
-        residenceData.setTeleportLocation_x(event.getResidence().getTeleportLocation(event.getPlayer()).getX());
-        residenceData.setTeleportLocation_y(event.getResidence().getTeleportLocation(event.getPlayer()).getY());
-        residenceData.setTeleportLocation_z(event.getResidence().getTeleportLocation(event.getPlayer()).getZ());
+        residenceData.setTeleportLocation_X(event.getResidence().getTeleportLocation(event.getPlayer()).getX());
+        residenceData.setTeleportLocation_Y(event.getResidence().getTeleportLocation(event.getPlayer()).getY());
+        residenceData.setTeleportLocation_Z(event.getResidence().getTeleportLocation(event.getPlayer()).getZ());
+        //TODO Float residenceData.setTeleportLocation_Yaw(event.getResidence().getTeleportLocation(event.getPlayer()).getYaw());
         ServerResidenceInquirer.addDataClass(residenceData,1);
     }
 

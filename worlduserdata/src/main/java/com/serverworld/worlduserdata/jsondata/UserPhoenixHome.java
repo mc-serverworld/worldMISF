@@ -31,5 +31,5 @@ public class UserPhoenixHome {
     @Getter(AccessLevel.PUBLIC) @Setter(AccessLevel.PUBLIC) private Double Home_X;
     @Getter(AccessLevel.PUBLIC) @Setter(AccessLevel.PUBLIC) private Double Home_Y;
     @Getter(AccessLevel.PUBLIC) @Setter(AccessLevel.PUBLIC) private Double Home_Z;
-    @Getter(AccessLevel.PUBLIC) @Setter(AccessLevel.PUBLIC) private Double Home_Yaw;
+    @Getter(AccessLevel.PUBLIC) @Setter(AccessLevel.PUBLIC) private Float Home_Yaw;
 }

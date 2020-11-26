@@ -69,7 +69,7 @@ public class PlayerData {
     
     public static void checkResidenceLimit(Player player){
         UserPhoenixPlayerData playerData = UserPhoenixPlayerDataInquirer.getDataClass(player.getUniqueId());
-        if(playerData.getPlaytinme()==0)
+        if(playerData.getPlayTime()==0)
             return;
     }
     public static void checkResidenceLimit(UUID uuid){

@@ -45,16 +45,17 @@ public class PlayerCommand_Home implements CommandExecutor {
         Player player = (Player) sender;
         UserPhoenixPlayerData playerdata = UserPhoenixPlayerDataInquirer.getDataClass(((Player) sender).getPlayer().getUniqueId());//get player data
         UserPhoenixPlayerData playerData = UserPhoenixPlayerDataInquirer.getDataClass(player.getUniqueId());
-        playerData.setLastlocation_server(PaperPhoenix.config.servername());
-        playerData.setLastlocation_world(player.getWorld().getName());
-        playerData.setLastlocation_x(player.getLocation().getX());
-        playerData.setLastlocation_y(player.getLocation().getY());
-        playerData.setLastlocation_z(player.getLocation().getZ());
+        playerData.setLastLocation_Server(PaperPhoenix.config.servername());
+        playerData.setLastLocation_World(player.getWorld().getName());
+        playerData.setLastLocation_X(player.getLocation().getX());
+        playerData.setLastLocation_Y(player.getLocation().getY());
+        playerData.setLastLocation_Z(player.getLocation().getZ());
+        //TODO Float playerData.setLastLocation_Yaw(player.getLocation().getYaw());
         UserPhoenixPlayerDataInquirer.setDataClass(player.getUniqueId() , playerData);//save dead pos to database
 
         player.sendMessage(Formats.perfix() + ChatColor.GREEN + "將您傳送至家");//TODO: Langauge seleter
 
-        if(!PaperPhoenix.config.servername().equals(playerdata.getLastlocation_server())){
+        if(!PaperPhoenix.config.servername().equals(playerdata.getLastLocation_Server())){
             messagecoder messagecoder = new messagecoder();
             messagecoder.setSender(PaperPhoenix.config.servername());
             messagecoder.setChannel("MISF_PHOENIX");
@@ -63,7 +64,7 @@ public class PlayerCommand_Home implements CommandExecutor {
             JsonObject json = new JsonObject();
             json.addProperty("TYPE","SEND_PLAYER_TO_SERVER");
             json.addProperty("PLAYER",((Player) sender).getPlayer().getUniqueId().toString());
-            json.addProperty("SERVER",playerdata.getHome_server());
+            //json.addProperty("SERVER",playerdata.getHome_Server());
             messagecoder.setMessage(json.toString());
             messager.sendmessage(messagecoder.createmessage());
         }
@@ -73,15 +74,15 @@ public class PlayerCommand_Home implements CommandExecutor {
             messagecoder Messagecoder = new messagecoder();
             Messagecoder.setSender(PaperPhoenix.config.servername());
             Messagecoder.setChannel("MISF_PHOENIX");
-            Messagecoder.setReceiver(playerdata.getHome_server());
+            //Messagecoder.setReceiver(playerdata.getHome_server());
             Messagecoder.setType("ACTION");
             JsonObject Json = new JsonObject();
             Json.addProperty("TYPE","TELEPORT_PLAYER");
             Json.addProperty("PLAYER",sender.getName());
-            Json.addProperty("WORLD",playerdata.getHome_world());
+            /*Json.addProperty("WORLD",playerdata.getHome_world());
             Json.addProperty("LOCATION_X",playerdata.getHome_x());
             Json.addProperty("LOCATION_Y",playerdata.getHome_y());
-            Json.addProperty("LOCATION_Z",playerdata.getHome_z());
+            Json.addProperty("LOCATION_Z",playerdata.getHome_z());*/ //TODO Home
             Messagecoder.setMessage(Json.toString());
             messager.sendmessage(Messagecoder.createmessage());
         }, 20L);

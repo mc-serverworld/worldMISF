@@ -27,7 +27,7 @@ import com.serverworld.phoenix.paper.util.Formats;
 import com.serverworld.worldSocket.paperspigot.util.messagecoder;
 import com.serverworld.worldSocket.paperspigot.util.messager;
 import com.serverworld.worlduserdata.jsondata.UserPhoenixPlayerData;
-import com.serverworld.worlduserdata.paper.utils.UserPhoenixPlayerDataMySQL;
+import com.serverworld.worlduserdata.query.UserPhoenixPlayerDataInquirer;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
@@ -46,14 +46,15 @@ public class PlayerCommand_Spawn implements CommandExecutor {
             return false;
         }
         Player player = (Player) sender;
-        UserPhoenixPlayerData playerdata = UserPhoenixPlayerDataMySQL.getDataClass(((Player) sender).getPlayer().getUniqueId().toString());//get player data
-        UserPhoenixPlayerData playerData = UserPhoenixPlayerDataMySQL.getDataClass(player.getUniqueId().toString());
-        playerData.setLastlocation_server(PaperPhoenix.config.servername());
-        playerData.setLastlocation_world(player.getWorld().getName());
-        playerData.setLastlocation_x(player.getLocation().getX());
-        playerData.setLastlocation_y(player.getLocation().getY());
-        playerData.setLastlocation_z(player.getLocation().getZ());
-        UserPhoenixPlayerDataMySQL.setDataClass(player.getUniqueId().toString() , playerData);//save dead pos to database
+        UserPhoenixPlayerData playerdata = UserPhoenixPlayerDataInquirer.getDataClass(((Player) sender).getPlayer().getUniqueId());//get player data
+        UserPhoenixPlayerData playerData = UserPhoenixPlayerDataInquirer.getDataClass(player.getUniqueId());
+        playerData.setLastLocation_Server(PaperPhoenix.config.servername());
+        playerData.setLastLocation_World(player.getWorld().getName());
+        playerData.setLastLocation_X(player.getLocation().getX());
+        playerData.setLastLocation_Y(player.getLocation().getY());
+        playerData.setLastLocation_Z(player.getLocation().getZ());
+        //TODO Float playerData.setLastLocation_Yaw(player.getLocation().getYaw());
+        UserPhoenixPlayerDataInquirer.setDataClass(player.getUniqueId() , playerData);//save dead pos to database
 
         player.sendMessage(Formats.perfix() + ChatColor.GREEN + "將您傳送至重生點");//TODO: Langauge seleter
 

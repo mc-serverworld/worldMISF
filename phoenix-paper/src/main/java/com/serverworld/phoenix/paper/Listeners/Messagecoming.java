@@ -183,11 +183,12 @@ public class Messagecoming implements Listener {
             case "TELEPORT_PLAYER": {
                 try {
                     World world = PaperPhoenix.getInstance().getServer().getWorld(message.getString("WORLD"));
-                    Location spawn = new Location(world,message.getDouble("LOCATION_X"), message.getDouble("LOCATION_Y"),message.getDouble("LOCATION_Z"));
+                    Location targetLocation = new Location(world,message.getDouble("LOCATION_X"), message.getDouble("LOCATION_Y"),message.getDouble("LOCATION_Z"));
+                    targetLocation.setYaw(message.getFloat("LOCATION_YAW"));
                     Player player = PaperPhoenix.getInstance().getServer().getPlayer(message.getString("PLAYER"));
                     DebugMessage.sendInfoIfDebug("Teleport Player " + player.getName() + " to " + message.get("LOCATION_X") + " " + message.get("LOCATION_Y") + " " + message.get("LOCATION_Z"));
 
-                    player.teleport(spawn);
+                    player.teleport(targetLocation);
                     return;
                 }catch (Exception e){
                     e.printStackTrace();

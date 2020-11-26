@@ -26,7 +26,7 @@ import com.serverworld.phoenix.paper.util.Formats;
 import com.serverworld.worldSocket.paperspigot.util.messagecoder;
 import com.serverworld.worldSocket.paperspigot.util.messager;
 import com.serverworld.worlduserdata.jsondata.UserPhoenixPlayerData;
-import com.serverworld.worlduserdata.paper.utils.UserPhoenixPlayerDataMySQL;
+import com.serverworld.worlduserdata.query.UserPhoenixPlayerDataInquirer;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -43,18 +43,19 @@ public class PlayerCommand_Back implements CommandExecutor {
             return false;
         }
         Player player = (Player) sender;
-        UserPhoenixPlayerData playerdata = UserPhoenixPlayerDataMySQL.getDataClass(((Player) sender).getPlayer().getUniqueId().toString());//get player data
-        UserPhoenixPlayerData playerData = UserPhoenixPlayerDataMySQL.getDataClass(player.getUniqueId().toString());
-        playerData.setLastlocation_server(PaperPhoenix.config.servername());
-        playerData.setLastlocation_world(player.getWorld().getName());
-        playerData.setLastlocation_x(player.getLocation().getX());
-        playerData.setLastlocation_y(player.getLocation().getY());
-        playerData.setLastlocation_z(player.getLocation().getZ());
-        UserPhoenixPlayerDataMySQL.setDataClass(player.getUniqueId().toString() , playerData);//save dead pos to database
+        UserPhoenixPlayerData playerdata = UserPhoenixPlayerDataInquirer.getDataClass(((Player) sender).getPlayer().getUniqueId());//get player data
+        UserPhoenixPlayerData playerData = UserPhoenixPlayerDataInquirer.getDataClass(player.getUniqueId());
+        playerData.setLastLocation_Server(PaperPhoenix.config.servername());
+        playerData.setLastLocation_World(player.getWorld().getName());
+        playerData.setLastLocation_X(player.getLocation().getX());
+        playerData.setLastLocation_Y(player.getLocation().getY());
+        playerData.setLastLocation_Z(player.getLocation().getZ());
+        //TODO Float playerData.setLastLocation_Yaw(player.getLocation().getYaw());
+        UserPhoenixPlayerDataInquirer.setDataClass(player.getUniqueId() , playerData);//save dead pos to database
 
         player.sendMessage(Formats.perfix() + ChatColor.GREEN + "將您傳送到上一個位置");//TODO: Langauge seleter
-        
-        if(!PaperPhoenix.config.servername().equals(playerdata.getLastlocation_server())){
+
+        if(!PaperPhoenix.config.servername().equals(playerdata.getLastLocation_Server())){
             messagecoder messagecoder = new messagecoder();
             messagecoder.setSender(PaperPhoenix.getInstance().config.servername());
             messagecoder.setChannel("MISF_PHOENIX");
@@ -63,7 +64,7 @@ public class PlayerCommand_Back implements CommandExecutor {
             JsonObject json = new JsonObject();
             json.addProperty("TYPE","SEND_PLAYER_TO_SERVER");
             json.addProperty("PLAYER",((Player) sender).getPlayer().getUniqueId().toString());
-            json.addProperty("SERVER",playerdata.getLastlocation_server());
+            json.addProperty("SERVER",playerdata.getLastLocation_Server());
             messagecoder.setMessage(json.toString());
             messager.sendmessage(messagecoder.createmessage());
         }
@@ -72,15 +73,16 @@ public class PlayerCommand_Back implements CommandExecutor {
             messagecoder Messagecoder = new messagecoder();
             Messagecoder.setSender(PaperPhoenix.config.servername());
             Messagecoder.setChannel("MISF_PHOENIX");
-            Messagecoder.setReceiver(playerdata.getLastlocation_server());
+            Messagecoder.setReceiver(playerdata.getLastLocation_Server());
             Messagecoder.setType("ACTION");
             JsonObject Json = new JsonObject();
             Json.addProperty("TYPE","TELEPORT_PLAYER");
             Json.addProperty("PLAYER",sender.getName());
-            Json.addProperty("WORLD",playerdata.getLastlocation_world());
-            Json.addProperty("LOCATION_X",playerdata.getLastlocation_x());
-            Json.addProperty("LOCATION_Y",playerdata.getLastlocation_y());
-            Json.addProperty("LOCATION_Z",playerdata.getLastlocation_z());
+            Json.addProperty("WORLD",playerdata.getLastLocation_World());
+            Json.addProperty("LOCATION_X",playerdata.getLastLocation_X());
+            Json.addProperty("LOCATION_Y",playerdata.getLastLocation_Y());
+            Json.addProperty("LOCATION_Z",playerdata.getLastLocation_Z());
+            Json.addProperty("LOCATION_Z",playerdata.getLastLocation_Yaw());
             Messagecoder.setMessage(Json.toString());
             messager.sendmessage(Messagecoder.createmessage());
         }, 20L);

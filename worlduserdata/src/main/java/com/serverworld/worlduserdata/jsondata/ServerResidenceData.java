@@ -41,6 +41,6 @@ public class ServerResidenceData {
     @Getter(AccessLevel.PUBLIC) @Setter(AccessLevel.PUBLIC) private Double TeleportLocation_X;
     @Getter(AccessLevel.PUBLIC) @Setter(AccessLevel.PUBLIC) private Double TeleportLocation_Y;
     @Getter(AccessLevel.PUBLIC) @Setter(AccessLevel.PUBLIC) private Double TeleportLocation_Z;
-    @Getter(AccessLevel.PUBLIC) @Setter(AccessLevel.PUBLIC) private Double TeleportLocation_Yaw;
+    @Getter(AccessLevel.PUBLIC) @Setter(AccessLevel.PUBLIC) private Float TeleportLocation_Yaw;
 
 }

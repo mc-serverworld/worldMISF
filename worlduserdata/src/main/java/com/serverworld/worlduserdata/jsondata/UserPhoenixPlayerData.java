@@ -39,13 +39,13 @@ public class UserPhoenixPlayerData {
     @Getter(AccessLevel.PUBLIC) @Setter(AccessLevel.PUBLIC) private Double LastLocation_X;
     @Getter(AccessLevel.PUBLIC) @Setter(AccessLevel.PUBLIC) private Double LastLocation_Y;
     @Getter(AccessLevel.PUBLIC) @Setter(AccessLevel.PUBLIC) private Double LastLocation_Z;
-    @Getter(AccessLevel.PUBLIC) @Setter(AccessLevel.PUBLIC) private Double LastLocation_Yaw;
+    @Getter(AccessLevel.PUBLIC) @Setter(AccessLevel.PUBLIC) private Float LastLocation_Yaw;
 
     @Getter(AccessLevel.PUBLIC) @Setter(AccessLevel.PUBLIC) private String LogoutLocation_Server;
     @Getter(AccessLevel.PUBLIC) @Setter(AccessLevel.PUBLIC) private String LogoutLocation_World;
     @Getter(AccessLevel.PUBLIC) @Setter(AccessLevel.PUBLIC) private Double LogoutLocation_X;
     @Getter(AccessLevel.PUBLIC) @Setter(AccessLevel.PUBLIC) private Double LogoutLocation_Y;
     @Getter(AccessLevel.PUBLIC) @Setter(AccessLevel.PUBLIC) private Double LogoutLocation_Z;
-    @Getter(AccessLevel.PUBLIC) @Setter(AccessLevel.PUBLIC) private Double LogoutLocation_Yaw;
+    @Getter(AccessLevel.PUBLIC) @Setter(AccessLevel.PUBLIC) private Float LogoutLocation_Yaw;
 
 }
