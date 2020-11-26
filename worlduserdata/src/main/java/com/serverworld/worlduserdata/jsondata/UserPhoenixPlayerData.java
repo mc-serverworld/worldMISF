@@ -32,6 +32,8 @@ public class UserPhoenixPlayerData {
     @Getter(AccessLevel.PUBLIC) @Setter(AccessLevel.PUBLIC) private Double Residence_Max_Size;
     @Getter(AccessLevel.PUBLIC) @Setter(AccessLevel.PUBLIC) private Integer Residence_Max_Amount;
 
+    @Getter(AccessLevel.PUBLIC) @Setter(AccessLevel.PUBLIC) private Integer Home_Max_Amount;
+
     @Getter(AccessLevel.PUBLIC) @Setter(AccessLevel.PUBLIC) private String LastLocation_Server;
     @Getter(AccessLevel.PUBLIC) @Setter(AccessLevel.PUBLIC) private String LastLocation_World;
     @Getter(AccessLevel.PUBLIC) @Setter(AccessLevel.PUBLIC) private Double LastLocation_X;
