@@ -25,7 +25,6 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import com.serverworld.worlduserdata.jsondata.UserPhoenixHome;
 import com.serverworld.worlduserdata.jsondata.UserPhoenixPlayerData;
-import org.json.JSONObject;
 
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -135,12 +134,7 @@ public class UserPhoenixPlayerDataInquirer {
             rs.next();
             Gson gson = new GsonBuilder().serializeNulls().create();
             ArrayList<UserPhoenixHome> userPhoenixHomes = gson.fromJson(rs.getString("playerhome"), new TypeToken<ArrayList<UserPhoenixHome>>(){}.getType());
-
-            if(userPhoenixHomes.size()==0){
-                statement.close();
-                return null;
-            }
-            userPhoenixHomes.removeIf(stuff -> stuff.getHome_Name().toLowerCase().equals(userPhoenixHome.getHome_Name().toLowerCase()));
+            userPhoenixHomes.removeIf(stuff -> stuff.getHome_Name().equals(userPhoenixHome.getHome_Name()));
             userPhoenixHomes.add(userPhoenixHome);
             if(getDataClass(uuid).getHome_Max_Amount()>userPhoenixHomes.size()){
                 statement.close();
@@ -150,7 +144,6 @@ public class UserPhoenixPlayerDataInquirer {
             String stg = gson.toJson(userPhoenixHomes,new TypeToken<ArrayList<UserPhoenixHome>>(){}.getType());
             executeString = executeString.replace("%HomeData%",stg);
             executeString = executeString.replace("%PlayerUUID%",uuid.toString());
-
             statement.execute(executeString);
             statement.close();
             return true;
@@ -169,19 +162,16 @@ public class UserPhoenixPlayerDataInquirer {
             rs.next();
             Gson gson = new GsonBuilder().serializeNulls().create();
             ArrayList<UserPhoenixHome> userPhoenixHomes = gson.fromJson(rs.getString("playerhome"), new TypeToken<ArrayList<UserPhoenixHome>>(){}.getType());
-
             if(userPhoenixHomes.size()==0){
                 statement.close();
                 return null;
             }
-
             for (UserPhoenixHome stuff:userPhoenixHomes) {
                 if(stuff.getHome_Name().equals(homeName)){
                     statement.close();
                     return stuff;
                 }
             }
-
             statement.close();
             return null;
         } catch (Exception e) {
@@ -190,13 +180,21 @@ public class UserPhoenixPlayerDataInquirer {
         }
     }
 
-    public static Boolean delHome(UUID uuid, UserPhoenixPlayerData userPhoenixPlayerData){//TODO
+    public static Boolean delHome(UUID uuid, String homeName){
         try {
+            if(!hasHome(uuid,homeName))
+                return false;
             Statement statement = ConnectionManager.getConnection().createStatement();
-            String executeString = "UPDATE worlduserdata_userphoenixplayerdata SET playerdata = '%PlayerData%' WHERE PlayerUUID = '%PlayerUUID%';";
+            String executeString = "SELECT * FROM worlduserdata_userphoenixplayerdata WHERE PlayerUUID = '%PlayerUUID%';";
+            executeString = executeString.replace("%PlayerUUID%",uuid.toString());
+            ResultSet rs = statement.executeQuery(executeString);
+            rs.next();
             Gson gson = new GsonBuilder().serializeNulls().create();
-            String stg = gson.toJson(userPhoenixPlayerData,UserPhoenixPlayerData.class);
-            executeString = executeString.replace("%PlayerData%",stg);
+            ArrayList<UserPhoenixHome> userPhoenixHomes = gson.fromJson(rs.getString("playerhome"), new TypeToken<ArrayList<UserPhoenixHome>>(){}.getType());
+            userPhoenixHomes.removeIf(stuff -> stuff.getHome_Name().equals(homeName));
+            executeString = "UPDATE worlduserdata_userphoenixplayerdata SET playerhome = '%HomeData%' WHERE PlayerUUID = '%PlayerUUID%';";
+            String stg = gson.toJson(userPhoenixHomes,new TypeToken<ArrayList<UserPhoenixHome>>(){}.getType());
+            executeString = executeString.replace("%HomeData%",stg);
             executeString = executeString.replace("%PlayerUUID%",uuid.toString());
             statement.execute(executeString);
             statement.close();
@@ -236,38 +234,7 @@ public class UserPhoenixPlayerDataInquirer {
             return true;
         }
     }
-
-    public static ArrayList<JSONObject> messages = new ArrayList<JSONObject>();
-
-    public static void addQueue(JSONObject message){
-        messages.removeIf(stuff -> stuff.getString("TARGET_PLAYER").toLowerCase().equals(message.getString("TARGET_PLAYER").toLowerCase()));
-        //no remove with foreach (ConcurrentModificationException)
-        messages.add(message);
-    }
-
-    public static JSONObject getAndDelQueue(Player player){
-        for (JSONObject stuff:messages) {
-            if(stuff.getString("TARGET_PLAYER").toLowerCase().equals(player.getName().toLowerCase())){
-                messages.removeIf(stuf -> stuf.getString("TARGET_PLAYER").toLowerCase().equals(player.getName().toLowerCase()));
-                //no remove with foreach (ConcurrentModificationException)
-                return stuff;
-            }
-        }
-        return null;
-    }
-
-    public static boolean hasQueue(Player player){
-        if(messages.size()!=0){
-            for (JSONObject stuff:messages){
-                if(stuff.getString("TARGET_PLAYER").toLowerCase().equals(player.getName().toLowerCase()))
-                    return true;
-            }
-        }
-        return false;
-    }
-
-    //---------
-
+    
     public static int getDataClassVersion(UUID uuid){
         try {
             Statement statement = ConnectionManager.getConnection().createStatement();
