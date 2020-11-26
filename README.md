@@ -39,6 +39,15 @@ Apache License Version 2.0 http://www.apache.org/licenses/LICENSE-2.0.txt
 END OF LICENSE
 ```
 
+IF (inventoryframework)
+```
+START OF LICENSE
+----------------------
+It is public domain https://github.com/stefvanschie/IF/blob/master/LICENSE
+----------------------
+END OF LICENSE
+```
+
 JSON
 ```
 START OF LICENSE
