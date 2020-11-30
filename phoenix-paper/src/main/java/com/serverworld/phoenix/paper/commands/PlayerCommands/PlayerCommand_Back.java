@@ -82,7 +82,7 @@ public class PlayerCommand_Back implements CommandExecutor {
             Json.addProperty("LOCATION_X",playerdata.getLastLocation_X());
             Json.addProperty("LOCATION_Y",playerdata.getLastLocation_Y());
             Json.addProperty("LOCATION_Z",playerdata.getLastLocation_Z());
-            Json.addProperty("LOCATION_Z",playerdata.getLastLocation_Yaw());
+            Json.addProperty("LOCATION_YAW",playerdata.getLastLocation_Yaw());
             Messagecoder.setMessage(Json.toString());
             messager.sendmessage(Messagecoder.createmessage());
         }, 20L);
