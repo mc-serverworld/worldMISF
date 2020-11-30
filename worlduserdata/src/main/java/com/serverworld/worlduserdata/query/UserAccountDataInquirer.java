@@ -34,23 +34,25 @@ public class UserAccountDataInquirer {
 
     public static boolean setUp(UUID uuid){
         try {
-            if(getSigned(uuid)){
-                //update ver1 data to ver2
-                if(getDataClassVersion(uuid)<2){
-                    Date d = new Date();
-                    UserAccountData oldData = getDataClass(uuid);
-                    oldData.setIp("none");
-                    oldData.setIsp("none");
-                    oldData.setLastLogin(d.getTime());
-
-                    setDataClass(uuid,oldData);
-                    setDataClassVersion(uuid,2);
-                    System.out.println("Updated AccountData " + uuid + " to version 2 (signed)");
-                    return false;
-                }
-            }
-
             if(joinBefore(uuid)){
+                if(getSigned(uuid)){
+                    //update ver1 data to ver2
+                    if(getDataClassVersion(uuid)<2){
+                        Date d = new Date();
+                        UserAccountData oldData = getDataClass(uuid);
+                        oldData.setIp("none");
+                        oldData.setIsp("none");
+                        oldData.setLastLogin(d.getTime());
+
+                        setDataClass(uuid,oldData);
+                        setDataClassVersion(uuid,2);
+                        System.out.println("Updated AccountData " + uuid + " to version 2 (signed)");
+                        return false;
+                    }
+
+                    return true;
+                }
+
                 if(getDataClassVersion(uuid)<2){
                     setDataClassVersion(uuid,2);
                     System.out.println("Updated " + uuid + " to version 2 (unsign)");
@@ -58,6 +60,8 @@ public class UserAccountDataInquirer {
                 }
                 return true;
             }
+
+
 
             Statement statement = ConnectionManager.getConnection().createStatement();
             String executeString = "INSERT INTO worlduserdata_useraccountdata (PlayerUUID, version, accountdata, signed) VALUES ('%UUID%', '2', 'notsign', '0');";
