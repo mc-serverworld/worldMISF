@@ -73,7 +73,7 @@ public class SignCommand extends Command {
                             userAccountData.setCity(json.getString("city"));
                             userAccountData.setContinent("continent");
                             userAccountData.setCountry("country");
-                            userAccountData.setIp(player.getAddress().toString());
+                            userAccountData.setIp(player.getAddress().getAddress().toString());
                             userAccountData.setIsp("org");
                             userAccountData.setLastLogin(date.getTime());
                             userAccountData.setPlayedTime(0L);

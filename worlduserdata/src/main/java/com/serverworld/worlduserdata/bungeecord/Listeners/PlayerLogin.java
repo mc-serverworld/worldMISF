@@ -69,7 +69,7 @@ public class PlayerLogin implements Listener {
                 userAccountData.setCity("none");
                 userAccountData.setContinent("none");
                 userAccountData.setCountry("none");
-                userAccountData.setIp(event.getPlayer().getAddress().toString());
+                userAccountData.setIp(event.getPlayer().getAddress().getAddress().toString());
                 userAccountData.setIsp("none");
                 userAccountData.setLastLogin(date.getTime());
                 userAccountData.setPlayerName(event.getPlayer().getName());
@@ -83,7 +83,7 @@ public class PlayerLogin implements Listener {
                 userAccountData.setCity(jsonObject.getString("city"));
                 userAccountData.setContinent(jsonObject.getString("continent"));
                 userAccountData.setCountry(jsonObject.getString("country"));
-                userAccountData.setIp(event.getPlayer().getAddress().toString());
+                userAccountData.setIp(event.getPlayer().getAddress().getAddress().toString());
                 userAccountData.setIsp(jsonObject.getString("org"));
                 userAccountData.setLastLogin(date.getTime());
                 userAccountData.setPlayerName(event.getPlayer().getName());
@@ -92,7 +92,7 @@ public class PlayerLogin implements Listener {
         }
             List<String> support_country_list = new ArrayList();
             support_country_list.add("taiwan");
-            support_country_list.add("china");
+            //support_country_list.add("china");
             support_country_list.add("hong kong");
             support_country_list.add("macao");
             support_country_list.add("singapore");

@@ -48,17 +48,19 @@ public class UserPhoenixPlayerDataInquirer {
             userPhoenixPlayerData.setResidence_Total_Amount(0);
             userPhoenixPlayerData.setResidence_Max_Size(10000D);
             userPhoenixPlayerData.setResidence_Max_Amount(3);
-            userPhoenixPlayerData.setHome_Max_Amount(1);
+            userPhoenixPlayerData.setHome_Max_Amount(3);
             userPhoenixPlayerData.setLastLocation_Server("none");
             userPhoenixPlayerData.setLastLocation_World("none");
             userPhoenixPlayerData.setLastLocation_X(0d);
             userPhoenixPlayerData.setLastLocation_Y(0d);
             userPhoenixPlayerData.setLastLocation_Z(0d);
+            userPhoenixPlayerData.setLastLocation_Yaw(0f);
             userPhoenixPlayerData.setLogoutLocation_Server("none");
             userPhoenixPlayerData.setLogoutLocation_World("none");
             userPhoenixPlayerData.setLogoutLocation_X(0d);
             userPhoenixPlayerData.setLogoutLocation_Y(0d);
             userPhoenixPlayerData.setLogoutLocation_Z(0d);
+            userPhoenixPlayerData.setLogoutLocation_Yaw(0f);
             Gson gson = new GsonBuilder().serializeNulls().create();
             String stg = gson.toJson(userPhoenixPlayerData,UserPhoenixPlayerData.class);
 
