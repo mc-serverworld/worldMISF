@@ -33,11 +33,11 @@ public class PlayerData {
     public static void SaveCurrentLocationAsLast(Player player, Location location){
         try{
             UserPhoenixPlayerData playerData = UserPhoenixPlayerDataInquirer.getDataClass(player.getUniqueId());
-            playerData.setLastlocation_server(PaperPhoenix.config.servername());
-            playerData.setLastlocation_world(player.getWorld().getName());
-            playerData.setLastlocation_x(player.getLocation().getX());
-            playerData.setLastlocation_y(player.getLocation().getY());
-            playerData.setLastlocation_z(player.getLocation().getZ());
+            playerData.setLastLocation_Server(PaperPhoenix.config.servername());
+            playerData.setLastLocation_World(player.getWorld().getName());
+            playerData.setLastLocation_X(player.getLocation().getX());
+            playerData.setLastLocation_Y(player.getLocation().getY());
+            playerData.setLastLocation_Z(player.getLocation().getZ());
             UserPhoenixPlayerDataInquirer.setDataClass(player.getUniqueId() , playerData);
             return;
         }catch (Exception e){
@@ -49,14 +49,14 @@ public class PlayerData {
     public static void addPlayTime(Player player,long time){
         try{
             UserPhoenixPlayerData playerData = UserPhoenixPlayerDataInquirer.getDataClass(player.getUniqueId());
-            playerData.setPlaytinme(playerData.getPlaytinme() + time);
+            playerData.setPlayTime(playerData.getPlayTime() + time);
 
-            if(playerData.getResidence_max_size()<=250000)
-                playerData.setResidence_max_size(playerData.getResidence_max_size()+100);
-            if(playerData.getResidence_max_size()<=500000)
-                playerData.setResidence_max_size(playerData.getResidence_max_size()+50);
-            if(playerData.getResidence_max_size()<=1000000)
-                playerData.setResidence_max_size(playerData.getResidence_max_size()+25);
+            if(playerData.getResidence_Max_Size()<=250000)
+                playerData.setResidence_Max_Size(playerData.getResidence_Max_Size()+100);
+            if(playerData.getResidence_Max_Size()<=500000)
+                playerData.setResidence_Max_Size(playerData.getResidence_Max_Size()+50);
+            if(playerData.getResidence_Max_Size()<=1000000)
+                playerData.setResidence_Max_Size(playerData.getResidence_Max_Size()+25);
 
 
             UserPhoenixPlayerDataInquirer.setDataClass(player.getUniqueId() , playerData);
