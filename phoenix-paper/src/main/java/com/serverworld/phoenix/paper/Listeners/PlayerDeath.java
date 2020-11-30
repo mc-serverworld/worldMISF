@@ -22,10 +22,9 @@ package com.serverworld.phoenix.paper.Listeners;
 import com.google.gson.JsonObject;
 import com.serverworld.phoenix.paper.PaperPhoenix;
 import com.serverworld.phoenix.paper.util.Formats;
+import com.serverworld.phoenix.paper.util.Player.PlayerData;
 import com.serverworld.worldSocket.paperspigot.util.messagecoder;
 import com.serverworld.worldSocket.paperspigot.util.messager;
-import com.serverworld.worlduserdata.jsondata.UserPhoenixPlayerData;
-import com.serverworld.worlduserdata.query.UserPhoenixPlayerDataInquirer;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
@@ -44,16 +43,8 @@ public class PlayerDeath implements Listener {
     @EventHandler
     public void onPlayerDearh(PlayerDeathEvent event){
         if(event.getEntity() instanceof Player) {
-            UserPhoenixPlayerData playerData = UserPhoenixPlayerDataInquirer.getDataClass(event.getEntity().getUniqueId());
-            playerData.setLastLocation_Server(PaperPhoenix.config.servername());
-            playerData.setLastLocation_World(event.getEntity().getWorld().getName());
-            playerData.setLastLocation_X(event.getEntity().getLocation().getX());
-            playerData.setLastLocation_Y(event.getEntity().getLocation().getY());
-            playerData.setLastLocation_Z(event.getEntity().getLocation().getZ());
-            //TODO Float playerData.setLastLocation_Yaw(event.getEntity().getLocation().getYaw());
-            UserPhoenixPlayerDataInquirer.setDataClass(event.getEntity().getUniqueId() , playerData);//save dead pos to database
+            PlayerData.SaveCurrentLocationAsLast(event.getEntity().getPlayer(),event.getEntity().getLocation());
             event.getEntity().sendMessage(Formats.perfix() + ChatColor.GOLD + "輸入/back 可傳送回上一個位置");//TODO: Langauge seleter
-
             Bukkit.getScheduler().scheduleSyncDelayedTask(PaperPhoenix.getInstance(), () -> event.getEntity().getPlayer().spigot().respawn(), 5L);
             if(PaperPhoenix.config.servername().equals(PaperPhoenix.config.serversprefix() + "OVERWORLD_0_0"))
                 return;

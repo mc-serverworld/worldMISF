@@ -38,6 +38,7 @@ public class PlayerData {
             playerData.setLastLocation_X(player.getLocation().getX());
             playerData.setLastLocation_Y(player.getLocation().getY());
             playerData.setLastLocation_Z(player.getLocation().getZ());
+            playerData.setLastLocation_Yaw(player.getLocation().getYaw());
             UserPhoenixPlayerDataInquirer.setDataClass(player.getUniqueId() , playerData);
             return;
         }catch (Exception e){

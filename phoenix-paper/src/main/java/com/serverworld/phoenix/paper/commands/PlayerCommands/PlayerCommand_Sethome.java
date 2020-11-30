@@ -23,7 +23,7 @@ package com.serverworld.phoenix.paper.commands.PlayerCommands;
 import com.serverworld.phoenix.paper.PaperPhoenix;
 import com.serverworld.phoenix.paper.util.DebugMessage;
 import com.serverworld.phoenix.paper.util.Formats;
-import com.serverworld.worlduserdata.jsondata.UserPhoenixPlayerData;
+import com.serverworld.worlduserdata.jsondata.UserPhoenixHome;
 import com.serverworld.worlduserdata.query.UserPhoenixPlayerDataInquirer;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -43,15 +43,21 @@ public class PlayerCommand_Sethome implements CommandExecutor {
             sender.sendMessage(ChatColor.RED + "請輸入家的名稱");//TODO: Langauge seleter
         }
         Player player = (Player) sender;
-        UserPhoenixPlayerData playerData = UserPhoenixPlayerDataInquirer.getDataClass(player.getUniqueId());
-        /*playerData.setHome_server(PaperPhoenix.config.servername());
-        playerData.setHome_world(player.getWorld().getName());
-        playerData.setHome_X(player.getLocation().getX());
-        playerData.setHome_Y(player.getLocation().getY());
-        playerData.setHome_Z(player.getLocation().getZ());*/
-        UserPhoenixPlayerDataInquirer.setDataClass(player.getUniqueId() , playerData);//save dead pos to database
+        UserPhoenixHome userPhoenixHome = new UserPhoenixHome();
+        userPhoenixHome.setHome_Name(label);
+        userPhoenixHome.setHome_Server(PaperPhoenix.config.servername());
+        userPhoenixHome.setHome_World(player.getWorld().toString());
+        userPhoenixHome.setHome_X(player.getLocation().getX());
+        userPhoenixHome.setHome_Y(player.getLocation().getY());
+        userPhoenixHome.setHome_Z(player.getLocation().getZ());
+        userPhoenixHome.setHome_Yaw(player.getLocation().getYaw());
 
-        player.sendMessage(Formats.perfix() + ChatColor.GREEN + "設定您的家於此");//TODO: Langauge seleter
+        if(UserPhoenixPlayerDataInquirer.addHome(player.getUniqueId(),userPhoenixHome))
+            player.sendMessage(Formats.perfix() + ChatColor.GREEN + "設定您的家" + ChatColor.YELLOW + userPhoenixHome.getHome_Name() + ChatColor.GREEN + "於此");//TODO: Langauge seleter
+        else
+            player.sendMessage(Formats.perfix() + ChatColor.RED + "已達到您可設定的家的數量上線");//TODO: Langauge seleter
+
+
         DebugMessage.sendIfHasPermission(sender,Formats.debug_perfix() + "Server: " + PaperPhoenix.config.servername() + " World: " + player.getWorld().getName());
 
         return true;

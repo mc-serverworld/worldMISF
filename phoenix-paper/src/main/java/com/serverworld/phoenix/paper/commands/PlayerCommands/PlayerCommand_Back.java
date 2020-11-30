@@ -50,7 +50,7 @@ public class PlayerCommand_Back implements CommandExecutor {
         playerData.setLastLocation_X(player.getLocation().getX());
         playerData.setLastLocation_Y(player.getLocation().getY());
         playerData.setLastLocation_Z(player.getLocation().getZ());
-        //TODO Float playerData.setLastLocation_Yaw(player.getLocation().getYaw());
+        playerData.setLastLocation_Yaw(player.getLocation().getYaw());
         UserPhoenixPlayerDataInquirer.setDataClass(player.getUniqueId() , playerData);//save dead pos to database
 
         player.sendMessage(Formats.perfix() + ChatColor.GREEN + "將您傳送到上一個位置");//TODO: Langauge seleter
