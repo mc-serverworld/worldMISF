@@ -39,7 +39,7 @@ jobs:
       #$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)-
     - name: Display structure of downloaded files
       run: ls -R
-      working-directory: \_work\worldMISF\worldMISF
+      working-directory: ..\worldMISF\worldMISF
     - run: mkdir staging && cp output/*.jar staging
     #- name: worldMISF jars
       #uses: actions/upload-artifact@v1
