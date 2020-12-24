@@ -39,7 +39,7 @@ jobs:
       #$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)-
     - name: Display structure of downloaded files
       run: ls -R
-    - run: mkdir staging && cp output/*.jar staging
+    #- run: mkdir staging && cp output/*.jar staging
     #- name: worldMISF jars
       #uses: actions/upload-artifact@v1
       #with:
@@ -52,5 +52,5 @@ jobs:
         automatic_release_tag: build-${{ github.run_number }}
         prerelease: false
         title: build-${{ github.run_number }}
-        files: staging/*.jar
+        files: output/*.jar
 
