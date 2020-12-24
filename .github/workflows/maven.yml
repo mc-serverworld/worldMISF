@@ -8,7 +8,6 @@ on:
 jobs:
   build:
     runs-on: [serverworld]
-    #runs-on: ubuntu-latest 
     steps:
     - uses: actions/checkout@v2
     - name: Set up openJDK 15.0.1 win64
@@ -16,20 +15,6 @@ jobs:
       with:
         java-version: "15.0.1"
         jdkFile: "G:/BuildUtils/Jdk/openJdk/openjdk-15.0.1_windows-x64_bin.zip"
-    - name: Cache Maven packages
-      uses: actions/cache@v2
-      with:
-        path: ~/.m2
-        key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
-        restore-keys: ${{ runner.os }}-m2
-    #- name: Get Time
-      #id: time
-      #uses: nanzm/get-time-action@v1.0
-      #with:
-        #timeZone: 8
-        #format: 'YYYYMMDDHHmmss'
-    #- name: Display structure of downloaded files
-      #run: ls -R
     - name: Deploy Github Package
       run: |
           mkdir -Force -p ~/.m2 
@@ -37,15 +22,6 @@ jobs:
           mvn install:install-file -Dfile="phoenix-paper\src\main\resources\Residence4.9.2.0.zip" -DgroupId="com.bekvon" -DartifactId=Residence -Dversion="4.9.2.0" -Dpackaging=jar -T2000
           mvn versions:set -DnewVersion=build-${{ github.run_number }} -DprocessAllModules -DgenerateBackupPoms=false versions:commit -T2000
           mvn install -T2000
-      #$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)-
-    #- name: Display structure of downloaded files
-      #run: ls -R
-    #- run: mkdir staging && cp output/*.jar staging.
-    #- name: worldMISF jars
-      #uses: actions/upload-artifact@v1
-      #with:
-        #name: worldMISF
-        #path: staging
     - name: Create Release
       uses: "marvinpinto/action-automatic-releases@latest"
       with:
