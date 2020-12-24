@@ -33,13 +33,13 @@ jobs:
       run: |
           mkdir -Force -p ~/.m2 
           echo "<settings><servers><server><id>gh</id><username>$(echo "$GITHUB_REPOSITORY" | awk -F / '{print $1}')</username><password>\${{ secrets.GITHUB_TOKEN }}</password></server></servers></settings>" > ~/.m2/settings.xml
-          mvn install:install-file -Dfile="phoenix-paper\src\main\resources\Residence4.9.2.0.zip" -DgroupId="com.bekvon" -DartifactId=Residence -Dversion="4.9.2.0" -Dpackaging=jar -T200
-          mvn versions:set -DnewVersion=build-${{ github.run_number }} -DprocessAllModules -DgenerateBackupPoms=false versions:commit -T200
-          mvn install -T200
+          mvn install:install-file -Dfile="phoenix-paper\src\main\resources\Residence4.9.2.0.zip" -DgroupId="com.bekvon" -DartifactId=Residence -Dversion="4.9.2.0" -Dpackaging=jar -T1000
+          mvn versions:set -DnewVersion=build-${{ github.run_number }} -DprocessAllModules -DgenerateBackupPoms=false versions:commit -T1000
+          mvn install -T1000
       #$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)-
     - name: Display structure of downloaded files
       run: ls -R
-      working-directory: ..\worldMISF\worldMISF
+      working-directory: .\worldMISF\worldMISF
     - run: mkdir staging && cp output/*.jar staging
     #- name: worldMISF jars
       #uses: actions/upload-artifact@v1
