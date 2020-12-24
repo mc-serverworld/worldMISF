@@ -1,28 +1,30 @@
 # This workflow will build a Java project with Maven
 # For more information see: https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-maven
 
-name: MISF JAVA CI with Maven
+name: worldMISF JAVA CI Main
 on:
   push:
     branches: [ master ]
 jobs:
-  build:
+  serverworldRunner1_openJDK_15_0_1:
     runs-on: [serverworld]
     steps:
     - uses: actions/checkout@v2
+      with:
+        clean: false
     - name: Set up openJDK 15.0.1 win64
       uses: actions/setup-java@v1
       with:
         java-version: "15.0.1"
         jdkFile: "G:/BuildUtils/Jdk/openJdk/openjdk-15.0.1_windows-x64_bin.zip"
-    - name: Deploy Github Package
+    - name: Maven Install
       run: |
           mkdir -Force -p ~/.m2 
           echo "<settings><servers><server><id>gh</id><username>$(echo "$GITHUB_REPOSITORY" | awk -F / '{print $1}')</username><password>\${{ secrets.GITHUB_TOKEN }}</password></server></servers></settings>" > ~/.m2/settings.xml
-          mvn install:install-file -Dfile="phoenix-paper\src\main\resources\Residence4.9.2.0.zip" -DgroupId="com.bekvon" -DartifactId=Residence -Dversion="4.9.2.0" -Dpackaging=jar -T2000
-          mvn versions:set -DnewVersion=build-${{ github.run_number }} -DprocessAllModules -DgenerateBackupPoms=false versions:commit -T2000
-          mvn install -T2000
-    - name: Create Release
+          mvn install:install-file -Dfile="phoenix-paper\src\main\resources\Residence4.9.2.0.zip" -DgroupId="com.bekvon" -DartifactId=Residence -Dversion="4.9.2.0" -Dpackaging=jar -T10000
+          mvn versions:set -DnewVersion=build-${{ github.run_number }} -DprocessAllModules -DgenerateBackupPoms=false versions:commit -T10000
+          mvn install -T10000
+    - name: Upload Release
       uses: "marvinpinto/action-automatic-releases@latest"
       with:
         repo_token: "${{ secrets.GITHUB_TOKEN }}"
