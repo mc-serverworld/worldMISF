@@ -15,7 +15,7 @@ jobs:
       uses: actions/setup-java@v1
       with:
         java-version: "15.0.1"
-        jdkFile: "G:\BuildUtils\Jdk\openJdk\openjdk-15.0.1_windows-x64_bin.zip"
+        jdkFile: "G:/BuildUtils/Jdk/openJdk/openjdk-15.0.1_windows-x64_bin.zip"
     - name: Cache Maven packages
       uses: actions/cache@v2
       with:
