@@ -31,7 +31,7 @@ jobs:
       run: ls -R
     - name: Deploy Github Package
       run: |
-          mkdir -p ~/.m2
+          mkdir -Force -p ~/.m2 
           echo "<settings><servers><server><id>gh</id><username>$(echo "$GITHUB_REPOSITORY" | awk -F / '{print $1}')</username><password>\${{ secrets.GITHUB_TOKEN }}</password></server></servers></settings>" > ~/.m2/settings.xml
           mvn install:install-file -Dfile=phoenix-paper/src/main/resources/Residence4.9.2.0.zip -DgroupId=com.bekvon -DartifactId=Residence -Dversion=4.9.2.0 -Dpackaging=jar
           mvn versions:set -DnewVersion=build-${{ github.run_number }} -DprocessAllModules -DgenerateBackupPoms=false versions:commit
